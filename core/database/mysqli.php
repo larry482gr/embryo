@@ -1,5 +1,5 @@
 <?php
-final class MySQLi {
+final class MySQLiDB {
 	private $mysqli;
 	
 	public function __construct($hostname, $username, $password, $database) {

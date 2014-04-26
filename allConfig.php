@@ -18,7 +18,7 @@
 	define('LOGS_D', 'pool/log/');
 	define('TEMP_D', 'pool/tmp/');
 	
-	define('DB_DRIVER','mysql');
+	define('DB_DRIVER','mysqli');
 	
 	// DB Hosts
     define('DB_SERVER', "localhost");

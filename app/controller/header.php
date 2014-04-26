@@ -125,8 +125,8 @@ class ControllerHeader extends Controller {
 		if (isset($this->request->request['route']) && $this->request->request['route'] != 'dashboard') {
 			$tab = explode('/', $this->request->request['route']);
 		}
-		$this->data['activated_tab'] = isset($tab) ? $tab[0] : 'dashboard';
-		$this->data['activated_subtab'] = isset($tab) ? $tab[1] : 'dashboard';
+		// $this->data['activated_tab'] = isset($tab) ? $tab[0] : 'dashboard';
+		// $this->data['activated_subtab'] = isset($tab) ? $tab[1] : 'dashboard';
 		
 		$this->data['title'] = 'Embryo';
 		

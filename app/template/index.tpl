@@ -44,24 +44,24 @@
 	  <div class="col-md-8">
 	    <div class="panel panel-primary">
 	      <div class="panel-heading">
-	        <div class="panel-title">Latest News</div>
+	        <div class="panel-title"><?php echo $home['latestNews']; ?></div>
 	      </div>
 	      <div class="panel-body">
 	        <dl>
-	          <dt>Published on: 29/03/2014</dt>
+	          <dt><?php echo $home['publishedOn']; ?>: 29/03/2014</dt>
 			  <dd>
 	            This is the first preview site of the respective academic reseach.
 	            <span class="help-block pull-right">
-	              <small>Read more</small>
+	              <small><?php echo $home['readMore']; ?></small>
 	            </span>
 			  </dd>
 	        </dl>
 	        <dl>
-	          <dt>Published on: 30/03/2014</dt>
+	          <dt><?php echo $home['publishedOn']; ?>: 30/03/2014</dt>
 	          <dd>
 	            Well, I 'm waiting for your thoughts and proposals concerning this preview. And of course we should arrange a meeting in order to provide me more details on the project's requirements.
 	            <span class="help-block pull-right">
-	              <small>Read more</small>
+	              <small><?php echo $home['readMore']; ?></small>
 	            </span>
 	          </dd>
 	        </dl>

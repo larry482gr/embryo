@@ -58,7 +58,7 @@
               <form action="javascript: void(0);" method="get" class="navbar-form navbar-left" role="search">
               	<div class="form-group">
                   <div class="input-group">
-                    <input type="text" id="q" name="q" class="form-control" placeholder="Search" />
+                    <input type="text" id="q" name="q" class="form-control" placeholder="<?php echo $header['search']; ?>" />
                     <span class="input-group-btn">
                       <button class="btn btn-default">
                         <i class="glyphicon glyphicon-search"></i>

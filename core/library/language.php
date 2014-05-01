@@ -1,6 +1,6 @@
 <?php
 class Language {
-	private $default = 'eng';
+	private $default = 'en';
 	private $language;
 	private $data = array();
  
@@ -8,9 +8,20 @@ class Language {
 		$this->language = $language;
 	}
 	
-	public function getUsersLanguage() {
+	public function getCurrentLanguage() {
    		return $this->language;
   	}
+	
+	public function getCurrentLanguageId() {
+		switch($this->language) {
+			case 'en':
+				return 1;
+			case 'gr':
+				return 2;
+			default:
+				return 1;
+		}
+	}
 	
 	public function getLanguage($key = false) {
    		return $key ? $this->data['language'][$key] : $this->data['language'];

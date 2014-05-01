@@ -47,24 +47,19 @@
 	        <div class="panel-title"><?php echo $home['latestNews']; ?></div>
 	      </div>
 	      <div class="panel-body">
-	        <dl>
-	          <dt><?php echo $home['publishedOn']; ?>: 29/03/2014</dt>
-			  <dd>
-	            This is the first preview site of the respective academic reseach.
-	            <span class="help-block pull-right">
-	              <small><?php echo $home['readMore']; ?></small>
-	            </span>
-			  </dd>
-	        </dl>
-	        <dl>
-	          <dt><?php echo $home['publishedOn']; ?>: 30/03/2014</dt>
-	          <dd>
-	            Well, I 'm waiting for your thoughts and proposals concerning this preview. And of course we should arrange a meeting in order to provide me more details on the project's requirements.
-	            <span class="help-block pull-right">
-	              <small><?php echo $home['readMore']; ?></small>
-	            </span>
-	          </dd>
-	        </dl>
+	        <?php
+	          $latestNews = '';
+	       	  foreach($articles as $article) {
+	        	$latestNews .= '<dl>
+						        <dt>'.$home['publishedOn'].': '.$article['published_at'].'</dt>
+								<dd>'.$article['short_desc'].'<span class="help-block pull-right">
+						              <small><a href="'.$lang.'/articles/'.$article['id'].'">'.$home['readMore'].'</a></small>
+						            </span>
+								  </dd>
+						        </dl>';
+	       	  }
+	       	  echo $latestNews;
+	        ?>
 	      </div>
 	    </div>
 	  </div>

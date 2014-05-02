@@ -34,25 +34,50 @@
             <a href="#" class="navbar-brand">Site Name</a>
           </div>
           <div class="collapse navbar-collapse" id="main-navbar">
-            <ul class="nav navbar-nav">
-              <li><a href="javascript: void(0);">Menu 1</a></li>
-              <li><a href="javascript: void(0);">Menu 2</a></li>
-              <li class="dropdown">
-                <a href="javascript: void(0);" class="dropdown-toggle">
-                  Menu with submenu
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="javascript: void(0);">Submenu 1</a></li>
-                  <li><a href="javascript: void(0);">Submenu 2</a></li>
-                  <li><a href="javascript: void(0);">Submenu 3</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Dropdown header</li>
-                  <li><a href="javascript: void(0);">Separated Submenu</a></li>
-                  <li class="divider"></li>
-                  <li><a href="javascript: void(0);">One more separated Submenu</a></li>
-                </ul>
-              </li>
-            </ul>
+          	<ul class="nav navbar-nav">
+          	<?php
+          		$navigation_menu = '';
+          		foreach($tabs as $tab) {
+          			$link_title = '';
+          			if(!$tab['has_submenu']) {
+	          			if(empty($tab['link']))
+							$tab['link'] = 'javascript: void(0)';
+						if(!empty($tab['description']))
+							$link_title = 'title="'.$tab['description'].'"';
+						
+	          			$navigation_menu .= '<li><a href="'.$tab['link'].'" '.$link_title.'>'.$tab['label'].'</a></li>';
+					}
+					else {
+	          			if(empty($tab['link']))
+							$tab['link'] = 'javascript: void(0)';
+						if(!empty($tab['description']))
+							$link_title = 'title="'.$tab['description'].'"';
+						
+						$navigation_menu .= '<li class="dropdown">';
+						$navigation_menu .= '<a class="dropdown-toggle" href="'.$tab['link'].'" '.$link_title.'>'.$tab['label'].'</a>';
+						$navigation_menu .= '<ul class="dropdown-menu">';
+						foreach($subtabs as $subtab) {
+							if($subtab['tab_id'] == $tab['id']) {
+								$link_title = '';
+								if($subtab['is_divided'])
+									$navigation_menu .= '<li class="divider"></li>';
+								if(!empty($subtab['header']))
+									$navigation_menu .= '<li class="dropdown-header">'.$subtab['header'].'</li>';
+								
+								if(empty($subtab['link']))
+									$subtab['link'] = 'javascript: void(0)';
+								if(!empty($subtab['description']))
+									$link_title = 'title="'.$subtab['description'].'"';
+								
+								$navigation_menu .= '<li><a href="'.$subtab['link'].'" '.$link_title.'>'.$subtab['label'].'</a></li>';
+							}
+						}
+						$navigation_menu .= '</ul></li>';
+					}
+          		}
+				echo $navigation_menu;
+          	?>
+          	</ul>
             <ul class="nav navbar-nav navbar-right">
               <form action="javascript: void(0);" method="get" class="navbar-form navbar-left" role="search">
               	<div class="form-group">

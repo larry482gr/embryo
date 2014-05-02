@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 01, 2014 at 11:42 PM
+-- Generation Time: May 03, 2014 at 12:14 AM
 -- Server version: 5.5.37-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `published_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `LANGUAGE_ID_FOREIGN_KEY` (`lang_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `articles`
@@ -46,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
 
 INSERT INTO `articles` (`id`, `title`, `short_desc`, `long_desc`, `lang_id`, `is_published`, `created_at`, `published_at`) VALUES
 (1, 'First Article', 'This is the first preview site of the respective academic reseach.', NULL, 1, 1, '2014-05-01 18:41:50', '2014-05-01 18:41:50'),
-(2, 'Second Article', 'Well, I ''m waiting for your thoughts and proposals concerning this preview. And of course we should arrange a meeting in order to provide me more details on the project''s requirements.', NULL, 1, 1, '2014-05-01 18:41:50', '2014-05-01 18:41:50');
+(2, 'Second Article', 'Well, I ''m waiting for your thoughts and proposals concerning this preview. And of course we should arrange a meeting in order to provide me more details on the project''s requirements.', NULL, 1, 1, '2014-05-01 18:41:50', '2014-05-01 18:41:50'),
+(3, 'Πρώτο Άρθρο', 'Το παρόν είναι το πρώτο προσχέδιο του ιστοχώρου του ακαδημαϊκού προγράμματος "Έμβρυο".', NULL, 2, 1, '2014-05-02 15:09:25', '2014-05-02 15:09:25');
 
 -- --------------------------------------------------------
 
@@ -81,12 +82,24 @@ CREATE TABLE IF NOT EXISTS `menu_subtabs` (
   `label` varchar(160) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `header` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_divided` tinyint(4) NOT NULL DEFAULT '0',
-  `is_header` tinyint(4) NOT NULL DEFAULT '0',
   `is_active` tinyint(4) NOT NULL DEFAULT '0',
+  `subtab_position` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tab_id` (`tab_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `menu_subtabs`
+--
+
+INSERT INTO `menu_subtabs` (`id`, `tab_id`, `label`, `description`, `link`, `header`, `is_divided`, `is_active`, `subtab_position`) VALUES
+(1, 3, 'Submenu 1', NULL, NULL, NULL, 0, 1, 1),
+(2, 3, 'Submenu 2', 'Short description', NULL, NULL, 0, 1, 2),
+(3, 3, 'Submenu 3', NULL, NULL, NULL, 0, 1, 3),
+(6, 3, 'Separated Submenu', NULL, NULL, 'Dropdown header', 1, 1, 4),
+(7, 3, 'One more separated Submenu', 'Divided short description.', NULL, NULL, 1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -102,9 +115,21 @@ CREATE TABLE IF NOT EXISTS `menu_tabs` (
   `lang_id` int(11) NOT NULL DEFAULT '1',
   `has_submenu` tinyint(1) NOT NULL DEFAULT '0',
   `is_active` tinyint(1) NOT NULL DEFAULT '0',
+  `tab_position` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `lang_id` (`lang_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `menu_tabs`
+--
+
+INSERT INTO `menu_tabs` (`id`, `label`, `description`, `link`, `lang_id`, `has_submenu`, `is_active`, `tab_position`) VALUES
+(1, 'Menu 1', 'Menu 1 description', NULL, 1, 0, 1, 1),
+(2, 'Menu 2', NULL, NULL, 1, 0, 1, 2),
+(3, 'Menu with submenu', NULL, NULL, 1, 1, 1, 3),
+(4, 'Menu 1', 'Περιγραφή Menu 1', NULL, 2, 0, 1, 2),
+(5, 'Menu 2', NULL, NULL, 2, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -144,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_users_on_profile_id` (`profile_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

@@ -53,7 +53,7 @@
 	        	$latestNews .= '<dl>
 						        <dt>'.$home['publishedOn'].': '.$article['published_at'].'</dt>
 								<dd>'.$article['short_desc'].'<span class="help-block pull-right">
-						              <small><a href="'.$lang.'/articles/'.$article['id'].'">'.$home['readMore'].'</a></small>
+						              <small><a href="articles/'.$article['id'].'">'.$home['readMore'].'</a></small>
 						            </span>
 								  </dd>
 						        </dl>';

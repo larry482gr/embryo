@@ -33,8 +33,7 @@
 	$controller = new Front($registry);
 	
 	// Language	
-	// TO BE Implemented --> How to take language parameter dynamically (by cookie).
-	$locale = @substr($request->request['route'], 0, 2);
+	$locale = strtolower(@substr($request->request['route'], 0, 2));
 	if($locale == 'en' || $locale == 'gr') {
 		$lang = $locale;
 		$request->request['route'] = substr($request->request['route'], 3);
@@ -66,7 +65,10 @@
 		$registry->set('rights', $rights);
 	}
 	*/
-	$action = isset($request->request['route']) && $request->request['route'] ? new Action($request->request['route']) : new Action('home/');
+	if(isset($request->request['route']) && $request->request['route'] == 'admin' || $request->request['route'] == 'admin/')
+		$action = new Action('admin/home');
+	else
+		$action = isset($request->request['route']) && $request->request['route'] ? new Action($request->request['route']) : new Action('home/');
 	
 	$controller->dispatch($action, new Action('error/not_found'));
 	

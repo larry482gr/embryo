@@ -87,3 +87,41 @@
 	background-color: #2A2A37 !important;
 	border-color: #2A2A37 !important;
 }
+
+@media (min-width:768px) {
+	.dropdown-menu {
+		display: block;
+		opacity: 0;
+		height: 0px;
+		max-height: 0px;
+	    overflow: hidden;
+	    -webkit-transition: max-height 1s;
+	       -moz-transition: max-height 1s;
+	            transition: max-height 1s;
+	}
+	
+	.dropdown:hover > .dropdown-menu {
+		opacity: 1;
+		height: auto;
+		max-height: 1000px;
+	}
+}
+
+@media (max-width:768px) {
+	.dropdown-menu {
+		display: block;
+		opacity: 0;
+		height: 0px;
+		max-height: 0px;
+	    overflow: hidden;
+	    -webkit-transition: max-height 1s;
+	       -moz-transition: max-height 1s;
+	            transition: max-height 1s;
+	}
+	
+	.dropdown:hover > .dropdown-menu {
+		opacity: 1;
+		height: auto;
+		max-height: 1000px;
+	}
+}

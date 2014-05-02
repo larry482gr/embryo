@@ -40,7 +40,6 @@
               <li class="dropdown">
                 <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">
                   Menu with submenu
-                  <b class='caret'></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="javascript: void(0);">Submenu 1</a></li>

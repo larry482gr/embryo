@@ -38,7 +38,7 @@
               <li><a href="javascript: void(0);">Menu 1</a></li>
               <li><a href="javascript: void(0);">Menu 2</a></li>
               <li class="dropdown">
-                <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="javascript: void(0);" class="dropdown-toggle">
                   Menu with submenu
                 </a>
                 <ul class="dropdown-menu">

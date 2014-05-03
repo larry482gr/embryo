@@ -1,12 +1,11 @@
-
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.0.8
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 03, 2014 at 12:14 AM
--- Server version: 5.5.37-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4
+-- Generation Time: May 03, 2014 at 02:02 AM
+-- Server version: 5.6.14
+-- PHP Version: 5.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -169,7 +168,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_users_on_profile_id` (`profile_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `profile_id`, `created_at`, `updated_at`) VALUES
+(1, 'larry482gr', 'p@p@riA,82', 'lakazantzis@gmail.com', 1, '2014-05-03 00:00:00', '2014-05-03 00:00:00');
 
 -- --------------------------------------------------------
 

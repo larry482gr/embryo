@@ -10,7 +10,10 @@
 	$loader = new Loader($registry);
 	$registry->set('load', $loader);
 	
-	$registry->set('document', new Document());
+	$document = new Document();
+	$registry->set('document', $document);
+	$document->setTitle('Embryo');
+	
 
 	// Initialize DB connection registries
 	$db = new DB(DB_DRIVER, DB_SERVER, DB_USER, DB_PASS, DB_EMBRYO);

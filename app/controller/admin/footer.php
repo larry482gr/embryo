@@ -1,8 +1,8 @@
 <?php
-class ControllerFooter extends Controller {
+class ControllerAdminFooter extends Controller {
 	protected function index() {
 		$this->data['scripts'] = $this->document->getScripts();
-		$this->template = 'footer.tpl';
+		$this->template = 'admin/footer.tpl';
     	$this->render();
 	}
 }

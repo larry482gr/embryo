@@ -22,11 +22,12 @@
 	$language['form']['email'] = 'Ήλ. ταχυδρομίο';
 	$language['form']['register'] = 'Εγγραφή';
 	$language['form']['login'] = 'Είσοδος';
-	$language['form']['login'] = 'Έξοδος';
+	$language['form']['logout'] = 'Έξοδος';
 	$language['form']['submit'] = 'Υποβολή';
 	$language['form']['forgotPass'] = 'Ξεχάσατε τον κωδικό σας;';
 	$language['form']['passRecSys'] = 'Σύστημα ανάκτησης κωδικού πρόσβασης';
 	$language['form']['or'] = 'Ή';
 	$language['form']['recover'] = 'Ανάκτηση';
 	$language['form']['noAccount'] = 'Δεν έχετε ακόμη λογαριασμό;';
+	$language['form']['loginError'] = 'Το όνομα χρήστη ή ο κωδικός πρόσβασης που καταχωρήσατε είναι πιθανώς εσφαλμένα.';
 ?>

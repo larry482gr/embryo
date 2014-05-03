@@ -22,11 +22,12 @@
 	$language['form']['email'] = 'Email';
 	$language['form']['register'] = 'Register';
 	$language['form']['login'] = 'Log In';
-	$language['form']['login'] = 'Log Out';
+	$language['form']['logout'] = 'Log Out';
 	$language['form']['submit'] = 'Submit';
 	$language['form']['forgotPass'] = 'Forgot password?';
 	$language['form']['passRecSys'] = 'Password Recovery System';
 	$language['form']['or'] = 'OR';
 	$language['form']['recover'] = 'Recover';
 	$language['form']['noAccount'] = 'Don\'t have an account yet?';
+	$language['form']['loginError'] = 'Your username or password are probably wrong.';
 ?>

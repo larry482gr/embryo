@@ -30,8 +30,6 @@ class ControllerHeader extends Controller {
 		// $this->data['activated_tab'] = isset($tab) ? $tab[0] : 'dashboard';
 		// $this->data['activated_subtab'] = isset($tab) ? $tab[1] : 'dashboard';
 		
-		$this->data['title'] = 'Embryo';
-		
 		$this->template = 'header.tpl';
     	$this->render();
 	}

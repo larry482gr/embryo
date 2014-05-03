@@ -43,9 +43,9 @@ class ControllerAdminHome extends Controller {
 			$this->session->data['userID'] = $user['id'];
 			$this->session->data['name'] = $user['username'];
 			$this->session->data['userProfile'] = $user['profile_id'];
-			$this->invalid_error = 'Successfully logged in!';
-			return;
-			// return $this->response->redirect('admin/dashboard');
+			// $this->invalid_error = 'Successfully logged in!';
+			// return;
+			return $this->response->redirect('admin/dashboard');
 		}
 	}
 	

@@ -460,30 +460,5 @@ class Mail {
 		}
 		return $sent;
 	}
-
-	public function getSignatureByBranch($branch = null) {
-		if(!$branch) {
-			$image = 'http://extranet.amdtelecom.net/images/template/logo.jpg';
-			$phone = '+30 23940 20336';
-			$mail = 'info@amdtelecom.net';
-			$url = 'extranet.amdtelecom.net';
-		}
-		else {
-			$image = 'http://'.$branch['Domain'].$branch['EmailLogo'];
-			$mail = $branch['ContactEmail'];
-			$url = $branch['Domain'];	
-			$phone = $branch['Phone'];
-		}
-			
-		$signature = "
-			<p style='font-family:verdana; color:#333; font-size:11px;'>
-				<img src= '".$image."' style='max-width:175px' ><br/>	
-				Office: ".$phone." <br/>
-				e-mail: <a href='mailto:".$mail."'>".$mail."</a><br/>
-				Url: <a href='".$url."'>".$url."</a>
-			</p>";
-			
-		return $signature;
-	}
 }
 ?>

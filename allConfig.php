@@ -27,7 +27,7 @@
 	// DB_EMBRYO
 	define('DB_EMBRYO', "embryo-admin_db");
 	// DB_QUESTIONNAIRE
-	define('DB_QUESTIONNAIRE', "embryo-admin_questionnaire");
+	define('DB_SURVEY', "embryo-admin_survey");
 	
 	// DB_EMBRYO login name and pass
 	// Development
@@ -37,7 +37,7 @@
 	// define('DB_USER', "larl3mbrRy");
 	// define('DB_PASS', "p@ok@rA1926");
 	
-	// DB_QUESTIONNAIRE login name and pass
-	define('DB_QUEST_USER', "l3mbrRY_suRv3y");
-	define('DB_QUEST_PASS', "laRry482grSurV3Y");
+	// DB_SURVEY login name and pass
+	define('DB_SURVEY_USER', "l3mbrRY_suRv3y");
+	define('DB_SURVEY_PASS', "laRry482grSurV3Y");
 ?>

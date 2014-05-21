@@ -1,0 +1,50 @@
+.contact-info {
+	margin-bottom: 30px;
+}
+
+.contact-info > div {
+	margin-bottom: 2px;
+}
+
+.contact-info > div:first-child {
+	font-weight: bold;
+	margin-bottom: 6px !important;
+}
+
+.glyphicon {
+	margin-right: 10px;
+}
+
+a {
+	color: #333333 !important;
+}
+
+a:hover {
+	cursor: pointer;
+	color: #428BCA !important;
+	text-decoration: none !important;
+}
+
+textarea#message {
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 160px;
+	max-height: 260px;
+	color: #999999;
+}
+
+textarea#message:focus {
+	color: #333333;
+}
+
+#contact-form .help-block {
+	color: #FF0000 !important;
+	opacity: 0.8;
+	height: 20px;
+	margin-bottom: 0px !important;
+}
+
+#email-error {
+	display: none;
+	font-size: 11px;
+}

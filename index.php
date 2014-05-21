@@ -22,6 +22,10 @@
 	$url = new Url('/');
 	$registry->set('url', $url);
 	
+	// Initialize Mail class
+	$mail = new Mail();
+	$registry->set('mail', $mail);
+	
 	$request = new Request();
 	$registry->set('request', $request);
 

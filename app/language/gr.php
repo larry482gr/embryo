@@ -29,9 +29,13 @@
 	$language['membersLinks']['contact'] = 'Επικοινωνία';
 	$language['membersLinks']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις.';
 	
+	// Contact Us
+	$language['contact']['pageTitle'] = 'Επικοινωνία';
+	
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';
 	$language['form']['loginForm'] = 'Είσοδος Χρήστη';
+	$language['form']['contactForm'] = 'Contact Form';
 	$language['form']['username'] = 'Όνομα χρήστη';
 	$language['form']['password'] = 'Κωδικός πρόσβασης';
 	$language['form']['email'] = 'Ήλ. ταχυδρομίο';
@@ -45,6 +49,15 @@
 	$language['form']['recover'] = 'Ανάκτηση';
 	$language['form']['noAccount'] = 'Δεν έχετε ακόμη λογαριασμό;';
 	$language['form']['loginError'] = 'Το όνομα χρήστη ή ο κωδικός πρόσβασης που καταχωρήσατε είναι πιθανώς εσφαλμένα.';
+	$language['form']['fullName'] = 'Ονοματεπώνυμο';
+	$language['form']['email'] = 'Email';
+	$language['form']['emailError'] = 'Θα πρέπει να καταχωρήσετε ένα έγγυρο email.';
+	$language['form']['subject'] = 'Θέμα';
+	$language['form']['message'] = 'Μήνυμα';
+	$language['form']['messagePlaceholder'] = 'Γράψτε το μήνυμα σας εδώ...';
+	$language['form']['required'] = 'Υποχρεωτικό πεδίο';
+	$language['form']['allRequired'] = 'Όλα τα πεδία είναι υποχρεωτικά.';
+	$language['form']['send'] = 'Αποστολή';
 	
 	// Permissions
 	$language['permission']['adminPanelDenied'] = 'Δεν έχετε πρόσβαση στη σελίδα που ζητήσατε. Παρακαλώ εισέλθετε πρώτα στο Περιβάλλον Διαχείρισης.';

@@ -29,9 +29,13 @@
 	$language['membersLinks']['contact'] = 'Contact';
 	$language['membersLinks']['noResults'] = 'No Results';
 	
+	// Contact Us
+	$language['contact']['pageTitle'] = 'Contact Us';
+	
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';
 	$language['form']['loginForm'] = 'Login Form';
+	$language['form']['contactForm'] = 'Contact Form';
 	$language['form']['username'] = 'Username';
 	$language['form']['password'] = 'Password';
 	$language['form']['email'] = 'Email';
@@ -45,6 +49,15 @@
 	$language['form']['recover'] = 'Recover';
 	$language['form']['noAccount'] = 'Don\'t have an account yet?';
 	$language['form']['loginError'] = 'Your username or password are probably wrong.';
+	$language['form']['fullName'] = 'Full Name';
+	$language['form']['email'] = 'Email';
+	$language['form']['emailError'] = 'You must provide a valid email address.';
+	$language['form']['subject'] = 'Subject';
+	$language['form']['message'] = 'Message';
+	$language['form']['messagePlaceholder'] = 'Write your message here...';
+	$language['form']['required'] = 'Required field';
+	$language['form']['allRequired'] = 'All fields are required.';
+	$language['form']['send'] = 'Send';
 	
 	// Permissions
 	$language['permission']['adminPanelDenied'] = 'You don\'t have access on the page you requested. Please login to the Administration Panel first.';

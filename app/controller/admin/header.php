@@ -1,10 +1,12 @@
 <?php
 class ControllerAdminHeader extends Controller {
 	protected function index() {
+		$this->data['header'] = $this->language->getLanguage('header');
 		$this->data['adminHeader'] = $this->language->getLanguage('adminHeader');
 		$this->data['form'] = $this->language->getLanguage('form');
 		
 		$this->document->addStyle("libraries/bootstrap.min");
+		$this->document->addStyle("header");
 		$this->document->addStyle("admin/header");
 		
 		$this->data['title'] = $this->document->getTitle();

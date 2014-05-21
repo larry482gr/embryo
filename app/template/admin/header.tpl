@@ -25,12 +25,13 @@
 	  <nav class="navbar navbar-default" role="navigation">
         <div class="container container-fluid">
           <div class="navbar-header">
-            <a href="#" class="navbar-brand">Site Name</a>
-          </div>
-          <div class="collapse navbar-collapse" id="main-navbar">
-          	<ul class="nav navbar-nav navbar-right">
-          	  <h4 id="panel-title" class="col-md-offset-8"><?php echo $adminHeader['title'] ?></h4>
-          	</ul>
+            <div class="navbar-brand">
+	          <img src='/resources/images/auth_logo.png' id="auth-logo" />
+	          <a href="/"><?php echo $header['siteName']; ?></a>
+            </div>
+            <div class="nav-admin-panel">
+              <h4 id="panel-title" class="col-md-offset-8"><?php echo $adminHeader['title'] ?></h4>
+            </div>
           </div>
         </div>
 	  </nav>

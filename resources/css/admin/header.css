@@ -7,29 +7,27 @@
 	border: none !important;
 }
 
+.navbar-header {
+	padding-bottom: 5px !important;
+}
+
 .navbar-brand {
 	float: left;
 	color: #EEEEEE !important;
 }
 
 h4#panel-title {
-	
 	margin: 0px !important;
 	padding: 15px;
 	color: #CCCCCC !important;
 }
 
-.container {
-	min-height: 100% !important;
+.nav-admin-panel {
+	float: right;
+	width: 300px;
+	margin-right: 20px;
 }
 
-.footer {
-	background-color: #2A2A37;
-	color: #FFFFFF;
-	min-height: 100px;
-	clear: both;
-	position: relative;
-	z-index: 10;
-	height: 3em;
-	margin-top: -3em;
+#admin-login-form {
+	margin-top: 60px;
 }

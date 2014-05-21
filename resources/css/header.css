@@ -1,3 +1,15 @@
+body {
+	background-image: url('../images/site_background.jpg');
+}
+
+:focus {
+	outline: none !important;
+}
+
+h3.page-title {
+	margin-top: 0px !important;
+}
+
 .navbar-default {
 	border-radius: 0px !important;
 	-webkit-border-radius: 0px !important;
@@ -7,12 +19,109 @@
 	border: none !important;
 }
 
+.navbar-header {
+	width: 100%;
+	clear: both;
+}
+
+#auth-logo {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+}
+
 .navbar-brand {
+	height: auto !important;
+	line-height: inherit !important;
+	padding: 0px !important;
+	margin: 10px 0px 0px 5px !important;
+}
+
+.navbar-brand > a {
 	color: #EEEEEE !important;
+	text-decoration: none;
+}
+
+@media (min-width: 1008px) {
+	.nav-search-form {
+		display: block;
+	}
+}
+
+@media (max-width: 1007px) {
+	.nav-search-form {
+		display: none;
+	}
+}
+
+@media (max-width: 820px) {
+	.nav-search-form {
+		display: block !important;
+		padding-top: 10px !important;
+	}
+}
+
+@media (min-width: 821px) {
+	.navbar-toggle {
+		margin-top: 16px !important;
+		margin-right: 0px !important;
+	}
+	
+	#auth-logo {
+		margin-bottom: 5px;
+	}
+}
+
+@media (max-width: 820px) {
+	.navbar-toggle {
+		float: none;
+		margin-left: 10px !important;
+	}
+}
+
+.nav-search-form {
+	float: right;
+	width: 240px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-right: 10px;
+}
+
+.nav-search-form > form > .form-group {
+	margin: 0px !important;
+}
+
+@media (min-width: 970px) {
+	#main-navbar {
+		padding: 0px !important;
+	}
+}
+
+.navbar-nav {
+	margin-top: 4px !important;
 }
 
 .navbar-nav > li > a {
 	color: #CCCCCC !important;
+	font-size: 11px !important;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+}
+
+.navbar-nav > li > ul > li {
+	font-size: smaller !important;
+}
+
+@media (max-width: 970px) {
+	.navbar-nav > li > ul > li > a {
+		color: #999999 !important;
+	}
+
+	.navbar-nav > li > ul > li > a:hover {
+		color: #CCCCCC !important;
+	}
 }
 
 .navbar-nav > li > a:hover {
@@ -30,60 +139,29 @@
 .footer {
 	background-color: #2A2A37;
 	color: #FFFFFF;
-	min-height: 100px;
+	margin-top: 30px;
+	min-height: 93px;
 }
 
-.row {
-	margin-bottom: 10px !important;
+.footer > .container > div {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
-.home-right > h3 {
-	margin-top: 0px !important;
+#espa_logo {
+	width: 450px !important;
+	height: 93px !important;
 }
 
-#home-carousel{
-	width: 100% !important;
-	height: 300px !important;
+.glow-link {
+	color: #AAAAAA !important;
+	text-decoration: none !important;
+	transition: color 0.4s ease;
+	-webkit-transition: color 0.4s ease;
+	-moz-transition: color 0.4s ease;
+	-o-transition: color 0.4s ease;
 }
 
-#home-carousel > .carousel-inner > .item {
-	width: 100% !important;
-	height: 300px !important;
-}
-
-#home-carousel > .carousel-inner > .item > img {
-	width: 100% !important;
-	height: 300px !important;
-}
-
-.carousel-caption {
-	background-color: rgba(0, 0, 0, 0.6);
-	bottom: 0 !important;
-	padding-top: 0px !important;
-	padding-bottom: 30px !important;
-	left: 0% !important;
-	right: 0% !important;
-	
-}
-
-.carousel-caption h3 {
-	margin-top: 10px !important;
-}
-
-.carousel-indicators {
-	bottom: 0 !important;
-	margin-bottom: 10px !important;
-}
-
-.carousel-control {
-	z-index: 11;
-}
-
-.panel-primary {
-	border-color: #2A2A37 !important;
-}
-
-.panel-primary > .panel-heading {
-	background-color: #2A2A37 !important;
-	border-color: #2A2A37 !important;
+.glow-link:hover {
+	color: #FFFFFF !important;
 }

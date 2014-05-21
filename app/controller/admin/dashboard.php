@@ -1,6 +1,14 @@
 <?php
 class ControllerAdminDashboard extends Controller {
 	public function index() {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin');
+		}
+		
+		$this->data['user']['id'] = $this->session->data['user']['id'];
+		$this->data['user']['name'] = $this->session->data['user']['name'];
+		
 		$this->document->addStyle("admin/dashboard");
 		
 		// Assign header/footer to children object

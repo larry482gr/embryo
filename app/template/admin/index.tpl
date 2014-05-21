@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 	<div class="row">
 	  <div class="col-md-12">
-	    <form class="form-horizontal" role="form" action="admin" method="post">
+	    <form id="admin-login-form" class="form-horizontal" role="form" method="post">
 	      <?php
 	        if(!empty($invalidError)) {
 	      ?>

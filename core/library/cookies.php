@@ -18,7 +18,7 @@ public function create_cookie($data, $path=''){
 }	
 	
 public function del_cookie($redirect=''){ 
- 	setcookie ("auth_AmdTelecom", "0", time()-"$period" , "/"); // delete cookie
+ 	setcookie ("auth_embryo", "0", time()-"$period" , "/"); // delete cookie
 	if ($redirect != ''){
 		header('Location: http://'.$_SERVER['HTTP_HOST']."/$redirect");
  		exit; 

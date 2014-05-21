@@ -2,9 +2,11 @@
 class ControllerHeader extends Controller {
 	protected function index() {
 		$this->data['header'] = $this->language->getLanguage('header');
+		$this->data['lang'] = $this->language->getCurrentLanguage();
+		$lang_id = $this->language->getCurrentLanguageId();
 		
 		$this->load->model('tab');
-		$this->data['tabs'] = $this->model_tab->findActiveTabs($this->language->getCurrentLanguageId());
+		$this->data['tabs'] = $this->model_tab->findActiveTabs($lang_id);
 		
 		$tab_ids_array = array();
 		foreach($this->data['tabs'] as $tab) {
@@ -24,11 +26,11 @@ class ControllerHeader extends Controller {
 		$this->data['title'] = $this->document->getTitle();
 		$this->data['styles'] = $this->document->getStyles();
 		
-		if (isset($this->request->request['route']) && $this->request->request['route'] != 'dashboard') {
+		$this->data['activated_tab'] = 'non-active';
+		if (!empty($this->request->request['route']) && strpos($this->request->request['route'], 'admin') === false) {
 			$tab = explode('/', $this->request->request['route']);
+			$this->data['activated_tab'] = $tab[0];
 		}
-		// $this->data['activated_tab'] = isset($tab) ? $tab[0] : 'dashboard';
-		// $this->data['activated_subtab'] = isset($tab) ? $tab[1] : 'dashboard';
 		
 		$this->template = 'header.tpl';
     	$this->render();

@@ -3,6 +3,9 @@ class ControllerAdminHome extends Controller {
 	private $invalid_error = '';
 	// Subaction argument defines whether user is in normal login, just registered or activation state.
 	public function index($subaction = 0) {
+		if($this->right->canViewAdminPanel())
+			return $this->response->redirect('/admin/dashboard');
+	
 		if ($subaction == 0) {
 			$this->data['form'] = $this->language->getLanguage('form');
 			$username = isset($this->request->post['admin']['uname']) ? $this->request->post['admin']['uname'] : '';
@@ -12,7 +15,12 @@ class ControllerAdminHome extends Controller {
 			}
 			
 			$this->data['username'] = $username;
-			$this->data['invalidError'] = $this->invalid_error;
+			if(isset($this->session->data['permissionDenied'])) {
+				$this->data['invalidError'] = $this->session->data['permissionDenied'];
+				unset($this->session->data['permissionDenied']);
+			}
+			else
+				$this->data['invalidError'] = $this->invalid_error;
 		}
 		
 		// Assign header/footer to children object
@@ -40,13 +48,20 @@ class ControllerAdminHome extends Controller {
 		*/
 		// Valid user. Proceed to dashboard.
 		else {
-			$this->session->data['userID'] = $user['id'];
-			$this->session->data['name'] = $user['username'];
-			$this->session->data['userProfile'] = $user['profile_id'];
-			// $this->invalid_error = 'Successfully logged in!';
-			// return;
-			return $this->response->redirect('admin/dashboard');
+			$this->session->data['user']['id'] = $user['id'];
+			$this->session->data['user']['name'] = $user['username'];
+			$this->session->data['user']['profile'] = $user['profile_id'];
+			
+			return $this->response->redirect('/admin/dashboard');
 		}
+	}
+	
+	public function logout() {
+		unset($this->session->data['user']['id']);
+		unset($this->session->data['user']['name']);
+		unset($this->session->data['user']['profile']);
+
+		return $this->response->redirect('home');
 	}
 	
 	private function createToken($bits) {

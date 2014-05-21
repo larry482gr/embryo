@@ -24,7 +24,12 @@
     define('DB_SERVER', "localhost");
 	// define('DB_SERVER', "hosted4db.ccf.auth.gr");
 	
-	//database login name and pass
+	// DB_EMBRYO
+	define('DB_EMBRYO', "embryo-admin_db");
+	// DB_QUESTIONNAIRE
+	define('DB_QUESTIONNAIRE', "embryo-admin_questionnaire");
+	
+	// DB_EMBRYO login name and pass
 	// Development
 	define('DB_USER', "l3mbrRY");
 	define('DB_PASS', "laRry482grEmbry0");
@@ -32,5 +37,7 @@
 	// define('DB_USER', "larl3mbrRy");
 	// define('DB_PASS', "p@ok@rA1926");
 	
-	define('DB_EMBRYO', "embryo-admin_db");
+	// DB_QUESTIONNAIRE login name and pass
+	define('DB_QUEST_USER', "l3mbrRY_suRv3y");
+	define('DB_QUEST_PASS', "laRry482grSurV3Y");
 ?>

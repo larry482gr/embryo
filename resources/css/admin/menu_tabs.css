@@ -1,0 +1,13 @@
+#tabs-table {
+	background-color: #FFFFFF;
+	border-radius: 4px;
+}
+
+#add-new {
+	clear: both;
+	margin-bottom: 16px;
+}
+
+#create-new-tab {
+	display: none;
+}

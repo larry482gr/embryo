@@ -1,0 +1,63 @@
+#home-carousel{
+	background-color: #444444;
+	border-radius: 3px;
+	margin-bottom: 30px !important;
+	-moz-box-shadow: 3px 3px 12px #333333, -3px 3px 12px #333333, 3px -3px 12px #333333, -3px -3px 12px #333333;
+    color: #333333;
+	-webkit-box-shadow: 3px 3px 12px #333333, -3px 3px 12px #333333, 3px -3px 12px #333333, -3px -3px 12px #333333;
+    color: #333333;
+	box-shadow: 3px 3px 12px #333333, -3px 3px 12px #333333, 3px -3px 12px #333333, -3px -3px 12px #333333;
+    color: #333333;
+}
+
+#home-carousel > .carousel-inner {
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+#home-carousel > .carousel-inner > .item > a {
+	width: 100% !important;
+	max-height: 300px !important;
+}
+
+#home-carousel > .carousel-inner > .item > a > img {
+	width: 100% !important;
+	max-height: 300px !important;
+}
+
+.carousel-caption {
+	background-color: rgba(0, 0, 0, 0.8);
+	bottom: 0 !important;
+	padding-top: 0px !important;
+	padding-bottom: 30px !important;
+	left: 0% !important;
+	right: 0% !important;
+	
+}
+
+.carousel-caption h5 {
+	margin-top: 10px !important;
+}
+
+.carousel-indicators {
+	bottom: 0 !important;
+	margin-bottom: 10px !important;
+}
+
+.carousel-indicators > li {
+	margin-left: 3px !important;
+	margin-right: 3px !important;
+}
+
+.carousel-control {
+	z-index: 11;
+}
+
+.panel-primary {
+	border-color: #2A2A37 !important;
+}
+
+.panel-primary > .panel-heading {
+	background-color: #2A2A37 !important;
+	border-color: #2A2A37 !important;
+}

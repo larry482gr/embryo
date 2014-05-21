@@ -1,0 +1,72 @@
+#links-table {
+	background-color: #FFFFFF;
+	border-radius: 4px;
+}
+
+#add-new-group {
+	margin-bottom: 20px !important;
+}
+
+#add-new-member {
+	margin-bottom: 20px !important;
+}
+
+#create-new-group {
+	display: none;
+	margin-bottom: 20px !important;
+}
+
+#create-new-member {
+	display: none;
+	margin-bottom: 20px !important;
+}
+
+tr.group-row {
+	cursor: pointer;
+}
+
+div.members {
+	display: none;
+}
+
+div.members > h5 {
+	margin-bottom: 20px !important;
+}
+
+div.visible {
+	display: block !important;
+}
+
+#member_picture {
+	margin-top: 6px !important;
+}
+
+#member_cv, member_pubs {
+	max-height: 300px;
+}
+
+.thumbnail {
+	width: 89px !important;
+	height: 106px !important;
+	cursor: default !important;
+}
+
+.member-links-div {
+	margin-left: 10px;
+}
+
+.member-links {
+	color: #2A6496 !important;
+	float: left;
+	clear: both;
+}
+
+.member-links:hover {
+	color: #2A2A37 !important;
+	text-decoration: none;
+}
+
+.member-cv, .member-pubs {
+	display: none;
+	margin-bottom: 20px;
+}

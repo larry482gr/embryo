@@ -1,0 +1,32 @@
+.link-category {
+	cursor: pointer;
+}
+
+.links-ul {
+	list-style: none;
+	margin-top: 20px !important;
+	padding-left: 0px !important;
+}
+
+.links-ul > li {
+	min-height: 20px;
+}
+
+.links-ul > li.links-header {
+	font-weight: 500;
+	margin-bottom: 4px;
+}
+
+.links-ul > li > a, .grouped-links > li > a {
+	color: #2A6496 !important;
+}
+
+.links-ul > li > a:hover, .grouped-links > li > a:hover {
+	color: #2A2A37 !important;
+	text-decoration: none;
+}
+
+.links-back {
+	margin-top: 10px;
+	margin-bottom: 40px !important;
+}

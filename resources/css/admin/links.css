@@ -1,0 +1,22 @@
+#links-table {
+	background-color: #FFFFFF;
+	border-radius: 4px;
+}
+
+#add-new {
+	clear: both;
+	margin-bottom: 16px;
+}
+
+#add-new-category {
+	margin-bottom: 20px !important;
+}
+
+#create-new-category {
+	display: none;
+	margin-bottom: 20px !important;
+}
+
+#create-new-link {
+	display: none;
+}

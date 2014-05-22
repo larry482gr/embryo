@@ -22,11 +22,12 @@ class ControllerContactUs extends Controller {
 		$name = $this->db->escape($this->request->post['name']);
 		$email = $this->db->escape($this->request->post['email']);
 		$subject = $this->db->escape($this->request->post['subject']);
-		$message = $this->db->escape($this->request->post['message']);
+		$message = nl2br($this->request->post['message']);
 		
 		if(empty($name) || empty($email) || empty($subject) || empty($message))
 			die('fill_all');
 		else {
+			/*
 			$this->mail->setTo('lakazantzis@gmail.com');
 			$this->mail->setSender($name);
 			$this->mail->setFrom($email);
@@ -37,6 +38,20 @@ class ControllerContactUs extends Controller {
 			
 			if($this->mail->send())
 				die('success');	
+			*/
+			$to      = 'lakazantzis@gmail.com';
+			$message = '<h3>Message from '.$name.' via Contact Form</h3><div>'.$message.'</div>';
+			// To send HTML mail, the Content-type header must be set
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+			
+			// Additional headers
+			$headers .= 'From: '.$name.' <'.$email.'>' . "\r\n";
+			$headers .= 'Reply-To: ' . $email . "\r\n";
+			$headers .= 'X-Mailer: PHP/' . phpversion();
+			
+			if(mail($to, $subject, $message, $headers))
+				die('success');
 		}
 		
 		die('error');

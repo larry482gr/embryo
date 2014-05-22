@@ -66,17 +66,25 @@ function submitForm() {
 				subject:$.trim($('#subject').val()),
 				message:$.trim($('#message').val())
 			},
-			beforeSend : function(){  },
+			beforeSend : function() {
+				$('#contact-form button').append('...');
+				$('#contact-form button').attr('disabled', true);
+			},
 			success: function(result) {
 				if(result == 'success')
-					bootbox.alert('Mail send');
+					bootbox.alert('Το μήνυμα σας παραδόθηκε επιτυχώς.');
 				else if(result == 'error')
-					bootbox.alert('Something happened!');
+					bootbox.alert('Αποτυχία αποστολής email. Παρακαλώ δοκιμάστε ξανά.');
 				else if(result == 'fill_all')
 					bootbox.alert('Fill All...');
+				
+				$('#contact-form button').html($('#contact-form button').html().substring(0, $('#contact-form button').html().length-3));
+				$('#contact-form button').attr('disabled', false);
 			},
 			error: function(result) {
-				bootbox.alert("Form Error");
+				bootbox.alert("Αποτυχία αποστολής email. Παρακαλώ δοκιμάστε ξανά.");
+				$('#contact-form button').append('...');
+				$('#contact-form button').attr('disabled', false);
 			}
 		});
 }

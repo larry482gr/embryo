@@ -39,7 +39,7 @@ class ControllerContactUs extends Controller {
 			if($this->mail->send())
 				die('success');	
 			*/
-			$to      = 'lakazantzis@gmail.com';
+			$to      = 'bioithiki@gmail.com';
 			$message = '<h3>Message from '.$name.' via Contact Form</h3><div>'.$message.'</div>';
 			// To send HTML mail, the Content-type header must be set
 			$headers  = 'MIME-Version: 1.0' . "\r\n";

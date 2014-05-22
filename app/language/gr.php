@@ -35,7 +35,7 @@
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';
 	$language['form']['loginForm'] = 'Είσοδος Χρήστη';
-	$language['form']['contactForm'] = 'Contact Form';
+	$language['form']['contactForm'] = 'Φόρμα Επικοινωνίας';
 	$language['form']['username'] = 'Όνομα χρήστη';
 	$language['form']['password'] = 'Κωδικός πρόσβασης';
 	$language['form']['email'] = 'Ήλ. ταχυδρομίο';

@@ -19,7 +19,7 @@
 	color: #333333 !important;
 }
 
-.contact-info a:hover {
+.contact-info a:hover, .contact-info a:focus {
 	cursor: pointer;
 	color: #428BCA !important;
 	text-decoration: none !important;

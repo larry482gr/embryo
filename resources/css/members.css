@@ -41,6 +41,11 @@ div.visible {
 	display: block !important;
 }
 
+div.member {
+	padding-left: 0px !important;
+	margin-bottom: 30px !important;
+}
+
 #member_picture {
 	margin-top: 6px !important;
 }
@@ -52,6 +57,7 @@ div.visible {
 .thumbnail {
 	width: 89px !important;
 	height: 106px !important;
+	margin-bottom: 0px !important;
 	cursor: default !important;
 }
 
@@ -60,9 +66,13 @@ div.visible {
 }
 
 .member-links-div {
-	margin-left: 10px;
+	margin-left: 0px !important;
+	padding-left: 10px;
 }
 
+.member-links-div > h5 {
+	margin-top: 0px !important
+}
 .member-links {
 	color: #2A6496 !important;
 	float: left;
@@ -74,7 +84,17 @@ div.visible {
 	text-decoration: none;
 }
 
+.member-links:focus {
+	text-decoration: none;
+}
+
 .member-cv, .member-pubs {
 	display: none;
 	margin-bottom: 20px;
+	padding-left: 0px !important;
+	text-align: justify;
+}
+
+.member-cv > ol {
+	padding-left: 18px !important;
 }

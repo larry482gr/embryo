@@ -26,6 +26,10 @@
 	text-decoration: none;
 }
 
+.links-ul > li > a:focus, .grouped-links > li > a:focus {
+	text-decoration: none;
+}
+
 .links-back {
 	margin-top: 10px;
 	margin-bottom: 40px !important;

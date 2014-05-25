@@ -1,4 +1,7 @@
 <?php
+	// Under Construction
+	$language['underConstruction'] = 'Υπό Κατασκευή';
+	
 	// Header
 	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ ΚΑΙ ΠΡΟΣΤΑΣΙΑ ΤΟΥ ΕΜΒΡΥΟΥ IN VITRO';
 	$language['header']['search'] = 'Αναζήτηση';
@@ -14,14 +17,6 @@
 	$language['home']['readMore'] = 'Περίσσοτερα';
 	$language['home']['noPicture'] = 'Η εικόνα δεν είναι διαθέσιμη.';
 	
-	// Articles
-	$language['news']['pageTitle'] = 'Νέα';
-	$language['news']['archive'] = 'Αρχείο Νέων';
-	
-	// Links
-	$language['links']['pageTitle'] = 'Σύνδεσμοι';
-	$language['links']['noLinks'] = 'Δεν υπάρχουν καταχωρήσεις σε αυτή την κατηγορία συνδέσμων.';
-	
 	// Members
 	$language['membersLinks']['pageTitle'] = 'Ερευνητική Ομάδα';
 	$language['membersLinks']['cv'] = 'Βιογραφικό';
@@ -29,8 +24,46 @@
 	$language['membersLinks']['contact'] = 'Επικοινωνία';
 	$language['membersLinks']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις.';
 	
+	// News
+	$language['news']['pageTitle'] = 'Νέα';
+	$language['news']['archive'] = 'Αρχείο Νέων';
+	
+	// Events
+	$language['events']['pageTitle'] = 'Εκδηλώσεις';
+	
+	// Links
+	$language['links']['pageTitle'] = 'Σύνδεσμοι';
+	$language['links']['noLinks'] = 'Δεν υπάρχουν καταχωρήσεις σε αυτή την κατηγορία συνδέσμων.';
+	
+	// Legislation
+	$language['legislation']['pageTitle'] = 'Νομοθεσία';
+	
+	// European Courts
+	$language['europeanCourts']['pageTitle'] = 'Ευρωπαϊκών Δικαστηρίων';
+	
+	// National Courts
+	$language['nationalCourts']['pageTitle'] = 'Εθνικών Δικαστηρίων';
+	
+	// Texts
+	$language['texts']['pageTitle'] = 'Κείμενα';
+	
+	// Bibliography
+	$language['bibliography']['pageTitle'] = 'Βιβλιογραφία';
+	
+	// Studies
+	$language['studies']['pageTitle'] = 'Μελέτες';
+	
+	// Opinion
+	$language['opinion']['pageTitle'] = 'Η γνώμη σας';
+	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Επικοινωνία';
+	
+	// Forum
+	$language['forum']['pageTitle'] = 'Forum';
+	
+	// Members Login
+	$language['membersLogin']['pageTitle'] = 'Είσοδος Μελών';
 	
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';

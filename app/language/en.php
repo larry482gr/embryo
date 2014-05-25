@@ -1,4 +1,7 @@
 <?php
+	// Under Construction
+	$language['underConstruction'] = 'Under Construction';
+
 	// Header
 	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ ΚΑΙ ΠΡΟΣΤΑΣΙΑ ΤΟΥ ΕΜΒΡΥΟΥ IN VITRO';
 	$language['header']['search'] = 'Search';
@@ -14,14 +17,6 @@
 	$language['home']['readMore'] = 'Read more';
 	$language['home']['noPicture'] = 'No picture available.';
 	
-	// News
-	$language['news']['pageTitle'] = 'News';
-	$language['news']['archive'] = 'News Archive';
-	
-	// Links
-	$language['links']['pageTitle'] = 'Links';
-	$language['links']['noLinks'] = 'There are no links in this category yet.';
-	
 	// Members
 	$language['membersLinks']['pageTitle'] = 'Research Members';
 	$language['membersLinks']['cv'] = 'Bio';
@@ -29,8 +24,46 @@
 	$language['membersLinks']['contact'] = 'Contact';
 	$language['membersLinks']['noResults'] = 'No Results';
 	
+	// News
+	$language['news']['pageTitle'] = 'News';
+	$language['news']['archive'] = 'News Archive';
+	
+	// Events
+	$language['events']['pageTitle'] = 'Events';
+	
+	// Links
+	$language['links']['pageTitle'] = 'Links';
+	$language['links']['noLinks'] = 'There are no links in this category yet.';
+	
+	// Legislation
+	$language['legislation']['pageTitle'] = 'Legislation';
+	
+	// European Courts
+	$language['europeanCourts']['pageTitle'] = 'European Courts';
+	
+	// National Courts
+	$language['nationalCourts']['pageTitle'] = 'National Courts';
+	
+	// Texts
+	$language['texts']['pageTitle'] = 'Texts';
+	
+	// Bibliography
+	$language['bibliography']['pageTitle'] = 'Bibliography';
+	
+	// Studies
+	$language['studies']['pageTitle'] = 'Studies';
+	
+	// Opinion
+	$language['opinion']['pageTitle'] = 'Opinion';
+	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Contact Us';
+	
+	// Forum
+	$language['forum']['pageTitle'] = 'Forum';
+	
+	// Members Login
+	$language['membersLogin']['pageTitle'] = 'Members Login';
 	
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';

@@ -17,7 +17,8 @@
 	    	  	}
 	    	  	  $members_divs .= '<div class="member col-md-4 col-sm-4 col-xs-12 pull-left">';
 			  	  $members_divs .= '<div class="col-md-5 col-sm-5 col-xs-12">';
-			  	  $members_divs .= '<a href="javascript:showCV('.$member['id'].')" class="thumbnail">';
+			  	  $photoLink = $member['cv'] != null ? 'javascript:showCV('.$member['id'].')' : 'javascript:void(0)';
+			  	  $members_divs .= '<a href="'.$photoLink.'" class="thumbnail">';
 			  	  $member['picture'] = !empty($member['picture']) ? $member['picture'] : "dummy_photo.png";
 			  	  $members_divs .= '<img class="member-pic" src="/resources/images/members/'.$member['picture'].'" alt="'.$member['name'].'">';
 			  	  $members_divs .= '</a></div>';

@@ -1,16 +1,15 @@
 	</div> <!-- container closing tag -->
 	<div class="footer">
 	  <div class="container">
-	    <img id="espa_logo" src="/resources/images/espa_logo.png" alt="ΈΣΠΑ" />
+	    <div class="espa pull-left">
+	      <img id="espa_logo" src="/resources/images/espa_logo.png" alt="ΈΣΠΑ" />
+	    </div>
 	    <div class="pull-right">
 	      <a class="glow-link" href="#">
 	      	<i class="glyphicon glyphicon-user"> </i>
 		  	<?php echo $header['membersLogin']; ?>
 	      </a>
 	    </div>
-	    <!--
-	    <h5>Footer Content to be added...</h5>
-	    -->
 	  </div>
 	</div>
 	

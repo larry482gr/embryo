@@ -1,9 +1,3 @@
-$(document).ready(function(){
-	$('.container').on('click', 'a.thumbnail', function(e) {
-		e.preventDefault();
-	});
-});
-
 function showCV(id) {
 	if($('div #cv'+id).hasClass('cv-open')) {
 		$('div #cv'+id).removeClass('cv-open');

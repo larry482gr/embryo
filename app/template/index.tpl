@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 	<div class="row">
-	  <div class="col-md-12">
+	  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 	    <div class="carousel slide" id="home-carousel" data-ride="carousel">
 	      <ol class="carousel-indicators">
 	        <?php
@@ -26,7 +26,7 @@
 	        	$carouselItems .= '<div class="item '.$activeItem.'" rel="'.$item['id'].'"><a href="news/'.$item['id'].'">
 						        	'.$picture.'
 									<div class="carousel-caption">
-									  <h3>'.$item['title'].'</h3>
+									  <h4>'.$item['title'].'</h4>
 									  <p>'.$item['short_desc'].'</p>
 									</div></a>
 								  </div>';
@@ -41,7 +41,7 @@
 	</div>
 	    
 	<div class="row">
-	  <div class="col-md-12">
+	  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 	    <div class="panel panel-primary">
 	      <div class="panel-heading">
 	        <div class="panel-title"><?php echo $home['latestNews']; ?></div>

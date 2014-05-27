@@ -38,4 +38,28 @@ $(document).ready(function(){
 	else {
 		$('.dropdown-toggle').attr('data-toggle', 'dropdown');
 	}
+	
+	$(".social-media").on("mouseover", ".facebook-grey", function () {
+        $(".facebook-grey").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("facebook").fadeTo(300, 1);
+        });
+    });
+	
+    $(".social-media").on("mouseout", ".facebook", function () {
+    	$(".facebook").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("facebook-grey").fadeTo(300, 1);
+        });
+    });
+    
+    $(".social-media").on("mouseover", ".twitter-grey", function () {
+    	$(".twitter-grey").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("twitter").fadeTo(300, 1);
+        });
+    });
+	
+    $(".social-media").on("mouseout", ".twitter", function () {
+        $(".twitter").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("twitter-grey").fadeTo(300, 1);
+        });
+    });
 });

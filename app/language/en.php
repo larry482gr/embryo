@@ -6,6 +6,7 @@
 	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ ΚΑΙ ΠΡΟΣΤΑΣΙΑ ΤΟΥ ΕΜΒΡΥΟΥ IN VITRO';
 	$language['header']['search'] = 'Search';
 	$language['header']['membersLogin'] = 'Members Login';
+	$language['header']['membersArea'] = 'MEMBERS AREA';
 	
 	// Admin Header
 	$language['adminHeader']['title'] = 'Administration Panel';
@@ -18,7 +19,7 @@
 	$language['home']['noPicture'] = 'No picture available.';
 	
 	// Members
-	$language['membersLinks']['pageTitle'] = 'Research Members';
+	$language['membersLinks']['pageTitle'] = 'Scientific Group';
 	$language['membersLinks']['cv'] = 'Bio';
 	$language['membersLinks']['publications'] = 'Publications';
 	$language['membersLinks']['contact'] = 'Contact';
@@ -34,6 +35,7 @@
 	// Links
 	$language['links']['pageTitle'] = 'Links';
 	$language['links']['noLinks'] = 'There are no links in this category yet.';
+	$language['links']['back'] = 'Back';
 	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Legislation';
@@ -91,9 +93,28 @@
 	$language['form']['required'] = 'Required field';
 	$language['form']['allRequired'] = 'All fields are required.';
 	$language['form']['send'] = 'Send';
+	$language['form']['edit'] = 'Edit';
+	$language['form']['changePass'] = 'Password change';
+	$language['form']['passChanged'] = 'Your password has been successfully changed. Please login again using the new password.';
+	$language['form']['oldPass'] = 'Old password';
+	$language['form']['newPass'] = 'New password';
+	$language['form']['confirmPass'] = 'Confirm password';
+	$language['form']['back'] = 'Back';
+	$language['form']['fillAll'] = 'Please fill in all fields.';
+	$language['form']['ohNo'] = 'Oh no! Something must have gone terribly wrong. Excuse us for the inconvenience. Please try again.';
+	
+	// User
+	$language['userLang']['info'] = 'User Info';
+	$language['userLang']['firstName'] = 'First Name';
+	$language['userLang']['lastName'] = 'Last Name';
+	$language['userLang']['email'] = 'Email';
+	$language['userLang']['logout'] = 'Logout';
 	
 	// Permissions
 	$language['permission']['adminPanelDenied'] = 'You don\'t have access on the page you requested. Please login to the Administration Panel first.';
+	$language['permission']['userDenied'] = 'You don\'t have access on the page you requested. Please login first.';
+	$language['permission']['oldPassIncorrect'] = 'The "Old password" you entered is incorrect. Please try again.';
+	$language['permission']['noMatchPass'] = 'The "New password" and "Confirm password" fields are not the same. Please try again.';
 	
 	// Dates
 	$monthArray = array(1 => 'January','February','March','April','May','June','July','August','September','October','November','December');

@@ -1,0 +1,26 @@
+#login-form, #edit-form {
+	margin-top: 40px;
+}
+
+#change-pass-form {
+	margin-top: 20px;
+	display: none;
+}
+
+#change-pass {
+	color: #2A6496 !important;
+	float: none;
+	clear: both;
+	margin-top: 30px;
+}
+
+#change-pass:hover, #change-pass:focus {
+	color: #2A2A37 !important;
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+}
+
+#change-pass-error, #fill-all-error, #welcome {
+	display: none;
+}

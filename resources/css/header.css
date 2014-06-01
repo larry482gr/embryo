@@ -94,6 +94,8 @@ h3.page-title {
 	margin: 0px !important;
 }
 
+
+
 @media (min-width: 970px) {
 	#main-navbar {
 		padding: 0px !important;
@@ -176,6 +178,7 @@ h3.page-title {
 	display:block;
 	float: none;
 	margin-right: 8px;
+	width: 240px;
 }
 
 @media (max-width: 820px) {
@@ -186,14 +189,24 @@ h3.page-title {
 	}
 }
 
-.social-media > a {
+@media (min-width: 821px) {
+	.sm-links {
+		float: right;
+	}
+}
+
+.social-media > div {
+	padding: 0px !important;
+}
+
+.sm-links > a{
 	display:inline-block;
 	width: 36px;
 	height: 36px;
 	margin-right: 2px;
 }
 
-.social-media > a > img{
+.sm-links > a > img{
 	display:inline-block;
 	width: 36px;
 	height: 36px;

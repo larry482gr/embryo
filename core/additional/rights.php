@@ -28,5 +28,10 @@ final class Right {
 		$adminPanelUsers = array('1', '2');
 		return (in_array($this->profile, $adminPanelUsers));
 	}
+	
+	public function canViewMembersArea() {
+		$membersAreaUsers = array('1', '2');
+		return (in_array($this->profile, $membersAreaUsers));
+	}
 }
 ?>

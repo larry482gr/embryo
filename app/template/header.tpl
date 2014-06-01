@@ -105,17 +105,58 @@
 						$navigation_menu .= '</ul></li>';
 					}
           		}
+          		if($canViewMembersArea) {
+          			if('members_area' == $activated_tab)
+          				$active = 'class="active"';
+						
+	          		$navigation_menu .= '<li '.$active.'><a href="members_area">'.$header['membersArea'].'</a></li>';
+          		}
+          			
 				echo $navigation_menu;
           	?>
           	</ul>
           	<div class="social-media pull-right">
-		          <a href="https://www.facebook.com/pages/%CE%A5%CF%80%CE%BF%CE%B2%CE%BF%CE%B7%CE%B8%CE%BF%CF%8D%CE%BC%CE%B5%CE%BD%CE%B7-%CE%91%CE%BD%CE%B1%CF%80%CE%B1%CF%81%CE%B1%CE%B3%CF%89%CE%B3%CE%AE-%CE%BA%CE%B1%CE%B9-%CF%80%CF%81%CE%BF%CF%83%CF%84%CE%B1%CF%83%CE%AF%CE%B1-%CF%84%CE%BF%CF%85-%CE%B5%CE%BC%CE%B2%CF%81%CF%8D%CE%BF%CF%85-in-vitro/260007444185660?ref=hl"><img class="facebook-grey" src="/resources/images/icons/facebook-icon.png"/></a>
-		          <a href="https://twitter.com/Bioithiki"><img class="twitter-grey" src="/resources/images/icons/twitter-icon.png"/></a>
-		        </div>
+          		<?php
+          		  if(!empty($username)) {
+          		?>
+          		  <div class="col-md-6">
+          		    <div class="btn-group">
+          		      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          		        <i class="glyphicon glyphicon-user"> </i>
+          		        <?php echo $username; ?>
+          		      </button>
+					  <ul class="dropdown-menu" role="menu">
+					    <li><a href="<?php echo '/'.$lang.'/user/'.$userid; ?>"><?php echo $userLang['info']; ?></a></li>
+					    <li class="divider"></li>
+					    <li><a href="<?php echo '/'.$lang.'/user/logout'; ?>"><?php echo $userLang['logout']; ?></a></li>
+					  </ul>
+					</div>
+				  </div>
+				<?php
+						$offset = '';
+          			}
+          			else {
+          				$offset = 'col-md-offset-6';
+          			}
+          		?>
+          		<div class="col-md-6 <?php echo $offset; ?>">
+          		  <div class="sm-links">
+			        <a href="https://www.facebook.com/pages/%CE%A5%CF%80%CE%BF%CE%B2%CE%BF%CE%B7%CE%B8%CE%BF%CF%8D%CE%BC%CE%B5%CE%BD%CE%B7-%CE%91%CE%BD%CE%B1%CF%80%CE%B1%CF%81%CE%B1%CE%B3%CF%89%CE%B3%CE%AE-%CE%BA%CE%B1%CE%B9-%CF%80%CF%81%CE%BF%CF%83%CF%84%CE%B1%CF%83%CE%AF%CE%B1-%CF%84%CE%BF%CF%85-%CE%B5%CE%BC%CE%B2%CF%81%CF%8D%CE%BF%CF%85-in-vitro/260007444185660?ref=hl"><img class="facebook-grey" src="/resources/images/icons/facebook-icon.png"/></a>
+			        <a href="https://twitter.com/Bioithiki"><img class="twitter-grey" src="/resources/images/icons/twitter-icon.png"/></a>
+          		  </div>
+          		</div>
+		      </div>
           </div>
         </div>
 	  </nav>
       <div class="container">
+      <?php
+	    if(!empty($invalidError)) {
+	  ?>
+		<div class="alert alert-danger col-md-10 col-md-offset-1"><?php echo $invalidError; ?></div>
+	  <?php
+	    }
+	  ?>
       <!--[if lt IE 9]>
 		  <h5>This page is best viewed in <a href="http://www.mozilla.org/el/firefox/new/">Firefox</a>, <a href="http://www.google.com/intl/el/chrome/browser/">Google Chrome</a>, <a href="http://support.apple.com/downloads/#safari">Safari</a>, <a href="http://www.opera.com/">Opera</a> or <a href="http://windows.microsoft.com/el-gr/internet-explorer/download-ie">Internet Explorer 9 or later</a>.</h5>
 	  <![endif]-->

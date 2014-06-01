@@ -4,12 +4,18 @@
 	    <div class="espa pull-left">
 	      <img id="espa_logo" src="/resources/images/espa_logo.png" alt="ΈΣΠΑ" />
 	    </div>
-	    <div class="pull-right">
-	      <a class="glow-link" href="#">
-	      	<i class="glyphicon glyphicon-user"> </i>
-		  	<?php echo $header['membersLogin']; ?>
-	      </a>
-	    </div>
+	    <?php
+	      if($showLogin) {
+	    ?>
+		    <div class="pull-right">
+		      <a class="glow-link" href="<?php echo '/'.$lang.'/user/login'; ?>">
+		      	<i class="glyphicon glyphicon-user"> </i>
+			  	<?php echo $header['membersLogin']; ?>
+		      </a>
+		    </div>
+		<?php
+		  }
+		?>
 	  </div>
 	</div>
 	

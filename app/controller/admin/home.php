@@ -60,8 +60,9 @@ class ControllerAdminHome extends Controller {
 		unset($this->session->data['user']['id']);
 		unset($this->session->data['user']['name']);
 		unset($this->session->data['user']['profile']);
-
-		return $this->response->redirect('home');
+		
+		$lang = $this->language->getCurrentLanguage();
+		return $this->response->redirect('/'.$lang);
 	}
 	
 	private function createToken($bits) {

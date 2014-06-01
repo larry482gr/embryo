@@ -65,7 +65,7 @@
 		  	  echo $links_ul;
 		  	?>
 		  </ul>
-		  <a href="/<?php echo $lang; ?>/links" class="links-back btn btn-default btn-sm">Back</a>
+		  <a href="/<?php echo $lang; ?>/links" class="links-back btn btn-default btn-sm"><?php echo $links['back']; ?></a>
 		  <?php
 		    }
 		  ?>

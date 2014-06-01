@@ -6,6 +6,7 @@
 	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ ΚΑΙ ΠΡΟΣΤΑΣΙΑ ΤΟΥ ΕΜΒΡΥΟΥ IN VITRO';
 	$language['header']['search'] = 'Αναζήτηση';
 	$language['header']['membersLogin'] = 'Είσοδος μελών';
+	$language['header']['membersArea'] = 'ΠΕΡΙΟΧΗ ΜΕΛΩΝ';
 	
 	// Admin Header
 	$language['adminHeader']['title'] = 'Περιβάλλον Διαχείρισης';
@@ -14,11 +15,11 @@
 	$language['home']['latestNews'] = 'Τελευταία Νέα';
 	$language['home']['news'] = 'Νέα';
 	$language['home']['publishedOn'] = 'Δημοσιεύθηκε στις';
-	$language['home']['readMore'] = 'Περίσσοτερα';
+	$language['home']['readMore'] = 'Περισσότερα';
 	$language['home']['noPicture'] = 'Η εικόνα δεν είναι διαθέσιμη.';
 	
 	// Members
-	$language['membersLinks']['pageTitle'] = 'Ερευνητική Ομάδα';
+	$language['membersLinks']['pageTitle'] = 'Επιστημονική Ομάδα';
 	$language['membersLinks']['cv'] = 'Βιογραφικό';
 	$language['membersLinks']['publications'] = 'Δημοσιεύσεις';
 	$language['membersLinks']['contact'] = 'Επικοινωνία';
@@ -34,6 +35,7 @@
 	// Links
 	$language['links']['pageTitle'] = 'Σύνδεσμοι';
 	$language['links']['noLinks'] = 'Δεν υπάρχουν καταχωρήσεις σε αυτή την κατηγορία συνδέσμων.';
+	$language['links']['back'] = 'Πίσω';
 	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Νομοθεσία';
@@ -91,9 +93,28 @@
 	$language['form']['required'] = 'Υποχρεωτικό πεδίο';
 	$language['form']['allRequired'] = 'Όλα τα πεδία είναι υποχρεωτικά.';
 	$language['form']['send'] = 'Αποστολή';
+	$language['form']['edit'] = 'Τροποποίηση';
+	$language['form']['changePass'] = 'Αλλαγή κωδικού πρόσβασης';
+	$language['form']['passChanged'] = 'Ο κώδικος πρόσβασης σας άλλαξε επιτυχώς. Παρακαλώ εισέλθετε ξανά χρησημοποιώντας το νέο κωδικό πρόσβασης.';
+	$language['form']['oldPass'] = 'Παλιός κωδικός πρόσβασης';
+	$language['form']['newPass'] = 'Νέος κωδικός πρόσβασης';
+	$language['form']['confirmPass'] = 'Επαλήθευση κωδικού πρόσβασης';
+	$language['form']['back'] = 'Πίσω';
+	$language['form']['fillAll'] = 'Παρακαλώ συμπληρώστε όλα τα πεδία.';
+	$language['form']['ohNo'] = 'Ωχ! Κάτι πήγε στραβά. Μας συγχωρείτε για την ταλαιπωρία. Παρακαλώ δοκιμάστε ξανά.';
+	
+	// User
+	$language['userLang']['info'] = 'Στοιχεία Χρήστη';
+	$language['userLang']['firstName'] = 'Όνομα';
+	$language['userLang']['lastName'] = 'Επώνυμο';
+	$language['userLang']['email'] = 'Ηλ. Ταχυδρομίο (email)';
+	$language['userLang']['logout'] = 'Έξοδος';
 	
 	// Permissions
 	$language['permission']['adminPanelDenied'] = 'Δεν έχετε πρόσβαση στη σελίδα που ζητήσατε. Παρακαλώ εισέλθετε πρώτα στο Περιβάλλον Διαχείρισης.';
+	$language['permission']['userDenied'] = 'Δεν έχετε πρόσβαση στη σελίδα που ζητήσατε. Παρακαλώ εισέλθετε πρώτα.';
+	$language['permission']['oldPassIncorrect'] = 'Ο "Παλιός κωδικός πρόσβασης" που καταχωρήσατε είναι λανθασμένος. Παρακαλώ δοκιμάστε ξανά.';
+	$language['permission']['noMatchPass'] = 'Η τιμή των πεδίων "Νέος κωδικός πρόσβασης" και "Επαλήθευση κωδικού πρόσβασης" δεν είναι ίδια. Παρακαλώ δοκιμάστε ξανά.';
 	
 	// Dates
 	$monthArray = array(1 => 'Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νόεμβριος','Δεκέμβριος');

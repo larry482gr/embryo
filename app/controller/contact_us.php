@@ -27,18 +27,6 @@ class ControllerContactUs extends Controller {
 		if(empty($name) || empty($email) || empty($subject) || empty($message))
 			die('fill_all');
 		else {
-			/*
-			$this->mail->setTo('lakazantzis@gmail.com');
-			$this->mail->setSender($name);
-			$this->mail->setFrom($email);
-			$this->mail->setSubject($subject);
-			
-			$message = '<h3>Message from '.$name.' via Contact Form</h3><div>'.nl2br($message).'</div>';
-			$this->mail->setHtml($message);
-			
-			if($this->mail->send())
-				die('success');	
-			*/
 			$to      = 'bioithiki@gmail.com';
 			$message = '<h3>Message from '.$name.' via Contact Form</h3><div>'.$message.'</div>';
 			// To send HTML mail, the Content-type header must be set

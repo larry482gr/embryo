@@ -35,7 +35,7 @@
 			  <div class="form-group">
 			    <label for="email" class="col-md-3 col-md-offset-1 control-label"><?php echo $userLang['email']; ?></label>
 			    <div class="col-md-5">
-			      <input type="email" class="form-control" id="last-name" name="user[email]" placeholder="email" value="<?php echo $user['email']; ?>" />
+			      <input type="email" class="form-control" id="email" name="user[email]" placeholder="email" value="<?php echo $user['email']; ?>" />
 			    </div>
 			  </div>
 			  <div class="form-group">

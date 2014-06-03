@@ -71,10 +71,16 @@
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';
 	$language['form']['loginForm'] = 'Είσοδος Χρήστη';
 	$language['form']['contactForm'] = 'Φόρμα Επικοινωνίας';
+	$language['form']['createUser'] = 'Φόρμα Δημιουργίας Χρήστη';
 	$language['form']['username'] = 'Όνομα χρήστη';
+	$language['form']['available'] = 'Διαθέσιμο';
+	$language['form']['notAvailable'] = 'Μη διαθέσιμο';
 	$language['form']['password'] = 'Κωδικός πρόσβασης';
 	$language['form']['email'] = 'Ήλ. ταχυδρομίο';
+	$language['form']['userRights'] = 'Δικαιώματα χρήστη';
 	$language['form']['register'] = 'Εγγραφή';
+	$language['form']['registerSuccess'] = 'Ο χρήστης καταχωρήθηκε επιτυχώς.';
+	$language['form']['registerError'] = 'Προέκυψε ένα σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
 	$language['form']['login'] = 'Είσοδος';
 	$language['form']['logout'] = 'Έξοδος';
 	$language['form']['submit'] = 'Υποβολή';
@@ -104,10 +110,11 @@
 	$language['form']['ohNo'] = 'Ωχ! Κάτι πήγε στραβά. Μας συγχωρείτε για την ταλαιπωρία. Παρακαλώ δοκιμάστε ξανά.';
 	
 	// User
-	$language['userLang']['info'] = 'Στοιχεία Χρήστη';
+	$language['userLang']['info'] = 'Ο λογαριασμός μου';
+	$language['userLang']['createUser'] = 'Δημιουργία νέου χρήστη';
 	$language['userLang']['firstName'] = 'Όνομα';
 	$language['userLang']['lastName'] = 'Επώνυμο';
-	$language['userLang']['email'] = 'Ηλ. Ταχυδρομίο (email)';
+	$language['userLang']['email'] = 'Email';
 	$language['userLang']['logout'] = 'Έξοδος';
 	
 	// Permissions

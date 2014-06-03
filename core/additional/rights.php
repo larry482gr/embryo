@@ -1,9 +1,14 @@
 <?php 
 final class Right {
 	private $profile;
+	private $profiles = array('admin' => 'Administrator', 'contr' => 'Contributor', 'moder' => 'Moderator', 'user' => 'User');
 	
 	public function __construct($profile) {
 		$this->profile = $profile;
+	}
+	
+	public function getProfiles() {
+		return $this->profiles;
 	}
 	
 	public function isAdministrator() {

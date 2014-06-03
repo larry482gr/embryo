@@ -1,6 +1,26 @@
 <?php 
 	class ModelUser extends Model {
+		public function registerUser($user) {
+			$username = $this->db->escape($user['uname']);
+			$email = $this->db->escape($user['email']);
+			$pass = $this->db->escape($user['pass']);
+			$profile = $this->db->escape($user['profile']);
+			
+			$query = "INSERT INTO users (username, password, email, profile_id) VALUES ('".$username."', '".sha1($pass)."', '".$email."', ".$profile.")";
+			$this->db->query($query);
+			return $this->db->getLastId();
+		}
+		
+		public function setUserInfo($id, $token) {
+			$query = "INSERT INTO user_infos (user_id, token) VALUES (".$id.", '".$token."')";
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
 		public function validateUser($username, $password) {
+			$username = $this->db->escape($username);
+			$password = $this->db->escape($password);
+			
 			$query = "SELECT * FROM users WHERE username = '".$username."' AND password = '".sha1($password)."'";
 			$result = $this->db->query($query);
 			return $result->row;
@@ -24,13 +44,24 @@
 			$this->db->query($query);
 		}
 		
+		public function usernameExists($username) {
+			$username = $this->db->escape($username);
+			$query = "SELECT id FROM users WHERE username = '".$username."'";
+			$result = $this->db->query($query);
+			return !empty($result->row);
+		}
+		
 		public function passExists($id, $pass) {
+			$id = $this->db->escape($id);
+			$pass = $this->db->escape($pass);
 			$query = "SELECT password FROM users WHERE id = ".$id." AND password = '".sha1($pass)."'";
 			$result = $this->db->query($query);
 			return !empty($result->row);
 		}
 		
 		public function changePass($id, $pass) {
+			$id = $this->db->escape($id);
+			$pass = $this->db->escape($pass);
 			$query = "UPDATE users SET password = '".sha1($pass)."' WHERE id = ".$id;
 			$this->db->query($query);
 			return $this->db->countAffected();

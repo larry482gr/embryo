@@ -128,6 +128,14 @@
 					  <ul class="dropdown-menu" role="menu">
 					    <li><a href="<?php echo '/'.$lang.'/user/'.$userid; ?>"><?php echo $userLang['info']; ?></a></li>
 					    <li class="divider"></li>
+					    <?php
+					      if($canCreateUser) {
+					    ?>
+					    <li><a href="<?php echo '/'.$lang.'/user/register'; ?>"><?php echo $userLang['createUser']; ?></a></li>
+					    <li class="divider"></li>
+					    <?php
+					      }
+					    ?>
 					    <li><a href="<?php echo '/'.$lang.'/user/logout'; ?>"><?php echo $userLang['logout']; ?></a></li>
 					  </ul>
 					</div>

@@ -186,6 +186,60 @@ class ControllerUser extends Controller {
 		die("error");
 	}
 	
+	public function register() {
+		if(!isset($this->session->data['user']['id']) && !$this->right->isAdministrator()) {
+			$this->session->data['userPermissionDenied'] = $this->language->getPermissionDeniedMessage('userDenied');
+			return $this->response->redirect('/'); 
+		}
+		
+		$this->data['lang'] = $this->language->getCurrentLanguage();
+		$this->data['form'] = $this->language->getLanguage('form');
+		$user = isset($this->request->post['user']) ? $this->request->post['user'] : '';
+		$affectedRows = 0;
+		
+		if(!empty($user['uname']) && !empty($user['email']) && !empty($user['pass']) && !empty($user['confPass']) && !empty($user['profile'])) {
+			$this->load->model('user');
+			$this->load->model('profile');
+			$profile = $this->model_profile->getIdByLabel($user['profile']);
+			$user['profile'] = $profile['id'];
+			$lastId = $this->model_user->registerUser($user);
+			if($lastId > 0) {
+				$affectedRows = $this->model_user->setUserInfo($lastId, $this->createToken(64));
+				if($affectedRows == 1)
+					$this->data['registerSuccess'] = $this->data['form']['registerSuccess'];
+				else
+					$this->data['registerError'] = $this->data['form']['registerError'];
+			}
+		}
+		else {
+			$this->data['username'] = !empty($user) ? $user['uname'] : "";
+			$this->data['email'] = !empty($user) ? $user['email'] : "";
+		}
+		
+		$this->data['profiles'] = $this->right->getProfiles();
+		$this->data['referer'] = isset($this->request->post['referer']) ? $this->request->post['referer'] : $this->request->server['HTTP_REFERER'];
+		
+		$this->document->addStyle('user');
+		$this->document->addScript('user');
+		$this->document->addStyle('left_part');
+		
+		// Assign header/footer to children object
+		$this->children = array('header', 'footer', 'left_part');
+		
+		// Assign at template object the tpl
+		$this->template = 'user/register.tpl';
+		$this->response->setOutput($this->render());
+	}
+	
+	public function check_username() {
+		$username = $this->request->post['username'];
+		$this->load->model('user');
+		$usernameExists = $this->model_user->usernameExists($username);
+		
+		echo $usernameExists ? "not available" : "available" ;
+		die();
+	}
+	
 	private function createToken($bits) {
 		$chars = "0123456789abcdefghijkmnopqrstuvwxyz";
 		srand((double)microtime()*1000000);

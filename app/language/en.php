@@ -71,10 +71,16 @@
 	$language['form']['regForm'] = 'Registration Form';
 	$language['form']['loginForm'] = 'Login Form';
 	$language['form']['contactForm'] = 'Contact Form';
+	$language['form']['createUser'] = 'Create User Form';
 	$language['form']['username'] = 'Username';
+	$language['form']['available'] = 'Available';
+	$language['form']['notAvailable'] = 'Not Available';
 	$language['form']['password'] = 'Password';
 	$language['form']['email'] = 'Email';
+	$language['form']['userRights'] = 'User rights';
 	$language['form']['register'] = 'Register';
+	$language['form']['registerSuccess'] = 'User successfully registered';
+	$language['form']['registerError'] = 'An error occured. Please try again.';
 	$language['form']['login'] = 'Log In';
 	$language['form']['logout'] = 'Log Out';
 	$language['form']['submit'] = 'Submit';
@@ -104,7 +110,8 @@
 	$language['form']['ohNo'] = 'Oh no! Something must have gone terribly wrong. Excuse us for the inconvenience. Please try again.';
 	
 	// User
-	$language['userLang']['info'] = 'User Info';
+	$language['userLang']['info'] = 'My account';
+	$language['userLang']['createUser'] = 'Create new user';
 	$language['userLang']['firstName'] = 'First Name';
 	$language['userLang']['lastName'] = 'Last Name';
 	$language['userLang']['email'] = 'Email';

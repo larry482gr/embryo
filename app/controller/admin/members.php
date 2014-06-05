@@ -53,6 +53,7 @@ class ControllerAdminMembers extends Controller {
 		$member['email'] = $this->db->escape($this->request->post['member']['email']);
 		$member['cv'] = $this->db->escape($this->request->post['member']['cv']);
 		$member['pubs'] = $this->db->escape($this->request->post['member']['pubs']);
+		$edit = $this->db->escape($this->request->post['edit']) == 0 ? false : true;
 		
 		if(empty($this->request->files["member_picture"]["name"]) && empty($this->request->files["member_picture"]["type"])) {
 			$member['picture'] = null;
@@ -79,22 +80,54 @@ class ControllerAdminMembers extends Controller {
 				        chmod($path, 0757);  // octal; correct value of mode
 				    }
 				    else {
-				    	move_uploaded_file($this->request->files["member_picture"]["tmp_name"], $filepath);
+				    	@move_uploaded_file($this->request->files["member_picture"]["tmp_name"], $filepath);
 				    	$member['picture'] = $this->request->files["member_picture"]["name"];
 				    }
 				}
 			}
-			else{
+			else {
+				// Refactor it to send a message to the user.
 				var_dump("Wrong file type");
 				exit();
 			}
 		}
 		
 		$this->load->model('member');
-		$lastId = $this->model_member->createMember($member);
 		
-		if(is_numeric($lastId))
+		if(!$edit) {
+			$lastId = $this->model_member->createMember($member);
+			if(is_numeric($lastId))
+				return $this->response->redirect('/admin/members');
+		}
+		else {
+			$member['id'] = $this->db->escape($this->request->post['member_id']);
+			$affectedRows = $this->model_member->editMember($member);
+			if($affectedRows > 0) {
+				// echo a message.
+			}
+			else {
+				// echo a message to notify that no change has been made.
+			}
+				
 			return $this->response->redirect('/admin/members');
+		}
+		
+	}
+	
+	public function show($id) {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin');
+		}
+		
+		$this->load->model('member');
+		$member		= $this->model_member->findMember($id);
+		$memberInfo	= $this->model_member->findMemberInfo($id);
+		
+		$memberInfo['cv'] = html_entity_decode($memberInfo['cv']);
+		$memberInfo['pubs'] = html_entity_decode($memberInfo['pubs']);
+		
+		echo json_encode(array("member" => $member, "memberInfo" => $memberInfo));
 	}
 }
 ?>

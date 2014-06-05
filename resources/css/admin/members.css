@@ -48,7 +48,12 @@ div.visible {
 .thumbnail {
 	width: 89px !important;
 	height: 106px !important;
-	cursor: default !important;
+}
+
+#form-thumbnail {
+	width: 89px !important;
+	height: 106px !important;
+	display: none;
 }
 
 .member-links-div {

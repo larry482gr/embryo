@@ -20,6 +20,13 @@ $(document).ready(function(){
 			$(this).text('Close Form');
 			$('#create-new-member').slideDown('fast');
 			$('#add-new-group').attr('disabled', true);
+			$('#member_group').val("1");
+			$('#member_name').val("");
+			$('#member_email').val("");
+			$('#form-thumbnail').hide();
+			$('#member_picture').val("");
+			$('#member_cv').val("");
+			$('#member_pubs').val("");
 		}
 		else {
 			$(this).removeClass('add-form-open');
@@ -37,6 +44,27 @@ $(document).ready(function(){
 	
 	$('.container').on('click', 'a.thumbnail', function(e) {
 		e.preventDefault();
+	});
+	
+	$('.member-pic').on('click', function() {
+		id = $(this).attr('rel');
+		$.get('/admin/members/show/'+id,
+			function(result) {
+				if(!$('#add-new-member').hasClass('add-form-open'))
+					$('#add-new-member').click();
+				$('#form-thumbnail').hide();
+				$('#member_group').val(result.member.group_id);
+				$('#member_name').val(result.member.name);
+				$('#member_email').val(result.member.email);
+				$('#member_cv').val(result.memberInfo.cv);
+				$('#member_pubs').val(result.memberInfo.pubs);
+				if(result.member.picture.length > 0) {
+					$('#form-thumbnail').show();
+					$('#form-thumbnail').attr('src', '/resources/images/members/'+result.member.picture);
+				}
+				$('#edit').val("1");
+				$('#member_id').val(result.member.id);
+			}, "json");
 	});
 });
 

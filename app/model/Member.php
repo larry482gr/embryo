@@ -36,5 +36,42 @@
 			
 			return $member_info_id;
 		}
+		
+		public function editMember($member) {
+			$updatePicture = $member['picture'] != null ? ", picture = '".$member['picture']."'" : "";
+			$affectedRows = 0;
+			
+			$query1 =  "UPDATE research_members SET 
+						group_id = ".$member['group_id'].", 
+						name = '".$member['name']."', 
+						email = '".$member['email']."' 
+						".$updatePicture." 
+						WHERE id = ".$member['id'];
+			
+			$this->db->query($query1);
+			$affectedRows += $this->db->countAffected();
+			
+			$query2 =  "UPDATE research_member_info SET 
+						cv = '".nl2br($member['cv'])."', 
+						pubs = '".$member['pubs']."' 
+						WHERE member_id = ".$member['id'];
+						
+			$this->db->query($query2);
+			$affectedRows += $this->db->countAffected();
+			
+			return $affectedRows;
+		}
+		
+		public function findMember($id) {
+			$query = "SELECT * FROM research_members WHERE id = ".$id;
+			$result = $this->db->query($query);
+			return $result->row;
+		}
+		
+		public function findMemberInfo($id) {
+			$query = "SELECT * FROM research_member_info WHERE member_id = ".$id;
+			$result = $this->db->query($query);
+			return $result->row;
+		}
 	}
 ?>

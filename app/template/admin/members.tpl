@@ -64,7 +64,7 @@
 		    				$members_divs .= '<div class="pull-left">';
 		    				$members_divs .= '<a href="#" class="thumbnail">';
 		    				$member['picture'] = !empty($member['picture']) ? $member['picture'] : "dummy_photo.png";
-		    				$members_divs .= '<img class="member-pic" src="/resources/images/members/'.$member['picture'].'" alt="'.$member['name'].'">';
+		    				$members_divs .= '<img class="member-pic" rel="'.$member['id'].'" src="/resources/images/members/'.$member['picture'].'" alt="'.$member['name'].'">';
 		    				$members_divs .= '</a></div>';
 		    				$members_divs .= '<div class="member-links-div pull-left"><h5>'.$member['name'].'</h5>';
 		    				if($member['cv'] != null) {
@@ -198,6 +198,7 @@
 		  <div class="form-group">
 		    <label for="member_picture" class="col-md-offset-1 col-md-3 control-label">Picture</label>
 		    <div class="col-md-6">
+			  <img class="thumbnail" id="form-thumbnail" src="">
 		      <input type="file" id="member_picture" name="member_picture">
 		      <p class="help-block">File types allowed: .jpeg, .jpg, .png</p>
 		    </div>
@@ -219,6 +220,8 @@
 		      <button type="submit" class="btn btn-primary"><?php echo $form['submit']; ?></button>
 		    </div>
 		  </div>
+		  <input type="hidden" id="member_id" name="member_id" value="-1" />
+		  <input type="hidden" id="edit" name="edit" value="0" />
 		</form>
 		</div>
 	</div>

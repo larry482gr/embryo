@@ -33,8 +33,18 @@ class ControllerHeader extends Controller {
 			$this->data['invalidError'] = $this->session->data['userPermissionDenied'];
 			unset($this->session->data['userPermissionDenied']);
 		}
+		if(isset($this->session->data['userRightsDenied'])){
+			$this->data['invalidError'] = $this->session->data['userRightsDenied'];
+			unset($this->session->data['userRightsDenied']);
+		}
+		
+		if(isset($this->session->data['loadMembersArea'])) {
+			$this->data['loadMembersArea'] = true;
+			unset($this->session->data['loadMembersArea']);
+		}
 		
 		$this->document->addStyle("libraries/bootstrap.min");
+		$this->document->addStyle("libraries/jquery-ui-1.10.4.custom.min");
 		$this->document->addStyle("header");
 		$this->document->addScript("header");
 		

@@ -64,6 +64,9 @@
 	// Forum
 	$language['forum']['pageTitle'] = 'Forum';
 	
+	// Members Area
+	$language['membersArea']['pageTitle'] = 'Members Area';
+	
 	// Members Login
 	$language['membersLogin']['pageTitle'] = 'Members Login';
 	
@@ -119,6 +122,7 @@
 	
 	// Permissions
 	$language['permission']['adminPanelDenied'] = 'You don\'t have access on the page you requested. Please login to the Administration Panel first.';
+	$language['permission']['userRightsDenied'] = 'You don\'t have access on the page you requested.';
 	$language['permission']['userDenied'] = 'You don\'t have access on the page you requested. Please login first.';
 	$language['permission']['oldPassIncorrect'] = 'The "Old password" you entered is incorrect. Please try again.';
 	$language['permission']['noMatchPass'] = 'The "New password" and "Confirm password" fields are not the same. Please try again.';

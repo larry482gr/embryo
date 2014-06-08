@@ -64,6 +64,9 @@
 	// Forum
 	$language['forum']['pageTitle'] = 'Forum';
 	
+	// Members Area
+	$language['membersArea']['pageTitle'] = 'Περιοχή Μελών';
+	
 	// Members Login
 	$language['membersLogin']['pageTitle'] = 'Είσοδος Μελών';
 	
@@ -119,6 +122,7 @@
 	
 	// Permissions
 	$language['permission']['adminPanelDenied'] = 'Δεν έχετε πρόσβαση στη σελίδα που ζητήσατε. Παρακαλώ εισέλθετε πρώτα στο Περιβάλλον Διαχείρισης.';
+	$language['permission']['userRightsDenied'] = 'Δεν έχετε πρόσβαση στη σελίδα που ζητήσατε.';
 	$language['permission']['userDenied'] = 'Δεν έχετε πρόσβαση στη σελίδα που ζητήσατε. Παρακαλώ εισέλθετε πρώτα.';
 	$language['permission']['oldPassIncorrect'] = 'Ο "Παλιός κωδικός πρόσβασης" που καταχωρήσατε είναι λανθασμένος. Παρακαλώ δοκιμάστε ξανά.';
 	$language['permission']['noMatchPass'] = 'Η τιμή των πεδίων "Νέος κωδικός πρόσβασης" και "Επαλήθευση κωδικού πρόσβασης" δεν είναι ίδια. Παρακαλώ δοκιμάστε ξανά.';

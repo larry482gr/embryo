@@ -21,8 +21,24 @@
 	?>
 	<script src="/resources/js/libraries/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="/resources/js/libraries/jquery-migrate-1.1.1.min.js" type="text/javascript"></script>
+	<script src="/resources/js/libraries/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 	<script src="/resources/js/libraries/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/resources/js/libraries/bootbox.min.js" type="text/javascript"></script>
+	
+	<?php
+	  if(isset($loadMembersArea)) {
+	?>
+		<script src="/resources/js/libraries/jquery.ui.position.js" type="text/javascript"></script>
+	    <script src="/resources/js/libraries/jquery.contextMenu.js" type="text/javascript"></script>
+	    <script src="/resources/js/libraries/screen.js" type="text/javascript"></script>
+	    <script src="/resources/js/libraries/prettify.js" type="text/javascript"></script>
+	    
+	    <link href="/resources/css/libraries/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+	    <link href="/resources/css/libraries/screen.css" rel="stylesheet" type="text/css" />
+	    <link href="/resources/css/libraries/prettify.sunburst.css" rel="stylesheet" type="text/css" />
+	<?php
+	  }
+	?>
 </head>
 	<body>
 	  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -109,7 +125,7 @@
           			if('members_area' == $activated_tab)
           				$active = 'class="active"';
 						
-	          		$navigation_menu .= '<li '.$active.'><a href="members_area">'.$header['membersArea'].'</a></li>';
+	          		$navigation_menu .= '<li '.$active.'><a href="/'.$lang.'/members_area">'.$header['membersArea'].'</a></li>';
           		}
           			
 				echo $navigation_menu;

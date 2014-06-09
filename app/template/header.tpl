@@ -138,7 +138,7 @@
           		  <div class="col-md-6">
           		    <div class="btn-group">
           		      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          		        <i class="glyphicon glyphicon-user"> </i>
+          		        <i class="glyphicon glyphicon-cog"> </i>
           		        <?php echo $username; ?>
           		      </button>
 					  <ul class="dropdown-menu" role="menu">

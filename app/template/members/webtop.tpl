@@ -53,4 +53,5 @@
   </div>
 </div>
 <input type="hidden" id="lang" value="<?php echo $lang; ?>" />
+<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>
 <?php echo $footer; ?>

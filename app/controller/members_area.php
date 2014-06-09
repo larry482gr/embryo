@@ -76,6 +76,58 @@ class ControllerMembersArea extends Controller {
 		die();
 	}
 	
+	public function createFile() {
+		if(!$this->right->canViewMembersArea()) {
+			$this->session->data['userRightsDenied'] = $this->language->getPermissionDeniedMessage('userRightsDenied');
+			return $this->response->redirect('/');
+		}
+		
+		$fileLabel = $this->request->files['new_file']['name'];
+		$fileSize = $this->request->files['new_file']['size'];
+		$fileCategory = $this->request->post['file_cat'];
+		$newFile = array();
+		
+		$allowedExts = array("doc", "docx", "pdf");
+		$extension = end(explode(".", $fileLabel));
+			
+		$path = _DOCUMENT_ROOT_."/resources/files/members_area";
+		$filepath = $path."/".$this->request->files["new_file"]["name"];
+
+		if ((($this->request->files["new_file"]["type"] == "application/pdf")
+			|| ($this->request->files["new_file"]["type"] == "application/msword")
+			|| ($this->request->files["new_file"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
+			&& ($this->request->files["new_file"]["size"] < (20*1024*1024))
+			&& in_array($extension, $allowedExts)) {
+				   
+			if ($this->request->files["new_file"]["error"] > 0) {
+				var_dump($this->request->files["new_file"]["error"]);
+				exit();
+			}
+			else {
+				if (!file_exists($path."/")) {
+			        mkdir($path);
+			        chmod($path, 0777);  // octal; correct value of mode
+			    }
+			    else {
+			    	@move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
+			    	$this->load->model('file');
+			    	$lastId = $this->model_file->createFile($fileLabel, $fileSize, $fileCategory);
+			    	
+			    	$newFile = $this->model_file->findFile($lastId);
+					$newFile['labelHtml'] = str_replace(" ", "<br>", $newFile['label']);
+			    }
+			}
+		}
+		else {
+			// Refactor it to send a message to the user.
+			var_dump("Wrong file type");
+			exit();
+		}
+		
+		echo json_encode($newFile);
+		die();
+	}
+	
 	public function updateCategory() {
 		if(!$this->right->canViewMembersArea()) {
 			$this->session->data['userRightsDenied'] = $this->language->getPermissionDeniedMessage('userRightsDenied');

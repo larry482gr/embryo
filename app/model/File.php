@@ -37,14 +37,15 @@
 		}
 		
 		public function createCategory($lang_id, $label) {
+			$timestamp = time();
 			$query = "INSERT INTO file_categories (label, lang_id, category_state, created_at)
-					  VALUES ('".$label."', ".$lang_id.", 1, ".time().")";
+					  VALUES ('".$label."', ".$lang_id.", 1, ".$timestamp.")";
 			$this->db_files->query($query);
 			$lastId = $this->db_files->getLastId();
 			
 			if($lastId > 0) {
 				$userId = $this->session->data['user']['id'];
-				$this->setCategoryHistory($lastId, $userId, 'NULL', 1, time());
+				$this->setCategoryHistory($lastId, $userId, 'NULL', 1, $timestamp);
 			}
 			
 			return $lastId;
@@ -69,8 +70,38 @@
 			return $affectedRows;
 		}
 		
-		private function setCategoryHistory($fileId, $userId, $fromState, $toState, $timestamp) {
-			$query = "INSERT INTO file_category_history VALUES (".$fileId.", ".$userId.", ".$fromState.", ".$toState.", ".$timestamp.")";
+		private function setCategoryHistory($categoryId, $userId, $fromState, $toState, $timestamp) {
+			$query = "INSERT INTO file_category_history VALUES (".$categoryId.", ".$userId.", ".$fromState.", ".$toState.", ".$timestamp.")";
+			$this->db_files->query($query);
+		}
+		
+		public function findFile($id) {
+			$query = "SELECT * FROM files WHERE id = ".$id;
+			$result = $this->db_files->query($query);
+			return $result->row;
+		}
+		
+		public function createFile($fileLabel, $fileSize, $fileCategory) {
+			$timestamp = time();
+			$query = "INSERT INTO files (label, filesize, category_id, file_state, created_at)
+					  VALUES ('".$fileLabel."', ".$fileSize.", ".$fileCategory.", 1, ".$timestamp.")";
+			$this->db_files->query($query);
+			$lastId = $this->db_files->getLastId();
+			
+			if($lastId > 0) {
+				$userId = $this->session->data['user']['id'];
+				$this->setFileHistory($lastId, $userId, 'NULL', 1, $timestamp);
+			}
+			
+			return $lastId;
+		}
+		
+		public function updateFile($id, $label, $toState) {
+		
+		}
+		
+		private function setFileHistory($fileId, $userId, $fromState, $toState, $timestamp) {
+			$query = "INSERT INTO file_history VALUES (".$fileId.", ".$userId.", ".$fromState.", ".$toState.", ".$timestamp.")";
 			$this->db_files->query($query);
 		}
 	}

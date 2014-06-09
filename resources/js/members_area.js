@@ -4,6 +4,9 @@ var fullScreenText = 'Full Screen';
 var fullScreenGlyphicon = 'glyphicon glyphicon-fullscreen';
 var fullScreenDisabled = false;
 var infoCategoryId = '';
+var windowZ = 1300;
+var activeTabs = [];
+var newFileType = '';
 
 $(document).ready(function() {
 	// $('.webtop-div').draggable().resizable();
@@ -14,7 +17,7 @@ $(document).ready(function() {
 				$('body').css('position', 'fixed').css('height', '100%');
 			});
 			fullScreenText = 'Minimize';
-			fullScreenGlyphicon = 'glyphicon glyphicon-resize-small';
+			fullScreenGlyphicon = 'glyphicon glyphicon-off';
 		}
 		else {
 			$('body').css('position', 'relative').css('height', 'auto');
@@ -31,6 +34,22 @@ $(document).ready(function() {
 			$(this).addClass('opened');
 			$(this).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-open');
 		}
+		
+		rel = $(this).attr('rel');
+		id = rel.substring(0, rel.indexOf(':'));
+		label = rel.substring(rel.indexOf(':')+1);
+		
+		$('#minimized').find('button').removeClass('active');
+		if($('#minimized').find('#cat'+id+'-minimized').text().length > 0) {
+			$('#minimized').find('#cat'+id+'-minimized').addClass('active');
+			activeTabs.push('#cat'+id+'-minimized');
+		}
+		else {
+			addNewWindow(id, label);
+			$('#minimized').append('<button type="button" id="cat'+id+'-minimized" class="btn btn-sm btn-default active" rel="cat'+id+'">'+label+'</div>');
+			activeTabs.push('#cat'+id+'-minimized');
+		}
+		$('.folder-content').find('#cat'+id+'-div').css('z-index', getAndIncreaseWindowZ()).show('fast');
 	});
 	
 	$('#trash-div').on('dblclick', '.trash-category', function() {
@@ -55,9 +74,11 @@ $(document).ready(function() {
 		selected: function( event, ui ) {
 			selectedItems = [];
 			$(this).find('div').each(function() {
-				id = $.trim($(this).attr('id'));
-				if(id.length > 0 && $.inArray(id, selectedItems) == -1) {
-					selectedItems.push(id);
+				if($(this).hasClass('ui-selected')) {
+					id = $.trim($(this).attr('id'));
+					if(id.length > 0 && $.inArray(id, selectedItems) == -1) {
+						selectedItems.push(id);
+					}
 				}
 			});
 			
@@ -76,9 +97,11 @@ $(document).ready(function() {
 		},
 		unselected: function( event, ui ) {
 			$(this).find('div').each(function() {
-				id = $.trim($(this).attr('id'));
-				$('#'+id).find('div:last-child').css('background-color', '#FFFFFF').css('color', '#444444');
-				selectedItems.pop(id);
+				if(!$(this).hasClass('ui-selected')) {
+					id = $.trim($(this).attr('id'));
+					$('#'+id).find('div:last-child').css('background-color', '#FFFFFF').css('color', '#444444');
+					selectedItems.pop(id);
+				}
 			});
 			
 			if(selectedItems.length == 0) {
@@ -93,53 +116,102 @@ $(document).ready(function() {
 		}
 	});
 	
-	
-	
 	$('#trash').on('dblclick', function() {
+		$('#trash-div').css('z-index', getAndIncreaseWindowZ());
 		if(!$(this).hasClass('opened')) {
 			getDeletedItems();
 			$(this).addClass('opened');
 			$('#trash-div').show('fast');
-			if($('#minimized').find('#trash-minimized').text().length > 0)
+			$('#minimized').find('button').removeClass('active');
+			if($('#minimized').find('#trash-minimized').text().length > 0) {
 				$('#minimized').find('#trash-minimized').addClass('active');
-			else
-				$('#minimized').append('<button type="button" id="trash-minimized" class="btn btn-sm btn-default active" rel="trash">Trash</div>')
+				activeTabs.push('#trash-minimized');
+			}
+			else {
+				$('#minimized').append('<button type="button" id="trash-minimized" class="btn btn-sm btn-default active" rel="trash">Trash</div>');
+				activeTabs.push('#trash-minimized');
+			}
 		}
 	});
 	
-	$('#minimized').on('dblclick', 'button', function() {
+	$('#minimized').on('click', 'button', function() {
 		$(this).blur();
 		elementId = '#'+$(this).attr('rel');
 		divId = elementId+'-div';
 		if($(divId).is(':hidden')) {
-			$(divId).show('fast');
+			$(divId).css('z-index', getAndIncreaseWindowZ()).show('fast');
 			$(elementId).addClass('opened');
 			$('#minimized button').removeClass('active');
 			$(this).addClass('active');
+			activeTabs.push('#'+$(this).attr('id'));
+			if(elementId.indexOf('cat') > 0) {
+				// $('.categories').find('.category').removeClass('opened');
+				// $('.categories').find('.category').find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-close');
+				$(elementId).addClass('opened');
+				$(elementId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-open');
+			}
 		}
 		else if($(divId).is(':visible')) {
-			$(this).blur();
-			$(divId).hide('fast');
-			$(elementId).removeClass('opened');
-			$(this).removeClass('active');
+			if(!$(this).hasClass('active')) {
+				$('#minimized button').removeClass('active');
+				$(divId).css('z-index', getAndIncreaseWindowZ());
+				$(elementId).addClass('opened');
+				$(this).addClass('active');
+				activeTabs.push('#'+$(this).attr('id'));
+				if(elementId.indexOf('cat') > 0) {
+					$(elementId).addClass('opened');
+					$(elementId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-open');
+				}
+			}
+			else {
+				$(divId).hide('fast');
+				$(elementId).removeClass('opened');
+				$(this).removeClass('active');
+				activeTabs.pop();
+				if(activeTabs.length > 0) {
+					divId = activeTabs[activeTabs.length-1].substring(0, activeTabs[activeTabs.length-1].indexOf('-'))+'-div';
+					if($(''+divId).is(':visible'))
+						$('#minimized').find('button'+activeTabs[activeTabs.length-1]).addClass('active');
+				}
+				if(elementId.indexOf('cat') > 0) {
+					$(elementId).removeClass('opened');
+					$(elementId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-close');
+				}
+			}
 		}
+		
+		/*
+		var tabs = '';
+		$.each(activeTabs, function(key, value){
+			tabs += key+' - '+value;
+		});
+		bootbox.alert(tabs);
+		*/
 	});
 	
-	$('.webtop-div button.btn-danger').on('click', function() {
+	$('.folder-content').on('click', '.webtop-div button.btn-danger', function() {
 		id = '#' + $(this).attr('rel');
 		$(this).parent().parent().parent().hide('fast');
 		$('#minimized').find(id).remove();
 		$('#trash').removeClass('opened');
+		if(id.indexOf('cat') > 0) {
+			catId = id.substring(0, id.indexOf('-'));
+			$(catId).removeClass('opened');
+			$(catId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-close');
+		}
 	});
 	
-	$('.webtop-div button.btn-warning').on('click', function() {
+	$('.folder-content').on('click', '.webtop-div button.btn-warning', function() {
 		id = '#' + $(this).attr('rel');
 		$(this).parent().parent().parent().hide('fast');
 		$('#minimized').find(id).removeClass('active');
 		$('#trash').removeClass('opened');
+		if(id.indexOf('cat') > 0) {
+			catId = id.substring(0, id.indexOf('-'));
+			$(catId).removeClass('opened');
+			$(catId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-close');
+		}
 	});
-	
-	$('#webtop .panel-body').oncontextmenu = function() { return false; };
 
 	$('.categories').on('mousedown', '.category', function(e) {
     	if( e.button == 2 ) {
@@ -147,6 +219,17 @@ $(document).ready(function() {
 			activeCategory = rel.substring(0, rel.indexOf(':'));
 			activeLabel = rel.substring(rel.indexOf(':') + 1);
 			infoCategoryId = '.categories #cat'+activeCategory;
+			return false;
+		}
+		return true;
+	});
+	
+	$('.folder-content').on('mousedown', '.category-div', function(e) {
+    	if( e.button == 2 ) {
+    		var rel = $(this).attr('rel');
+			activeCategory = rel.substring(0, rel.indexOf(':'));
+			activeLabel = rel.substring(rel.indexOf(':') + 1);
+			infoCategoryId = '.folder-content #cat'+activeCategory+'-div';
 			return false;
 		}
 		return true;
@@ -186,153 +269,267 @@ $(document).ready(function() {
 		});
 		
 		totalItems = trashCats.length + trashFiles.length;
-		bootbox.confirm('Are you sure you want to delete '+totalItems+' items?', function(result) {
-			if(result) {
-				if(trashCats.length > 0) {
-					$.each(trashCats, function(key, value) {
-						deleteCategory(value, '', 6);
-					});
+		if(totalItems > 0) {
+			totalItems = totalItems > 1 ? totalItems+' items' : totalItems+' item';
+			bootbox.confirm('Are you sure you want to delete '+totalItems+'?', function(result) {
+				if(result) {
+					if(trashCats.length > 0) {
+						$.each(trashCats, function(key, value) {
+							deleteCategory(value, '', 6);
+						});
+					}
+					
+					if(trashFiles.length > 0) {
+						$.each(trashFiles, function(key, value) {
+							deleteCategory(value, '', 6);
+						});
+					}
 				}
-				
-				if(trashFiles.length > 0) {
-					$.each(trashFiles, function(key, value) {
-						deleteCategory(value, '', 6);
-					});
-				}
-			}
-		});
+			});
+		}
+		else
+			bootbox.alert('No items to remove.');
 	});
 	
 	$('#remove-selected').on('click', function() {
 		totalItems = selectedItems.length;
-		totalItems = totalItems.length > 1 ? totalItems+' items' : totalItems+' item';
-		bootbox.confirm('Are you sure you want to delete '+totalItems+'?', function(result) {
-			if(result) {
-				if(selectedItems.length > 0) {
-					$.each(selectedItems, function(key, value) {
-						deleteCategory(value, '', 6);
-					});
+		if(totalItems > 0) {
+			totalItems = totalItems > 1 ? totalItems+' items' : totalItems+' item';
+			bootbox.confirm('Are you sure you want to delete '+totalItems+'?', function(result) {
+				if(result) {
+					if(selectedItems.length > 0) {
+						$.each(selectedItems, function(key, value) {
+							deleteCategory(value, '', 6);
+						});
+						selectedItems = [];
+						$('.header-options').each(function() {
+							if($(this).hasClass('visible'))
+								$(this).removeClass('visible').hide().addClass('hidden');
+						});
+					}
 				}
-			}
-		});
+			});
+		}
+		else
+			bootbox.alert('No items selected.');
 	});
 	
 	$('#restore-selected').on('click', function() {
 		if(selectedItems.length > 0) {
 			$.each(selectedItems, function(key, value) {
-				if(value.indexOf('trash-cat') == 0)
-					restoreCategory(value.substring(9), '', 4);
-				else if(value.indexOf('trash-file') == 0)
-					restoreFile(value.substring(10), '', 4);
-				
+				if(value.indexOf('trash-cat') >= 0) {
+					id = value.substring(9);
+					trashCatDiv = $('#trash-div .window-content').find('#trash-cat'+id);
+					rel = trashCatDiv.attr('rel');
+					label = rel.substring(rel.indexOf(':')+1);
+					restoreCategory(id, label, 4);
+				}
+				else if(value.indexOf('trash-file') == 0) {
+					id = value.substring(9);
+					trashFileDiv = $('#trash-div .window-content').find('#trash-file'+id);
+					rel = trashFileDiv.attr('rel');
+					label = rel.substring(rel.indexOf(':')+1);
+					restoreFile(id, label, 4);
+				}
+			});
+			selectedItems = [];
+			$('.header-options').each(function() {
+				if($(this).hasClass('visible'))
+					$(this).removeClass('visible').hide().addClass('hidden');
 			});
 		}
+		else
+			bootbox.alert('No items selected.');
 	});
+	
+	// $('iframe#upload_target').contents().find('body').html('<textarea id="iframe_text"></textarea>');
+	
+	$('iframe#upload_target').load(function() {
+		var bodyContent = $(this).contents().find('body').html();
+		file = JSON.parse(bodyContent);
+		$('.folder-content #cat'+file.category_id+'-div .window-content').append(getNewFileDiv(file));
+	});
+	
+	$('.folder-content').on('dblclick', '.category-div .window-content .file', function() {
+		rel = $(this).attr('rel');
+		fileLink = '/resources/files/members_area/'+rel.substring(rel.indexOf(':')+1);
+		window.open(fileLink, '_blank');
+	});
+	
+	// Disable right click browser menu.
+	$('#webtop .panel-body').oncontextmenu = function() { return false; };
 	
 	$(function(){
 	    $.contextMenu({
-	        selector: '#top-div', 
-	        callback: function(key, options) {
-	        	switch(key) {
-				    case "full_screen":
-				        $('#expand-area').click();
-				        fullScreenDisabled = !fullScreenDisabled;
-				        break;
-				    case "create_cat":
-				        bootbox.prompt("Create New Folder", function(label) {
-				        	if(label !== null && $.trim(label.length) == 0) {
-				        		bootbox.alert("You should provide a label for the new folder");
-				        		return false;
-				        	}
-							else if (label !== null) {
-								createNewCategory(label);
-							}
-						});
-				        break;
-				    case "create_file":
-				        bootbox.alert('Create File');
-				        break;
-				    default:
-				    	$('#expand-area').click();
-				}
-	        },
-	        items: {
-	        	"full_screen": {name: fullScreenText, icon: 'fullscreen'},
-	        	"full_screen_sep": "---------",
-	            "create_cat": {name: 'New Folder', icon: 'folder-close'},
-	            "create_file": {name: "New File", icon: 'file'},
-	        }
-	    });
-	});
-	
-	$(function(){
-	    $.contextMenu({
-	        selector: '.category', 
-	        callback: function(key, options) {
-	            switch(key) {
-				    case "rename":
-				        bootbox.dialog({
-				        	title: 'Rename "' + activeLabel + '"',
-							message: '<div class="form-group"><input type="text" class="form-control" id="update-label" value="'+activeLabel+'" /></div>',
-							buttons: {
-								cancel: {
-									label: "Cancel",
-									className: "btn-default",
-								},
-								ok: {
-									label: "OK",
-									className: "btn-primary",
-									callback: function() {
-										updateCategory(activeCategory, $('#update-label').val(), 3);
+	        selector: '.categories .category',
+	        build: function($trigger, e) {
+				return {
+			        callback: function(key, options) {
+			            switch(key) {
+						    case "rename":
+						        bootbox.dialog({
+						        	title: 'Rename "' + activeLabel + '"',
+									message: '<div class="form-group"><input type="text" class="form-control" id="update-label" value="'+activeLabel+'" /></div>',
+									buttons: {
+										cancel: {
+											label: "Cancel",
+											className: "btn-default",
+										},
+										ok: {
+											label: "OK",
+											className: "btn-primary",
+											callback: function() {
+												updateCategory(activeCategory, $('#update-label').val(), 3);
+											}
+										}
 									}
-								}
-							}
-						});
-				        break;
-				    case "remove":
-				        bootbox.confirm('Are you sure you want to delete "'+activeLabel+'"?', function(result) {
-				        	if(result)
-								deleteCategory(activeCategory, activeLabel, 5);
-						});
-				        break;
-				    case "info":
-				        getCategoryInfo(activeCategory);
-				        break;
-				    default:
-				    	$('#expand-area').click();
-				}
-	        },
-	        items: {
-	            "rename": {name: "Rename", icon: "pencil"},
-	            "remove": {name: "Move to Trash", icon: "remove"},
-	            "sep1": "---------",
-	            "info": {name: "Info", icon: "info-sign"}
-	        }
+								});
+						        break;
+						    case "remove":
+						        bootbox.confirm('Are you sure you want to delete "'+activeLabel+'"?', function(result) {
+						        	if(result)
+										deleteCategory(activeCategory, activeLabel, 5);
+								});
+						        break;
+						    case "info":
+						        getCategoryInfo(activeCategory);
+						        break;
+						}
+			        },
+			        items: {
+			            "rename": {name: "Rename", icon: "pencil"},
+			            "remove": {name: "Move to Trash", icon: "remove"},
+			            "sep1": "---------",
+			            "info": {name: "Info", icon: "info-sign"}
+			        }
+			    }
+			}
+		});
+	});
+	
+	$(function(){
+	    $.contextMenu({
+	        selector: '.category-div',
+	        build: function($trigger, e) {
+				return {
+			        callback: function(key, options) {
+			            switch(key) {
+						    case "create_file":
+						        createNewFile(activeCategory);
+						        break;
+						    case "info":
+						        getCategoryInfo(activeCategory);
+						        break;
+						}
+			        },
+			        items: {
+			            "create_file": {name: "New File", icon: 'file'},
+			            "sep1": "---------",
+			            "info": {name: "Info", icon: "info-sign"}
+			        }
+			    }
+			}
 	    });
 	});
 	
 	$(function(){
 	    $.contextMenu({
-	        selector: '.trash-category', 
-	        callback: function(key, options) {
-	            switch(key) {
-				    case "restore":
-						restoreCategory(activeCategory, activeLabel, 4);
-				        break;
-				    case "info":
-				        getCategoryInfo(activeCategory);
-				        break;
-				    default:
-				    	$('#expand-area').click();
-				}
-	        },
-	        items: {
-	            "restore": {name: "Restore", icon: "share-alt"},
-	            "sep1": "---------",
-	            "info": {name: "Info", icon: "info-sign"}
-	        }
+	        selector: '#trash-div',
+	        build: function($trigger, e) {
+				return {
+			        callback: function(key, options) {
+			            switch(key) {
+						    case "empty-trash":
+						    	$('#trash-div .window-header').find('#empty-trash').click();
+						        break;
+						    case "remove":
+						        $('#trash-div .window-header').find('#remove-selected').click();
+						        break;
+						    case "restore":
+						        $('#trash-div .window-header').find('#restore-selected').click();
+						        break;
+						}
+			        },
+			        items: {
+			            "empty-trash": {name: "Empty Trash", icon: "ban-circle"},
+			            "sep1": "---------",
+			            "remove": {name: "Delete Selected Items", icon: "remove-circle"},
+			            "restore": {name: "Restore Selected Items", icon: "share-alt"},
+			        }
+			    }
+			}
 	    });
 	});
+	
+	$(function(){
+	    $.contextMenu({
+	        selector: '.trash-category',
+	        build: function($trigger, e) {
+				return {
+			        callback: function(key, options) {
+			            switch(key) {
+						    case "restore":
+								restoreCategory(activeCategory, activeLabel, 4);
+						        break;
+						    case "info":
+						        getCategoryInfo(activeCategory);
+						        break;
+						}
+			        },
+			        items: {
+			            "restore": {name: "Restore", icon: "share-alt"},
+			            "sep1": "---------",
+			            "info": {name: "Info", icon: "info-sign"}
+			        }
+			    }
+			}
+	    });
+	});
+	
+	$(function(){
+	    $.contextMenu({
+	        selector: '#top-div',
+	        build: function($trigger, e) {
+				return {
+			        callback: function(key, options) {
+			        	switch(key) {
+						    case "full_screen":
+						        $('#expand-area').click();
+						        fullScreenDisabled = !fullScreenDisabled;
+						        break;
+						    case "create_cat":
+						        bootbox.prompt("Create New Folder", function(label) {
+						        	if(label !== null && $.trim(label.length) == 0) {
+						        		bootbox.alert("You should provide a label for the new folder");
+						        		return false;
+						        	}
+									else if (label !== null) {
+										createNewCategory(label);
+									}
+								});
+						        break;
+						    case "create_file":
+						        bootbox.alert('Create File');
+						        break;
+						}
+			        },
+			        items: {
+			        	"full_screen": {name: fullScreenText, icon: 'fullscreen'},
+			        	"sep1": "---------",
+			            "create_cat": {name: 'New Folder', icon: 'folder-close'},
+			            "create_file": {name: "New File", icon: 'file'},
+			        }
+			    }
+			}
+	    });
+	});
+	
+	function getNewFileDiv(file) {
+		return '<div id="file'+file.id+'" class="file" rel="'+file.id+':'+file.label+'">'+
+					'<div class="glyphicon glyphicon-file"></div>'+
+					'<div class="file-label">'+file.labelHtml+'</div>'+
+				'</div>';
+	}
 	
 	function getDeletedItems() {
 		$.ajax({
@@ -407,6 +604,44 @@ $(document).ready(function() {
 		});
 	}
 	
+	function createNewFile(catId) {
+		bootbox.dialog({
+			title: 'Upload File',
+			message: '<div class="form-group">'+
+						'<form id="new-file-form" method="post" action="/'+$('#lang').val()+'/members_area/createFile" enctype="multipart/form-data" target="upload_target">'+
+							'<input id="new-file" name="new_file" type="file" />'+
+							'<input id="new-file-cat" name="file_cat" type="hidden" value="'+activeCategory+'" />'+
+							'<p class="help-block">File types allowed: .pdf, .doc, .docx</p>'+
+							'<p class="help-block">Maximum file size: 20 MB</p>'+
+						'</form>'+
+					'</div>'+
+					'<script type="text/javascript">'+
+						'$("#new-file").change(function(){'+
+							'newFile = this.files[0];'+
+							'newFileType = newFile.type;'+
+						'});'+
+					'</script>',
+			buttons: {
+				cancel: {
+					label: "Cancel",
+					className: "btn-default",
+				},
+				ok: {
+					label: "OK",
+					className: "btn-primary",
+					callback: function() {
+						if(newFileType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || newFileType == "application/msword" || newFileType == "application/pdf")
+							$('#new-file-form').submit();
+						else {
+							bootbox.alert('Please check the file types allowed.');
+							return false;
+						}
+					}
+			}
+		}
+		});
+	}
+	
 	function updateCategory(id, label, toState) {
 		$.ajax({
 			url: '/'+$('#lang').val()+'/members_area/updateCategory',
@@ -475,5 +710,30 @@ $(document).ready(function() {
 				bootbox.alert("Error getting category info!");
 			}
 		});
+	}
+	
+	function addNewWindow(id, label) {
+		var newWindow = '<div id="cat'+id+'-div" class="webtop-div category-div row col-lg-12 col-md-12 col-sm-12 col-xs-12" rel="'+id+':'+label+'">'+
+					      	'<div class="window-header row">'+
+					      	  '<div class="pull-left">'+
+					      	  	'<h4>'+
+					      	  		label+
+					      	  		'<small id="open-selected" class="header-options hidden">Open Selected Items</small>'+
+					      	  		'<small id="remove-selected" class="header-options hidden">Delete Selected Items</small>'+
+					      	  	'</h4>'+
+					      	  '</div>'+
+					      	  '<div class="pull-right">'+
+					      	  	'<button type="button" class="btn btn-xs btn-warning" rel="cat'+id+'-minimized"><span class="glyphicon glyphicon-minus"></span></button>'+
+					      	  	'<button type="button" class="btn btn-xs btn-danger" rel="cat'+id+'-minimized"><span class="glyphicon glyphicon-remove"></span></button>'+
+					      	  '</div>'+
+					      	'</div>'+
+					      	'<div class="window-content row">'+
+					      	'</div>'+
+					      '</div>';
+		$('.folder-content').append(newWindow);
+	}
+	
+	function getAndIncreaseWindowZ() {
+		return ++windowZ;
 	}
 });

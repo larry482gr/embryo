@@ -21,7 +21,12 @@
 			      <div id="trash-div" class="webtop-div row col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			      	<div class="window-header row">
 			      	  <div class="pull-left">
-			      	  	<h4>Trash</h4>
+			      	  	<h4>
+			      	  		Trash
+			      	  		<small id="empty-trash" class="header-options">Empty Trash</small>
+			      	  		<small id="remove-selected" class="header-options hidden">Delete Selected Items</small>
+			      	  		<small id="restore-selected" class="header-options hidden">Restore Selected Items</small>
+			      	  	</h4>
 			      	  </div>
 			      	  <div class="pull-right">
 			      	  	<button type="button" class="btn btn-xs btn-warning" rel="trash-minimized"><span class="glyphicon glyphicon-minus"></span></button>

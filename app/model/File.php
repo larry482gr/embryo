@@ -12,6 +12,18 @@
 			return $result->row;
 		}
 		
+		public function findCategoryHistory($categoryId, $limit = '') {
+			$query = "SELECT * FROM file_category_history WHERE category_id = ".$categoryId." ORDER BY timedate DESC ".$limit;
+			$result = $this->db_files->query($query);
+			return empty($limit) ? $result->rows : $result->row;
+		}
+		
+		public function findCategoryFilesInfo($categoryId) {
+			$query = "SELECT COUNT(*) AS totalFiles, SUM(filesize) AS totalFileSize FROM files WHERE category_id = ".$categoryId;
+			$result = $this->db_files->query($query);
+			return $result->row;
+		}
+		
 		public function findDeletedCategories() {
 			$query = "SELECT * FROM file_categories WHERE category_state = 5";
 			$result = $this->db_files->query($query);
@@ -24,12 +36,6 @@
 			return isset($result->rows) ? $result->rows : false ;
 		}
 		
-		public function findCategoryHistory($categoryId, $limit = '') {
-			$query = "SELECT * FROM file_category_history WHERE category_id = ".$categoryId." ORDER BY timedate DESC ".$limit;
-			$result = $this->db_files->query($query);
-			return empty($limit) ? $result->rows : $result->row;
-		}
-				
 		public function createCategory($lang_id, $label) {
 			$query = "INSERT INTO file_categories (label, lang_id, category_state, created_at)
 					  VALUES ('".$label."', ".$lang_id.", 1, ".time().")";

@@ -1,5 +1,11 @@
 <?php 
 	class ModelUser extends Model {
+		public function findUser($id) {
+			$query = "SELECT user.*, info.* FROM users AS user, user_infos AS info WHERE user.id = ".$id." AND user.id = info.user_id";
+			$result = $this->db->query($query);
+			return $result->row;
+		}
+		
 		public function registerUser($user) {
 			$username = $this->db->escape($user['uname']);
 			$email = $this->db->escape($user['email']);

@@ -50,6 +50,7 @@ $(document).ready(function() {
 			activeTabs.push('#cat'+id+'-minimized');
 		}
 		$('.folder-content').find('#cat'+id+'-div').css('z-index', getAndIncreaseWindowZ()).show('fast');
+		$('.folder-content').find('#cat'+id+'-div').find('div').css('z-index', getAndIncreaseWindowZ());
 	});
 	
 	$('#trash-div').on('dblclick', '.trash-category', function() {
@@ -118,6 +119,7 @@ $(document).ready(function() {
 	
 	$('#trash').on('dblclick', function() {
 		$('#trash-div').css('z-index', getAndIncreaseWindowZ());
+		$('#trash-div').find('div').css('z-index', getAndIncreaseWindowZ());
 		if(!$(this).hasClass('opened')) {
 			getDeletedItems();
 			$(this).addClass('opened');
@@ -136,36 +138,38 @@ $(document).ready(function() {
 	
 	$('#minimized').on('click', 'button', function() {
 		$(this).blur();
-		elementId = '#'+$(this).attr('rel');
-		divId = elementId+'-div';
+		webtopentId = '#'+$(this).attr('rel');
+		divId = webtopentId+'-div';
 		if($(divId).is(':hidden')) {
 			$(divId).css('z-index', getAndIncreaseWindowZ()).show('fast');
-			$(elementId).addClass('opened');
+			$(divId).find('div').css('z-index', getAndIncreaseWindowZ());
+			$(webtopentId).addClass('opened');
 			$('#minimized button').removeClass('active');
 			$(this).addClass('active');
 			activeTabs.push('#'+$(this).attr('id'));
-			if(elementId.indexOf('cat') > 0) {
+			if(webtopentId.indexOf('cat') > 0) {
 				// $('.categories').find('.category').removeClass('opened');
 				// $('.categories').find('.category').find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-close');
-				$(elementId).addClass('opened');
-				$(elementId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-open');
+				$(webtopentId).addClass('opened');
+				$(webtopentId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-open');
 			}
 		}
 		else if($(divId).is(':visible')) {
 			if(!$(this).hasClass('active')) {
 				$('#minimized button').removeClass('active');
 				$(divId).css('z-index', getAndIncreaseWindowZ());
-				$(elementId).addClass('opened');
+				$(divId).find('div').css('z-index', getAndIncreaseWindowZ());
+				$(webtopentId).addClass('opened');
 				$(this).addClass('active');
 				activeTabs.push('#'+$(this).attr('id'));
-				if(elementId.indexOf('cat') > 0) {
-					$(elementId).addClass('opened');
-					$(elementId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-open');
+				if(webtopentId.indexOf('cat') > 0) {
+					$(webtopentId).addClass('opened');
+					$(webtopentId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-open');
 				}
 			}
 			else {
 				$(divId).hide('fast');
-				$(elementId).removeClass('opened');
+				$(webtopentId).removeClass('opened');
 				$(this).removeClass('active');
 				activeTabs.pop();
 				if(activeTabs.length > 0) {
@@ -173,9 +177,9 @@ $(document).ready(function() {
 					if($(''+divId).is(':visible'))
 						$('#minimized').find('button'+activeTabs[activeTabs.length-1]).addClass('active');
 				}
-				if(elementId.indexOf('cat') > 0) {
-					$(elementId).removeClass('opened');
-					$(elementId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-close');
+				if(webtopentId.indexOf('cat') > 0) {
+					$(webtopentId).removeClass('opened');
+					$(webtopentId).find('div:first-child').removeClass().addClass('glyphicon glyphicon-folder-close');
 				}
 			}
 		}
@@ -342,14 +346,6 @@ $(document).ready(function() {
 			bootbox.alert('No items selected.');
 	});
 	
-	// $('iframe#upload_target').contents().find('body').html('<textarea id="iframe_text"></textarea>');
-	
-	$('iframe#upload_target').load(function() {
-		var bodyContent = $(this).contents().find('body').html();
-		file = JSON.parse(bodyContent);
-		$('.folder-content #cat'+file.category_id+'-div .window-content').append(getNewFileDiv(file));
-	});
-	
 	$('.folder-content').on('dblclick', '.category-div .window-content .file', function() {
 		rel = $(this).attr('rel');
 		fileLink = '/resources/files/members_area/'+rel.substring(rel.indexOf(':')+1);
@@ -415,7 +411,8 @@ $(document).ready(function() {
 			        callback: function(key, options) {
 			            switch(key) {
 						    case "create_file":
-						        createNewFile(activeCategory);
+						        $('#newFileModal').modal('show');
+						        $('#new-file-cat').val(activeCategory);
 						        break;
 						    case "info":
 						        getCategoryInfo(activeCategory);
@@ -524,8 +521,46 @@ $(document).ready(function() {
 	    });
 	});
 	
+	var options = {
+		beforeSend: function() {
+			$("#progress").show();
+			$("#bar").width("0%");
+			$("#percent").html("0%");
+		},
+		uploadProgress: function(event, position, total, percentComplete) {
+			$("#bar").width(percentComplete+"%");
+			$("#percent").html(percentComplete+"%");
+		},
+		success: function(result) {
+			file = JSON.parse(result);
+			$("#bar").width("100%");
+			$("#percent").html("100%");
+			$(".folder-content #cat"+file.category_id+"-div .window-content").append(getNewFileDiv(file));
+			$('#newFileModal').modal('hide');
+		},
+		error: function() {
+			$("#message").html("<font color=\'red\'> ERROR: unable to upload files</font>");
+		}
+	};
+	
+	$("#new-file-form").ajaxForm(options);
+						
+	$("#new-file").change(function() {
+		newFile = this.files[0];
+		newFileType = newFile.type;
+	});
+	
+	$('#upload-file').on('click', function() {
+		if(newFileType == 'application/pdf' || newFileType == 'application/msword' || newFileType == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+			$('#new-file-form').submit();
+		}
+		else {
+			bootbox.alert('Please check the file types allowed.');
+		}
+	});
+	
 	function getNewFileDiv(file) {
-		return '<div id="file'+file.id+'" class="file" rel="'+file.id+':'+file.label+'">'+
+		return '<div id="file'+file.id+'" class="file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+'">'+
 					'<div class="glyphicon glyphicon-file"></div>'+
 					'<div class="file-label">'+file.labelHtml+'</div>'+
 				'</div>';
@@ -601,44 +636,6 @@ $(document).ready(function() {
 			error: function(result) {
 				bootbox.alert("Error creating category!");
 			}
-		});
-	}
-	
-	function createNewFile(catId) {
-		bootbox.dialog({
-			title: 'Upload File',
-			message: '<div class="form-group">'+
-						'<form id="new-file-form" method="post" action="/'+$('#lang').val()+'/members_area/createFile" enctype="multipart/form-data" target="upload_target">'+
-							'<input id="new-file" name="new_file" type="file" />'+
-							'<input id="new-file-cat" name="file_cat" type="hidden" value="'+activeCategory+'" />'+
-							'<p class="help-block">File types allowed: .pdf, .doc, .docx</p>'+
-							'<p class="help-block">Maximum file size: 20 MB</p>'+
-						'</form>'+
-					'</div>'+
-					'<script type="text/javascript">'+
-						'$("#new-file").change(function(){'+
-							'newFile = this.files[0];'+
-							'newFileType = newFile.type;'+
-						'});'+
-					'</script>',
-			buttons: {
-				cancel: {
-					label: "Cancel",
-					className: "btn-default",
-				},
-				ok: {
-					label: "OK",
-					className: "btn-primary",
-					callback: function() {
-						if(newFileType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || newFileType == "application/msword" || newFileType == "application/pdf")
-							$('#new-file-form').submit();
-						else {
-							bootbox.alert('Please check the file types allowed.');
-							return false;
-						}
-					}
-			}
-		}
 		});
 	}
 	

@@ -32,6 +32,7 @@
 	    <script src="/resources/js/libraries/jquery.contextMenu.js" type="text/javascript"></script>
 	    <script src="/resources/js/libraries/screen.js" type="text/javascript"></script>
 	    <script src="/resources/js/libraries/prettify.js" type="text/javascript"></script>
+	    <script src="/resources/js/libraries/jquery.form.min.js" type="text/javascript"></script>
 	    
 	    <link href="/resources/css/libraries/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 	    <link href="/resources/css/libraries/screen.css" rel="stylesheet" type="text/css" />

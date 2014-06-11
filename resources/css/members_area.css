@@ -2,7 +2,7 @@ h3.page-title {
 	margin-bottom: 30px;
 }
 
-#expand-area {
+#expand-area, #minimize-area {
 	cursor: pointer;
 }
 
@@ -56,12 +56,7 @@ h3.page-title {
 #webtop > .panel-body > #top-div > .folder-content {
 	position: relative;
 	min-height: 200px;
-	height: 90%;
-}
-
-#webtop > .panel-body > #top-div > .folder-content > div {
-	min-height: 200px;
-	height: 90%;
+	height: 80%;
 }
 
 .header-options {
@@ -98,17 +93,16 @@ h3.page-title {
 	color: #2A6496;
 }
 
-.category, .trash-category {
+.category, .trash-category, .category-div .file {
 	font-size: smaller;
 	margin-bottom: 10px;
-	width: 100%;
 }
 
 .category.opened, .trash-category.opened, #trash.opened {
 	color: #2A6496;
 }
 
-.category > .glyphicon, .trash-category > .glyphicon {
+.category > .glyphicon, .trash-category > .glyphicon, .category-div .file > .glyphicon {
 	text-align: center !important;
 	font-size: 30px;
 	width: 100%;
@@ -116,7 +110,7 @@ h3.page-title {
 	clear: both;
 }
 
-.category > .category-label, .trash-category > .category-label {
+.category > .category-label, .trash-category > .category-label, .category-div .file > .file-label {
 	text-align: center !important;
 }
 
@@ -142,10 +136,6 @@ h3.page-title {
 	user-select: none;
 }
 
-.folder-content {
-	
-}
-
 .webtop-div {
 	display: none;
 	border: 1px solid #444444;
@@ -158,6 +148,7 @@ h3.page-title {
 	position: absolute !important;
 	top: 0 !important;
 	left: 0 !important;
+	height: 100%;
 }
 
 .webtop-div > .window-header {
@@ -175,6 +166,11 @@ h3.page-title {
 	margin-bottom: 10px;
 }
 
+.webtop-div > .window-content {
+	background-color: #FFFFFF;
+	min-height: 120px;
+}
+
 .webtop-div > .window-header:hover {
 	cursor: default;
 }
@@ -182,10 +178,6 @@ h3.page-title {
 .webtop-div > .row {
 	padding-left: 10px !important;
 	padding-right: 10px !important;
-}
-
-.webtop-div > div {
-	height: 90%;
 }
 
 .webtop-div button {

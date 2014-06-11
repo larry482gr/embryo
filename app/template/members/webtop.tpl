@@ -7,7 +7,7 @@
 	        <div class="panel-title">Members Area Webtop<small id="expand-area" class="pull-right"><span class="glyphicon glyphicon-fullscreen"></span>Full Screen</small></div>
 	      </div>
 	      <div class="panel-body">
-	      <div id="top-div">
+	      <div id="top-div" class="row">
 		      <!-- Category div -->
 		      <div class="categories col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			      <?php
@@ -39,7 +39,7 @@
 		      </div>
 	      </div>
 	      <!-- Bottom div -->
-	      <div id="bottom-div">
+	      <div id="bottom-div" class="row">
 		      <div id="minimized" class="pull-left">
 		      </div>
 		      <div id="trash" class="pull-right">
@@ -53,5 +53,33 @@
   </div>
 </div>
 <input type="hidden" id="lang" value="<?php echo $lang; ?>" />
-<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>
+<!-- Modal -->
+<div class="modal fade" id="newFileModal" tabindex="-1" role="dialog" aria-labelledby="newFileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="newFileModalLabel">Upload File</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <form id="new-file-form" method="post" action="<?php echo '/'.$lang.'/members_area/createFile'; ?>" enctype="multipart/form-data">
+          	<input id="new-file" name="new_file" type="file" />
+          	<input id="new-file-cat" name="file_cat" type="hidden" value="" />
+          	<p class="help-block">File types allowed: .pdf, .doc, .docx</p>
+          	<p class="help-block">Maximum file size: 20 MB</p>
+          	<div id="progress">
+          	  <div id="bar"></div>
+          	  <div id="percent">0%</div >
+          	</div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" id="upload-file" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
 <?php echo $footer; ?>

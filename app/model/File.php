@@ -1,7 +1,7 @@
 <?php 
 	class ModelFile extends Model {
 		public function findAllActiveFileCategories($lang_id, $order = '', $limit = '') {
-			$query = "SELECT * FROM file_categories WHERE lang_id = ".$lang_id." AND category_state < 5".$order." ".$limit;
+			$query = "SELECT * FROM file_categories WHERE lang_id = ".$lang_id." AND category_state < 5 ".$order." ".$limit;
 			$result = $this->db_files->query($query);
 			return $result->rows;
 		}
@@ -75,10 +75,22 @@
 			$this->db_files->query($query);
 		}
 		
+		public function findAllActiveFiles($categoryId) {
+			$query = "SELECT * FROM files WHERE category_id = ".$categoryId." AND file_state < 5 ".$order." ".$limit;
+			$result = $this->db_files->query($query);
+			return isset($result->rows) ? $result->rows : false;
+		}
+		
 		public function findFile($id) {
 			$query = "SELECT * FROM files WHERE id = ".$id;
 			$result = $this->db_files->query($query);
 			return $result->row;
+		}
+		
+		public function findFileHistory($fileId, $limit = '') {
+			$query = "SELECT * FROM file_history WHERE file_id = ".$fileId." ORDER BY timedate DESC ".$limit;
+			$result = $this->db_files->query($query);
+			return empty($limit) ? $result->rows : $result->row;
 		}
 		
 		public function createFile($fileLabel, $fileSize, $fileCategory) {
@@ -97,7 +109,22 @@
 		}
 		
 		public function updateFile($id, $label, $toState) {
-		
+			$query = "UPDATE files SET 
+					  label = '".$label."', 
+					  file_state = ".$toState." 
+					  WHERE id = ".$id;
+			$this->db_files->query($query);
+			$affectedRows = $this->db_files->countAffected();
+			
+			$fileHistory = $this->findFileHistory($id, 'LIMIT 1');
+			$fromState = $fileHistory['to_state'];
+			
+			if($affectedRows > 0) {
+				$userId = $this->session->data['user']['id'];
+				$this->setFileHistory($id, $userId, $fromState, $toState, time());
+			}
+			
+			return $affectedRows;
 		}
 		
 		private function setFileHistory($fileId, $userId, $fromState, $toState, $timestamp) {

@@ -49,12 +49,38 @@ class ControllerMembersArea extends Controller {
 		}
 			
 		$deletedFiles = $this->model_file->findDeletedFiles();
-		if($deletedFiles)
-			$items['files'] = $deletedFiles;
+		if($deletedFiles) {
+			foreach($deletedFiles as $file) {
+				$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);
+				$items['files'][] = $file;
+			}
+		}
 		
 		echo json_encode($items);
 		die();
-			
+	}
+	
+	public function getCategoryFiles() {
+		if(!$this->right->canViewMembersArea()) {
+			$this->session->data['userRightsDenied'] = $this->language->getPermissionDeniedMessage('userRightsDenied');
+			return $this->response->redirect('/');
+		}
+		
+		$categoryId = $this->request->post['categoryId'];
+		$items = array('files' => false);
+		
+		$this->load->model('file');
+		
+		$files = $this->model_file->findAllActiveFiles($categoryId);
+		if($files) {
+			foreach($files as $file) {
+				$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);
+				$items['files'][] = $file;
+			}
+		}
+		
+		echo json_encode($items);
+		die();
 	}
 	
 	public function createCategory() {
@@ -149,6 +175,27 @@ class ControllerMembersArea extends Controller {
 		die();
 	}
 	
+	public function updateFile() {
+		if(!$this->right->canViewMembersArea()) {
+			$this->session->data['userRightsDenied'] = $this->language->getPermissionDeniedMessage('userRightsDenied');
+			return $this->response->redirect('/');
+		}
+		
+		$id = $this->db_files->escape($this->request->post['id']);
+		$label = $this->db_files->escape($this->request->post['label']);
+		$toState = $this->db_files->escape($this->request->post['toState']);
+		
+		$this->load->model('file');
+		$affectedRows = $this->model_file->updateFile($id, $label, $toState);
+		
+		if($affectedRows > 0)
+			$file = $this->model_file->findFile($id);
+		$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);
+		
+		echo json_encode($file);
+		die();
+	}
+	
 	public function getCategoryInfo() {
 		if(!$this->right->canViewMembersArea()) {
 			$this->session->data['userRightsDenied'] = $this->language->getPermissionDeniedMessage('userRightsDenied');
@@ -174,6 +221,35 @@ class ControllerMembersArea extends Controller {
 		$categoryInfo['updated'] = count($catHistory) > 1 ? '<b>'.$this->getStateById($catHistory[0]['to_state']).' by:</b> '.$userUpdated.' on '.date('l jS F Y', $catHistory[0]['timedate']).'<br/>' : '';
 		
 		echo json_encode($categoryInfo);
+		die();
+	}
+	
+	public function getFileInfo() {
+		if(!$this->right->canViewMembersArea()) {
+			$this->session->data['userRightsDenied'] = $this->language->getPermissionDeniedMessage('userRightsDenied');
+			return $this->response->redirect('/');
+		}
+		
+		$id = $this->db_files->escape($this->request->post['id']);
+		$fileInfo = array('created' => '', 'updated' => '', 'filesize' => 0);
+		
+		$this->load->model('file');
+		$file = $this->model_file->findFile($id);
+		$fileHistory = $this->model_file->findFileHistory($id);
+		
+		$fileInfo['filesize'] = '<b>Size:</b> '.$file['filesize'].'<br/>';
+		
+		$this->load->model('user');
+		$firstUser = $this->model_user->findUser($fileHistory[count($fileHistory)-1]['user_id']);
+		$lastUser = $this->model_user->findUser($fileHistory[0]['user_id']);
+		
+		$userCreated = (!empty($firstUser['first_name']) || !empty($firstUser['last_name'])) ? $firstUser['first_name'].' '.$firstUser['last_name'] : $firstUser['username'];
+		$userUpdated = (!empty($lastUser['first_name']) || !empty($lastUser['last_name'])) ? $lastUser['first_name'].' '.$lastUser['last_name'] : $lasttUser['username'];
+		
+		$fileInfo['created'] = '<b>Created by:</b> '.$userCreated.' on '.date('l jS F Y', $fileHistory[count($fileHistory)-1]['timedate']).'<br/>';
+		$fileInfo['updated'] = count($fileHistory) > 1 ? '<b>'.$this->getStateById($fileHistory[0]['to_state']).' by:</b> '.$userUpdated.' on '.date('l jS F Y', $fileHistory[0]['timedate']).'<br/>' : '';
+		
+		echo json_encode($fileInfo);
 		die();
 	}
 	

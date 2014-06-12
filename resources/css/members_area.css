@@ -93,16 +93,16 @@ h3.page-title {
 	color: #2A6496;
 }
 
-.category, .trash-category, .category-div .file {
+.category, .category-div .file, .trash-category, .trash-file {
 	font-size: smaller;
 	margin-bottom: 10px;
 }
 
-.category.opened, .trash-category.opened, #trash.opened {
+.category.opened, #trash.opened, .trash-category.opened, .trash-file.opened {
 	color: #2A6496;
 }
 
-.category > .glyphicon, .trash-category > .glyphicon, .category-div .file > .glyphicon {
+.category > .glyphicon, .category-div .file > .glyphicon, .trash-category > .glyphicon, .trash-file > .glyphicon {
 	text-align: center !important;
 	font-size: 30px;
 	width: 100%;

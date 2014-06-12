@@ -1,4 +1,5 @@
 var activeCategory = -1;
+var activeFile = -1;
 var activeLabel = '';
 var fullScreenText = 'Full Screen';
 var fullScreenGlyphicon = 'glyphicon glyphicon-fullscreen';
@@ -10,6 +11,24 @@ var newFileType = '';
 
 $(document).ready(function() {
 	// $('.webtop-div').draggable().resizable();
+	
+	$('.categories .category').draggable({
+		start: function() {
+			$(this).css('z-index', getAndIncreaseWindowZ());
+			var rel = $(this).attr('rel');
+			activeCategory = rel.substring(0, rel.indexOf(':'));
+			activeLabel = rel.substring(rel.indexOf(':') + 1);
+			infoCategoryId = '.folder-content #cat'+activeCategory+'-div';
+		},
+	});
+	
+	$('#trash, trash-div').droppable({
+		accept: ".categories .category",
+		hoverClass: "opened",
+		drop: function(event, ui) {
+			deleteCategory(activeCategory, activeLabel, 5);
+		}
+	});
 	
 	$('#expand-area').on('click', function() {
 		if($(this).text() == 'Full Screen') {
@@ -46,6 +65,7 @@ $(document).ready(function() {
 		}
 		else {
 			addNewWindow(id, label);
+			getWindowFiles(id);
 			$('#minimized').append('<button type="button" id="cat'+id+'-minimized" class="btn btn-sm btn-default active" rel="cat'+id+'">'+label+'</div>');
 			activeTabs.push('#cat'+id+'-minimized');
 		}
@@ -228,6 +248,10 @@ $(document).ready(function() {
 		return true;
 	});
 	
+	// ===================================================================
+	// Try to refactor the following 3 event listeners and merge them to 1
+	// ===================================================================
+	
 	$('.folder-content').on('mousedown', '.category-div', function(e) {
     	if( e.button == 2 ) {
     		var rel = $(this).attr('rel');
@@ -249,6 +273,32 @@ $(document).ready(function() {
 		}
 		return true;
 	});
+	
+	$('.folder-content').on('mousedown', '.category-div .window-content .file', function(e) {
+    	if( e.button == 2 ) {
+    		var rel = $(this).attr('rel');
+			activeFile = rel.substring(0, rel.indexOf(':'));
+			activeLabel = rel.substring(rel.indexOf(':') + 1);
+			infoFileId = '.folder-content .category-div .window-content #file'+activeFile;
+			return false;
+		}
+		return true;
+	});
+	
+	$('#trash-div .window-content').on('mousedown', '.trash-file', function(e) {
+    	if( e.button == 2 ) {
+    		var rel = $(this).attr('rel');
+			activeFile = rel.substring(0, rel.indexOf(':'));
+			activeLabel = rel.substring(rel.indexOf(':') + 1);
+			infoFileId = '#trash-div .window-content #trash-file'+activeFile;
+			return false;
+		}
+		return true;
+	});
+	
+	// ===================================================================
+	// Try to refactor the following 3 event listeners and merge them to 1
+	// ===================================================================
 	
 	$('#top-div').mousedown(function(e) {
     	if( e.button == 2 ) {
@@ -285,7 +335,7 @@ $(document).ready(function() {
 					
 					if(trashFiles.length > 0) {
 						$.each(trashFiles, function(key, value) {
-							deleteCategory(value, '', 6);
+							deleteFile(value, '', 6);
 						});
 					}
 				}
@@ -405,6 +455,54 @@ $(document).ready(function() {
 	
 	$(function(){
 	    $.contextMenu({
+	        selector: '.folder-content .category-div .window-content .file',
+	        build: function($trigger, e) {
+				return {
+			        callback: function(key, options) {
+			            switch(key) {
+						    case "rename":
+						        bootbox.dialog({
+						        	title: 'Rename "' + activeLabel + '"',
+									message: '<div class="form-group"><input type="text" class="form-control" id="update-label" value="'+activeLabel+'" /></div>',
+									buttons: {
+										cancel: {
+											label: "Cancel",
+											className: "btn-default",
+										},
+										ok: {
+											label: "OK",
+											className: "btn-primary",
+											callback: function() {
+												updateCategory(activeCategory, $('#update-label').val(), 3);
+											}
+										}
+									}
+								});
+						        break;
+						    case "remove":
+						        bootbox.confirm('Are you sure you want to delete "'+activeLabel+'"?', function(result) {
+						        	if(result)
+										deleteFile(activeFile, activeLabel, 5);
+								});
+						        break;
+						    case "info":
+						        getFileInfo(activeFile);
+						        break;
+						}
+			        },
+			        items: {
+			            "rename": {name: "Rename", icon: "pencil"},
+			            "remove": {name: "Move to Trash", icon: "remove"},
+			            "sep1": "---------",
+			            "info": {name: "Info", icon: "info-sign"}
+			        }
+			    }
+			}
+		});
+	});
+	
+	$(function(){
+	    $.contextMenu({
 	        selector: '.category-div',
 	        build: function($trigger, e) {
 				return {
@@ -485,6 +583,31 @@ $(document).ready(function() {
 	
 	$(function(){
 	    $.contextMenu({
+	        selector: '.trash-file',
+	        build: function($trigger, e) {
+				return {
+			        callback: function(key, options) {
+			            switch(key) {
+						    case "restore":
+								restoreFile(activeFile, activeLabel, 4);
+						        break;
+						    case "info":
+						        getFileInfo(activeFile);
+						        break;
+						}
+			        },
+			        items: {
+			            "restore": {name: "Restore", icon: "share-alt"},
+			            "sep1": "---------",
+			            "info": {name: "Info", icon: "info-sign"}
+			        }
+			    }
+			}
+	    });
+	});
+	
+	$(function(){
+	    $.contextMenu({
 	        selector: '#top-div',
 	        build: function($trigger, e) {
 				return {
@@ -535,7 +658,7 @@ $(document).ready(function() {
 			file = JSON.parse(result);
 			$("#bar").width("100%");
 			$("#percent").html("100%");
-			$(".folder-content #cat"+file.category_id+"-div .window-content").append(getNewFileDiv(file));
+			$(".folder-content #cat"+file.category_id+"-div .window-content").append(getFileDiv(file));
 			$('#newFileModal').modal('hide');
 		},
 		error: function() {
@@ -558,13 +681,6 @@ $(document).ready(function() {
 			bootbox.alert('Please check the file types allowed.');
 		}
 	});
-	
-	function getNewFileDiv(file) {
-		return '<div id="file'+file.id+'" class="file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+'">'+
-					'<div class="glyphicon glyphicon-file"></div>'+
-					'<div class="file-label">'+file.labelHtml+'</div>'+
-				'</div>';
-	}
 	
 	function getDeletedItems() {
 		$.ajax({
@@ -614,14 +730,12 @@ $(document).ready(function() {
 			   '</div>';
 	}
 	
-	/*
-	function getRestoredFileDiv(file) {
-		return '<div id="trash-file'+file.id+'" class="trash-file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+'">'+
-				'<div class="glyphicon glyphicon-file"></div>'+
-				'<div class="file-label">'+file.label+'</div>'+
-			   '</div>';
+	function getFileDiv(file) {
+		return '<div id="file'+file.id+'" class="file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+'">'+
+					'<div class="glyphicon glyphicon-file"></div>'+
+					'<div class="file-label">'+file.labelHtml+'</div>'+
+				'</div>';
 	}
-	*/
 	
 	function createNewCategory(label) {
 		$.ajax({
@@ -683,6 +797,15 @@ $(document).ready(function() {
 			success: function(cat) {
 				$('#trash-div .window-content').find('#trash-cat'+cat.id).remove();
 				$('.categories').append(getRestoredCategoryDiv(cat));
+				$('.categories').find('.category').draggable({
+						start: function() {
+						$(this).css('z-index', getAndIncreaseWindowZ());
+						var rel = $(this).attr('rel');
+						activeCategory = rel.substring(0, rel.indexOf(':'));
+						activeLabel = rel.substring(rel.indexOf(':') + 1);
+						infoCategoryId = '.folder-content #cat'+activeCategory+'-div';
+					}
+				});
 			},
 			error: function(result) {
 				bootbox.alert("Error restoring category!");
@@ -698,13 +821,70 @@ $(document).ready(function() {
 			data: { id: id },
 			dataType: 'json',
 			success: function(catInfo) {
-				$(infoCategoryId).popover({trigger: 'click', html: true, content: catInfo.created+catInfo.updated+catInfo.totalFiles+catInfo.totalFileSize}).popover('show');
-				$(infoCategoryId).on('click', function() {
+				$(infoCategoryId).popover({trigger: 'hover', html: true, content: catInfo.created+catInfo.updated+catInfo.totalFiles+catInfo.totalFileSize}).popover('show');
+				
+				$(infoCategoryId).on('hidden.bs.popover', function(e) {
+					$(this).off('hidden.bs.popover');
 					$(this).popover('destroy');
 				});
 			},
 			error: function(result) {
 				bootbox.alert("Error getting category info!");
+			}
+		});
+	}
+	
+	function deleteFile(id, label, toState) {
+		$.ajax({
+			url: '/'+$('#lang').val()+'/members_area/updateFile',
+			type: 'post',
+			cache: false,
+			data: { id: id, label: label, toState: toState },
+			dataType: 'json',
+			success: function(file) {
+				$('.category-div').find('#file'+file.id).remove();
+				$('#trash-div .window-content').append(getDeletedFileDiv(file));
+			},
+			error: function(result) {
+				bootbox.alert("Error deleting file!");
+			}
+		});
+	}
+	
+	function restoreFile(id, label, toState) {
+		$.ajax({
+			url: '/'+$('#lang').val()+'/members_area/updateFile',
+			type: 'post',
+			cache: false,
+			data: { id: id, label: label, toState: toState },
+			dataType: 'json',
+			success: function(file) {
+				$('#trash-div .window-content').find('#trash-file'+file.id).remove();
+				$('.folder-content #cat'+file.category_id+'-div .window-content').append(getFileDiv(file));
+			},
+			error: function(result) {
+				bootbox.alert("Error restoring category!");
+			}
+		});
+	}
+	
+	function getFileInfo(id) {
+		$.ajax({
+			url: '/'+$('#lang').val()+'/members_area/getFileInfo',
+			type: 'post',
+			cache: false,
+			data: { id: id },
+			dataType: 'json',
+			success: function(fileInfo) {
+				$(infoFileId).popover({trigger: 'hover', html: true, content: fileInfo.created+fileInfo.updated+fileInfo.filesize}).popover('show');
+				
+				$(infoFileId).on('hidden.bs.popover', function(e) {
+					$(this).off('hidden.bs.popover');
+					$(this).popover('destroy');
+				});
+			},
+			error: function(result) {
+				bootbox.alert("Error getting file info!");
 			}
 		});
 	}
@@ -728,6 +908,28 @@ $(document).ready(function() {
 					      	'</div>'+
 					      '</div>';
 		$('.folder-content').append(newWindow);
+	}
+	
+	function getWindowFiles(id) {
+		$.ajax({
+			url: '/'+$('#lang').val()+'/members_area/getCategoryFiles',
+			type: 'post',
+			cache: false,
+			dataType: 'json',
+			data: { categoryId: id },
+			success: function(items) {
+				$('.folder-content #cat'+id+'-div .window-content').html('');
+				if(items.files) {
+					filesSize = items.files.length
+					for(i = 0; i < filesSize; i++) {
+						$('.folder-content #cat'+id+'-div .window-content').append(getFileDiv(items.files[i]));
+					}
+				}
+			},
+			error: function(result) {
+				bootbox.alert("Error getting deleted items!");
+			}
+		});
 	}
 	
 	function getAndIncreaseWindowZ() {

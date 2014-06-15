@@ -57,17 +57,16 @@ class ControllerUser extends Controller {
 		$this->load->model('user');
 		
 		$user = $this->model_user->validateUser($username, $password);
+		
 		// Invalid user
 		if (!$user) {
 			$this->invalid_error = $inv_error;
 			return;
 		}
-		/*
 		// Valid BUT not activated user.
-		else if ($user['isactive'] == 0) {
-			return $this->response->redirect($this->url->link('user/activate&user='.$user['username']));
+		else if (!$user['activated']) {
+			return $this->response->redirect('user/activate&user='.$user['username']);
 		}
-		*/
 		// Valid user. Proceed to dashboard.
 		else {
 			$this->session->data['user']['id'] = $user['id'];
@@ -197,16 +196,41 @@ class ControllerUser extends Controller {
 		$user = isset($this->request->post['user']) ? $this->request->post['user'] : '';
 		$affectedRows = 0;
 		
-		if(!empty($user['uname']) && !empty($user['email']) && !empty($user['pass']) && !empty($user['confPass']) && !empty($user['profile'])) {
+		// if(!empty($user['uname']) && !empty($user['email']) && !empty($user['pass']) && !empty($user['confPass']) && !empty($user['profile'])) {
+		if(!empty($user['uname']) && !empty($user['email']) && !empty($user['profile'])) {
 			$this->load->model('user');
 			$this->load->model('profile');
 			$profile = $this->model_profile->getIdByLabel($user['profile']);
 			$user['profile'] = $profile['id'];
 			$lastId = $this->model_user->registerUser($user);
 			if($lastId > 0) {
-				$affectedRows = $this->model_user->setUserInfo($lastId, $this->createToken(64));
-				if($affectedRows == 1)
-					$this->data['registerSuccess'] = $this->data['form']['registerSuccess'];
+				$token = $this->createToken(64);
+				$affectedRows = $this->model_user->setUserInfo($lastId, $token);
+				if($affectedRows == 1) {
+					$passChanged = $this->model_user->changePass($lastId, substr($token, 0, 10));
+					if($passChanged) {
+						$to      = $user['email'];
+						$message  = '<h3>A new account has been created for you in embryo.web.auth.gr</h3>';
+						$message .= '<div>Please follow the link below to activate your account.</div>';
+						$message .= '<a href="embryo.web.auth.gr/user/'.$lastId.'/activate/'.$token.'">';
+						// To send HTML mail, the Content-type header must be set
+						$headers  = 'MIME-Version: 1.0' . "\r\n";
+						$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+						
+						// Additional headers
+						$headers .= 'From: '.$name.' <'.$email.'>' . "\r\n";
+						$headers .= 'Reply-To: ' . $email . "\r\n";
+						$headers .= 'X-Mailer: PHP/' . phpversion();
+						
+						if(mail($to, $subject, $message, $headers))
+							$this->data['registerSuccess'] = $this->data['form']['registerSuccess'];
+						else
+							$this->data['registerError'] = $this->data['form']['registerError'];
+					}
+					else {
+						$this->data['registerError'] = $this->data['form']['registerError'];
+					}
+				}
 				else
 					$this->data['registerError'] = $this->data['form']['registerError'];
 			}

@@ -274,7 +274,7 @@
 	}
 	
 	function addNewWindow(id, label) {
-		var newWindow = '<div id="cat'+id+'-div" class="webtop-div category-div col-lg-12 col-md-12 col-sm-12 col-xs-12" rel="'+id+':'+label+'">'+
+		var newWindow = '<div id="cat'+id+'-div" class="webtop-div category-div filedrag-div col-lg-12 col-md-12 col-sm-12 col-xs-12" rel="'+id+':'+label+'">'+
 					      	'<div class="window-header row">'+
 					      	  '<div class="pull-left">'+
 					      	  	'<h4>'+

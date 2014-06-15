@@ -39,11 +39,12 @@ $(document).ready(function(){
 	
 	$('#register-btn').on('click', function() {
 		var error = false;
-		if($('#username').val().length == 0 || $('#email').val().length == 0 || $('#pass').val().length == 0 || $('#confirm-pass').val().length == 0) {
+		// if($('#username').val().length == 0 || $('#email').val().length == 0 || $('#pass').val().length == 0 || $('#confirm-pass').val().length == 0) {
+		if($('#username').val().length == 0 || $('#email').val().length == 0) {
 			$('#fill-all-error').fadeIn();
 			error = true;
 		}
-		
+		/*
 		if($('#pass').val().length > 0 && $('#confirm-pass').val().length > 0 && $('#pass').val() != $('#confirm-pass').val()) {
 			$('#confirm-sign span:last-child').fadeOut('slow', function(){
 				$('#confirm-sign span:last-child').fadeIn('slow', function(){
@@ -54,6 +55,7 @@ $(document).ready(function(){
 			});
 			error = true;
 		}
+		*/
 		
 		if(!validateEmail($('#email').val())) {
 			$('#email').css('border-color', '#FF0000');

@@ -27,7 +27,7 @@
 			$username = $this->db->escape($username);
 			$password = $this->db->escape($password);
 			
-			$query = "SELECT * FROM users WHERE username = '".$username."' AND password = '".sha1($password)."'";
+			$query = "SELECT user.*, info.activated FROM users AS user, user_infos AS info WHERE user.username = '".$username."' AND user.password = '".sha1($password)."' AND user.id = info.user_id";
 			$result = $this->db->query($query);
 			return $result->row;
 		}

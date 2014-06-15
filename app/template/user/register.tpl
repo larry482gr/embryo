@@ -41,13 +41,13 @@
 			      <p id="email-error" class="help-block"><?php echo $form['emailError']; ?></p>
 			    </div>
 			  </div>
-			  <div class="form-group">
+			  <div class="form-group hidden">
 			    <label for="pass" class="col-md-4 control-label"><?php echo $form['password']; ?></label>
 			    <div class="col-md-5">
 			      <input type="password" class="form-control" id="pass" name="user[pass]" placeholder="<?php echo $form['password']; ?>" />
 			    </div>
 			  </div>
-			  <div class="form-group">
+			  <div class="form-group hidden">
 			    <label for="confirm-pass" class="col-md-4 control-label"><?php echo $form['confirmPass']; ?></label>
 			    <div class="col-md-5">
 			      <div id="confirm-input" class="pull-left">

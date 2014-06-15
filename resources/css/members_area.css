@@ -169,6 +169,8 @@ h3.page-title {
 .webtop-div > .window-content {
 	background-color: #FFFFFF;
 	min-height: 120px;
+	overflow: scroll;
+	position: static;
 }
 
 .webtop-div > .window-header:hover {

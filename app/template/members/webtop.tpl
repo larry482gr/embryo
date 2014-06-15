@@ -17,11 +17,15 @@
 			      ?>
 		      </div>
 		      <!-- Webtop div -->
-		      <div class="folder-content col-lg-10 col-md-10 col-sm-10 col-xs-10">
-			      <div id="trash-div" class="webtop-div row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		      <div class="folder-content row col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			      <div id="trash-div" class="webtop-div col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			      	<div class="window-header row">
 			      	  <div class="pull-left">
-			      	  	<h4>
+			      	  	<div class="control-buttons pull-left">
+			      	  		<button type="button" id="trash-back-btn" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-arrow-left"></span></button>
+			      	  		<button type="button" id="trash-front-btn" class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-arrow-right"></span></button>
+			      	  	</div>
+			      	  	<h4 class="pull-right">
 			      	  		Trash
 			      	  		<small id="empty-trash" class="header-options">Empty Trash</small>
 			      	  		<small id="remove-selected" class="header-options hidden">Delete Selected Items</small>
@@ -64,14 +68,23 @@
       <div class="modal-body">
         <div class="form-group">
           <form id="new-file-form" method="post" action="<?php echo '/'.$lang.'/members_area/createFile'; ?>" enctype="multipart/form-data">
-          	<input id="new-file" name="new_file" type="file" />
+          	<div id="file-category-div" class="form-group">
+          	  <label for="file-category-select">Select a Category</label>
+          	  <select id="file-category-select" class="form-control">
+          	    <?php
+			      foreach($categories as $cat) {
+			        echo '<option value="'.$cat['id'].'">'.$cat['label'].'</option>';
+			      }
+			    ?>
+          	  </select>
+          	</div>
+          	<div class="form-group">
+          	  <label for="new-file">Pick a File</label>
+          	  <input id="new-file" name="new_file" type="file" />
+          	</div>
           	<input id="new-file-cat" name="file_cat" type="hidden" value="" />
           	<p class="help-block">File types allowed: .pdf, .doc, .docx</p>
           	<p class="help-block">Maximum file size: 20 MB</p>
-          	<div id="progress">
-          	  <div id="bar"></div>
-          	  <div id="percent">0%</div >
-          	</div>
           </form>
         </div>
       </div>

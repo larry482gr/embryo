@@ -20,7 +20,9 @@ class ControllerMembersArea extends Controller {
 
 		$this->document->addStyle('left_part');
 		$this->document->addStyle('members_area');
-		$this->document->addScript('members_area');
+		$this->document->addScript('webtop/functions');
+		$this->document->addScript('webtop/context_menus');
+		$this->document->addScript('webtop/members_area');
 
 		// Assign header/footer to children object
 		$this->children = array('header', 'footer', 'left_part');
@@ -36,19 +38,22 @@ class ControllerMembersArea extends Controller {
 			return $this->response->redirect('/');
 		}
 		
+		$catDeleted = $this->db->escape($this->request->post['catDeleted']);
 		$items = array('categories' => false, 'files' => false);
 		
 		$this->load->model('file');
 		
-		$deletedCategories = $this->model_file->findDeletedCategories();
-		if($deletedCategories) {
-			foreach($deletedCategories as $category) {
-				$category['labelHtml'] = str_replace(" ", "<br/>", $category['label']);
-				$items['categories'][] = $category;
+		if($catDeleted == -1) {
+			$deletedCategories = $this->model_file->findDeletedCategories();
+			if($deletedCategories) {
+				foreach($deletedCategories as $category) {
+					$category['labelHtml'] = str_replace(" ", "<br/>", $category['label']);
+					$items['categories'][] = $category;
+				}
 			}
 		}
-			
-		$deletedFiles = $this->model_file->findDeletedFiles();
+		
+		$deletedFiles = $catDeleted == -1 ? $this->model_file->findDeletedFiles($items['categories']) : $this->model_file->findDeletedFiles($catDeleted);
 		if($deletedFiles) {
 			foreach($deletedFiles as $file) {
 				$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);
@@ -117,7 +122,7 @@ class ControllerMembersArea extends Controller {
 		$extension = end(explode(".", $fileLabel));
 			
 		$path = _DOCUMENT_ROOT_."/resources/files/members_area";
-		$filepath = $path."/".$this->request->files["new_file"]["name"];
+		$filepath = $path."/".$fileLabel;
 
 		if ((($this->request->files["new_file"]["type"] == "application/pdf")
 			|| ($this->request->files["new_file"]["type"] == "application/msword")
@@ -131,11 +136,23 @@ class ControllerMembersArea extends Controller {
 			}
 			else {
 				if (!file_exists($path."/")) {
-			        mkdir($path);
-			        chmod($path, 0777);  // octal; correct value of mode
+			        mkdir($path, 0777, true);
+			        // chmod($path, 0777);  // octal; correct value of mode
 			    }
 			    else {
-			    	@move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
+			    	if(!file_exists($filepath))
+			    		move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
+			    	else {
+				    	$i = 1;
+				    	$tmpFileLabel = $fileLabel;
+				    	do {
+					    	$fileLabel = substr($tmpFileLabel, 0, -(strlen($extension)+1)) . " (" . $i . ")" . "." . $extension;
+					    	$filepath = $path."/".$fileLabel;
+					    	$i++;
+				    	} while(file_exists($filepath));
+				    	
+				    	move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
+			    	}
 			    	$this->load->model('file');
 			    	$lastId = $this->model_file->createFile($fileLabel, $fileSize, $fileCategory);
 			    	
@@ -186,13 +203,21 @@ class ControllerMembersArea extends Controller {
 		$toState = $this->db_files->escape($this->request->post['toState']);
 		
 		$this->load->model('file');
+		$oldFile = $this->model_file->findFile($id);
+		
 		$affectedRows = $this->model_file->updateFile($id, $label, $toState);
 		
-		if($affectedRows > 0)
-			$file = $this->model_file->findFile($id);
-		$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);
+		if($affectedRows > 0) {
+			$newFile = $this->model_file->findFile($id);
+			$newFile['labelHtml'] = str_replace(" ", "<br/>", $newFile['label']);
+			
+			if($toState == 3) {
+				// Rename the file
+				rename(_DOCUMENT_ROOT_."resources/files/members_area/".$oldFile['label'], _DOCUMENT_ROOT_."resources/files/members_area/".$newFile['label']);
+			}
+		}
 		
-		echo json_encode($file);
+		echo json_encode($newFile);
 		die();
 	}
 	

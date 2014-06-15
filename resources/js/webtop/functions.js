@@ -142,6 +142,18 @@
 			error: function(result) {
 				bootbox.alert("Error restoring category!");
 			}
+		})
+		.done(function() {
+			$('.categories .category').draggable({
+				scope: 'dropable',
+				start: function() {
+					$(this).css('z-index', getAndIncreaseWindowZ());
+					var rel = $(this).attr('rel');
+					activeCategory = rel.substring(0, rel.indexOf(':'));
+					activeLabel = rel.substring(rel.indexOf(':') + 1);
+					infoCategoryId = '.folder-content #cat'+activeCategory+'-div';
+				}
+			});
 		});
 	}
 	
@@ -214,6 +226,29 @@
 			error: function(result) {
 				bootbox.alert("Error restoring category!");
 			}
+		})
+		.done(function(){
+			$('.file').draggable({
+				appendTo: '#top-div',
+				scope: 'dropable',
+				revert: 'invalid',
+				helper: 'clone',
+				scroll: false,
+				zIndex: 2000,
+				start: function() {
+					$(this).hide();
+					// $(this).parent().css('overflow', 'hidden');
+					$(this).css('z-index', getAndIncreaseWindowZ());
+					var rel = $(this).attr('rel');
+					activeFile = rel.substring(0, rel.indexOf(':'));
+					activeLabel = rel.substring(rel.indexOf(':') + 1);
+					infoCategoryId = '.folder-content #file'+activeFile;
+				},
+				stop: function() {
+					$(this).show();
+					// $(this).parent().css('overflow', 'auto');
+				}
+			});
 		});
 	}
 	
@@ -278,6 +313,29 @@
 			error: function(result) {
 				bootbox.alert("Error getting deleted items!");
 			}
+		})
+		.done(function(){
+			$('.file').draggable({
+				appendTo: '#top-div',
+				scope: 'dropable',
+				revert: 'invalid',
+				helper: 'clone',
+				scroll: false,
+				zIndex: 2000,
+				start: function() {
+					$(this).hide();
+					// $(this).parent().css('overflow', 'hidden');
+					$(this).css('z-index', getAndIncreaseWindowZ());
+					var rel = $(this).attr('rel');
+					activeFile = rel.substring(0, rel.indexOf(':'));
+					activeLabel = rel.substring(rel.indexOf(':') + 1);
+					infoCategoryId = '.folder-content #file'+activeFile;
+				},
+				stop: function() {
+					$(this).show();
+					// $(this).parent().css('overflow', 'auto');
+				}
+			});
 		});
 	}
 	

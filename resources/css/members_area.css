@@ -97,7 +97,7 @@ h3.page-title {
 	font-size: 12px !important;
 }
 
-.category, .category-div .file, .trash-category, .trash-file {
+.category, .file, .trash-category, .trash-file {
 	font-size: smaller;
 	margin-bottom: 10px;
 }
@@ -106,7 +106,7 @@ h3.page-title {
 	color: #2A6496;
 }
 
-.category > .glyphicon, .category-div .file > .glyphicon, .trash-category > .glyphicon, .trash-file > .glyphicon {
+.category > .glyphicon, .file > .glyphicon, .trash-category > .glyphicon, .trash-file > .glyphicon {
 	text-align: center !important;
 	font-size: 30px;
 	width: 100%;
@@ -114,7 +114,7 @@ h3.page-title {
 	clear: both;
 }
 
-.category > .category-label, .trash-category > .category-label, .category-div .file > .file-label, .trash-file > .file-label {
+.category > .category-label, .trash-category > .category-label, .file > .file-label, .trash-file > .file-label {
 	text-align: center !important;
 }
 

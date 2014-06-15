@@ -13,20 +13,26 @@ $(document).ready(function() {
 	// $('.webtop-div').draggable().resizable();
 	
 	$('.categories .category').draggable({
+		scope: 'dropable',
 		start: function() {
 			$(this).css('z-index', getAndIncreaseWindowZ());
 			var rel = $(this).attr('rel');
 			activeCategory = rel.substring(0, rel.indexOf(':'));
 			activeLabel = rel.substring(rel.indexOf(':') + 1);
 			infoCategoryId = '.folder-content #cat'+activeCategory+'-div';
-		},
+		}
 	});
 	
 	$('#trash, trash-div').droppable({
-		accept: ".categories .category",
+		// accept: ".categories .category",
+		scope: 'dropable',
 		hoverClass: "opened",
 		drop: function(event, ui) {
-			deleteCategory(activeCategory, activeLabel, 5);
+			if($(ui.draggable).hasClass('category'))
+				deleteCategory(activeCategory, activeLabel, 5);
+			else if($(ui.draggable).hasClass('file'))
+				// bootbox.alert($(ui.draggable).attr('class') + ' - ' + $(ui.draggable).attr('id'));
+				deleteFile(activeFile, activeLabel, 5);
 		}
 	});
 	

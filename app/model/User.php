@@ -10,9 +10,9 @@
 			$username = $this->db->escape($user['uname']);
 			$email = $this->db->escape($user['email']);
 			$pass = $this->db->escape($user['pass']);
-			$profile = $this->db->escape($user['profile']);
+			// $profile = $this->db->escape($user['profile']);
 			
-			$query = "INSERT INTO users (username, password, email, profile_id) VALUES ('".$username."', '".sha1($pass)."', '".$email."', ".$profile.")";
+			$query = "INSERT INTO users (username, password, email, created_at, updated_at) VALUES ('".$username."', '".sha1($pass)."', '".$email."', NOW(), NOW())";
 			$this->db->query($query);
 			return $this->db->getLastId();
 		}
@@ -30,6 +30,16 @@
 			$query = "SELECT user.*, info.activated FROM users AS user, user_infos AS info WHERE user.username = '".$username."' AND user.password = '".sha1($password)."' AND user.id = info.user_id";
 			$result = $this->db->query($query);
 			return $result->row;
+		}
+		
+		public function activateMember($id, $password, $token) {
+			$query = "SELECT user.id FROM users AS user, user_infos AS info WHERE user.id = ".$id." AND user.password = '".sha1($password)."' AND user.id = info.user_id AND info.activated = 0 AND info.token = '".$token."'";
+			$result = $this->db->query($query);
+			if(!empty($result->row)) {
+				$query2 = "UPDATE user_infos SET activated = 1, token = NULL WHERE user_id = ".$id;
+				$this->db->query($query2);
+			}
+			return $this->db->countAffected();
 		}
 		
 		public function getUserInfo($id) {

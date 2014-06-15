@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 	<div class="row">
 	  <div class="col-md-8">
-	    <h3 class="page-title"><?php echo $form['loginForm']; ?></h3>
+	    <h3 class="page-title"><?php echo $form['activationForm']; ?></h3>
 	    <form id="login-form" class="form-horizontal" role="form" method="post">
 	      <?php
 	        if(!empty($invalidError)) {
@@ -26,17 +26,10 @@
 		  </div>
 		  <div class="form-group">
 		    <div class="col-md-offset-4 col-md-5">
-		      <button type="submit" class="btn btn-primary"><?php echo $form['login']; ?></button>
-		      <div class="no-account ">
-			    <div class="pull-left">
-			      <?php echo $form['noAccount']; ?>
-			    </div>
-			    <div class="pull-right">
-			      <a href="<?php echo '/'.$lang.'/user/register/' ?>"><?php echo $form['register']; ?></a>
-			    </div>
-			  </div>
+		      <button type="submit" class="btn btn-primary"><?php echo $form['activate']; ?></button>
 		    </div>
 		  </div>
+		  <input type="hidden" name="user[token]" value="<?php echo $token; ?>" />
 		</form>
 	  </div>
 	<?php echo $left_part; ?>

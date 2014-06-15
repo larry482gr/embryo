@@ -1,7 +1,7 @@
 <?php echo $header; ?>
   <div class="row">
     <div class="col-md-8">
-	    <h3 class="page-title"><?php echo $form['regForm']; ?></h3>
+	    <h3 class="page-title"><?php echo $form['createUser']; ?></h3>
 		    <form id="register-form" class="form-horizontal" role="form" method="post">
 		      <?php
 		        if(isset($registerSuccess)) {
@@ -57,6 +57,17 @@
 			        <span class="glyphicon glyphicon-ok-sign"></span>
 			        <span class="glyphicon glyphicon-remove-sign"></span>
 			      </div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="profile" class="col-md-4 control-label"><?php echo $form['userRights']; ?></label>
+			    <div class="col-md-5">
+			      <select id="profile" name="user[profile]" class="form-control">
+			      	<?php
+			      	  foreach($profiles as $label => $description)
+			      	  	echo '<option value="'.$label.'">'.$description.'</option>';
+			      	?>
+			      </select>
 			    </div>
 			  </div>
 			  <div class="form-group">

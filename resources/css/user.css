@@ -50,3 +50,11 @@
 	display: none;
 	font-size: 11px;
 }
+
+.no-account {
+	margin-top: 20px;
+}
+
+.no-account a:hover {
+	text-decoration: none;
+}

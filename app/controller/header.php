@@ -27,7 +27,7 @@ class ControllerHeader extends Controller {
 		$this->data['userid'] = isset($this->session->data['user']['id']) ? $this->session->data['user']['id'] : '';
 		$this->data['username'] = isset($this->session->data['user']['name']) ? $this->session->data['user']['name'] : '';
 		$this->data['canViewMembersArea'] = $this->right->canViewMembersArea() ? true : false;
-		$this->data['canCreateUser'] = $this->right->isAdministrator() ? true : false;
+		// $this->data['canCreateUser'] = $this->right->isAdministrator() ? true : false;
 		
 		if(isset($this->session->data['userPermissionDenied'])) {
 			$this->data['invalidError'] = $this->session->data['userPermissionDenied'];
@@ -41,6 +41,11 @@ class ControllerHeader extends Controller {
 		if(isset($this->session->data['loadMembersArea'])) {
 			$this->data['loadMembersArea'] = true;
 			unset($this->session->data['loadMembersArea']);
+		}
+		
+		if(isset($this->session->data['activationError'])) {
+			$this->data['invalidError'] = $this->session->data['activationError'];
+			unset($this->session->data['activationError']);
 		}
 		
 		$this->document->addStyle("libraries/bootstrap.min");

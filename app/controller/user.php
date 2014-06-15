@@ -22,11 +22,13 @@ class ControllerUser extends Controller {
 		}
 	
 		if ($subaction == 0) {
+			$lang_id = $this->language->getCurrentLanguageId();
+			$this->data['lang'] = $this->language->getCurrentLanguage();
 			$this->data['form'] = $this->language->getLanguage('form');
 			$username = isset($this->request->post['user']['uname']) ? $this->request->post['user']['uname'] : '';
 			if (!empty($username) && isset($this->request->post['user']['pass'])) {
 				$password = $this->request->post['user']['pass'];
-				$this->check_login($username, $password, $this->data['form']['loginError']);
+				$this->check_login($username, $password, $this->data['form']['loginError'], $this->data['form']['notActive']);
 			}
 			
 			$this->data['username'] = $username;
@@ -53,7 +55,7 @@ class ControllerUser extends Controller {
 		$this->response->setOutput($this->render());
 	}
 	
-	private function check_login($username, $password, $inv_error) {
+	private function check_login($username, $password, $inv_error = '', $activation_error = '') {
 		$this->load->model('user');
 		
 		$user = $this->model_user->validateUser($username, $password);
@@ -65,7 +67,8 @@ class ControllerUser extends Controller {
 		}
 		// Valid BUT not activated user.
 		else if (!$user['activated']) {
-			return $this->response->redirect('user/activate&user='.$user['username']);
+			$this->invalid_error = $activation_error;
+			return;
 		}
 		// Valid user. Proceed to dashboard.
 		else {
@@ -186,10 +189,12 @@ class ControllerUser extends Controller {
 	}
 	
 	public function register() {
+		/*
 		if(!isset($this->session->data['user']['id']) && !$this->right->isAdministrator()) {
 			$this->session->data['userPermissionDenied'] = $this->language->getPermissionDeniedMessage('userDenied');
 			return $this->response->redirect('/'); 
 		}
+		*/
 		
 		$this->data['lang'] = $this->language->getCurrentLanguage();
 		$this->data['form'] = $this->language->getLanguage('form');
@@ -197,39 +202,41 @@ class ControllerUser extends Controller {
 		$affectedRows = 0;
 		
 		// if(!empty($user['uname']) && !empty($user['email']) && !empty($user['pass']) && !empty($user['confPass']) && !empty($user['profile'])) {
-		if(!empty($user['uname']) && !empty($user['email']) && !empty($user['profile'])) {
+		if((!empty($user['uname']) && !empty($user['email']) && !empty($user['pass']) && !empty($user['confPass'])) && ($user['pass'] == $user['confPass'])) {
 			$this->load->model('user');
+			/*
 			$this->load->model('profile');
 			$profile = $this->model_profile->getIdByLabel($user['profile']);
 			$user['profile'] = $profile['id'];
+			*/
 			$lastId = $this->model_user->registerUser($user);
 			if($lastId > 0) {
 				$token = $this->createToken(64);
 				$affectedRows = $this->model_user->setUserInfo($lastId, $token);
 				if($affectedRows == 1) {
-					$passChanged = $this->model_user->changePass($lastId, substr($token, 0, 10));
-					if($passChanged) {
+					// $passChanged = $this->model_user->changePass($lastId, substr($token, 0, 10));
+					// if($passChanged) {
 						$to      = $user['email'];
+						$subject = 'Your account for embryo.web.auth.gr';
 						$message  = '<h3>A new account has been created for you in embryo.web.auth.gr</h3>';
 						$message .= '<div>Please follow the link below to activate your account.</div>';
-						$message .= '<a href="embryo.web.auth.gr/user/'.$lastId.'/activate/'.$token.'">';
+						$message .= '<div><a href="http://embryo.web.auth.gr/user/'.$lastId.'/activate/'.$token.'">http://embryo.web.auth.gr/user/'.$lastId.'/activate/'.$token.'</a></div>';
 						// To send HTML mail, the Content-type header must be set
 						$headers  = 'MIME-Version: 1.0' . "\r\n";
 						$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 						
 						// Additional headers
-						$headers .= 'From: '.$name.' <'.$email.'>' . "\r\n";
-						$headers .= 'Reply-To: ' . $email . "\r\n";
+						$headers .= 'From: no-reply@embryo.web.auth.gr' . "\r\n";
 						$headers .= 'X-Mailer: PHP/' . phpversion();
 						
 						if(mail($to, $subject, $message, $headers))
 							$this->data['registerSuccess'] = $this->data['form']['registerSuccess'];
 						else
 							$this->data['registerError'] = $this->data['form']['registerError'];
-					}
-					else {
-						$this->data['registerError'] = $this->data['form']['registerError'];
-					}
+					// }
+					// else {
+					//	$this->data['registerError'] = $this->data['form']['registerError'];
+					// }
 				}
 				else
 					$this->data['registerError'] = $this->data['form']['registerError'];
@@ -240,7 +247,7 @@ class ControllerUser extends Controller {
 			$this->data['email'] = !empty($user) ? $user['email'] : "";
 		}
 		
-		$this->data['profiles'] = $this->right->getProfiles();
+		// $this->data['profiles'] = $this->right->getProfiles();
 		$this->data['referer'] = isset($this->request->post['referer']) ? $this->request->post['referer'] : $this->request->server['HTTP_REFERER'];
 		
 		$this->document->addStyle('user');
@@ -253,6 +260,65 @@ class ControllerUser extends Controller {
 		// Assign at template object the tpl
 		$this->template = 'user/register.tpl';
 		$this->response->setOutput($this->render());
+	}
+	
+	public function activate($args = array()) {
+		if(empty($args)) {
+			$this->session->data['activationError'] = $this->language->getPermissionDeniedMessage('activationError');
+			return $this->response->redirect('/'); 
+		}
+		
+		$this->data['lang'] = $this->language->getCurrentLanguage();
+		$this->data['form'] = $this->language->getLanguage('form');
+
+		$userId = $this->db->escape($args);
+		$token = $this->db->escape($this->session->data['parts'][0]);
+		unset($this->session->data['parts']);
+		
+		$this->load->model('user');
+		$user = $this->model_user->findUser($userId);
+		
+		if(!isset($this->request->post['user']['pass']) && !isset($this->request->post['user']['token'])) {
+			$this->invalid_error = $this->data['form']['activationPrompt'];
+		
+			$this->data['username'] = $user['username'];
+			$this->data['token'] = $user['token'];
+			
+			$this->document->addStyle('user');
+			$this->document->addStyle('left_part');
+			
+			// Assign header/footer to children object
+			$this->children = array('header', 'footer', 'left_part');
+			
+			// Assign at template object the tpl
+			$this->template = 'user/activation.tpl';
+			$this->response->setOutput($this->render());
+		}
+		else {
+			$pass = $this->db->escape($this->request->post['user']['pass']);
+			$token = $this->db->escape($this->request->post['user']['token']);
+			$affectedRows = $this->model_user->activateMember($user['id'], $pass, $token);
+			if($affectedRows > 0) {
+				$this->session->data['loginReferer'] = '/';
+				return $this->check_login($user['username'], $this->request->post['user']['pass']);
+			}
+			else {
+				$this->data['invalidError'] = $this->language->getPermissionDeniedMessage('activationError');
+		
+				$this->data['username'] = $user['username'];
+				$this->data['token'] = $user['token'];
+				
+				$this->document->addStyle('user');
+				$this->document->addStyle('left_part');
+				
+				// Assign header/footer to children object
+				$this->children = array('header', 'footer', 'left_part');
+				
+				// Assign at template object the tpl
+				$this->template = 'user/activation.tpl';
+				$this->response->setOutput($this->render());
+			}
+		}
 	}
 	
 	public function check_username() {

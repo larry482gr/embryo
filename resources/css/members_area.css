@@ -93,7 +93,11 @@ h3.page-title {
 	color: #2A6496;
 }
 
-.category, .category-div .file, .trash-category, .trash-file {
+#trash-div h4 small {
+	font-size: 12px !important;
+}
+
+.category, .file, .trash-category, .trash-file {
 	font-size: smaller;
 	margin-bottom: 10px;
 }
@@ -102,7 +106,7 @@ h3.page-title {
 	color: #2A6496;
 }
 
-.category > .glyphicon, .category-div .file > .glyphicon, .trash-category > .glyphicon, .trash-file > .glyphicon {
+.category > .glyphicon, .file > .glyphicon, .trash-category > .glyphicon, .trash-file > .glyphicon {
 	text-align: center !important;
 	font-size: 30px;
 	width: 100%;
@@ -110,7 +114,7 @@ h3.page-title {
 	clear: both;
 }
 
-.category > .category-label, .trash-category > .category-label, .category-div .file > .file-label {
+.category > .category-label, .trash-category > .category-label, .file > .file-label, .trash-file > .file-label {
 	text-align: center !important;
 }
 
@@ -163,14 +167,26 @@ h3.page-title {
 	border-top-right-radius: 5px;
 	-webkit-border-top-right-radius: 5px;
 	-moz-border-top-right-radius: 5px;
-	margin-bottom: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	margin: 0px !important;
 }
 
 .webtop-div > .window-content {
 	background-color: #FFFFFF;
-	min-height: 120px;
-	overflow: scroll;
-	position: static;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	overflow: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 50px;
+	margin: 0px !important;
 }
 
 .webtop-div > .window-header:hover {
@@ -185,6 +201,18 @@ h3.page-title {
 .webtop-div button {
 	margin-top: 9px;
 	margin-left: 6px !important;
+}
+
+.control-buttons {
+	margin-right: 10px;
+}
+
+.control-buttons > button {
+	cursor: default;
+}
+
+#trash-front-btn {
+	margin-left: 1px !important;
 }
 
 .popover {

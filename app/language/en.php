@@ -73,6 +73,8 @@
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';
 	$language['form']['loginForm'] = 'Login Form';
+	$language['form']['activationForm'] = 'Activation Form';
+	$language['form']['activationPrompt'] = 'Please enter your password to activate your account.';
 	$language['form']['contactForm'] = 'Contact Form';
 	$language['form']['createUser'] = 'Create User Form';
 	$language['form']['username'] = 'Username';
@@ -82,17 +84,19 @@
 	$language['form']['email'] = 'Email';
 	$language['form']['userRights'] = 'User rights';
 	$language['form']['register'] = 'Register';
-	$language['form']['registerSuccess'] = 'User successfully registered';
+	$language['form']['registerSuccess'] = 'You have been successfully registered. An email has been sent to your email address with directions on how to activate your account.';
 	$language['form']['registerError'] = 'An error occured. Please try again.';
 	$language['form']['login'] = 'Log In';
 	$language['form']['logout'] = 'Log Out';
 	$language['form']['submit'] = 'Submit';
+	$language['form']['activate'] = 'Activate';
 	$language['form']['forgotPass'] = 'Forgot password?';
 	$language['form']['passRecSys'] = 'Password Recovery System';
 	$language['form']['or'] = 'OR';
 	$language['form']['recover'] = 'Recover';
 	$language['form']['noAccount'] = 'Don\'t have an account yet?';
 	$language['form']['loginError'] = 'Your username or password are probably wrong.';
+	$language['form']['notActive'] = 'You have not yet activated your account. Please follow the instructions in the activation email you received.';
 	$language['form']['fullName'] = 'Full Name';
 	$language['form']['email'] = 'Email';
 	$language['form']['emailError'] = 'You must provide a valid email address.';
@@ -126,6 +130,7 @@
 	$language['permission']['userDenied'] = 'You don\'t have access on the page you requested. Please login first.';
 	$language['permission']['oldPassIncorrect'] = 'The "Old password" you entered is incorrect. Please try again.';
 	$language['permission']['noMatchPass'] = 'The "New password" and "Confirm password" fields are not the same. Please try again.';
+	$language['permission']['activationError'] = 'Activation failed to be completed. Please try again and if the error persists contact the website\'s administrator.';
 	
 	// Dates
 	$monthArray = array(1 => 'January','February','March','April','May','June','July','August','September','October','November','December');

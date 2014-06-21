@@ -43,6 +43,13 @@ final class Action {
 		} else {
 			$this->method = 'index';
 		}
+		
+		if(!empty($parts)) {
+			unset($_SESSION['parts']);
+			foreach($parts as $part) {
+				$_SESSION['parts'][] = $part;
+			}
+		}
 	}
 	
 	public function getFile() {

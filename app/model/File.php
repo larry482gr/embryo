@@ -19,7 +19,7 @@
 		}
 		
 		public function findCategoryFilesInfo($categoryId) {
-			$query = "SELECT COUNT(*) AS totalFiles, SUM(filesize) AS totalFileSize FROM files WHERE category_id = ".$categoryId;
+			$query = "SELECT COUNT(*) AS totalFiles, SUM(filesize) AS totalFileSize FROM files WHERE category_id = ".$categoryId." AND file_state < 5";
 			$result = $this->db_files->query($query);
 			return $result->row;
 		}
@@ -30,8 +30,21 @@
 			return isset($result->rows) ? $result->rows : false ;
 		}
 		
-		public function findDeletedFiles() {
-			$query = "SELECT * FROM files WHERE file_state = 5";
+		public function findDeletedFiles($categoryId = '') {
+			if(is_array($categoryId)) {
+				$notInIds = '';
+				foreach($categoryId as $catId) {
+					$notInIds .= $catId['id'].',';
+				}
+				$notInIds = substr($notInIds, 0, -1);
+			}
+			
+			if($categoryId)
+				$additionalQuery = isset($notInIds) ? ' AND category_id NOT IN ('.$notInIds.')' : ' AND category_id = '.$categoryId;
+			else
+				$additionalQuery = '';
+				
+			$query = "SELECT * FROM files WHERE file_state = 5".$additionalQuery;
 			$result = $this->db_files->query($query);
 			return isset($result->rows) ? $result->rows : false ;
 		}
@@ -65,6 +78,16 @@
 			if($affectedRows > 0) {
 				$userId = $this->session->data['user']['id'];
 				$this->setCategoryHistory($id, $userId, $fromState, $toState, time());
+				
+				// If category restored, deleted or purged do the same to its files.
+				if($toState >= 4) {
+					$files = $this->findAllCategoryFiles($id);
+					if($files) {
+						foreach($files as $file) {
+							$this->updateFile($file['id'], $file['label'], $toState);
+						}
+					}
+				}
 			}
 			
 			return $affectedRows;
@@ -77,6 +100,12 @@
 		
 		public function findAllActiveFiles($categoryId) {
 			$query = "SELECT * FROM files WHERE category_id = ".$categoryId." AND file_state < 5 ".$order." ".$limit;
+			$result = $this->db_files->query($query);
+			return isset($result->rows) ? $result->rows : false;
+		}
+		
+		public function findAllCategoryFiles($categoryId) {
+			$query = "SELECT * FROM files WHERE category_id = ".$categoryId;
 			$result = $this->db_files->query($query);
 			return isset($result->rows) ? $result->rows : false;
 		}

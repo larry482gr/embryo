@@ -217,16 +217,16 @@ class ControllerUser extends Controller {
 					// $passChanged = $this->model_user->changePass($lastId, substr($token, 0, 10));
 					// if($passChanged) {
 						$to      = $user['email'];
-						$subject = 'Your account for embryo.web.auth.gr';
-						$message  = '<h3>A new account has been created for you in embryo.web.auth.gr</h3>';
+						$subject = 'Your account for repro.law.auth.gr';
+						$message  = '<h3>A new account has been created for you in repro.law.auth.gr</h3>';
 						$message .= '<div>Please follow the link below to activate your account.</div>';
-						$message .= '<div><a href="http://embryo.web.auth.gr/user/'.$lastId.'/activate/'.$token.'">http://embryo.web.auth.gr/user/'.$lastId.'/activate/'.$token.'</a></div>';
+						$message .= '<div><a href="http://repro.law.auth.gr/user/'.$lastId.'/activate/'.$token.'">http://repro.law.auth.gr/user/'.$lastId.'/activate/'.$token.'</a></div>';
 						// To send HTML mail, the Content-type header must be set
 						$headers  = 'MIME-Version: 1.0' . "\r\n";
 						$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 						
 						// Additional headers
-						$headers .= 'From: no-reply@embryo.web.auth.gr' . "\r\n";
+						$headers .= 'From: no-reply@repro.law.auth.gr' . "\r\n";
 						$headers .= 'X-Mailer: PHP/' . phpversion();
 						
 						if(mail($to, $subject, $message, $headers))

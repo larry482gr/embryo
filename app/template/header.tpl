@@ -123,9 +123,7 @@
 					}
           		}
           		if($canViewMembersArea) {
-          			if('members_area' == $activated_tab)
-          				$active = 'class="active"';
-						
+          			$active = 'members_area' == $activated_tab ? 'class="active"' : '' ;
 	          		$navigation_menu .= '<li '.$active.'><a href="/'.$lang.'/members_area">'.$header['membersArea'].'</a></li>';
           		}
           			

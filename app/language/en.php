@@ -3,7 +3,7 @@
 	$language['underConstruction'] = 'Under Construction';
 
 	// Header
-	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ ΚΑΙ ΠΡΟΣΤΑΣΙΑ ΤΟΥ ΕΜΒΡΥΟΥ IN VITRO';
+	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ: ΤΟ ΕΥΡΩΠΑΪΚΟ ΘΕΣΜΙΚΟ ΠΛΑΙΣΙΟ';
 	$language['header']['search'] = 'Search';
 	$language['header']['membersLogin'] = 'Members Login';
 	$language['header']['membersArea'] = 'MEMBERS AREA';

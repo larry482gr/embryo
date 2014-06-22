@@ -77,6 +77,8 @@
 	$language['form']['activationPrompt'] = 'Please enter your password to activate your account.';
 	$language['form']['contactForm'] = 'Contact Form';
 	$language['form']['createUser'] = 'Create User Form';
+	$language['form']['accessInfo'] = 'Access Info';
+	$language['form']['userInfo'] = 'Personal Info';
 	$language['form']['username'] = 'Username';
 	$language['form']['available'] = 'Available';
 	$language['form']['notAvailable'] = 'Not Available';
@@ -114,6 +116,7 @@
 	$language['form']['confirmPass'] = 'Confirm password';
 	$language['form']['back'] = 'Back';
 	$language['form']['fillAll'] = 'Please fill in all fields.';
+	$language['form']['memberRegisterError'] = 'Only members of this program can register through the previous form. Please fill in your personal info in order to register as a regular user.';
 	$language['form']['ohNo'] = 'Oh no! Something must have gone terribly wrong. Excuse us for the inconvenience. Please try again.';
 	
 	// User
@@ -122,6 +125,9 @@
 	$language['userLang']['firstName'] = 'First Name';
 	$language['userLang']['lastName'] = 'Last Name';
 	$language['userLang']['email'] = 'Email';
+	$language['userLang']['postalAddress'] = 'Postal Address';
+	$language['userLang']['phoneNumber'] = 'Phone Number';
+	$language['userLang']['faculty'] = 'Faculty';
 	$language['userLang']['logout'] = 'Logout';
 	
 	// Permissions

@@ -8,7 +8,7 @@
 	      if($showLogin) {
 	    ?>
 		    <div class="pull-right">
-		      <a class="glow-link" href="<?php echo '/'.$lang.'/user/login'; ?>">
+		      <a class="glow-link" href="<?php echo '/'.$lang.'/user/membersLogin'; ?>">
 		      	<i class="glyphicon glyphicon-user"> </i>
 			  	<?php echo $header['membersLogin']; ?>
 		      </a>

@@ -32,7 +32,18 @@
 			      <?php echo $form['noAccount']; ?>
 			    </div>
 			    <div class="pull-right">
-			      <a href="<?php echo '/'.$lang.'/user/register/' ?>"><?php echo $form['register']; ?></a>
+			      <?php
+			        if(!$membersLogin) {
+			      ?>
+			        <a href="<?php echo '/'.$lang.'/user/register/' ?>"><?php echo $form['register']; ?></a>
+			      <?php
+			        }
+			        else {
+			      ?>
+			      	<a href="<?php echo '/'.$lang.'/user/member_register/' ?>"><?php echo $form['register']; ?></a>
+			      <?php
+			        }
+			      ?>
 			    </div>
 			  </div>
 		    </div>

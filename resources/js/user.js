@@ -1,3 +1,8 @@
+var username_exists = false;
+var email_exists = false;
+var username_modify = false;
+var email_modify = false;
+
 $(document).ready(function(){
 	$('#change-pass').on('click', function() {
 		$('#change-pass-form').slideToggle();
@@ -7,20 +12,24 @@ $(document).ready(function(){
 		$('#change-pass-form, #register-form .alert').parent().fadeOut();
 	});
 	
-	$('#username').on('blur', function(){
-		$.post('/'+$('#lang').val()+'/user/check_username',
-		  { username: $(this).val() })
-		.done(function(result){
-			$('#username-availability span').hide();
-			if(result == "available") {
-				$('#username-availability span:first-child').show();
-				$('#username-availability span').css('color', '#00AA00');
-			}
-			else {
-				$('#username-availability span:last-child').show();
-				$('#username-availability span').css('color', '#AA0000');
-			}
-		})
+	$('#username').on('blur', function() {
+		checkUsername($(this).val());
+		username_modify = true;
+	});
+	
+	$('#username').on('keyup', function() {
+		if(username_modify)
+			checkUsername($(this).val());
+	});
+	
+	$('#email').on('blur', function() {
+		checkEmail($(this).val());
+		email_modify = true;
+	});
+	
+	$('#email').on('keyup', function() {
+		if(email_modify)
+			checkEmail($(this).val());
 	});
 	
 	$('#confirm-pass').on('keyup', function() {
@@ -37,10 +46,28 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#register-btn').on('click', function() {
+	$('#register-btn, #member-register-btn').on('click', function() {
+		$('#register-error').hide();
 		var error = false;
-		if($('#username').val().length == 0 || $('#email').val().length == 0 || $('#pass').val().length == 0 || $('#confirm-pass').val().length == 0) {
-			$('#fill-all-error').fadeIn();
+		if(username_exists) {
+			$('#username-availability').fadeOut('slow', function(){
+				$('#username-availability').fadeIn('slow', function(){
+					$('#username-availability').fadeOut('slow', function(){
+						$('#username-availability').fadeIn('slow');
+					});
+				});
+			});
+			error = true;
+		}
+		
+		if(email_exists) {
+			$('#email-availability').fadeOut('slow', function(){
+				$('#email-availability').fadeIn('slow', function(){
+					$('#email-availability').fadeOut('slow', function(){
+						$('#email-availability').fadeIn('slow');
+					});
+				});
+			});
 			error = true;
 		}
 		
@@ -53,6 +80,21 @@ $(document).ready(function(){
 				});
 			});
 			error = true;
+		}
+		
+		if($(this).attr('id') == 'register-btn') {
+			if($('#username').val().length == 0 || $('#email').val().length == 0 || $('#pass').val().length == 0 || $('#confirm-pass').val().length == 0) {
+				$('#fill-all-error').fadeIn();
+				error = true;
+			}
+		}
+		else if($(this).attr('id') == 'member-register-btn') {
+			if($('#username').val().length == 0 || $('#email').val().length == 0 || $('#pass').val().length == 0 || $('#confirm-pass').val().length == 0 || 
+			   $('#firstName').val().length == 0 || $('#lastName').val().length == 0 || $('#faculty').val().length == 0 || $('#postalAddress').val().length == 0 || 
+			   $('#phoneNumber').val().length == 0) {
+				$('#fill-all-error').fadeIn();
+				error = true;
+			}
 		}
 		
 		if(!validateEmail($('#email').val())) {
@@ -72,8 +114,9 @@ $(document).ready(function(){
 			error = true;
 		}
 		
-		if(!error)
+		if(!error) {
 			$('#register-form').submit();
+		}
 	});
 	
 	$('#change-pass-btn').on('click', function() {
@@ -110,6 +153,42 @@ $(document).ready(function(){
 			
 		});
 	});
+	
+	function checkUsername(username) {
+		$.post('/'+$('#lang').val()+'/user/check_username',
+		  { username: username })
+		.done(function(result) {
+			$('#username-availability span').hide();
+			if(result == "available") {
+				$('#username-availability span:first-child').show();
+				$('#username-availability span').css('color', '#00AA00');
+				username_exists = false;
+			}
+			else {
+				$('#username-availability span:last-child').show();
+				$('#username-availability span').css('color', '#AA0000');
+				username_exists = true;
+			}
+		});
+	}
+	
+	function checkEmail(email) {
+		$.post('/'+$('#lang').val()+'/user/check_email',
+		  { email: email })
+		.done(function(result) {
+			$('#email-availability span').hide();
+			if(result == "available") {
+				$('#email-availability span:first-child').show();
+				$('#email-availability span').css('color', '#00AA00');
+				email_exists = false;
+			}
+			else {
+				$('#email-availability span:last-child').show();
+				$('#email-availability span').css('color', '#AA0000');
+				email_exists = true;
+			}
+		});
+	}
 	
 	function validateEmail(elementValue) {
 		var emailPattern = /^[a-zA-Z0-9\._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

@@ -2,6 +2,7 @@
 final class Right {
 	private $profile;
 	private $profiles = array('admin' => 'Administrator', 'contr' => 'Contributor', 'moder' => 'Moderator', 'user' => 'User');
+	private $memberEmails = array('eftihia@law.auth.gr', 'kastan@law.auth.gr', 'tarlatzis@gmail.com', 'erethemn@law.uoa.gr', 'nikos_koumoutzis@hotmail.com', 'konstantinoscha@law.auth.gr', 'kalliopi.kipouridou@gmail.com', 'mimmaki@gmail.com', 'roxannefragou@hotmail.com', 'marva84@gmail.com', 'sachinidouchristina@hotmail.com');
 	
 	public function __construct($profile) {
 		$this->profile = $profile;
@@ -28,6 +29,10 @@ final class Right {
 	}
 	
 	// Special Case Usertypes
+	
+	public function isMember($email) {
+		return (in_array($email, $this->memberEmails));
+	}
 	
 	public function canViewAdminPanel() {
 		$adminPanelUsers = array('1', '2');

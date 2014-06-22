@@ -10,15 +10,25 @@
 			$username = $this->db->escape($user['uname']);
 			$email = $this->db->escape($user['email']);
 			$pass = $this->db->escape($user['pass']);
-			// $profile = $this->db->escape($user['profile']);
+			$profile = isset($user['profile']) ? $this->db->escape($user['profile']) : 4;
 			
-			$query = "INSERT INTO users (username, password, email, created_at, updated_at) VALUES ('".$username."', '".sha1($pass)."', '".$email."', NOW(), NOW())";
+			$query = "INSERT INTO users (username, password, email, profile_id, created_at, updated_at) VALUES ('".$username."', '".sha1($pass)."', '".$email."', ".$profile.", NOW(), NOW())";
 			$this->db->query($query);
 			return $this->db->getLastId();
 		}
 		
-		public function setUserInfo($id, $token) {
-			$query = "INSERT INTO user_infos (user_id, token) VALUES (".$id.", '".$token."')";
+		public function setUserInfo($id, $token, $user = array()) {
+			if(empty($user))
+				$query = "INSERT INTO user_infos (user_id, token) VALUES (".$id.", '".$token."')";
+			else {
+				$firstName = $this->db->escape($user['firstName']);
+				$lastName = $this->db->escape($user['lastName']);
+				$faculty = $this->db->escape($user['faculty']);
+				$postalAddress = $this->db->escape($user['postalAddress']);
+				$phoneNumber = $this->db->escape($user['phoneNumber']);
+				$query = "INSERT INTO user_infos (user_id, first_name, last_name, faculty, postal_address, phone_number, token) 
+						  VALUES (".$id.", '".$firstName."', '".$lastName."', '".$faculty."', '".$postalAddress."', '".$phoneNumber."', '".$token."')";
+			}
 			$this->db->query($query);
 			return $this->db->countAffected();
 		}
@@ -63,6 +73,13 @@
 		public function usernameExists($username) {
 			$username = $this->db->escape($username);
 			$query = "SELECT id FROM users WHERE username = '".$username."'";
+			$result = $this->db->query($query);
+			return !empty($result->row);
+		}
+		
+		public function emailExists($email) {
+			$email = $this->db->escape($email);
+			$query = "SELECT id FROM users WHERE email = '".$email."'";
 			$result = $this->db->query($query);
 			return !empty($result->row);
 		}

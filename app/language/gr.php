@@ -77,6 +77,8 @@
 	$language['form']['activationPrompt'] = 'Παρακαλώ εισάγετε τον κωδικό πρόσβασης που δηλώσατε για να ενεργοποιήσετε το λογαριασμό σας.';
 	$language['form']['contactForm'] = 'Φόρμα Επικοινωνίας';
 	$language['form']['createUser'] = 'Φόρμα Δημιουργίας Χρήστη';
+	$language['form']['accessInfo'] = 'Στοιχεία Πρόσβασης';
+	$language['form']['userInfo'] = 'Προσωπικά Στοιχεία';
 	$language['form']['username'] = 'Όνομα χρήστη';
 	$language['form']['available'] = 'Διαθέσιμο';
 	$language['form']['notAvailable'] = 'Μη διαθέσιμο';
@@ -114,6 +116,7 @@
 	$language['form']['confirmPass'] = 'Επαλήθευση κωδικού πρόσβασης';
 	$language['form']['back'] = 'Πίσω';
 	$language['form']['fillAll'] = 'Παρακαλώ συμπληρώστε όλα τα πεδία.';
+	$language['form']['memberRegisterError'] = 'Μόνο τα μέλη της επιστημονικής ομάδας έχουν τη δυνατότητα να εγγραφούν μέσω της προηγούμενης φόρμας. Παρακαλώ συμπληρώστε τα προσωπικά σας στοιχεία για να εγγραφείτε ως απλός χρήστης.';
 	$language['form']['ohNo'] = 'Ωχ! Κάτι πήγε στραβά. Μας συγχωρείτε για την ταλαιπωρία. Παρακαλώ δοκιμάστε ξανά.';
 	
 	// User
@@ -122,6 +125,9 @@
 	$language['userLang']['firstName'] = 'Όνομα';
 	$language['userLang']['lastName'] = 'Επώνυμο';
 	$language['userLang']['email'] = 'Email';
+	$language['userLang']['postalAddress'] = 'Διεύθυνση';
+	$language['userLang']['phoneNumber'] = 'Τηλέφωνο';
+	$language['userLang']['faculty'] = 'Ιδιότητα';
 	$language['userLang']['logout'] = 'Έξοδος';
 	
 	// Permissions

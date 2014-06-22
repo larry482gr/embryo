@@ -1,6 +1,11 @@
 <?php
 class ControllerTexts extends Controller {
 	public function index($args = false) {
+		if(!isset($this->session->data['user']['id'])) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('userDenied');
+			return $this->response->redirect('user/login');
+		}
+		
 		if($args) {
 			return $this->getEvent($args);
 		}

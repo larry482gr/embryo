@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8">
 	    <h3 class="page-title"><?php echo $form['regForm']; ?></h3>
-		    <form id="register-form" class="form-horizontal" role="form" method="post" action="<?php echo '/'.$lang.'/user/register/' ?>" onsubmit="$('#register-btn').click(); return false;">
+		    <form id="register-form" class="form-horizontal" role="form" method="post" action="<?php echo '/'.$lang.'/user/member_register/' ?>" onsubmit="$('#member-register-btn').click(); return false;">
 		      <?php
 		        if(isset($registerSuccess)) {
 		      ?>
@@ -21,9 +21,6 @@
 			  ?>
 		      <div id="fill-all-error" class="form-group">
 			    <div class="alert alert-danger col-md-offset-1 col-md-8"><?php echo $form['fillAll']; ?></div>
-			  </div>
-			  <div class="form-group">
-			    <h4 class="col-md-4 control-label"><?php echo $form['accessInfo']; ?></h4>
 			  </div>
 			  <div class="form-group">
 			    <label for="username" class="col-md-4 control-label"><?php echo $form['username']; ?></label>
@@ -67,41 +64,8 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <h4 class="col-md-4 control-label"><?php echo $form['userInfo']; ?></h4>
-			  </div>
-			  <div class="form-group">
-			    <label for="firstName" class="col-md-4 control-label"><?php echo $userLang['firstName']; ?></label>
-			    <div class="col-md-5">
-			      <input type="text" class="form-control" id="firstName" name="user[firstName]" placeholder="<?php echo $userLang['firstName'] ?>" value="<?php echo $user['firstName']; ?>" />
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="lastName" class="col-md-4 control-label"><?php echo $userLang['lastName']; ?></label>
-			    <div class="col-md-5">
-			      <input type="text" class="form-control" id="lastName" name="user[lastName]" placeholder="<?php echo $userLang['lastName'] ?>" value="<?php echo $user['lastName']; ?>" />
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="faculty" class="col-md-4 control-label"><?php echo $userLang['faculty']; ?></label>
-			    <div class="col-md-5">
-			      <input type="text" class="form-control" id="faculty" name="user[faculty]" placeholder="<?php echo $userLang['faculty']; ?>" value="<?php echo $user['faculty']; ?>" />
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="postalAddress" class="col-md-4 control-label"><?php echo $userLang['postalAddress']; ?></label>
-			    <div class="col-md-5">
-			      <input type="text" class="form-control" id="postalAddress" name="user[postalAddress]" placeholder="<?php echo $userLang['postalAddress']; ?>" value="<?php echo $user['postalAddress']; ?>" />
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="phoneNumber" class="col-md-4 control-label"><?php echo $userLang['phoneNumber']; ?></label>
-			    <div class="col-md-5">
-			      <input type="tel" class="form-control" id="phoneNumber" name="user[phoneNumber]" placeholder="<?php echo $userLang['phoneNumber']; ?>" value="<?php echo $user['phoneNumber']; ?>" />
-			    </div>
-			  </div>
-			  <div class="form-group">
 			    <div class="col-md-offset-4 col-md-4">
-			      <button type="submit" id="register-btn" class="btn btn-sm btn-primary"><?php echo $form['submit']; ?></button>
+			      <button type="submit" id="member-register-btn" class="btn btn-sm btn-primary"><?php echo $form['submit']; ?></button>
 				  <a href="<?php echo $referer; ?>" class="btn btn-sm btn-default"><?php echo $form['back']; ?></a>
 			    </div>
 			  </div>

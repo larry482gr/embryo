@@ -29,13 +29,13 @@
 	width: 100%;
 }
 
-#confirm-sign, #username-availability {
+#confirm-sign, #username-availability, #email-availability {
 	position: absolute;
 	top: 7px;
 	right: 20px;
 }
 
-#confirm-sign span, #username-availability span {
+#confirm-sign span, #username-availability span, #email-availability span {
 	display: none;
 }
 

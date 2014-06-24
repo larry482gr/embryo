@@ -63,7 +63,7 @@
 	}
 	
 	function getFileDiv(file) {
-		return '<div id="file'+file.id+'" class="file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+'">'+
+		return '<div id="file'+file.id+'" class="file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+file.extention+'">'+
 					'<div class="glyphicon glyphicon-file"></div>'+
 					'<div class="file-label">'+file.labelHtml+'</div>'+
 				'</div>';

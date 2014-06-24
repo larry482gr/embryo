@@ -98,14 +98,8 @@
 			$this->db_files->query($query);
 		}
 		
-		public function findAllActiveFiles($categoryId) {
+		public function findAllActiveFiles($categoryId, $order = '', $limit = '') {
 			$query = "SELECT * FROM files WHERE category_id = ".$categoryId." AND file_state < 5 ".$order." ".$limit;
-			$result = $this->db_files->query($query);
-			return isset($result->rows) ? $result->rows : false;
-		}
-		
-		public function findAllCategoryFiles($categoryId) {
-			$query = "SELECT * FROM files WHERE category_id = ".$categoryId;
 			$result = $this->db_files->query($query);
 			return isset($result->rows) ? $result->rows : false;
 		}

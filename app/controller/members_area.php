@@ -76,7 +76,7 @@ class ControllerMembersArea extends Controller {
 		
 		$this->load->model('file');
 		
-		$files = $this->model_file->findAllActiveFiles($categoryId);
+		$files = $this->model_file->findAllActiveFiles($categoryId, 'ORDER BY label');
 		if($files) {
 			foreach($files as $file) {
 				$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);

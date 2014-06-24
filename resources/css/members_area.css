@@ -94,6 +94,11 @@ h3.page-title {
 	font-size: 12px !important;
 }
 
+.categories {
+	max-height: 560px;
+	overflow: auto;
+}
+
 .category, .file, .trash-category, .trash-file {
 	font-size: smaller;
 	margin-bottom: 10px;

@@ -35,7 +35,7 @@ final class Right {
 	}
 	
 	public function canViewAdminPanel() {
-		$adminPanelUsers = array('1', '2');
+		$adminPanelUsers = array('1');
 		return (in_array($this->profile, $adminPanelUsers));
 	}
 	

@@ -42,30 +42,30 @@
 	}
 	
 	function getDeletedCategoryDiv(category) {
-		return '<div id="trash-cat'+category.id+'" class="trash-category col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+category.id+':'+category.label+'">'+
+		return '<div id="trash-cat'+category.id+'" class="trash-category" rel="'+category.id+':'+category.label+'">'+
 				'<div class="glyphicon glyphicon-folder-close"></div>'+
-				'<div class="category-label">'+category.labelHtml+'</div>'+
+				'<div class="category-label">'+category.label+'</div>'+
 			   '</div>';
 	}
 	
 	function getRestoredCategoryDiv(category) {
 		return '<div id="cat'+category.id+'" class="category" rel="'+category.id+':'+category.label+'">'+
 					'<div class="glyphicon glyphicon-folder-close"></div>'+
-					'<div class="category-label">'+category.labelHtml+'</div>'+
+					'<div class="category-label">'+category.label+'</div>'+
 				'</div>';
 	}
 	
 	function getDeletedFileDiv(file) {
-		return '<div id="trash-file'+file.id+'" class="trash-file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+'">'+
+		return '<div id="trash-file'+file.id+'" class="trash-file" rel="'+file.id+':'+file.label+'">'+
 				'<div class="glyphicon glyphicon-file"></div>'+
-				'<div class="file-label">'+file.labelHtml+'</div>'+
+				'<div class="file-label">'+file.label+'</div>'+
 			   '</div>';
 	}
 	
 	function getFileDiv(file) {
-		return '<div id="file'+file.id+'" class="file col-lg-2 col-md-2 col-sm-4 col-xs-6" rel="'+file.id+':'+file.label+file.extention+'">'+
+		return '<div id="file'+file.id+'" class="file" rel="'+file.id+':'+file.label+file.extention+'">'+
 					'<div class="glyphicon glyphicon-file"></div>'+
-					'<div class="file-label">'+file.labelHtml+'</div>'+
+					'<div class="file-label">'+file.label+'</div>'+
 				'</div>';
 	}
 	
@@ -187,7 +187,7 @@
 			dataType: 'json',
 			success: function(file) {
 				$('.category-div').find('#file'+file.id).attr('rel', file.id+':'+file.label);
-				$('.category-div').find('#file'+file.id).html('<div class="glyphicon glyphicon-file"></div><div class="file-label">'+file.labelHtml+'</div>');
+				$('.category-div').find('#file'+file.id).html('<div class="glyphicon glyphicon-file"></div><div class="file-label">'+file.label+'</div>');
 			},
 			error: function(result) {
 				bootbox.alert("Error creating category!");

@@ -9,7 +9,7 @@
 	      <div class="panel-body">
 	      <div id="top-div" class="row">
 		      <!-- Category div -->
-		      <div class="categories col-lg-2 col-md-2 col-sm-2 col-xs-2">
+		      <div class="categories row">
 			      <?php
 			        foreach($categories as $cat) {
 			          echo '<div id="cat'.$cat['id'].'" class="category" rel="'.$cat['id'].':'.$cat['label'].'"><div class="glyphicon glyphicon-folder-close"></div><div class="category-label">'.str_replace(" ", "<br/>", $cat['label']).'</div></div>';
@@ -17,7 +17,7 @@
 			      ?>
 		      </div>
 		      <!-- Webtop div -->
-		      <div class="folder-content row col-lg-10 col-md-10 col-sm-10 col-xs-10">
+		      <div class="folder-content row">
 			      <div id="trash-div" class="webtop-div col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			      	<div class="window-header row">
 			      	  <div class="pull-left">

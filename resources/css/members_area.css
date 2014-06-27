@@ -170,6 +170,7 @@ h3.page-title {
 	-webkit-box-shadow: 3px 3px 14px #BBBBBB, -3px 3px 14px #BBBBBB, 3px -3px 14px #BBBBBB, -3px -3px 14px #BBBBBB;
 	box-shadow: 3px 3px 14px #BBBBBB, -3px 3px 14px #BBBBBB, 3px -3px 14px #BBBBBB, -3px -3px 14px #BBBBBB;
 	height: 100%;
+	margin-bottom: 20px;
 }
 
 .webtop-div > .window-header {

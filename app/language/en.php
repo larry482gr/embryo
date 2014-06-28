@@ -1,6 +1,9 @@
 <?php
 	// Under Construction
 	$language['underConstruction'] = 'Under Construction';
+	
+	// Under Maintenance
+	$language['underMaintenance'] = 'This page is currently under maintenance.<br/>Please try again later or contact the websites administrator.';
 
 	// Header
 	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ: ΤΟ ΕΥΡΩΠΑΪΚΟ ΘΕΣΜΙΚΟ ΠΛΑΙΣΙΟ';

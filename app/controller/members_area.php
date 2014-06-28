@@ -12,6 +12,7 @@ class ControllerMembersArea extends Controller {
 		
 		// For use in under construction page.
 		$this->data['pageTitle'] = $this->data['membersArea']['pageTitle'];
+		$this->data['underMaintenance'] = $this->language->getLanguage('underMaintenance');
 		
 		$this->load->model('file');
 		$this->data['categories'] = $this->model_file->findAllActiveFileCategories($lang_id, 'ORDER BY label');
@@ -28,7 +29,8 @@ class ControllerMembersArea extends Controller {
 		$this->children = array('header', 'footer', 'left_part');
 		
 		// Assign at template object the tpl
-		$this->template = 'members/webtop.tpl';
+		// $this->template = 'members/webtop.tpl';
+		$this->template = 'under_maintenance.tpl';
 		$this->response->setOutput($this->render());
 	}
 	
@@ -113,16 +115,19 @@ class ControllerMembersArea extends Controller {
 			return $this->response->redirect('/');
 		}
 		
-		$fileLabel = $this->request->files['new_file']['name'];
+		$fileName = $this->request->files['new_file']['name'];
 		$fileSize = $this->request->files['new_file']['size'];
 		$fileCategory = $this->request->post['file_cat'];
 		$newFile = array();
 		
+		$fileElements = explode(".", $fileName);
+		$extension = array_pop($fileElements);
+		$fileLabel = implode(".", $fileElements);
+		
 		$allowedExts = array("doc", "docx", "pdf");
-		$extension = end(explode(".", $fileLabel));
 			
-		$path = _DOCUMENT_ROOT_."/resources/files/members_area";
-		$filepath = $path."/".$fileLabel;
+		$path = _DOCUMENT_ROOT_."/resources/files/members_area/".$fileCategory;
+		$filepath = $path."/".$fileLabel.".".$extension;
 
 		if ((($this->request->files["new_file"]["type"] == "application/pdf")
 			|| ($this->request->files["new_file"]["type"] == "application/msword")
@@ -137,29 +142,27 @@ class ControllerMembersArea extends Controller {
 			else {
 				if (!file_exists($path."/")) {
 			        mkdir($path, 0777, true);
-			        // chmod($path, 0777);  // octal; correct value of mode
+			        chmod($path, 0777);  // octal; correct value of mode
 			    }
-			    else {
-			    	if(!file_exists($filepath))
-			    		move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
-			    	else {
-				    	$i = 1;
-				    	$tmpFileLabel = $fileLabel;
-				    	do {
-					    	$fileLabel = substr($tmpFileLabel, 0, -(strlen($extension)+1)) . " (" . $i . ")" . "." . $extension;
-					    	$filepath = $path."/".$fileLabel;
-					    	$i++;
-				    	} while(file_exists($filepath));
-				    	
-				    	move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
-			    	}
-			    	$this->load->model('file');
-			    	$lastId = $this->model_file->createFile($fileLabel, $fileSize, $fileCategory);
+
+			    if(!file_exists($filepath))
+			   		move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
+			   	else {
+			    	$i = 1;
+			    	$tmpFileLabel = $fileLabel;
+			    	do {
+			    		$filepath = $path . "/" . $tmpFileLabel . " (" . $i . ")" . "." . $extension;
+				    	$i++;
+			    	} while(file_exists($filepath));
 			    	
-			    	$newFile = $this->model_file->findFile($lastId);
-					$newFile['labelHtml'] = str_replace(" ", "<br>", $newFile['label']);
-			    }
-			}
+			    	move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
+		    	}
+		    	$this->load->model('file');
+		    	$lastId = $this->model_file->createFile($fileLabel, ".".$extension, $fileSize, $fileCategory);
+			    	
+		    	$newFile = $this->model_file->findFile($lastId);
+				$newFile['labelHtml'] = str_replace(" ", "<br>", $newFile['label']);
+		    }
 		}
 		else {
 			// Refactor it to send a message to the user.

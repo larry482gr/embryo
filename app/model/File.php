@@ -116,10 +116,10 @@
 			return empty($limit) ? $result->rows : $result->row;
 		}
 		
-		public function createFile($fileLabel, $fileSize, $fileCategory) {
+		public function createFile($fileLabel, $extention, $fileSize, $fileCategory) {
 			$timestamp = time();
-			$query = "INSERT INTO files (label, filesize, category_id, file_state, created_at)
-					  VALUES ('".$fileLabel."', ".$fileSize.", ".$fileCategory.", 1, ".$timestamp.")";
+			$query = "INSERT INTO files (label, extention, filesize, category_id, file_state, created_at)
+					  VALUES ('".$fileLabel."', '".$extention."', ".$fileSize.", ".$fileCategory.", 1, ".$timestamp.")";
 			$this->db_files->query($query);
 			$lastId = $this->db_files->getLastId();
 			

@@ -305,7 +305,8 @@ $(document).ready(function() {
     	if( e.button == 2 ) {
     		var rel = $(this).attr('rel');
 			activeFile = rel.substring(0, rel.indexOf(':'));
-			activeLabel = rel.substring(rel.indexOf(':') + 1);
+			// activeLabel = rel.substring(rel.indexOf(':') + 1);
+			activeLabel = $(this).find('.file-label').text();
 			infoFileId = '.folder-content .category-div .window-content #file'+activeFile;
 			return false;
 		}
@@ -316,7 +317,8 @@ $(document).ready(function() {
     	if( e.button == 2 ) {
     		var rel = $(this).attr('rel');
 			activeFile = rel.substring(0, rel.indexOf(':'));
-			activeLabel = rel.substring(rel.indexOf(':') + 1);
+			// activeLabel = rel.substring(rel.indexOf(':') + 1);
+			activeLabel = $(this).find('.file-label').text();
 			infoFileId = '#trash-div .window-content #trash-file'+activeFile;
 			return false;
 		}
@@ -424,8 +426,9 @@ $(document).ready(function() {
 	});
 	
 	$('.folder-content').on('dblclick', '.category-div .window-content .file', function() {
-		rel = $(this).attr('rel');
-		fileLink = '/resources/files/members_area/'+rel.substring(rel.indexOf(':')+1);
+		categoryRel = $(this).parent().parent().attr('rel');
+		fileRel = $(this).attr('rel');
+		fileLink = '/resources/files/members_area/'+categoryRel.substring(0, categoryRel.indexOf(':'))+"/"+fileRel.substring(rel.indexOf(':')+2);
 		window.open(fileLink, '_blank');
 	});
 	

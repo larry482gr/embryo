@@ -2,6 +2,9 @@
 	// Under Construction
 	$language['underConstruction'] = 'Υπό Κατασκευή';
 	
+	// Under Maintenance
+	$language['underMaintenance'] = 'Αυτή τη στιγμή πραγματοποιούνται εργασίες συντήρησης στη συγκεκριμένη σελίδα.<br/>Παρακαλώ δοκιμάστε ξανά αργότερα ή επικοινωνήστε με τον διαχειριστή της σελίδας.';
+	
 	// Header
 	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ: ΤΟ ΕΥΡΩΠΑΪΚΟ ΘΕΣΜΙΚΟ ΠΛΑΙΣΙΟ';
 	$language['header']['search'] = 'Αναζήτηση';

@@ -184,15 +184,25 @@ class ControllerMembersArea extends Controller {
 		$this->load->model('file');
 		$affectedRows = $this->model_file->updateCategory($id, $label, $toState);
 		
-		if($affectedRows > 0)
+		if($affectedRows > 0) {
 			$category = $this->model_file->findCategory($id);
+			if($toState > 3) {
+				$files = $this->model_file->findAllCategoryFiles($id);
+				if($files){
+					foreach($files as $file) {
+						if($file['file_state'] < 6 && $file['file_state'] != $toState)
+							$this->updateFile($file['id'], $file['label'], $toState);
+					}
+				}
+			}
+		}
 		$category['labelHtml'] = str_replace(" ", "<br/>", $category['label']);
 		
 		echo json_encode($category);
 		die();
 	}
 	
-	public function updateFile() {
+	public function updateFile($incomingId = false, $incomingLabel = false, $incomingState = false) {
 		if(!$this->right->canViewMembersArea()) {
 			$this->session->data['userRightsDenied'] = $this->language->getPermissionDeniedMessage('userRightsDenied');
 			return $this->response->redirect('/');
@@ -201,6 +211,12 @@ class ControllerMembersArea extends Controller {
 		$id = $this->db_files->escape($this->request->post['id']);
 		$label = $this->db_files->escape($this->request->post['label']);
 		$toState = $this->db_files->escape($this->request->post['toState']);
+		
+		if($incomingId && $incomingLabel && $incomingState) {
+			$id = $incomingId;
+			$label = $incomingLabel;
+			$toState = $incomingState;
+		}
 		
 		$this->load->model('file');
 		$oldFile = $this->model_file->findFile($id);
@@ -238,8 +254,10 @@ class ControllerMembersArea extends Controller {
 			}
 		}
 		
-		echo json_encode($newFile);
-		die();
+		if(!$incomingId && !$incomingLabel && !$incomingState) {
+			echo json_encode($newFile);
+			die();
+		}
 	}
 	
 	public function getCategoryInfo() {

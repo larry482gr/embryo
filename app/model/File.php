@@ -81,7 +81,7 @@
 				
 				// If category restored, deleted or purged do the same to its files.
 				if($toState >= 4) {
-					$files = $this->findAllCategoryFiles($id);
+					$files = $this->findAllActiveFileCategories($id, 'ORDER BY label');
 					if($files) {
 						foreach($files as $file) {
 							$this->updateFile($file['id'], $file['label'], $toState);
@@ -100,6 +100,12 @@
 		
 		public function findAllActiveFiles($categoryId, $order = '', $limit = '') {
 			$query = "SELECT * FROM files WHERE category_id = ".$categoryId." AND file_state < 5 ".$order." ".$limit;
+			$result = $this->db_files->query($query);
+			return isset($result->rows) ? $result->rows : false;
+		}
+		
+		public function findAllCategoryFiles($categoryId, $order = '', $limit = '') {
+			$query = "SELECT * FROM files WHERE category_id = ".$categoryId;
 			$result = $this->db_files->query($query);
 			return isset($result->rows) ? $result->rows : false;
 		}

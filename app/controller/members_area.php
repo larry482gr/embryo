@@ -14,7 +14,7 @@ class ControllerMembersArea extends Controller {
 		$this->data['pageTitle'] = $this->data['membersArea']['pageTitle'];
 		
 		$this->load->model('file');
-		$this->data['categories'] = $this->model_file->findAllActiveFileCategories($lang_id);
+		$this->data['categories'] = $this->model_file->findAllActiveFileCategories($lang_id, 'ORDER BY label');
 		
 		$this->session->data['loadMembersArea'] = true;
 

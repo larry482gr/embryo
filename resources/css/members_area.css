@@ -14,6 +14,7 @@ h3.page-title {
 	height: 100%;
 	cursor: default;
 	overflow: scroll;
+	z-index: 1100;
 }
 
 #webtop .row {
@@ -106,15 +107,16 @@ h3.page-title {
 
 .category, .file, .trash-category, .trash-file {
 	font-size: smaller;
-	margin-bottom: 10px;
-	width: 100px;
+	width: 108px;
 	float: left;
-	margin-left: 3px;
-	margin-right: 3px;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 .category > div:last-child, .file > div:last-child, .trash-category > div:last-child, .trash-file > div:last-child {
-	height: 20px !important;
+	height: 50px !important;
 	text-align: center;
 }
 

@@ -12,7 +12,7 @@
 		      <div class="categories row">
 			      <?php
 			        foreach($categories as $cat) {
-			          echo '<div id="cat'.$cat['id'].'" class="category" rel="'.$cat['id'].':'.$cat['label'].'"><div class="glyphicon glyphicon-folder-close"></div><div class="category-label">'.str_replace(" ", "<br/>", $cat['label']).'</div></div>';
+			          echo '<div id="cat'.$cat['id'].'" class="category" rel="'.$cat['id'].':'.$cat['label'].'"><div class="glyphicon glyphicon-folder-close"></div><div class="category-label">'.$cat['label'].'</div></div>';
 			        }
 			      ?>
 		      </div>

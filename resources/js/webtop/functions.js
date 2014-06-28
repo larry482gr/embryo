@@ -202,7 +202,7 @@
 			data: { id: id, label: label, toState: toState },
 			dataType: 'json',
 			success: function(file) {
-				$('.category-div').find('#file'+file.id).attr('rel', file.id+':'+file.label);
+				$('.category-div').find('#file'+file.id).attr('rel', file.id+':'+file.label+file.extention);
 				$('.category-div').find('#file'+file.id).html('<div class="glyphicon glyphicon-file"></div><div class="file-label">'+file.label+'</div>');
 			},
 			error: function(result) {

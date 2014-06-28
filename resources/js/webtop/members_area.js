@@ -382,7 +382,20 @@ $(document).ready(function() {
 				if(result) {
 					if(selectedItems.length > 0) {
 						$.each(selectedItems, function(key, value) {
-							deleteCategory(value, '', 6);
+							if(value.indexOf('trash-cat') >= 0) {
+								id = value.substring(9);
+								trashCatDiv = $('#trash-div .window-content').find('#trash-cat'+id);
+								rel = trashCatDiv.attr('rel');
+								label = rel.substring(rel.indexOf(':')+1);
+								purgeCategory(id, label, 6);
+							}
+							else if(value.indexOf('trash-file') == 0) {
+								id = value.substring(10);
+								trashFileDiv = $('#trash-div .window-content').find('#trash-file'+id);
+								rel = trashFileDiv.attr('rel');
+								label = rel.substring(rel.indexOf(':')+1);
+								purgeFile(id, label, 6);
+							}
 						});
 						selectedItems = [];
 						$('.header-options').each(function() {
@@ -408,7 +421,7 @@ $(document).ready(function() {
 					restoreCategory(id, label, 4);
 				}
 				else if(value.indexOf('trash-file') == 0) {
-					id = value.substring(9);
+					id = value.substring(10);
 					trashFileDiv = $('#trash-div .window-content').find('#trash-file'+id);
 					rel = trashFileDiv.attr('rel');
 					label = rel.substring(rel.indexOf(':')+1);
@@ -428,7 +441,7 @@ $(document).ready(function() {
 	$('.folder-content').on('dblclick', '.category-div .window-content .file', function() {
 		categoryRel = $(this).parent().parent().attr('rel');
 		fileRel = $(this).attr('rel');
-		fileLink = '/resources/files/members_area/'+categoryRel.substring(0, categoryRel.indexOf(':'))+"/"+fileRel.substring(rel.indexOf(':')+2);
+		fileLink = '/resources/files/members_area/'+categoryRel.substring(0, categoryRel.indexOf(':'))+"/"+fileRel.substring(fileRel.indexOf(':')+1);
 		window.open(fileLink, '_blank');
 	});
 	

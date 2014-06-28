@@ -12,7 +12,7 @@ class ControllerMembersArea extends Controller {
 		
 		// For use in under construction page.
 		$this->data['pageTitle'] = $this->data['membersArea']['pageTitle'];
-		$this->data['underMaintenance'] = $this->language->getLanguage('underMaintenance');
+		// $this->data['underMaintenance'] = $this->language->getLanguage('underMaintenance');
 		
 		$this->load->model('file');
 		$this->data['categories'] = $this->model_file->findAllActiveFileCategories($lang_id, 'ORDER BY label');
@@ -29,8 +29,8 @@ class ControllerMembersArea extends Controller {
 		$this->children = array('header', 'footer', 'left_part');
 		
 		// Assign at template object the tpl
-		// $this->template = 'members/webtop.tpl';
-		$this->template = 'under_maintenance.tpl';
+		$this->template = 'members/webtop.tpl';
+		// $this->template = 'under_maintenance.tpl';
 		$this->response->setOutput($this->render());
 	}
 	
@@ -145,18 +145,15 @@ class ControllerMembersArea extends Controller {
 			        chmod($path, 0777);  // octal; correct value of mode
 			    }
 
-			    if(!file_exists($filepath))
-			   		move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
-			   	else {
+			    if(file_exists($filepath)) {
 			    	$i = 1;
-			    	$tmpFileLabel = $fileLabel;
 			    	do {
-			    		$filepath = $path . "/" . $tmpFileLabel . " (" . $i . ")" . "." . $extension;
+			    		$fileLabel = $fileLabel . " (" . $i . ")";
+			    		$filepath = $path . "/" . $fileLabel . "." . $extension;
 				    	$i++;
 			    	} while(file_exists($filepath));
-			    	
-			    	move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
 		    	}
+		    	move_uploaded_file($this->request->files["new_file"]["tmp_name"], $filepath);
 		    	$this->load->model('file');
 		    	$lastId = $this->model_file->createFile($fileLabel, ".".$extension, $fileSize, $fileCategory);
 			    	
@@ -216,7 +213,28 @@ class ControllerMembersArea extends Controller {
 			
 			if($toState == 3) {
 				// Rename the file
-				rename(_DOCUMENT_ROOT_."resources/files/members_area/".$oldFile['label'], _DOCUMENT_ROOT_."resources/files/members_area/".$newFile['label']);
+				rename(_DOCUMENT_ROOT_."/resources/files/members_area/".$oldFile['category_id']."/".$oldFile['label'].$oldFile['extention'], _DOCUMENT_ROOT_."/resources/files/members_area/".$newFile['category_id']."/".$newFile['label'].$newFile['extention']);
+			}
+			else if($toState == 4) {
+				$path = _DOCUMENT_ROOT_."/resources/files/members_area/".$newFile['category_id'];
+				$filepath = $path."/".$newFile['label'].$newFile['extention'];
+				if(file_exists($filepath)) {
+			   		$i = 0;
+			    	do {
+			    		$i++;
+			    		$newFile['label'] = $newFile['label'] . "_restored" . $i;
+			    		$filepath = $path . "/" . $newFile['label'] . $newFile['extention'];
+			    	} while(file_exists($filepath));
+			    	// Update the file but not its history, as its already been updated for this action.
+					$affectedRows = $this->model_file->updateFile($id, $newFile['label'], $toState, false);
+			    }
+			    rename(_DOCUMENT_ROOT_."/resources/files/members_area/".$oldFile['category_id']."/".$oldFile['label']."_deleted".$oldFile['extention'], $filepath);
+			}
+			else if($toState == 5) {
+				rename(_DOCUMENT_ROOT_."/resources/files/members_area/".$oldFile['category_id']."/".$oldFile['label'].$oldFile['extention'], _DOCUMENT_ROOT_."/resources/files/members_area/".$newFile['category_id']."/".$newFile['label']."_deleted".$newFile['extention']);
+			}
+			else if($toState == 6) {
+				rename(_DOCUMENT_ROOT_."/resources/files/members_area/".$oldFile['category_id']."/".$oldFile['label']."_deleted".$oldFile['extention'], _DOCUMENT_ROOT_."/resources/files/members_area/".$newFile['category_id']."/".$newFile['label']."_purged".$newFile['extention']);
 			}
 		}
 		

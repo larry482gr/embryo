@@ -131,7 +131,7 @@
 			return $lastId;
 		}
 		
-		public function updateFile($id, $label, $toState) {
+		public function updateFile($id, $label, $toState, $updateHistory = true) {
 			$query = "UPDATE files SET 
 					  label = '".$label."', 
 					  file_state = ".$toState." 
@@ -139,12 +139,14 @@
 			$this->db_files->query($query);
 			$affectedRows = $this->db_files->countAffected();
 			
-			$fileHistory = $this->findFileHistory($id, 'LIMIT 1');
-			$fromState = $fileHistory['to_state'];
-			
-			if($affectedRows > 0) {
-				$userId = $this->session->data['user']['id'];
-				$this->setFileHistory($id, $userId, $fromState, $toState, time());
+			if($updateHistory) {
+				$fileHistory = $this->findFileHistory($id, 'LIMIT 1');
+				$fromState = $fileHistory['to_state'];
+				
+				if($affectedRows > 0) {
+					$userId = $this->session->data['user']['id'];
+					$this->setFileHistory($id, $userId, $fromState, $toState, time());
+				}
 			}
 			
 			return $affectedRows;

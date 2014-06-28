@@ -119,6 +119,22 @@
 		});
 	}
 	
+	function purgeCategory(id, label, toState) {
+		$.ajax({
+			url: '/'+$('#lang').val()+'/members_area/updateCategory',
+			type: 'post',
+			cache: false,
+			data: { id: id, label: label, toState: toState },
+			dataType: 'json',
+			success: function(cat) {
+				$('#trash-div .window-content').find('#trash-cat'+cat.id).remove();
+			},
+			error: function(result) {
+				bootbox.alert("Error purging category!");
+			}
+		});
+	}
+	
 	function restoreCategory(id, label, toState) {
 		$.ajax({
 			url: '/'+$('#lang').val()+'/members_area/updateCategory',
@@ -208,6 +224,22 @@
 			},
 			error: function(result) {
 				bootbox.alert("Error deleting file!");
+			}
+		});
+	}
+	
+	function purgeFile(id, label, toState) {
+		$.ajax({
+			url: '/'+$('#lang').val()+'/members_area/updateFile',
+			type: 'post',
+			cache: false,
+			data: { id: id, label: label, toState: toState },
+			dataType: 'json',
+			success: function(file) {
+				$('#trash-div .window-content').find('#trash-file'+file.id).remove();
+			},
+			error: function(result) {
+				bootbox.alert("Error purging file!");
 			}
 		});
 	}

@@ -44,5 +44,15 @@
 			$result = $this->db->query($query);
 			return $result->row;
 		}
+		
+		public function searchLinks($lang_id, $search_text) {
+			$query = "SELECT category.position, category.label AS link_cat, link.link_label AS link_label, link.link_url AS link_url
+					  FROM links AS link, link_categories AS category
+					  WHERE category.lang_id = ".$lang_id." AND category.is_active = 1 AND category.id = link.cat_id 
+					  AND link.link_label LIKE '%".$search_text."%' 
+					  ORDER BY category.position";
+			$result = $this->db->query($query);
+			return isset($result->rows) ? $result->rows : false ;
+		}
 	}
 ?>

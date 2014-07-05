@@ -14,6 +14,13 @@
 	// Admin Header
 	$language['adminHeader']['title'] = 'Administration Panel';
 	
+	// Search Results
+	$language['search']['pageTitle'] = 'Search Results';
+	$language['search']['totalResults'] = 'Total Results for';
+	$language['search']['news'] = 'News';
+	$language['search']['links'] = 'Links';
+	$language['search']['members'] = 'Research Members';
+	
 	// Home
 	$language['home']['latestNews'] = 'Latest News';
 	$language['home']['news'] = 'News';

@@ -73,5 +73,15 @@
 			$result = $this->db->query($query);
 			return $result->row;
 		}
+		
+		public function searchMembers($lang_id, $search_text) {
+			$query = "SELECT member.id, member.name, member.email
+					  FROM research_groups AS member_group, research_members AS member, research_member_info AS member_info
+					  WHERE member_group.lang_id = ".$lang_id." AND member.group_id = member_group.id AND member_info.member_id = member.id 
+					  AND (member.name LIKE '%".$search_text."%' OR member_info.cv LIKE '%".$search_text."%' OR member_info.pubs LIKE '%".$search_text."%')
+					  ORDER BY member.id";
+			$result = $this->db->query($query);
+			return isset($result->rows) ? $result->rows : false ;
+		}
 	}
 ?>

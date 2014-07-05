@@ -5,6 +5,7 @@ class ControllerHeader extends Controller {
 		$this->data['lang'] = $this->language->getCurrentLanguage();
 		$this->data['header'] = $this->language->getLanguage('header');
 		$this->data['userLang'] = $this->language->getLanguage('userLang');
+		$this->data['search_text'] = isset($this->request->get['q']) ? $this->request->get['q'] : '';
 		
 		$this->load->model('tab');
 		$this->data['tabs'] = $this->model_tab->findActiveTabs($lang_id);

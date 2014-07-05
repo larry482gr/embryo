@@ -1,3 +1,8 @@
+$(document).ready(function(){
+	if($('#member-id').val().length > 0)
+		showCV($('#member-id').val());
+});
+
 function showCV(id) {
 	if($('div #cv'+id).hasClass('cv-open')) {
 		$('div #cv'+id).removeClass('cv-open');

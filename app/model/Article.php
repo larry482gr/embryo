@@ -29,5 +29,14 @@
 			$result = $this->db->query($query);
 			return $result->rows;
 		}
+		
+		public function searchArticles($lang_id, $search_text) {
+			$query = "SELECT id, title, published_at 
+					  FROM articles 
+					  WHERE lang_id = ".$lang_id." AND is_published = 1 AND published_at <= NOW() 
+					  AND (title LIKE '%".$search_text."%' OR short_desc LIKE '%".$search_text."%' OR long_desc LIKE '%".$search_text."%')";
+			$result = $this->db->query($query);
+			return isset($result->rows) ? $result->rows : false ;
+		}
 	}
 ?>

@@ -56,10 +56,10 @@
               <span class="icon-bar"></span>
             </button>
             <div class="nav-search-form">
-              <form action="javascript: void(0);" method="get" role="search">
+              <form action="<?php echo '/'.$lang.'/search'; ?>" method="get" role="search">
               	<div class="form-group">
                   <div class="input-group">
-                    <input type="text" id="q" name="q" class="form-control" placeholder="<?php echo $header['search']; ?>" />
+                    <input type="text" id="q" name="q" class="form-control" placeholder="<?php echo $header['search']; ?>" value="<?php echo $search_text; ?>" />
                     <span class="input-group-btn">
                       <button class="btn btn-default">
                         <i class="glyphicon glyphicon-search"></i>

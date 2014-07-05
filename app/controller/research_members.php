@@ -13,6 +13,7 @@ class ControllerResearchMembers extends Controller {
 			$groups[] = $group['id'];
 		}
 		$this->data['members'] = $this->model_member->findAllMembers($groups);
+		$this->data['memberId'] = $args;
 		
 		$this->document->addStyle('members');
 		$this->document->addScript('members');

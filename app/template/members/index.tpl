@@ -58,4 +58,5 @@
 	</div>
   </div>
   <input type="hidden" id="lang" value="<?php echo $lang; ?>" />
+  <input type="hidden" id="member-id" value="<?php echo $memberId; ?>" />
 <?php echo $footer; ?>

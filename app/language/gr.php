@@ -14,6 +14,13 @@
 	// Admin Header
 	$language['adminHeader']['title'] = 'Περιβάλλον Διαχείρισης';
 	
+	// Search Results
+	$language['search']['pageTitle'] = 'Αποτελέσματα Αναζήτησης';
+	$language['search']['totalResults'] = 'Σύνολικά Αποτελέσματα για';
+	$language['search']['news'] = 'Νέα';
+	$language['search']['links'] = 'Σύνδεσμοι';
+	$language['search']['members'] = 'Μέλη Επιστημονικής Ομάδας';
+	
 	// Home
 	$language['home']['latestNews'] = 'Τελευταία Νέα';
 	$language['home']['news'] = 'Νέα';

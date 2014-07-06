@@ -59,6 +59,7 @@ class ControllerMembersArea extends Controller {
 		if($deletedFiles) {
 			foreach($deletedFiles as $file) {
 				$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);
+				$file['filesize'] = $this->getProperFileSize($file['filesize']);
 				$items['files'][] = $file;
 			}
 		}
@@ -82,6 +83,7 @@ class ControllerMembersArea extends Controller {
 		if($files) {
 			foreach($files as $file) {
 				$file['labelHtml'] = str_replace(" ", "<br/>", $file['label']);
+				$file['filesize'] = $this->getProperFileSize($file['filesize']);
 				$items['files'][] = $file;
 			}
 		}
@@ -226,6 +228,7 @@ class ControllerMembersArea extends Controller {
 		if($affectedRows > 0) {
 			$newFile = $this->model_file->findFile($id);
 			$newFile['labelHtml'] = str_replace(" ", "<br/>", $newFile['label']);
+			$newFile['filesize'] = $this->getProperFileSize($newFile['filesize']);
 			
 			if($toState == 3) {
 				// Rename the file
@@ -301,6 +304,7 @@ class ControllerMembersArea extends Controller {
 		$file = $this->model_file->findFile($id);
 		$fileHistory = $this->model_file->findFileHistory($id);
 		
+		$file['filesize'] = $this->getProperFileSize($file['filesize']);
 		$fileInfo['filesize'] = '<b>Size:</b> '.$file['filesize'].'<br/>';
 		
 		$this->load->model('user');
@@ -343,6 +347,17 @@ class ControllerMembersArea extends Controller {
 		}
 		
 		return $state;
+	}
+	
+	private function getProperFileSize($fileSize) {
+		if(($fileSize/(1024*1024)) > 1)
+			$fileSize = number_format($fileSize/(1024*1024), 2) . " MB";
+		else if(($fileSize/1024) > 1)
+			$fileSize = number_format($fileSize/1024, 2) . " KB";
+		else
+			$fileSize = $fileSize . " bytes";
+			
+		return $fileSize;
 	}
 }
 ?>

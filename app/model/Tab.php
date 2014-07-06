@@ -12,6 +12,12 @@
 			return $result->rows;
 		}
 		
+		public function findSubTabIdByLink($link) {
+			$query = "SELECT id FROM menu_subtabs WHERE link = '".$link."'";
+			$result = $this->db->query($query);
+			return $result->row;
+		}
+		
 		public function findActiveTabs($lang_id) {
 			$query = "SELECT * FROM menu_tabs WHERE lang_id = ".$lang_id." AND is_active = 1 ORDER BY tab_position";
 			$result = $this->db->query($query);

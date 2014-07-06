@@ -47,6 +47,11 @@
 	$language['links']['noLinks'] = 'There are no links in this category yet.';
 	$language['links']['back'] = 'Back';
 	
+	// Information
+	$language['information']['fileName'] = 'File Name';
+	$language['information']['fileSize'] = 'File Size';
+	$language['information']['fileDate'] = 'Created At';
+	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Legislation';
 	

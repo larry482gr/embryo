@@ -1,0 +1,25 @@
+ol > li > a {
+	color: #2A6496 !important;
+}
+
+ol > li > a:hover {
+	color: #2A2A37 !important;
+	text-decoration: none;
+}
+
+ol > li > a:focus {
+	text-decoration: none;
+}
+
+#subcategories-div {
+	padding: 0px !important;
+	margin-bottom: 10px;
+}
+
+table tr {
+	background-color: #FFFFFF;
+}
+
+table > tbody > tr {
+	cursor: pointer;
+}

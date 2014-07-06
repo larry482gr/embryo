@@ -47,6 +47,11 @@
 	$language['links']['noLinks'] = 'Δεν υπάρχουν καταχωρήσεις σε αυτή την κατηγορία συνδέσμων.';
 	$language['links']['back'] = 'Πίσω';
 	
+	// Information
+	$language['information']['fileName'] = 'Όνομα Αρχείου';
+	$language['information']['fileSize'] = 'Μέγεθος Αρχείου';
+	$language['information']['fileDate'] = 'Ημερομηνία Δημιουργίας';
+	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Νομοθεσία';
 	

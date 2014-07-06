@@ -1,4 +1,4 @@
-  <div class="col-md-4">
+  <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
 	<div class="row">
 	  <div class="col-md-12">
 	    <div class="carousel slide" id="home-carousel" data-ride="carousel">

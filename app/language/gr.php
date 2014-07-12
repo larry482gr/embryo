@@ -38,6 +38,14 @@
 	// News
 	$language['news']['pageTitle'] = 'Νέα';
 	$language['news']['archive'] = 'Αρχείο Νέων';
+	$language['news']['title'] = 'Τίτλος';
+	$language['news']['shortDesc'] = 'Πρώτη Παράγραφος';
+	$language['news']['longDesc'] = 'Υπόλοιπο Άρθρο';
+	$language['news']['smallImage'] = 'Μικρή Εικόνα';
+	$language['news']['carouselImage'] = 'Εικόνα Carousel';
+	$language['news']['isPublished'] = 'Είναι Δημοσιευμένο;';
+	$language['news']['carousel'] = 'Εμφανίζεται στο Carousel;';
+	$language['news']['publishedAt'] = 'Ημερομηνία Δημοσιεύσης';
 	
 	// Events
 	$language['events']['pageTitle'] = 'Εκδηλώσεις';
@@ -133,6 +141,11 @@
 	$language['form']['fillAll'] = 'Παρακαλώ συμπληρώστε όλα τα πεδία.';
 	$language['form']['memberRegisterError'] = 'Μόνο τα μέλη της επιστημονικής ομάδας έχουν τη δυνατότητα να εγγραφούν μέσω της προηγούμενης φόρμας. Παρακαλώ συμπληρώστε τα προσωπικά σας στοιχεία για να εγγραφείτε ως απλός χρήστης.';
 	$language['form']['ohNo'] = 'Ωχ! Κάτι πήγε στραβά. Μας συγχωρείτε για την ταλαιπωρία. Παρακαλώ δοκιμάστε ξανά.';
+	$language['form']['selectLanguage'] = 'Επιλογή Γλώσσας';
+	$language['form']['english'] = 'Αγγλικά';
+	$language['form']['greek'] = 'Ελληνικά';
+	$language['form']['showUnpublished'] = 'Εμφάνιση μη δημοσιευμένων Άρθρων';
+	$language['form']['hideUnpublished'] = 'Απόκρυψη μη δημοσιευμένων Άρθρων';
 	
 	// User
 	$language['userLang']['info'] = 'Ο λογαριασμός μου';

@@ -1,0 +1,12 @@
+#articles-table {
+	background-color: #FFFFFF;
+	margin-top: 10px;
+}
+
+td.article:hover {
+	cursor: pointer;
+}
+
+td.carousel, td.is-published {
+	text-align: center;
+}

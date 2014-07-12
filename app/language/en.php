@@ -38,6 +38,14 @@
 	// News
 	$language['news']['pageTitle'] = 'News';
 	$language['news']['archive'] = 'News Archive';
+	$language['news']['title'] = 'Title';
+	$language['news']['shortDesc'] = 'First Paragraph';
+	$language['news']['longDesc'] = 'Rest of Article';
+	$language['news']['smallImage'] = 'Small Image';
+	$language['news']['carouselImage'] = 'Carousel Image';
+	$language['news']['isPublished'] = 'Is Published?';
+	$language['news']['carousel'] = 'Appears on Carousel?';
+	$language['news']['publishedAt'] = 'Publish Date';
 	
 	// Events
 	$language['events']['pageTitle'] = 'Events';
@@ -133,6 +141,11 @@
 	$language['form']['fillAll'] = 'Please fill in all fields.';
 	$language['form']['memberRegisterError'] = 'Only members of this program can register through the previous form. Please fill in your personal info in order to register as a regular user.';
 	$language['form']['ohNo'] = 'Oh no! Something must have gone terribly wrong. Excuse us for the inconvenience. Please try again.';
+	$language['form']['selectLanguage'] = 'Select Language';
+	$language['form']['english'] = 'English';
+	$language['form']['greek'] = 'Greek';
+	$language['form']['showUnpublished'] = 'Show Unpublished Articles';
+	$language['form']['hideUnpublished'] = 'Hide Unpublished Articles';
 	
 	// User
 	$language['userLang']['info'] = 'My account';

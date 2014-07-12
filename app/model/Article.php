@@ -1,7 +1,7 @@
 <?php 
 	class ModelArticle extends Model {
-		public function findAll($order = '', $limit = '') {
-			$query = "SELECT * FROM articles";
+		public function findAll($order = '', $limit = '', $additionalQuery = 1) {
+			$query = "SELECT * FROM articles WHERE ".$additionalQuery." ".$order." ".$limit;
 			$result = $this->db->query($query);
 			return $result->rows;
 		}
@@ -37,6 +37,18 @@
 					  AND (title LIKE '%".$search_text."%' OR short_desc LIKE '%".$search_text."%' OR long_desc LIKE '%".$search_text."%')";
 			$result = $this->db->query($query);
 			return isset($result->rows) ? $result->rows : false ;
+		}
+		
+		public function updateCarousel($id, $carousel) {
+			$query = "UPDATE articles SET carousel = ".$carousel." WHERE id = ".$id;
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function updatePublished($id, $isPublished) {
+			$query = "UPDATE articles SET is_published = ".$isPublished." WHERE id = ".$id;
+			$this->db->query($query);
+			return $this->db->countAffected();
 		}
 	}
 ?>

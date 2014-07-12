@@ -5,8 +5,11 @@
 	      <div class="form-group">
 		    <label for="language-select" class="control-label"><?php echo $form['selectLanguage']; ?></label>
 		    <select class="form-control input-sm" id="language">
-			  <option value="1"><?php echo $form['english']; ?></option>
-			  <option value="2"><?php echo $form['greek']; ?></option>
+		      <?php
+		        foreach($languages as $key => $value) {
+		          echo '<option value="'.$value['id'].'" rel="'.$key.'">'.$form[$value['language']].'</option>';
+		        }
+		      ?>
 			</select>
 	      </div>
 		  <div class="form-group pull-right">

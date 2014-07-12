@@ -5,6 +5,7 @@ class ControllerAdminArticles extends Controller {
 		$this->data['news'] = $this->language->getLanguage('news');
 		$lang_id = $this->language->getCurrentLanguageId();
 		$this->data['lang_id'] = $lang_id;
+		$this->data['languages'] = $this->language->getAvailableLanguages();
 		
 		$this->load->model('article');
 		$this->data['articles'] = $this->model_article->findAll('ORDER BY published_at DESC', 'LIMIT 0, 10', 'lang_id = '.$lang_id.' AND is_published = 1');

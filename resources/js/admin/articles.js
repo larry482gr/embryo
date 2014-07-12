@@ -1,7 +1,14 @@
 $(document).ready(function(){
 	$('#language').val($('#lang_id').val());
 	
+	$('#language').on('change', function(){
+		var lang = $(this).find('option:selected').attr('rel');
+		window.location.href = '/' + lang + '/admin/articles';
+	});
+	
 	$('#articles-table').on('change', '.carousel input', function(){
+		$('.container').find('button').attr('disabled', true);
+		$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', true);
 		var articleId = $(this).attr('rel');
 		var showOnCarousel = $(this).is(':checked') ? 1 : 0;
 		
@@ -31,10 +38,16 @@ $(document).ready(function(){
 					
 				bootbox.alert("An error occured. Please try again!");
 			}
+		})
+		.done(function(){
+			$('.container').find('button').attr('disabled', false);
+			$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', false);
 		});
 	});
 	
 	$('#articles-table').on('change', '.is-published input', function(){
+		$('.container').find('button').attr('disabled', true);
+		$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', true);
 		var articleId = $(this).attr('rel');
 		var isPublished = $(this).is(':checked') ? 1 : 0;
 		
@@ -64,7 +77,11 @@ $(document).ready(function(){
 					
 				bootbox.alert("An error occured. Please try again!");
 			}
-		});
+		})
+		.done(function(){
+			$('.container').find('button').attr('disabled', false);
+			$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', false);
+		});;
 	});
 	
 	$('#show-unpublished-btn').on('click', function(){

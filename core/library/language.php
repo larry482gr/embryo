@@ -2,6 +2,7 @@
 class Language {
 	private $default = 'en';
 	private $language;
+	private $languages = array('en' => array('id' => 1, 'language' => 'english'), 'gr' => array('id' => 2, 'language' => 'greek'));
 	private $data = array();
  
 	public function __construct($language) {
@@ -13,14 +14,11 @@ class Language {
   	}
 	
 	public function getCurrentLanguageId() {
-		switch($this->language) {
-			case 'en':
-				return 1;
-			case 'gr':
-				return 2;
-			default:
-				return 2;
-		}
+		return $this->languages[$this->language]['id'];
+	}
+	
+	public function getAvailableLanguages() {
+		return $this->languages;
 	}
 	
 	public function getLanguage($key = false) {

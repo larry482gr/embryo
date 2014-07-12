@@ -12,6 +12,8 @@
           $archiveDiv = '';
           $panelBody = '';
           $monthArray = array();
+          $firstYear;
+          $firstMonth;
           foreach($articles as $article) {
             
             // Create Archive List
@@ -29,9 +31,11 @@
                 unset($monthArray);
                 $monthArray = array();
               }
-              else {
+              else 	{
                 $panelHeader = $months[$articleMonth].' '.date('Y', strtotime($article['published_at']));
                 $activeNews = 'shown';
+                $firstYear = $articleYear;
+                $firstMonth = $articleMonth;
               }
               $year = $articleYear;
               $month = 0;
@@ -39,6 +43,9 @@
               					<li class="months-ul">
 			  					  <ul class="months">';
 			}
+			
+			if($articleYear != $firstYear || $articleMonth != $firstMonth)
+				$activeNews = 'hidden';
 			
 			if($articleMonth != $month) {
 			  $month = $articleMonth;

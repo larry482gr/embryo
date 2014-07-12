@@ -5,7 +5,7 @@ $(document).ready(function() {
 	firstYear.find('span.glyphicon').removeClass('glyphicon-folder-close').addClass('glyphicon-folder-open');
 	firstMonthList = firstYear.next().find('.months');
 	firstMonthList.show();
-	firstMonthList.find('span.glyphicon').removeClass('glyphicon-folder-close').addClass('glyphicon-folder-open');
+	firstMonthList.find('.month:last-child span.glyphicon').removeClass('glyphicon-folder-close').addClass('glyphicon-folder-open');
 	
 	$('.container').on('click', '.year span', function() {
 		folder = $(this).find('span.glyphicon');

@@ -46,6 +46,10 @@
 	$language['news']['isPublished'] = 'Είναι Δημοσιευμένο;';
 	$language['news']['carousel'] = 'Εμφανίζεται στο Carousel;';
 	$language['news']['publishedAt'] = 'Ημερομηνία Δημοσιεύσης';
+	$language['news']['editArticle'] = 'Τροποποίηση Άρθρου';
+	$language['news']['editImages'] = 'Αλλαγή Εικόνας/ων';
+	$language['news']['imageInfo'] = 'Οι διαστάσεις της μικρής εικόνας (πλάτος/ύψος) πρέπει να είναι 275x183.';
+	$language['news']['carouselInfo'] = 'Η αναλογία διαστάσεων (πλάτος/ύψος) της εικόνας του carousel πρέπει να είναι 3/2 με ελάχιστο πλάτος 800 pixels. Για παράδειγμα: 800x532, 900x600, 1200x800 κτλ.';
 	
 	// Events
 	$language['events']['pageTitle'] = 'Εκδηλώσεις';
@@ -58,7 +62,7 @@
 	// Information
 	$language['information']['fileName'] = 'Όνομα Αρχείου';
 	$language['information']['fileSize'] = 'Μέγεθος Αρχείου';
-	$language['information']['fileDate'] = 'Ημερομηνία Δημιουργίας';
+	$language['information']['fileDate'] = 'Ημερομηνία Δημοσιεύσης';
 	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Νομοθεσία';
@@ -146,6 +150,7 @@
 	$language['form']['greek'] = 'Ελληνικά';
 	$language['form']['showUnpublished'] = 'Εμφάνιση μη δημοσιευμένων Άρθρων';
 	$language['form']['hideUnpublished'] = 'Απόκρυψη μη δημοσιευμένων Άρθρων';
+	$language['form']['filesAllowed'] = 'Επιτρεπόμενοι τύποι αρχείων: ';
 	
 	// User
 	$language['userLang']['info'] = 'Ο λογαριασμός μου';

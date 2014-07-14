@@ -181,4 +181,57 @@
 	<input type="hidden" id="show-unpublished-label" value="<?php echo $form['showUnpublished']; ?>" />
 	<input type="hidden" id="hide-unpublished-label" value="<?php echo $form['hideUnpublished']; ?>" />
 	<input type="hidden" id="show-unpublished" value="0" />
+	
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="editArticleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="editArticleModalLabel"><?php echo $news['editArticle']; ?></h4>
+	      </div>
+	      <div class="modal-body">
+	        <div id="modal-loader">
+	          <img src="/resources/images/icons/loader.gif" />
+	        </div>
+	        <div id="modal-form" class="form-group">
+	          <form id="edit-article-form" method="post" action="<?php echo '/admin/articles/edit'; ?>" enctype="multipart/form-data">
+	          	<div class="form-group">
+	          	  <label for="article-title"><?php echo $news['title']; ?></label>
+	          	  <input type="text" id="article-title" name="article[title]" class="form-control" />
+	          	</div>
+	          	<div class="form-group">
+	          	  <label for="article-short-desc form"><?php echo $news['shortDesc']; ?></label>
+	          	  <textarea  id="article-short-desc" name="article[short_desc]" class="form-control"></textarea>
+	          	</div>
+	          	<div class="form-group">
+	          	  <label for="article-long-desc"><?php echo $news['longDesc']; ?></label>
+	          	  <textarea  id="article-long-desc" name="article[long_desc]" class="form-control"></textarea>
+	          	</div>
+	          	<button type="button" id="modal-image-btn" class="btn btn-sm btn-primary"><?php echo $news['editImages']; ?></button>
+	          	<div id="modal-images">
+	          	  <div class="form-group">
+	          	    <label for="small-image"><?php echo $news['smallImage']; ?></label>
+	          	    <input id="small-image" name="article[small_image]" type="file" />
+	          	  </div>
+	          	  <div class="form-group">
+	          	    <label for="carousel-image"><?php echo $news['carouselImage']; ?></label>
+	          	    <input id="carousel-image" name="article[carousel_image]" type="file" />
+	          	  </div>
+	          	  <p class="help-block"><?php echo $form['filesAllowed']; ?>.png, .jpg, .jpeg</p>
+	          	  <p class="help-block"><?php echo $news['imageInfo']; ?></p>
+	          	  <p class="help-block"><?php echo $news['carouselInfo']; ?></p>
+	          	</div>
+	          	<input id="article-id" name="article[id]" type="hidden" />
+	          </form>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        <button type="button" id="upload-file" class="btn btn-primary">Upload</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<?php echo $footer; ?>

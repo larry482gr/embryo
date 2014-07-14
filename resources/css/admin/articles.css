@@ -10,3 +10,28 @@ td.article:hover {
 td.carousel, td.is-published {
 	text-align: center;
 }
+
+#modal-form {
+	opacity: 0;
+	height: 0px;
+}
+
+#article-short-desc, #article-long-desc {
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 120px;
+}
+
+#article-short-desc {
+	max-height: 200px;
+}
+
+#article-long-desc {
+	max-height: 500px;
+}
+
+#modal-images {
+	display: none;
+	margin-top: 10px;
+}

@@ -6,6 +6,40 @@ $(document).ready(function(){
 		window.location.href = '/' + lang + '/admin/articles';
 	});
 	
+	$('#articles-table').on('click', '.article', function(){
+		var articleId = $(this).attr('rel');
+		$.ajax({
+			url: '/admin/articles/getArticle/'+articleId,
+			type: 'get',
+			cache: false,
+			dataType: 'json',
+			beforeSend: function(){
+				$('#editArticleModal').find('#modal-form').css('height', '0px').css('opacity', '0');
+				$('#editArticleModal').modal('show');
+			},
+			success: function(article) {
+				$('#editArticleModal').find('#modal-loader').hide();
+				$('#edit-article-form #article-id').val(article.id);
+				$('#edit-article-form #article-title').val(article.title);
+				$('#edit-article-form #article-short-desc').val(article.short_desc);
+				$('#edit-article-form #article-long-desc').val(article.long_desc);
+				$('#editArticleModal').find('#modal-form').css('height', 'auto').animate({opacity: 1}, 400);
+			},
+			error: function(result) {
+				$('#editArticleModal').modal('hide');
+				bootbox.alert("An error occured. Please try again!");
+			}
+		})
+		.done(function(){
+			$('.container').find('button').attr('disabled', false);
+			$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', false);
+		});
+	});
+	
+	$('#modal-image-btn').on('click', function(){
+		$('#modal-images').slideToggle();
+	});
+	
 	$('#articles-table').on('change', '.carousel input', function(){
 		$('.container').find('button').attr('disabled', true);
 		$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', true);

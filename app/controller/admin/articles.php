@@ -73,5 +73,18 @@ class ControllerAdminArticles extends Controller {
 		echo json_encode($articles);
 		die();
 	}
+	
+	public function getArticle($id) {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin/dashboard');
+		}
+		
+		$this->load->model('article');
+		$article = $this->model_article->find($id);
+		
+		echo json_encode($article);
+		die();
+	}
 }
 ?>

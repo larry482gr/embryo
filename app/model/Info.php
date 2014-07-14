@@ -19,7 +19,7 @@
 		}
 		
 		public function findFiles($catId) {
-			$query = "SELECT label, name, size, created_at FROM info_files WHERE cat_id = ".$catId." ORDER BY label";
+			$query = "SELECT label, name, size, created_at FROM info_files WHERE cat_id = ".$catId." ORDER BY created_at";
 			$result = $this->db->query($query);
 			return isset($result->rows) ? $result->rows : false;
 		}

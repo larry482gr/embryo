@@ -19,6 +19,7 @@
 		    	$group_table_rows = '';
 		    	$members_divs = '';
 				$i = 1;
+				$j = 0;
 				$members_found = false;
 				$info_divs = '';
 				$visible = 'visible';

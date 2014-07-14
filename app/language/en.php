@@ -46,6 +46,10 @@
 	$language['news']['isPublished'] = 'Is Published?';
 	$language['news']['carousel'] = 'Appears on Carousel?';
 	$language['news']['publishedAt'] = 'Publish Date';
+	$language['news']['editArticle'] = 'Edit Article';
+	$language['news']['editImages'] = 'Edit Image(s)';
+	$language['news']['imageInfo'] = 'Small image width/height should be 275x183.';
+	$language['news']['carouselInfo'] = 'Carousel image width/height ratio should be 3/2 with a minimum width of 800 pixels. For example: 800x532, 900x600, 1200x800 etc.';
 	
 	// Events
 	$language['events']['pageTitle'] = 'Events';
@@ -58,7 +62,7 @@
 	// Information
 	$language['information']['fileName'] = 'File Name';
 	$language['information']['fileSize'] = 'File Size';
-	$language['information']['fileDate'] = 'Created At';
+	$language['information']['fileDate'] = 'Published At';
 	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Legislation';
@@ -146,6 +150,7 @@
 	$language['form']['greek'] = 'Greek';
 	$language['form']['showUnpublished'] = 'Show Unpublished Articles';
 	$language['form']['hideUnpublished'] = 'Hide Unpublished Articles';
+	$language['form']['filesAllowed'] = 'File types allowed: ';
 	
 	// User
 	$language['userLang']['info'] = 'My account';

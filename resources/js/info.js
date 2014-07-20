@@ -9,8 +9,8 @@ $(document).ready(function(){
 				catId: $('#subcategories').find('option:first-child').val()
 			},
 			success: function(items) {
-				$('#info-div').append('<table class="table table-condensed table-bordered table-hover">'+
-									  '<thead><tr><td>#</td><td>'+$('#fileName').val()+'</td><td>'+$('#fileSize').val()+'</td><td>'+$('#fileDate').val()+'</td></tr></thead>'+
+				$('#info-div').append('<table class="table table-condensed table-bordered">'+
+									  '<thead><tr><td class="center v-center"></td><td class="v-center">'+$('#fileName').val()+'</td><td class="center v-center">'+$('#fileSize').val()+'</td><td class="center v-center">'+$('#fileDate').val()+'</td></tr></thead>'+
 									  '<tbody></tbody></table>');
 									  
 				for(i = 0; i < items.length; i++) {
@@ -29,6 +29,6 @@ $(document).ready(function(){
 	});
 	
 	function appendFileRow(rowIndex, file) {
-		$('#info-div').find('table tbody').append('<tr rel="'+file.name+'"><td>'+rowIndex+'</td><td>'+file.label+'</td><td>'+file.size+'</td><td>'+file.created_at+'</td></tr>');
+		$('#info-div').find('table tbody').append('<tr rel="'+file.name+'"><td class="center v-center">'+rowIndex+'</td><td class="v-center">'+file.label+'</td><td class="center v-center">'+file.size+'</td><td class="center v-center">'+file.created_at+'</td></tr>');
 	}
 });

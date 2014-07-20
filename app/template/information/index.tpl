@@ -22,18 +22,18 @@
               echo '</div>';
             }
             else if(!empty($files)) {
-              echo '<table class="table table-condensed table-bordered table-hover">';
-              echo '<thead><tr><td>#</td><td>'.$information['fileName'].'</td><td>'.$information['fileSize'].'</td><td>'.$information['fileDate'].'</td></tr></thead>';
+              echo '<table class="table table-condensed table-bordered">';
+              echo '<thead><tr><td class="center v-center"></td><td class="v-center">'.$information['fileName'].'</td><td class="center v-center">'.$information['fileSize'].'</td><td class="center v-center">'.$information['fileDate'].'</td></tr></thead>';
               echo '<tbody>';
               $i = 1;
               foreach($files as $file) {
-                echo '<tr rel="'.$file['name'].'"><td>'.$i++.'</td><td>'.$file['label'].'</td><td>'.$file['size'].'</td><td>'.$file['created_at'].'</td></tr>';
+                echo '<tr rel="'.$file['name'].'"><td class="center v-center">'.$i++.'</td><td class="v-center">'.$file['label'].'</td><td class="center v-center">'.$file['size'].'</td><td class="center v-center">'.$file['created_at'].'</td></tr>';
               }
               echo '</tbody>';
               echo '</table>';
             }
             else
-              echo '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">No Results</div>';
+              echo '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">'.$information['noResults'].'</div>';
           }
         ?>
       </div>

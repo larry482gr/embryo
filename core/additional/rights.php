@@ -2,7 +2,7 @@
 final class Right {
 	private $profile;
 	private $profiles = array('admin' => 'Administrator', 'contr' => 'Contributor', 'moder' => 'Moderator', 'user' => 'User');
-	private $memberEmails = array('eftihia@law.auth.gr', 'kastan@law.auth.gr', 'tarlatzis@gmail.com', 'erethemn@law.uoa.gr', 'nikos_koumoutzis@hotmail.com', 'konstantinoscha@law.auth.gr', 'kalliopi.kipouridou@gmail.com', 'mimmaki@gmail.com', 'roxannefragou@hotmail.com', 'marva84@gmail.com', 'sachinidouchristina@hotmail.com');
+	private $memberEmails = array('eftihia@law.auth.gr', 'kastan@law.auth.gr', 'tarlatzis@gmail.com', 'erethemn@law.uoa.gr', 'nikos_koumoutzis@hotmail.com', 'konstantinoscha@law.auth.gr', 'kalliopi.kipouridou@gmail.com', 'mimmaki@gmail.com', 'roxannefragou@hotmail.com', 'marva84@gmail.com', 'niko-dimo@windowslive.com', 'sachinidouchristina@hotmail.com', 'a-tsalidis@hotmail.com', 'dpn21@yahoo.com');
 	
 	public function __construct($profile) {
 		$this->profile = $profile;

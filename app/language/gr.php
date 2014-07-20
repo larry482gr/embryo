@@ -37,15 +37,22 @@
 	
 	// News
 	$language['news']['pageTitle'] = 'Νέα';
+	$language['news']['source'] = 'Πηγή: ';
 	$language['news']['archive'] = 'Αρχείο Νέων';
 	$language['news']['title'] = 'Τίτλος';
 	$language['news']['shortDesc'] = 'Πρώτη Παράγραφος';
 	$language['news']['longDesc'] = 'Υπόλοιπο Άρθρο';
+	$language['news']['sourceLabel'] = 'Τίτλος Πηγής';
+	$language['news']['sourceLink'] = 'Σύνδεσμος Πηγής';
 	$language['news']['smallImage'] = 'Μικρή Εικόνα';
 	$language['news']['carouselImage'] = 'Εικόνα Carousel';
 	$language['news']['isPublished'] = 'Είναι Δημοσιευμένο;';
 	$language['news']['carousel'] = 'Εμφανίζεται στο Carousel;';
+	$language['news']['carousel_label'] = 'Λεζάντα Carousel';
 	$language['news']['publishedAt'] = 'Ημερομηνία Δημοσιεύσης';
+	$language['news']['never'] = 'Ποτέ';
+	$language['news']['addArticle'] = 'Προσθήκη Άρθρου';
+	$language['news']['newArticle'] = 'Νέο Άρθρο';
 	$language['news']['editArticle'] = 'Τροποποίηση Άρθρου';
 	$language['news']['editImages'] = 'Αλλαγή Εικόνας/ων';
 	$language['news']['imageInfo'] = 'Οι διαστάσεις της μικρής εικόνας (πλάτος/ύψος) πρέπει να είναι 275x183.';
@@ -63,6 +70,7 @@
 	$language['information']['fileName'] = 'Όνομα Αρχείου';
 	$language['information']['fileSize'] = 'Μέγεθος Αρχείου';
 	$language['information']['fileDate'] = 'Ημερομηνία Δημοσιεύσης';
+	$language['information']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις';
 	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Νομοθεσία';
@@ -106,10 +114,10 @@
 	$language['form']['createUser'] = 'Φόρμα Δημιουργίας Χρήστη';
 	$language['form']['accessInfo'] = 'Στοιχεία Πρόσβασης';
 	$language['form']['userInfo'] = 'Προσωπικά Στοιχεία';
-	$language['form']['username'] = 'Όνομα χρήστη';
+	$language['form']['username'] = 'Όνομα χρήστη (username)';
 	$language['form']['available'] = 'Διαθέσιμο';
 	$language['form']['notAvailable'] = 'Μη διαθέσιμο';
-	$language['form']['password'] = 'Κωδικός πρόσβασης';
+	$language['form']['password'] = 'Κωδικός πρόσβασης (password)';
 	$language['form']['email'] = 'Ήλ. ταχυδρομίο';
 	$language['form']['userRights'] = 'Δικαιώματα χρήστη';
 	$language['form']['register'] = 'Εγγραφή';
@@ -118,6 +126,10 @@
 	$language['form']['login'] = 'Είσοδος';
 	$language['form']['logout'] = 'Έξοδος';
 	$language['form']['submit'] = 'Υποβολή';
+	$language['form']['send'] = 'Αποστολή';
+	$language['form']['edit'] = 'Τροποποίηση';
+	$language['form']['cancel'] = 'Ακύρωση';
+	$language['form']['update'] = 'Ενημέρωση';
 	$language['form']['activate'] = 'Ενεργοποίηση';
 	$language['form']['forgotPass'] = 'Ξεχάσατε τον κωδικό σας;';
 	$language['form']['passRecSys'] = 'Σύστημα ανάκτησης κωδικού πρόσβασης';
@@ -134,8 +146,6 @@
 	$language['form']['messagePlaceholder'] = 'Γράψτε το μήνυμα σας εδώ...';
 	$language['form']['required'] = 'Υποχρεωτικό πεδίο';
 	$language['form']['allRequired'] = 'Όλα τα πεδία είναι υποχρεωτικά.';
-	$language['form']['send'] = 'Αποστολή';
-	$language['form']['edit'] = 'Τροποποίηση';
 	$language['form']['changePass'] = 'Αλλαγή κωδικού πρόσβασης';
 	$language['form']['passChanged'] = 'Ο κώδικος πρόσβασης σας άλλαξε επιτυχώς. Παρακαλώ εισέλθετε ξανά χρησημοποιώντας το νέο κωδικό πρόσβασης.';
 	$language['form']['oldPass'] = 'Παλιός κωδικός πρόσβασης';
@@ -151,6 +161,8 @@
 	$language['form']['showUnpublished'] = 'Εμφάνιση μη δημοσιευμένων Άρθρων';
 	$language['form']['hideUnpublished'] = 'Απόκρυψη μη δημοσιευμένων Άρθρων';
 	$language['form']['filesAllowed'] = 'Επιτρεπόμενοι τύποι αρχείων: ';
+	$language['form']['sameName'] = 'Η Εικόνα Carousel και η Μικρή Εικόνα για το ίδιο Άρθρο πρέπει να έχουν ακριβώς το ίδιο όνομα!';
+	$language['form']['optional'] = '(προαιρετικά)';
 	
 	// User
 	$language['userLang']['info'] = 'Ο λογαριασμός μου';

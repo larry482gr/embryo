@@ -5,7 +5,7 @@
   <div class="row">
     <div class="news-archive col-md-2 col-sm-3 col-xs-3">
       <h4 id="news-archive"><?php echo $news['archive']; ?></h4>
-      <ul class="outer">
+      <ul class="outer no-style">
         <?php
           $year = 3000;
           $month = 0;
@@ -41,7 +41,7 @@
               $month = 0;
               $archiveDiv .= '<li class="year"><span><span class="glyphicon glyphicon-folder-close"></span>&nbsp;&nbsp;'.$year.'</span></li>
               					<li class="months-ul">
-			  					  <ul class="months">';
+			  					  <ul class="months no-style">';
 			}
 			
 			if($articleYear != $firstYear || $articleMonth != $firstMonth)

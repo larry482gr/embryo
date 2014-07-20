@@ -20,6 +20,27 @@ table tr {
 	background-color: #FFFFFF;
 }
 
+table > thead > tr > td:first-child {
+	min-width: 40px;
+}
+
 table > tbody > tr {
 	cursor: pointer;
+	transition: background-color 0.1s ease-out, color 0.1s ease-out;
+	-o-transition: background-color 0.1s ease-out, color 0.1s ease-out;
+	-moz-transition: background-color 0.1s ease-out, color 0.1s ease-out;
+	-webkit-transition: background-color 0.1s ease-out, color 0.1s ease-out;
+}
+
+table > tbody > tr:hover {
+	background-color: #2A6496;
+	color: #FFFFFF;
+}
+
+.center {
+	text-align: center;
+}
+
+.v-center {
+	vertical-align: middle !important;
 }

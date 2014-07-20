@@ -37,15 +37,22 @@
 	
 	// News
 	$language['news']['pageTitle'] = 'News';
+	$language['news']['source'] = 'Source: ';
 	$language['news']['archive'] = 'News Archive';
 	$language['news']['title'] = 'Title';
 	$language['news']['shortDesc'] = 'First Paragraph';
 	$language['news']['longDesc'] = 'Rest of Article';
+	$language['news']['sourceLabel'] = 'Source Label';
+	$language['news']['sourceLink'] = 'Source Link';
 	$language['news']['smallImage'] = 'Small Image';
 	$language['news']['carouselImage'] = 'Carousel Image';
 	$language['news']['isPublished'] = 'Is Published?';
 	$language['news']['carousel'] = 'Appears on Carousel?';
+	$language['news']['carousel_label'] = 'Carousel Label';
 	$language['news']['publishedAt'] = 'Publish Date';
+	$language['news']['never'] = 'Never';
+	$language['news']['addArticle'] = 'Add New Article';
+	$language['news']['newArticle'] = 'New Article';
 	$language['news']['editArticle'] = 'Edit Article';
 	$language['news']['editImages'] = 'Edit Image(s)';
 	$language['news']['imageInfo'] = 'Small image width/height should be 275x183.';
@@ -63,6 +70,7 @@
 	$language['information']['fileName'] = 'File Name';
 	$language['information']['fileSize'] = 'File Size';
 	$language['information']['fileDate'] = 'Published At';
+	$language['information']['noResults'] = 'No Results';
 	
 	// Legislation
 	$language['legislation']['pageTitle'] = 'Legislation';
@@ -118,6 +126,10 @@
 	$language['form']['login'] = 'Log In';
 	$language['form']['logout'] = 'Log Out';
 	$language['form']['submit'] = 'Submit';
+	$language['form']['send'] = 'Send';
+	$language['form']['edit'] = 'Edit';
+	$language['form']['cancel'] = 'Cancel';
+	$language['form']['update'] = 'Update';
 	$language['form']['activate'] = 'Activate';
 	$language['form']['forgotPass'] = 'Forgot password?';
 	$language['form']['passRecSys'] = 'Password Recovery System';
@@ -134,8 +146,6 @@
 	$language['form']['messagePlaceholder'] = 'Write your message here...';
 	$language['form']['required'] = 'Required field';
 	$language['form']['allRequired'] = 'All fields are required.';
-	$language['form']['send'] = 'Send';
-	$language['form']['edit'] = 'Edit';
 	$language['form']['changePass'] = 'Password change';
 	$language['form']['passChanged'] = 'Your password has been successfully changed. Please login again using the new password.';
 	$language['form']['oldPass'] = 'Old password';
@@ -151,6 +161,8 @@
 	$language['form']['showUnpublished'] = 'Show Unpublished Articles';
 	$language['form']['hideUnpublished'] = 'Hide Unpublished Articles';
 	$language['form']['filesAllowed'] = 'File types allowed: ';
+	$language['form']['sameName'] = 'Carousel and Small Image for the same Article should have the exact same name!';
+	$language['form']['optional'] = '(optional)';
 	
 	// User
 	$language['userLang']['info'] = 'My account';

@@ -42,7 +42,7 @@ class ControllerUser extends Controller {
 		}
 		
 		if(!isset($this->session->data['loginReferer']))
-				$this->session->data['loginReferer'] = $this->request->server['HTTP_REFERER'];
+			$this->session->data['loginReferer'] = $this->request->server['HTTP_REFERER'];
 				
 		$this->data['membersLogin'] = $membersLogin;
 		

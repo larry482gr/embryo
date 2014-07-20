@@ -1,5 +1,5 @@
 <?php
-class ControllerNatCourts extends Controller {
+class ControllerEuropeanCourts extends Controller {
 	public function index($args = false) {
 		if(!isset($this->session->data['user']['id'])) {
 			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('userDenied');
@@ -12,11 +12,11 @@ class ControllerNatCourts extends Controller {
 		else {
 			$lang_id = $this->language->getCurrentLanguageId();
 			$this->data['lang'] = $this->language->getCurrentLanguage();
-			$this->data['nationalCourts'] = $this->language->getLanguage('nationalCourts');
+			$this->data['europeanCourts'] = $this->language->getLanguage('europeanCourts');
 			$this->data['underConstruction'] = $this->language->getLanguage('underConstruction');
 			
 			// For use in under construction page.
-			$this->data['pageTitle'] = $this->data['nationalCourts']['pageTitle'];
+			$this->data['pageTitle'] = $this->data['europeanCourts']['pageTitle'];
 	
 			$this->document->addStyle('left_part');
 			$this->document->addStyle('under_construction');

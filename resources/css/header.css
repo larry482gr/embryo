@@ -233,3 +233,7 @@ h3.page-title {
 
 .twitter{
 }
+
+#content {
+	min-height: 400px;
+}

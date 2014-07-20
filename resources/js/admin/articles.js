@@ -1,3 +1,8 @@
+var smallImage = '';
+var smallImageType = '';
+var carouselImage = '';
+var carouselImageType = '';
+
 $(document).ready(function(){
 	$('#language').val($('#lang_id').val());
 	
@@ -19,10 +24,13 @@ $(document).ready(function(){
 			},
 			success: function(article) {
 				$('#editArticleModal').find('#modal-loader').hide();
-				$('#edit-article-form #article-id').val(article.id);
+				$('#modal-form .article-id').val(article.id);
 				$('#edit-article-form #article-title').val(article.title);
 				$('#edit-article-form #article-short-desc').val(article.short_desc);
 				$('#edit-article-form #article-long-desc').val(article.long_desc);
+				$('#edit-article-form #article-source-label').val(article.source_label);
+				$('#edit-article-form #article-source-link').val(article.source_link);
+				$('#edit-article-form #article-carousel-label').val(article.carousel_label);
 				$('#editArticleModal').find('#modal-form').css('height', 'auto').animate({opacity: 1}, 400);
 			},
 			error: function(result) {
@@ -92,8 +100,11 @@ $(document).ready(function(){
 			data: { articleId: articleId, isPublished: isPublished },
 			dataType: 'text',
 			success: function(result) {
-				if(result == 1)
+				if(result != 0) {
 					bootbox.alert("Article successfully updated.");
+					if(result != 1)
+					$('#article-published-'+articleId).html(result);
+				}
 				else {
 					if($(this).is(':checked'))
 						$(this).attr('checked', false);
@@ -152,13 +163,184 @@ $(document).ready(function(){
 	function getTableRow(i, article) {
 		var carouselChecked = article.carousel == 1 ? 'checked="checked"' : '';
 		var publishedChecked = article.is_published == 1 ? 'checked="checked"' : '';
+		var publishedAt = (article.published_at == null || article.published_at.length == 0) ? $('#never').val() : article.published_at;
 		var tableRow = '<tr>'+
 						'<td class="article" rel="'+article.id+'">'+i+'</td>'+
-						'<td class="article" rel="'+article.id+'">'+article.title+'</td>'+
+						'<td class="article" id="article-title-'+article.id+'" rel="'+article.id+'">'+article.title+'</td>'+
 						'<td class="carousel"><input type="checkbox" rel="'+article.id+'" '+carouselChecked+' /></td>'+
 						'<td class="is-published"><input type="checkbox" rel="'+article.id+'" '+publishedChecked+' /></td>'+
-						'<td>'+article.published_at+'</td>'+
+						'<td id="article-published-'+article.id+'">'+publishedAt+'</td>'+
 						'</tr>';
 		return tableRow;
+	}
+	
+	$('#add-new-article').on('click', function(){
+		$('#new-article-title').val('');
+		$('#new-article-short-desc').val('');
+		$('#new-article-long-desc').val('');
+		$('#new-article-source-label').val('');
+		$('#new-article-source-link').val('');
+		$('#new-article-carousel-label').val('');
+		$('#addArticleModal').modal('show');
+	});
+	
+	$('#add-article').on('click', function() {
+		var lang_id = $('#lang_id').val();
+		var articleTitle = $('#new-article-title').val();
+		var articleShortDesc = $('#new-article-short-desc').val();
+		var articleLongDesc = $('#new-article-long-desc').val();
+		var articleSourceLabel = $('#new-article-source-label').val();
+		var articleSourceLink = $('#new-article-source-link').val();
+		var articleCarouselLabel = $('#new-article-carousel-label').val();
+		
+		if($.trim(articleTitle).length == 0 || $.trim(articleShortDesc).length == 0) {
+			$('#addArticleModal').modal('hide');
+			bootbox.alert('You should provide at least article\'s "Title" and "First Paragraph" fields.');
+			return;
+		}
+		else {
+			$.ajax({
+				url: '/admin/articles/create',
+				type: 'post',
+				cache: false,
+				data: {
+					lang_id: lang_id,
+					articleTitle: articleTitle,
+					articleShortDesc: articleShortDesc,
+					articleLongDesc: articleLongDesc,
+					articleSourceLabel: articleSourceLabel,
+					articleSourceLink: articleSourceLink,
+					articleCarouselLabel: articleCarouselLabel
+				},
+				dataType: 'text',
+				success: function(result) {
+					$('#addArticleModal').modal('hide');
+					if(result != 'error') {
+						$('#articles-table tbody tr').each(function(){
+							element = $(this).find('td:first-child');
+							element.html(parseInt(element.html())+1);
+						});
+						
+						var articleId = result.substring(0, result.indexOf('*::*'));
+						var articleTitle = result.substring(result.indexOf('*::*')+4);
+						var tableRow = '<tr>'+
+										'<td class="article" rel="'+articleId+'">1</td>'+
+										'<td class="article" id="article-title-'+articleId+'" rel="'+articleId+'">'+articleTitle+'</td>'+
+										'<td class="carousel"><input type="checkbox" rel="'+articleId+'" /></td>'+
+										'<td class="is-published"><input type="checkbox" rel="'+articleId+'"  /></td>'+
+										'<td id="article-published-'+articleId+'">'+$('#never').val()+'</td>'+
+									   '</tr>';
+									   
+						$('#articles-table tbody').prepend(tableRow);
+					}
+					else {
+						bootbox.alert("An error occured. Please try again!");
+					}
+				},
+				error: function(result) {					
+					bootbox.alert("An error occured. Please try again!");
+				}
+			});
+		}
+	});
+	
+	$('#update-article').on('click', function(){
+		var articleId = $('.article-id').val();
+		var articleTitle = $('#article-title').val();
+		var articleShortDesc = $('#article-short-desc').val();
+		var articleLongDesc = $('#article-long-desc').val();
+		var articleSourceLabel = $('#article-source-label').val();
+		var articleSourceLink = $('#article-source-link').val();
+		var articleCarouselLabel = $('#article-carousel-label').val();
+		
+		$.ajax({
+			url: '/admin/articles/edit',
+			type: 'post',
+			cache: false,
+			data: {
+				articleId: articleId,
+				articleTitle: articleTitle,
+				articleShortDesc: articleShortDesc,
+				articleLongDesc: articleLongDesc,
+				articleSourceLabel: articleSourceLabel,
+				articleSourceLink: articleSourceLink,
+				articleCarouselLabel: articleCarouselLabel
+			},
+			dataType: 'text',
+			success: function(result) {
+				$('#editArticleModal').modal('hide');
+				if(result != 'error') {
+					$('#article-title-'+articleId).html(result);
+				}
+				else {
+					bootbox.alert("An error occured. Please try again!");
+				}
+			},
+			error: function(result) {					
+				bootbox.alert("An error occured. Please try again!");
+			}
+		});
+	});
+	
+	var options = {
+		success: function(result) {
+			$('#editArticleModal').modal('hide');
+			showImageResult(result);
+		},
+		error: function(result) {
+			$('#editArticleModal').modal('hide');
+			bootbox.alert('<span style="color:#AA0000;">ERROR: unable to upload file.</span>');
+		}
+	};
+	
+	$("#small-image-form").ajaxForm(options);
+	$("#carousel-image-form").ajaxForm(options);
+					
+	$("#small-image").change(function() {
+		smallImage = this.files[0];
+		smallImageType = smallImage.type;
+	});
+	
+	$("#carousel-image").change(function() {
+		carouselImage = this.files[0];
+		carouselImageType = carouselImage.type;
+	});
+	
+	$('#update-small-image').on('click', function() {
+		if(smallImageType == 'image/png' || smallImageType == 'image/jpg' || smallImageType == 'image/jpeg') {
+			$('#small-image-form').submit();
+		}
+		else {
+			bootbox.alert('Please check the file types allowed.');
+		}
+	});
+	
+	$('#update-carousel-image').on('click', function() {
+		if(carouselImageType == 'image/png' || carouselImageType == 'image/jpg' || carouselImageType == 'image/jpeg') {
+			$('#carousel-image-form').submit();
+		}
+		else {
+			bootbox.alert('Please check the file types allowed.');
+		}
+	});
+	
+	function showImageResult(result) {
+		switch (result) {
+			case '0':
+				bootbox.alert('<span style="color:#00AA00;">File successfully uploaded.</span>');
+				break;
+			case '1':
+				bootbox.alert('<span style="color:#AA0000;">ERROR: undefined file type (carousel/small).</span>');
+				break;
+			case '2':
+				bootbox.alert('<span style="color:#AA0000;">ERROR: image error. Maybe the file is corrupted.</span>');
+				break;
+			case '3':
+				bootbox.alert('<span style="color:#AA0000;">ERROR: make sure that the file\'s type is allowed and it is smaller than 2 MB.</span>');
+				break;
+			default:
+				bootbox.alert('<span style="color:#00AA00;">File successfully uploaded.</span>');
+				break;
+		}
 	}
 });

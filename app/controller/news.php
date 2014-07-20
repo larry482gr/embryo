@@ -36,6 +36,9 @@ class ControllerNews extends Controller {
 			
 		$this->data['article'] = $this->model_article->find($article_id);
 		
+		if(!$this->data['article'])
+			return $this->response->redirect('error/not_found');
+		
 		$this->document->addStyle('news');
 		$this->document->addStyle('left_part');
 		

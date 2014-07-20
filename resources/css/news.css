@@ -21,7 +21,7 @@ h4#news-archive {
 	display: none;
 }
 
-ul {
+ul.no-style {
 	list-style: none;
 }
 
@@ -80,6 +80,7 @@ dd {
 	float: left;
 	margin-right: 10px;
 	margin-bottom: 20px;
+	margin-top: 6px;
 }
 
 .read-more:hover {
@@ -91,10 +92,4 @@ dd {
 div.article {
 	padding: 0px !important;
 	margin-bottom: 40px !important;
-}
-
-.article-img {
-	vertical-align: top !important;
-	float: left;
-	margin-right: 10px;
 }

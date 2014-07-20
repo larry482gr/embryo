@@ -27,7 +27,7 @@
 						        	'.$picture.'
 									<div class="carousel-caption">
 									  <h4>'.$item['title'].'</h4>
-									  <p>'.$item['short_desc'].'</p>
+									  <p>'.$item['carousel_label'].'</p>
 									</div></a>
 								  </div>';
 	       	  }

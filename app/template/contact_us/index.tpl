@@ -52,14 +52,14 @@
 	  	<div class="col-md-5 col-sm-5">
 	  	  <div class="contact-info">
 	  	    <div><span class="glyphicon glyphicon-user"></span>Ε. Συμεωνίδου – Καστανίδου</div>
-	  	    <div><span class="glyphicon glyphicon-briefcase"></span>Νομική Σχολή ΑΠΘ, γρ. 205</div>
+	  	    <div><span class="glyphicon glyphicon-briefcase"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο">Νομική Σχολή ΑΠΘ, γρ. 205</a></div>
 	  	    <div><span class="glyphicon glyphicon-phone-alt"></span>Τηλ: <a href="tel:+302310996496">2310 996496</a> / <a href="tel:+302310344308">344308</a></div>
 	  	    <div><span class="glyphicon glyphicon-print"></span>Φαξ: 2310 996494</div>
 	  	    <div><span class="glyphicon glyphicon-envelope"></span><a href="mailto:kastan@law.auth.gr">kastan@law.auth.gr</a></div>
 	  	  </div>
 	  	  <div class="contact-info">
 	  	    <div><span class="glyphicon glyphicon-user"></span>B. Ταρλατζής</div>
-	  	    <div><span class="glyphicon glyphicon-briefcase"></span>Σχολή Επιστημών Υγείας AΠΘ</div>
+	  	    <div><span class="glyphicon glyphicon-briefcase"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο">Σχολή Επιστημών Υγείας AΠΘ</a></div>
 	  	    <div><span class="glyphicon glyphicon-phone-alt"></span>Τηλ: <a href="tel:+302310991182">2310 991182</a></div>
 	  	    <div><span class="glyphicon glyphicon-envelope"></span><a href="mailto:tarlatzis@gmail.com">tarlatzis@gmail.com</a></div>
 	  	  </div>

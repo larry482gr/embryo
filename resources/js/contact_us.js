@@ -1,6 +1,17 @@
 var tempLength = -1;
 
-$(document).ready(function(){
+$(document).ready(function() {
+	$('.geo-link').on('click', function(e){
+		if (!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){
+			e.preventDefault();
+			window.open('https://www.google.gr/maps/search/'+$(this).attr('href'), '_blank');
+		}
+		else if(navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+			e.preventDefault();
+			window.open('maps'+$(this).attr('href').substring(3), '_blank');
+		}
+	});
+	
 	$('.container').on('focus', '#message', function() {
 		if($('#message').val().length == 0)
 			$('#message').val($('#message-placeholder').val());

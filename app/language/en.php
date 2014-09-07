@@ -135,6 +135,10 @@
 	$language['form']['passRecSys'] = 'Password Recovery System';
 	$language['form']['or'] = 'OR';
 	$language['form']['recover'] = 'Recover';
+	$language['form']['recoverOneFieldError'] = 'Please fill in only your email OR username and leave the other field empty.';
+	$language['form']['recoverEmailNotFound'] = 'The email you entered was not found in our database. Please try again and if the error persists <a href=\'mailto:lakazantzis@gmail.com\'>contact the website administrator</a> providing as much information as possible (for example First name, Last name, username, email) for the best possible service.';
+	$language['form']['recoverEmailNotFound'] = 'The username you entered was not found in our database. Please try again and if the error persists <a href=\'mailto:lakazantzis@gmail.com\'>contact the website administrator</a> providing as much information as possible (for example First name, Last name, username, email) for the best possible service.';
+	$language['form']['recoverSuccess'] = 'Your password has been reset. An email has been sent to the email address you provided when you registered with instructions to complete your password recovery.';
 	$language['form']['noAccount'] = 'Don\'t have an account yet?';
 	$language['form']['loginError'] = 'Your username or password are probably wrong.';
 	$language['form']['notActive'] = 'You have not yet activated your account. Please follow the instructions in the activation email you received.';

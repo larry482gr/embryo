@@ -51,8 +51,20 @@
 	font-size: 11px;
 }
 
-.no-account {
+.pass-reset {
 	margin-top: 20px;
+}
+
+#or {
+	margin-bottom: 15px;
+}
+
+#pass-reset-error {
+	display: none;
+}
+
+.no-account {
+	margin-top: 10px;
 }
 
 .no-account a:hover {

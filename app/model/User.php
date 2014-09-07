@@ -6,6 +6,17 @@
 			return $result->row;
 		}
 		
+		public function findUserByOrCondition($user) {
+			$whereClause = "";
+			foreach($user as $key => $value) {
+				$whereClause .= $key." = '".$value."' OR ";
+			}
+			$whereClause = substr($whereClause, 0, -3);
+			$query = "SELECT user.*, info.* FROM users AS user, user_infos AS info WHERE (".$whereClause.") AND user.id = info.user_id";
+			$result = $this->db->query($query);
+			return $result->row;
+		}
+		
 		public function registerUser($user) {
 			$username = $this->db->escape($user['uname']);
 			$email = $this->db->escape($user['email']);
@@ -96,6 +107,14 @@
 			$id = $this->db->escape($id);
 			$pass = $this->db->escape($pass);
 			$query = "UPDATE users SET password = '".sha1($pass)."' WHERE id = ".$id;
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function resetPass($user) {
+			$username = $this->db->escape($user['uname']);
+			$email = $this->db->escape($user['email']);
+			$query = "UPDATE users SET password = '".sha1($user['pass'])."' WHERE username = '".$username."' OR email = '".$email."'";
 			$this->db->query($query);
 			return $this->db->countAffected();
 		}

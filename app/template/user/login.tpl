@@ -27,7 +27,10 @@
 		  <div class="form-group">
 		    <div class="col-md-offset-4 col-md-5">
 		      <button type="submit" class="btn btn-primary"><?php echo $form['login']; ?></button>
-		      <div class="no-account ">
+		      <div class="pass-reset">
+		        <a href="<?php echo '/'.$lang.'/user/pass_reset/' ?>"><?php echo $form['forgotPass']; ?></a>
+			  </div>
+		      <div class="no-account">
 			    <div class="pull-left">
 			      <?php echo $form['noAccount']; ?>
 			    </div>

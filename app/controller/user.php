@@ -378,6 +378,57 @@ class ControllerUser extends Controller {
 		}
 	}
 	
+	public function pass_reset() {
+		$lang_id = $this->language->getCurrentLanguageId();
+		$this->data['lang'] = $this->language->getCurrentLanguage();
+		$this->data['form'] = $this->language->getLanguage('form');
+		$username = isset($this->request->post['user']['uname']) ? $this->request->post['user']['uname'] : '';
+		$email = isset($this->request->post['user']['email']) ? $this->request->post['user']['email'] : '';
+		
+		if (!empty($username) || !empty($email)) {
+			$pass = $this->createToken(8);
+			$user = array('uname' => $username, 'email' => $email, 'pass' => $pass);
+			$this->load->model('user');
+			$affectedRows = $this->model_user->resetPass($user);
+			
+			if($affectedRows > 0) {
+				// $this->data['recoverResult'] = 1;
+				$user = $this->model_user->findUserByOrCondition(array('username' => $username, 'email' => $email));
+				$to      = $user['email'];
+				$subject = 'Password reset notification.';
+				$message  = '<h3>Your account\'s password at <a href="http://repro.law.auth.gr">repro.law.auth.gr</a> has been reset.</h3>';
+				$message .= '<div>Your username is: <b>'.$user['username'].'</b></div>';
+				$message .= '<div>Your new password is: <b>'.$pass.'</b></div>';
+				$message .= '<div style="margin-top: 12px;">For security reasons it is recommended to login and change this password through your profile page.</div>';
+				// To send HTML mail, the Content-type header must be set
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+							
+				// Additional headers
+				$headers .= 'From: no-reply@repro.law.auth.gr' . "\r\n";
+				$headers .= 'X-Mailer: PHP/' . phpversion();
+							
+				if(mail($to, $subject, $message, $headers))
+					$this->data['recoverResult'] = 1;
+				else
+					$this->data['recoverResult'] = 0;
+			}
+			else
+				$this->data['recoverResult'] = 0;
+		}
+				
+		$this->document->addStyle('user');
+		$this->document->addScript('user');
+		$this->document->addStyle('left_part');
+		
+		// Assign header/footer to children object
+		$this->children = array('header', 'footer', 'left_part');
+		
+		// Assign at template object the tpl
+		$this->template = 'user/pass_reset.tpl';
+		$this->response->setOutput($this->render());
+	}
+	
 	public function check_username() {
 		$username = $this->request->post['username'];
 		$this->load->model('user');

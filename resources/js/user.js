@@ -23,13 +23,24 @@ $(document).ready(function(){
 	});
 	
 	$('#email').on('blur', function() {
-		checkEmail($(this).val());
+		if(typeof $('#pass-one-field-error').val() === "undefined")
+			checkEmail($(this).val());
 		email_modify = true;
 	});
 	
 	$('#email').on('keyup', function() {
 		if(email_modify)
 			checkEmail($(this).val());
+	});
+	
+	$('#username, #email').on('focus', function() {
+		if(typeof $('#pass-one-field-error').val() !== "undefined") {
+			username_modify = false;
+			email_modify = false;
+			$('#pass-reset-error').hide();
+			$('#pass-reset-success').hide();
+			$('#pass-reset-fail').hide();
+		}
 	});
 	
 	$('#confirm-pass').on('keyup', function() {
@@ -154,6 +165,49 @@ $(document).ready(function(){
 		});
 	});
 	
+	$('#pass-reset-btn').on('click', function() {
+		if($('#username').val().length > 0 && $('#email').val().length > 0) {
+			$('#pass-reset-error').html($('#pass-one-field-error').val());
+			$('#pass-reset-error').show();
+		}
+		else {
+			checkUsername($('#username').val());
+			if($('#email').val().length > 0 && !validateEmail($('#email').val())) {
+				$('#email').css('border-color', '#FF0000');
+				$('#email-error').slideDown('fast');
+				
+				$('.container').on('focus', '#email', function() {
+					if($('#email-error').is(":visible"))
+						$('#email-error').slideUp('fast');
+					$(this).css('border-color', '#66afe9');
+				});
+					
+				$('.container').on('focusout', '#email', function() {
+					$(this).css('border-color', '#CCCCCC');
+				});
+			}
+			else
+				checkEmail($('#email').val());
+		}
+	});
+	
+	function checkPassRecover() {
+		if(username_exists || email_exists) {
+			$('#pass-reset-btn').attr('disabled', true);
+			$('#pass-reset-form').submit();
+		}
+		else {
+			if($('#email').val().length > 0) {
+				$('#pass-reset-error').html($('#pass-email-not-found-error').val());
+				$('#pass-reset-error').show();
+			}
+			else if($('#username').val().length > 0) {
+				$('#pass-reset-error').html($('#pass-username-not-found-error').val());
+				$('#pass-reset-error').show();
+			}
+		}
+	}
+	
 	function checkUsername(username) {
 		$.post('/'+$('#lang').val()+'/user/check_username',
 		  { username: username })
@@ -187,6 +241,9 @@ $(document).ready(function(){
 				$('#email-availability span').css('color', '#AA0000');
 				email_exists = true;
 			}
+			
+			if(typeof $('#pass-one-field-error').val() !== "undefined")
+				checkPassRecover();
 		});
 	}
 	
@@ -219,7 +276,6 @@ $(document).ready(function(){
 			error: function(result) {
 				bootbox.alert("Something bad happened!");
 			}
-			
 		});
 	}
 });

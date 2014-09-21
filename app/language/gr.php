@@ -60,6 +60,11 @@
 	
 	// Events
 	$language['events']['pageTitle'] = 'Εκδηλώσεις';
+	$language['events']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις';
+	
+	// Publicity
+	$language['publicity']['pageTitle'] = 'Δημοσιότητα';
+	$language['publicity']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις';
 	
 	// Links
 	$language['links']['pageTitle'] = 'Σύνδεσμοι';
@@ -104,6 +109,20 @@
 	
 	// Members Login
 	$language['membersLogin']['pageTitle'] = 'Είσοδος Μελών';
+	
+	// Survey
+	$language['surveyLang']['pageTitle'] = 'Ερωτηματολόγια';
+	$language['surveyLang']['createPageTitle'] = 'Δημιουργία Νέου Ερωτηματολογίου';
+	$language['surveyLang']['title'] = 'Τίτλος';
+	$language['surveyLang']['alias'] = 'Σελίδα αναφοράς';
+	$language['surveyLang']['surveyType'] = 'Τύπος Ερωτηματολογίου';
+	$language['surveyLang']['surveyPublic'] = 'Δημόσιο';
+	$language['surveyLang']['surveyPrivate'] = 'Ιδιωτικό';
+	$language['surveyLang']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις';
+	$language['surveyLang']['createSurvey'] = 'Δημιουργία Νέου Ερωτηματολογίου';
+	$language['surveyLang']['addCategory'] = 'Προσθήκη Νέας Ενότητας';
+	$language['surveyLang']['addSubcategory'] = 'Προσθήκη Νέας Υποενότητας';
+	
 	
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';

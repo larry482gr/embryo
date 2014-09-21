@@ -6,6 +6,7 @@ class ControllerAdminDashboard extends Controller {
 			return $this->response->redirect('/admin');
 		}
 		
+		$this->data['lang'] = $this->language->getCurrentLanguage();
 		$this->data['user']['id'] = $this->session->data['user']['id'];
 		$this->data['user']['name'] = $this->session->data['user']['name'];
 		

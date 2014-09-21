@@ -1,5 +1,5 @@
 <?php
-class ControllerEvents extends Controller {
+class ControllerPublicity extends Controller {
 	public function index($args = false) {
 		if($args) {
 			return $this->getEvent($args);
@@ -7,10 +7,10 @@ class ControllerEvents extends Controller {
 		else {
 			$lang_id = $this->language->getCurrentLanguageId();
 			$this->data['lang'] = $this->language->getCurrentLanguage();
-			$this->data['eventLang'] = $this->language->getLanguage('events');
+			$this->data['eventLang'] = $this->language->getLanguage('publicity');
 			
 			$this->load->model('event');
-			$this->data['events'] = $this->model_event->findAllEvents(1, $lang_id);
+			$this->data['events'] = $this->model_event->findAllEvents(0, $lang_id);
 			
 			$this->document->addStyle('events');
 			// $this->document->addScript('events');

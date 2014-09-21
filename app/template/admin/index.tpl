@@ -23,6 +23,7 @@
 		      <input type="password" class="form-control" id="password" name="admin[pass]" placeholder="<?php echo $form['password']; ?>">
 		    </div>
 		  </div>
+		  <!--
 		  <div class="form-group">
 		    <div class="col-md-offset-4 col-md-4">
 		      <div class="checkbox">
@@ -32,6 +33,7 @@
 		      </div>
 		    </div>
 		  </div>
+		  -->
 		  <div class="form-group">
 		    <div class="col-md-offset-4 col-md-4">
 		      <button type="submit" class="btn btn-primary"><?php echo $form['login']; ?></button>

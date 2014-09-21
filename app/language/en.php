@@ -60,6 +60,11 @@
 	
 	// Events
 	$language['events']['pageTitle'] = 'Events';
+	$language['events']['noResults'] = 'No Results';
+	
+	// Publicity
+	$language['publicity']['pageTitle'] = 'Publicity';
+	$language['publicity']['noResults'] = 'No Results';
 	
 	// Links
 	$language['links']['pageTitle'] = 'Links';
@@ -104,6 +109,19 @@
 	
 	// Members Login
 	$language['membersLogin']['pageTitle'] = 'Members Login';
+	
+	// Survey
+	$language['surveyLang']['pageTitle'] = 'Surveys';
+	$language['surveyLang']['createPageTitle'] = 'Create New Survey';
+	$language['surveyLang']['title'] = 'Title';
+	$language['surveyLang']['alias'] = 'Reference tab';
+	$language['surveyLang']['surveyType'] = 'Survey Type';
+	$language['surveyLang']['surveyPublic'] = 'Public';
+	$language['surveyLang']['surveyPrivate'] = 'Private';
+	$language['surveyLang']['noResults'] = 'No Results';
+	$language['surveyLang']['createSurvey'] = 'Create New Survey';
+	$language['surveyLang']['addCategory'] = 'Add New Category';
+	$language['surveyLang']['addSubcategory'] = 'Add New Subcategory';
 	
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';

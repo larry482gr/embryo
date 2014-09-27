@@ -13,5 +13,20 @@
 			$this->db_survey->query($query);
 			return $this->db_survey->getLastId();
 		}
+		
+		public function createSurveyCategory($surveyId, $categoryLabel) {
+			$query = "INSERT INTO categories (survey_id, label)
+					  VALUES (".$surveyId.", '".$categoryLabel."')";
+			$this->db_survey->query($query);
+			return $this->db_survey->getLastId();
+		}
+		
+		public function createSurveySubcategory($surveyCatId, $subcategoryHeader, $subcategoryLabel) {
+			$subcategoryHeader = empty($subcategoryHeader) ? 'NULL' : "'".$subcategoryHeader."'";
+			$query = "INSERT INTO subcategories (cat_id, header, label)
+					  VALUES (".$surveyCatId.", ".$subcategoryHeader.", '".$subcategoryLabel."')";
+			$this->db_survey->query($query);
+			return $this->db_survey->getLastId();
+		}
 	}
 ?>

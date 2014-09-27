@@ -113,15 +113,19 @@
 	// Survey
 	$language['surveyLang']['pageTitle'] = 'Surveys';
 	$language['surveyLang']['createPageTitle'] = 'Create New Survey';
-	$language['surveyLang']['title'] = 'Title';
+	$language['surveyLang']['title'] = 'Survey Title';
 	$language['surveyLang']['alias'] = 'Reference tab';
 	$language['surveyLang']['surveyType'] = 'Survey Type';
 	$language['surveyLang']['surveyPublic'] = 'Public';
 	$language['surveyLang']['surveyPrivate'] = 'Private';
 	$language['surveyLang']['noResults'] = 'No Results';
 	$language['surveyLang']['createSurvey'] = 'Create New Survey';
-	$language['surveyLang']['addCategory'] = 'Add New Category';
-	$language['surveyLang']['addSubcategory'] = 'Add New Subcategory';
+	$language['surveyLang']['addCategory'] = 'Add Category';
+	$language['surveyLang']['addSubcategory'] = 'Add Subcategory';
+	$language['surveyLang']['addQuestion'] = 'Add Question';
+	$language['surveyLang']['categoryLabel'] = 'Category Title';
+	$language['surveyLang']['subcategoryHeader'] = 'Subcategory Header (optional)';
+	$language['surveyLang']['subcategoryLabel'] = 'Subcategory Title';
 	
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';

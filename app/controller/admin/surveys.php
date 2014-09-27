@@ -56,68 +56,37 @@ class ControllerAdminSurveys extends Controller {
 		
 		// If statement should not be here after the full implementation.
 		if(isset($survey['category'])) {
-			foreach($survey['category'] as $category) {
-				$this->createCategory($surveyId, $category, $survey);
+			foreach($survey['category'] as $cat_id => $cat_value) {
+				$this->createCategory($surveyId, $cat_id, $cat_value, $survey);
 			}
 		}
-		
 		
 		$this->response->redirect('/'.$lang.'/admin/surveys'); 
 	}
 	
-	private function createCategory($surveyId, $category, $survey) {
-		$categoryLabel = $this->db_survey->escape($category['label']);
+	private function createCategory($surveyId, $cat_id, $cat_value, $survey) {
+		$categoryLabel = $this->db_survey->escape($cat_value);
 		$surveyCatId = $this->model_survey->createSurveyCategory($surveyId, $categoryLabel);
 		
 		// Check this after the UI (form) implementation.
-		if(isset($survey['subcategory'])) {
-			foreach($survey['subcagory'] as $subcategory) {
-				$this->createSubcategory($surveyCatId, $survey);
+		if(isset($survey['subcategory'][$cat_id])) {
+			foreach($survey['subcategory'][$cat_id] as $sub_id => $sub_value) {
+				$this->createSubcategory($surveyCatId, $cat_id, $sub_id, $sub_value, $survey);
 			}
 		}
 	}
 	
-	/*
-	public function createCategory() {
-		if(!$this->right->canViewAdminPanel()) {
-			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
-			return $this->response->redirect('/admin');
+	private function createSubcategory($surveyCatId, $cat_id, $sub_id, $sub_value, $survey) {
+		$subcategoryHeader = $this->db_survey->escape($sub_value['header']);
+		$subcategoryLabel = $this->db_survey->escape($sub_value['label']);
+		$surveySubcatId = $this->model_survey->createSurveySubcategory($surveyCatId, $subcategoryHeader, $subcategoryLabel);
+		
+		// Check this after the UI (form) implementation.
+		if(isset($survey['question'][$cat_id][$sub_id])) {
+			foreach($survey['question'][$cat_id][$sub_id] as $quest_id => $quest_value) {
+				$this->createQuestion($surveySubcatId, $quest_id, $quest_value, $survey);
+			}
 		}
-		
-		$link_cat = array('label' => '', 'lang_id' => 2, 'position' => null, 'is_active' => 1);
-		$link_cat['label'] = $this->db->escape($this->request->post['link_cat']['label']);
-		$link_cat['lang_id'] = $this->db->escape($this->request->post['link_cat']['lang_id']);
-		$link_cat['position'] = empty($this->request->post['link_cat']['position']) ? null : $this->db->escape($this->request->post['link_cat']['position']);
-		$link_cat['is_active'] = $this->db->escape($this->request->post['link_cat']['is_active']) == 'on' ? 1 : 0;
-		
-		$this->load->model('link');
-		$lastId = $this->model_link->createLinkCategory($link_cat);
-		
-		if(is_numeric($lastId))
-			return $this->response->redirect('/admin/links');
 	}
-	
-	public function createLink() {
-		if(!$this->right->canViewAdminPanel()) {
-			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
-			return $this->response->redirect('/admin');
-		}
-		
-		$link = array('cat_id' => '', 'header' => '', 'prepend_text' => '', 'link_url' => '', 'link_label' => '', 'append_text' => '', 'is_group' => '');
-		$link['cat_id'] = $this->db->escape($this->request->post['link']['cat_id']);
-		$link['header'] = $this->db->escape($this->request->post['link']['header']);
-		$link['prepend_text'] = $this->db->escape($this->request->post['link']['prepend_text']);
-		$link['link_url'] = $this->db->escape($this->request->post['link']['link_url']);
-		$link['link_label'] = $this->db->escape($this->request->post['link']['link_label']);
-		$link['append_text'] = $this->db->escape($this->request->post['link']['append_text']);
-		$link['is_group'] = isset($this->request->post['link']['is_group']) && $this->db->escape($this->request->post['link']['is_group']) == 'on' ? 1 : 0;
-		
-		$this->load->model('link');
-		$lastId = $this->model_link->createLink($link);
-		
-		if(is_numeric($lastId))
-			return $this->response->redirect('/admin/links');
-	}
-	*/
 }
 ?>

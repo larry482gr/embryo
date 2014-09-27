@@ -113,16 +113,19 @@
 	// Survey
 	$language['surveyLang']['pageTitle'] = 'Ερωτηματολόγια';
 	$language['surveyLang']['createPageTitle'] = 'Δημιουργία Νέου Ερωτηματολογίου';
-	$language['surveyLang']['title'] = 'Τίτλος';
+	$language['surveyLang']['title'] = 'Τίτλος Ερωτηματολογίου';
 	$language['surveyLang']['alias'] = 'Σελίδα αναφοράς';
 	$language['surveyLang']['surveyType'] = 'Τύπος Ερωτηματολογίου';
 	$language['surveyLang']['surveyPublic'] = 'Δημόσιο';
 	$language['surveyLang']['surveyPrivate'] = 'Ιδιωτικό';
 	$language['surveyLang']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις';
 	$language['surveyLang']['createSurvey'] = 'Δημιουργία Νέου Ερωτηματολογίου';
-	$language['surveyLang']['addCategory'] = 'Προσθήκη Νέας Ενότητας';
-	$language['surveyLang']['addSubcategory'] = 'Προσθήκη Νέας Υποενότητας';
-	
+	$language['surveyLang']['addCategory'] = 'Προσθήκη Ενότητας';
+	$language['surveyLang']['addSubcategory'] = 'Προσθήκη Υποενότητας';
+	$language['surveyLang']['addQuestion'] = 'Προσθήκη Ερωτήματος';
+	$language['surveyLang']['categoryLabel'] = 'Τίτλος Ενότητας';
+	$language['surveyLang']['subcategoryHeader'] = 'Επικεφαλίδα Υποενότητας (προαιρετικά)';
+	$language['surveyLang']['subcategoryLabel'] = 'Τίτλος Υποενότητας';
 	
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';

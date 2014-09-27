@@ -10,3 +10,23 @@
 #submit-survey {
 	margin-top: 20px;
 }
+
+.category-div {
+	display: none;
+}
+
+.subcategory-div {
+	display: none;
+}
+
+.subcategory-header {
+	margin-bottom: 6px;
+}
+
+.active-header {
+	cursor: pointer;
+}
+
+.active-header > span {
+	color: #555;
+}

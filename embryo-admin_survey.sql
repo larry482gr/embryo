@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.8
+-- version 4.0.4.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 30, 2014 at 03:04 PM
--- Server version: 5.6.14
--- PHP Version: 5.4.30
+-- Generation Time: Sep 30, 2014 at 09:31 PM
+-- Server version: 5.6.13
+-- PHP Version: 5.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,22 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `embryo-admin_survey`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `answer_options`
---
-
-CREATE TABLE IF NOT EXISTS `answer_options` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `question_id` int(11) NOT NULL,
-  `answer_options` varchar(1024) COLLATE utf8_unicode_ci NOT NULL,
-  `has_other` tinyint(1) NOT NULL DEFAULT '0',
-  `has_comment` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `question_id` (`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+CREATE DATABASE IF NOT EXISTS `embryo-admin_survey` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `embryo-admin_survey`;
 
 -- --------------------------------------------------------
 
@@ -62,6 +48,9 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `question_type` int(11) NOT NULL,
   `text` varchar(1024) COLLATE utf8_unicode_ci NOT NULL,
   `help` text COLLATE utf8_unicode_ci,
+  `answer_options` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `has_other` tinyint(1) NOT NULL DEFAULT '0',
+  `has_comment` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `subcat_id` (`subcat_id`),
   KEY `question_type` (`question_type`)
@@ -78,7 +67,17 @@ CREATE TABLE IF NOT EXISTS `question_types` (
   `codename` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `question_types`
+--
+
+INSERT INTO `question_types` (`id`, `codename`, `description`) VALUES
+(1, 'radio', 'Multiple Choice (Single Answer)'),
+(2, 'check', 'Multiple Choice (Multiple Answer)'),
+(3, 'textarea', 'Input'),
+(4, 'input', 'Multiple Input');
 
 -- --------------------------------------------------------
 
@@ -132,12 +131,6 @@ CREATE TABLE IF NOT EXISTS `survey_answers` (
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `answer_options`
---
-ALTER TABLE `answer_options`
-  ADD CONSTRAINT `FKEY_QUESTION_ID` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `categories`

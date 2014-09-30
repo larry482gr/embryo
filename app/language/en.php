@@ -126,6 +126,13 @@
 	$language['surveyLang']['categoryLabel'] = 'Category Title';
 	$language['surveyLang']['subcategoryHeader'] = 'Subcategory Header (optional)';
 	$language['surveyLang']['subcategoryLabel'] = 'Subcategory Title';
+	$language['surveyLang']['questionText'] = 'Question';
+	$language['surveyLang']['questionHelp'] = 'Question clarification (optional)';
+	$language['surveyLang']['questionType'] = 'Select a question type...';
+	$language['surveyLang']['answerOptions'] = 'Possible answers';
+	$language['surveyLang']['answerOptionsHelp'] = 'Write each possible answer in a new line';
+	$language['surveyLang']['hasOther'] = 'Has "other" input field?';
+	$language['surveyLang']['hasComment'] = 'Has "comment" text area?';
 	
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';

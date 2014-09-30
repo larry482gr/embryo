@@ -51,6 +51,7 @@ class ControllerHeader extends Controller {
 		
 		$this->document->addStyle("libraries/bootstrap.min");
 		$this->document->addStyle("libraries/jquery-ui-1.10.4.custom.min");
+		$this->document->addStyle("libraries/metronic");
 		$this->document->addStyle("header");
 		$this->document->addScript("header");
 		

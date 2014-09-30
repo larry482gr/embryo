@@ -28,9 +28,17 @@
 	</div>
 	<input type="hidden" id="lang_id" value="<?php echo $lang_id; ?>" />
 	<input type="hidden" id="lang" value="<?php echo $lang; ?>" />
+	<input type="hidden" id="question-types" value='<?php echo $question_types; ?>' />
 	<input type="hidden" id="addSubcategory" value="<?php echo $surveyLang['addSubcategory']; ?>" />
 	<input type="hidden" id="addQuestion" value="<?php echo $surveyLang['addQuestion']; ?>" />
 	<input type="hidden" id="categoryLabel" value="<?php echo $surveyLang['categoryLabel']; ?>" />
 	<input type="hidden" id="subcategoryHeader" value="<?php echo $surveyLang['subcategoryHeader']; ?>" />
 	<input type="hidden" id="subcategoryLabel" value="<?php echo $surveyLang['subcategoryLabel']; ?>" />
+	<input type="hidden" id="questionText" value="<?php echo $surveyLang['questionText']; ?>" />
+	<input type="hidden" id="questionHelp" value="<?php echo $surveyLang['questionHelp']; ?>" />
+	<input type="hidden" id="questionType" value="<?php echo $surveyLang['questionType']; ?>" />
+	<input type="hidden" id="answerOptions" value="<?php echo $surveyLang['answerOptions']; ?>" />
+	<input type="hidden" id="answerOptionsHelp" value="<?php echo $surveyLang['answerOptionsHelp']; ?>" />
+	<input type="hidden" id="hasOther" value='<?php echo $surveyLang['hasOther']; ?>' />
+	<input type="hidden" id="hasComment" value='<?php echo $surveyLang['hasComment']; ?>' />
 <?php echo $footer; ?>

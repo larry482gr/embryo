@@ -11,16 +11,30 @@
 	margin-top: 20px;
 }
 
-.category-div {
+.category-div, .subcategory-div, .question-div, .answer-options-div {
 	display: none;
 }
 
-.subcategory-div {
-	display: none;
+.answer-options-div {
+	margin-top: 6px;
 }
 
-.subcategory-header {
+.subcategory-div > ul > li {
+	background-color: #D1E3F2;
+}
+
+.question-div > ul > li {
+	background-color: #FBEBD4;
+}
+
+.subcategory-header, .question-textarea {
 	margin-bottom: 6px;
+}
+
+.question-textarea {
+	min-width: 100%;
+	max-width: 100%;
+	max-height: 160px;
 }
 
 .active-header {
@@ -28,5 +42,51 @@
 }
 
 .active-header > span {
-	color: #555;
+	color: #333;
+}
+
+.glyphicon-remove {
+	color: #A00 !important;
+	cursor: pointer;
+	top: 2px !important;
+}
+
+.minimized {
+	font-size: 10px !important;
+	font-weight: normal !important;
+	cursor: pointer;
+	display: block;
+}
+
+label {
+-webkit-transition: font 0.4s;
+   -moz-transition: font 0.4s;
+     -o-transition: font 0.4s;
+        transition: font 0.4s;
+}
+
+.question-btn > span {
+	display: none;
+	color: #666;
+	margin-left: 8px;
+}
+
+.question-type {
+	width: 230px !important;
+}
+
+.question-ans-help {
+	font-size: 11px;
+}
+
+.checkbox-label {
+	font-size: 13px;
+	margin-top: 4px;
+	margin-left: 6px;
+}
+
+.question-checkbox {
+	width: 15px !important;
+	height: 15px !important;
+	display: inline-block !important;
 }

@@ -6,6 +6,7 @@ class ControllerAdminHeader extends Controller {
 		$this->data['form'] = $this->language->getLanguage('form');
 		
 		$this->document->addStyle("libraries/bootstrap.min");
+		$this->document->addStyle("libraries/metronic");
 		$this->document->addStyle("header");
 		$this->document->addStyle("admin/header");
 		

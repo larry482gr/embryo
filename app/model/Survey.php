@@ -6,6 +6,12 @@
 			return $result->rows;
 		}
 		
+		public function findQuestionTypes() {
+			$query = "SELECT * FROM question_types";
+			$result = $this->db_survey->query($query);
+			return $result->rows;
+		}
+		
 		public function createSurvey($lang_id, $surveyTitle, $surveyAlias, $surveyIsPublic) {
 			$surveyAlias = empty($surveyAlias) ? 'NULL' : "'".$surveyAlias."'";
 			$query = "INSERT INTO surveys (title, lang_id, alias, is_public)

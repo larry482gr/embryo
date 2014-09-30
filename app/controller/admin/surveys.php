@@ -27,12 +27,16 @@ class ControllerAdminSurveys extends Controller {
 		$this->data['lang_id'] = $lang_id;
 		$this->data['lang'] = $this->language->getCurrentLanguage();
 		
-		if(isset($this->request->post['survey']))
+		if(isset($this->request->post['survey'])) {
 			return $this->createSurvey($this->data['lang'], $lang_id, $this->request->post['survey']);
+		}
 		
 		$this->data['form'] = $this->language->getLanguage('form');
 		$this->data['surveyLang'] = $this->language->getLanguage('surveyLang');
 		$this->data['languages'] = $this->language->getAvailableLanguages();
+		
+		$this->load->model('survey');
+		$this->data['question_types'] = json_encode($this->model_survey->findQuestionTypes());
 
 		$this->document->addStyle('admin/survey');
 		$this->document->addScript('admin/survey');
@@ -88,5 +92,8 @@ class ControllerAdminSurveys extends Controller {
 			}
 		}
 	}
+	
+	// $ans_3 = str_replace("<br />", ",", nl2br($survey['question'][0][0][0]['answer_options']));
+	// var_dump($ans_3);
 }
 ?>

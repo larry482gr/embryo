@@ -126,6 +126,13 @@
 	$language['surveyLang']['categoryLabel'] = 'Τίτλος Ενότητας';
 	$language['surveyLang']['subcategoryHeader'] = 'Επικεφαλίδα Υποενότητας (προαιρετικά)';
 	$language['surveyLang']['subcategoryLabel'] = 'Τίτλος Υποενότητας';
+	$language['surveyLang']['questionText'] = 'Ερώτηση';
+	$language['surveyLang']['questionHelp'] = 'Διευκρίνιση (προαιρετικά)';
+	$language['surveyLang']['questionType'] = 'Επιλέξτε τύπο ερώτησης...';
+	$language['surveyLang']['answerOptions'] = 'Πιθανές απαντήσεις';
+	$language['surveyLang']['answerOptionsHelp'] = 'Γράψτε κάθε πιθανή απάντηση σε νέα σειρά';
+	$language['surveyLang']['hasOther'] = 'Έχει πεδίο για επιλογή "άλλο";';
+	$language['surveyLang']['hasComment'] = 'Έχει περιοχή για επιλογή "προσδιορίστε";';
 	
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';

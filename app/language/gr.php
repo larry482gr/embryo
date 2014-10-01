@@ -129,6 +129,10 @@
 	$language['surveyLang']['questionText'] = 'Ερώτηση';
 	$language['surveyLang']['questionHelp'] = 'Διευκρίνιση (προαιρετικά)';
 	$language['surveyLang']['questionType'] = 'Επιλέξτε τύπο ερώτησης...';
+	$language['surveyLang']['radio'] = 'Πολλαπλής Επιλογής (Μία Απάντηση)';
+	$language['surveyLang']['check'] = 'Πολλαπλής Επιλογής (Πολλαπλές Απαντήσεις)';
+	$language['surveyLang']['textarea'] = 'Πεδίο Απάντησης';
+	$language['surveyLang']['input'] = 'Πολλαπλά Πεδία Απαντήσεων';
 	$language['surveyLang']['answerOptions'] = 'Πιθανές απαντήσεις';
 	$language['surveyLang']['answerOptionsHelp'] = 'Γράψτε κάθε πιθανή απάντηση σε νέα σειρά';
 	$language['surveyLang']['hasOther'] = 'Έχει πεδίο για επιλογή "άλλο";';

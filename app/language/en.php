@@ -129,6 +129,10 @@
 	$language['surveyLang']['questionText'] = 'Question';
 	$language['surveyLang']['questionHelp'] = 'Question clarification (optional)';
 	$language['surveyLang']['questionType'] = 'Select a question type...';
+	$language['surveyLang']['radio'] = 'Multiple Choice (Single Answer)';
+	$language['surveyLang']['check'] = 'Multiple Choice (Multiple Answer)';
+	$language['surveyLang']['textarea'] = 'User Input';
+	$language['surveyLang']['input'] = 'User Multiple Input';
 	$language['surveyLang']['answerOptions'] = 'Possible answers';
 	$language['surveyLang']['answerOptionsHelp'] = 'Write each possible answer in a new line';
 	$language['surveyLang']['hasOther'] = 'Has "other" input field?';

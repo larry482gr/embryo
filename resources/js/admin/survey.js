@@ -102,6 +102,10 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#submit-survey').on('click', function() {
+		$('#new-survey-form').submit();
+	});
+	
 	function addCategory(id) {
 		var category_div = '<div class="form-group category-div" id="category-div-'+id+'">'+
 				      		'<ul class="list-group">'+

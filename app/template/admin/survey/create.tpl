@@ -21,7 +21,7 @@
 		      <button id="add-category" class="btn btn-success" type="button"><span class="glyphicon glyphicon-plus"></span> <?php echo $surveyLang['addCategory']; ?></button>
 		    </div>
 		    <div class="form-group">
- 		      <button id="submit-survey" class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-save"></span> <?php echo $form['submit']; ?></button>
+ 		      <button id="submit-survey" class="btn btn-danger" type="button"><span class="glyphicon glyphicon-save"></span> <?php echo $form['submit']; ?></button>
 		    </div>
 		  </form>
 		</div>

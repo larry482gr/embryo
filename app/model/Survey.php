@@ -34,5 +34,11 @@
 			$this->db_survey->query($query);
 			return $this->db_survey->getLastId();
 		}
+		
+		public function createSurveyQuestion($surveySubcatId, $question) {
+			$query = "INSERT INTO questions (subcat_id, question_type, text, help, answer_options, has_other, has_comment)
+					  VALUES (".$surveySubcatId.", ".$question['type'].", ".$question['text'].", ".$question['help'].", ".$question['answer_options'].", ".$question['has_other'].", ".$question['has_comment'].")";
+			$this->db_survey->query($query);
+		}
 	}
 ?>

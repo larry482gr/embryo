@@ -25,7 +25,7 @@
 			    		$survey_type = $survey['is_public'] == 0 ? $surveyLang['surveyPrivate'] : $surveyLang['surveyPublic'];
 			    		$table_rows .= '<tr>';
 			    		$table_rows .= '<td class="center" rel="'.$survey['id'].'">'.$i++.'</td>';
-			    		$table_rows .= '<td id="survey-title-'.$survey['id'].'" rel="'.$survey['id'].'">'.$survey['title'].'</td>';
+			    		$table_rows .= '<td class="survey-title" id="survey-title-'.$survey['id'].'" rel="'.$survey['id'].'">'.$survey['title'].'</td>';
 			    		$table_rows .= '<td class="center" id="survey-alias-'.$survey['id'].'">'.$alias.'</td>';
 			    		$table_rows .= '<td class="center" id="survey-type-'.$survey['id'].'">'.$survey_type.'</td>';
 			    		$table_rows .= '</tr>';

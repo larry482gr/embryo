@@ -3,6 +3,14 @@
 	margin-top: 10px;
 }
 
+.survey-title {
+	cursor: pointer;
+}
+
+.survey-title:hover {
+	text-decoration: underline;
+}
+
 .center {
 	text-align: center;
 }

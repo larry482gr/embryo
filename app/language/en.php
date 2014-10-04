@@ -138,6 +138,9 @@
 	$language['surveyLang']['hasOther'] = 'Has "other" input field?';
 	$language['surveyLang']['hasComment'] = 'Has "comment" text area?';
 	
+	$language['showSurveyLang']['surveyProgress'] = 'Survey Progress';
+	$language['showSurveyLang']['submitSurvey'] = 'Submit Survey';
+	
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';
 	$language['form']['loginForm'] = 'Login Form';
@@ -223,4 +226,8 @@
 	// Dates
 	$monthArray = array(1 => 'January','February','March','April','May','June','July','August','September','October','November','December');
     $dayArray = array(0 => 'Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+    
+    // Paging
+    $language['paging']['previous'] = 'Previous Page';
+    $language['paging']['next'] = 'Next Page';
 ?>

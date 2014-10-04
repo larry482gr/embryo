@@ -11,14 +11,51 @@ class ControllerAdminSurveys extends Controller {
 		$this->load->model('survey');
 		$this->data['surveys'] = $this->model_survey->findAll($lang_id);
 
-		$this->document->addStyle('admin/survey');
-		$this->document->addScript('admin/survey');
+		$this->document->addStyle('admin/survey/create');
+		$this->document->addScript('admin/survey/create');
 		
 		// Assign header/footer to children object
 		$this->children = array('admin/dashboard', 'admin/footer');
 		
 		// Assign at template object the tpl
 		$this->template = 'admin/survey/index.tpl';
+		$this->response->setOutput($this->render());
+	}
+	
+	public function show($survey_id = false) {
+		$lang = $this->language->getCurrentLanguage();
+		if(!$survey_id) {
+			return $this->response->redirect('/'.$lang);
+		}
+		
+		$lang_id = $this->language->getCurrentLanguageId();
+		$this->data['lang_id'] = $lang_id;
+		$this->data['lang'] = $lang;
+		$this->data['showSurveyLang'] = $this->language->getLanguage('showSurveyLang');
+		$this->data['pagingLang'] = $this->language->getLanguage('paging');
+		
+		$this->load->model('survey');
+		$this->data['survey'] = $this->model_survey->findSurvey($survey_id);
+		$this->data['survey_categories'] = $this->model_survey->findSurveyCategories($survey_id);
+		$this->data['total_categories'] = count($this->data['survey_categories']);
+		$this->data['survey_subcategories'] = array();
+		foreach($this->data['survey_categories'] as $category) {
+			$this->data['survey_subcategories'][$category['id']] = $this->model_survey->findSurveySubcategories($category['id']);
+		}
+		$this->data['survey_questions'] = array();
+		foreach($this->data['survey_subcategories'] as $subcategories) {
+			foreach($subcategories as $subcategory)
+				$this->data['survey_questions'][$subcategory['id']] = $this->model_survey->findSurveyQuestions($subcategory['id']);
+		}
+
+		$this->document->addStyle('admin/survey/show');
+		$this->document->addScript('admin/survey/show');
+		
+		// Assign header/footer to children object
+		$this->children = array('admin/dashboard', 'admin/footer');
+		
+		// Assign at template object the tpl
+		$this->template = 'admin/survey/show.tpl';
 		$this->response->setOutput($this->render());
 	}
 	
@@ -48,8 +85,8 @@ class ControllerAdminSurveys extends Controller {
 		
 		$this->data['question_types'] = json_encode($question_types);
 
-		$this->document->addStyle('admin/survey');
-		$this->document->addScript('admin/survey');
+		$this->document->addStyle('admin/survey/create');
+		$this->document->addScript('admin/survey/create');
 		
 		// Assign header/footer to children object
 		$this->children = array('admin/dashboard', 'admin/footer');
@@ -108,7 +145,8 @@ class ControllerAdminSurveys extends Controller {
 		$help = trim($question['help']);
 		$question['help'] = empty($help) ? "NULL" : "'".nl2br($this->db_survey->escape($help))."'";
 		$question['type'] = $this->db_survey->escape($question['type']);
-		$question['answer_options'] = "'".$this->db_survey->escape($this->getProperAnswerOptions($question))."'";
+		$answer_options = $this->db_survey->escape($this->getProperAnswerOptions($question));
+		$question['answer_options'] = empty($answer_options) ? "NULL" : "'".$answer_options."'";
 		$question['has_other'] = !isset($question['has_other']) ? 0 : 1;
 		$question['has_comment'] = !isset($question['has_comment']) ? 0 : 1;
 		
@@ -116,7 +154,7 @@ class ControllerAdminSurveys extends Controller {
 	}
 	
 	private function getProperAnswerOptions($question) {
-		$answer_options = "NULL";
+		$answer_options = '';
 		if($question['type'] != 3)
 			$answer_options = str_replace("<br />", ",", nl2br($question['answer_options']));
 		

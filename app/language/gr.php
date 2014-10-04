@@ -136,7 +136,10 @@
 	$language['surveyLang']['answerOptions'] = 'Πιθανές απαντήσεις';
 	$language['surveyLang']['answerOptionsHelp'] = 'Γράψτε κάθε πιθανή απάντηση σε νέα σειρά';
 	$language['surveyLang']['hasOther'] = 'Έχει πεδίο για επιλογή "άλλο";';
-	$language['surveyLang']['hasComment'] = 'Έχει περιοχή για επιλογή "προσδιορίστε";';
+	$language['surveyLang']['hasComment'] = 'Έχει περιοχή για επιλογή "σχολιάστε";';
+	
+	$language['showSurveyLang']['surveyProgress'] = 'Πρόοδος Ερωτηματολογίου';
+	$language['showSurveyLang']['submitSurvey'] = 'Υποβολή Ερωτηματολογίου';
 	
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';
@@ -223,4 +226,8 @@
 	// Dates
 	$monthArray = array(1 => 'Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νόεμβριος','Δεκέμβριος');
     $dayArray = array(0 => 'Κυριακή','Δεύτερα','Τρίτη','Τέταρτη','Πέμπτη','Παρασκευή','Σάββατο');
+    
+    // Paging
+    $language['paging']['previous'] = 'Προηγούμενη Σελίδα';
+    $language['paging']['next'] = 'Επόμενη Σελίδα';
 ?>

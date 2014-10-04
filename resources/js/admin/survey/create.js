@@ -9,6 +9,11 @@ $(document).ready(function() {
 		window.location.href = '/' + lang + '/admin/surveys';
 	});
 	
+	$('.survey-title').on('click', function() {
+		survey_id = $(this).attr('rel');
+		window.location.href = '/' + $('#lang').val() + '/admin/surveys/show/' + survey_id;
+	})
+	
 	$('#add-category').on('click', function() {
 		var new_cat_div = addCategory(category_id);
 		$(this).before(new_cat_div);
@@ -146,7 +151,7 @@ $(document).ready(function() {
 	function getQuestionOptions(question_types) {
 		quest_options = '<option value="-1">'+$('#questionType').val();
 		
-		quest_types = JSON.parse($('#question-types').val());
+		quest_types = $('#question-types').val() !== undefined ? JSON.parse($('#question-types').val()) : [];
 		for(i = 0; i < quest_types.length; i++)
 			quest_options += '<option value="'+quest_types[i].id+'" rel="'+quest_types[i].codename+'">'+quest_types[i].description+'</option>';
 		

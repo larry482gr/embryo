@@ -61,7 +61,7 @@
 	
 	function getRadio($id, $answer_options, $has_other, $has_comment) {
 		$output = '';
-		$answer_options = explode(',', $answer_options);
+		$answer_options = explode('-,-', $answer_options);
 		$i = 1;
 		
 		foreach($answer_options as $option) {
@@ -85,7 +85,7 @@
 	
 	function getCheckbox($id, $answer_options, $has_other, $has_comment) {
 		$output = '';
-		$answer_options = explode(',', $answer_options);
+		$answer_options = explode('-,-', $answer_options);
 		$i = 1;
 		
 		foreach($answer_options as $option) {
@@ -93,16 +93,16 @@
 			$comment_class = ($has_comment == 1 && $i == count($answer_options)) ? 'is-comment' : '' ;
 			$output .= '<div class="checkbox">';
 			$output .= '<label>';
-			$output .= '<input type="checkbox" class="'.$other_class.$comment_class.'" name="question['.$id.'][answer]['.$i.']" rel="answer-'.$id.':'.$i.'" />'.$option;
+			$output .= '<input type="checkbox" class="'.$other_class.$comment_class.'" name="question['.$id.'][answer]['.$i.']" rel="answer-'.$id.'-'.$i.'" />'.$option;
 			$output .= '</label>';
 			$output .= '</div>';
 			$i++;
 		}
 		
 		if($has_other == 1)
-			$output .= '<input type="text" class="form-control" id="other-'.$id.':'.$i.'" name="question['.$id.'][other]" disabled />';
+			$output .= '<input type="text" class="form-control" id="other-'.$id.'-'.($i-1).'" name="question['.$id.'][other]" disabled />';
 		else if($has_comment == 1)
-			$output .= '<textarea id="comment-'.$id.':'.$i.'" class="form-control comment-area" rows="2" name="question['.$id.'][comment]" disabled></textarea>';
+			$output .= '<textarea id="comment-'.$id.'-'.($i-1).'" class="form-control comment-area" rows="2" name="question['.$id.'][comment]" disabled></textarea>';
 			
 		return $output;
 	}
@@ -115,7 +115,7 @@
 	
 	function getInputs($id, $answer_options) {
 		$output = '';
-		$answer_options = explode(',', $answer_options);
+		$answer_options = explode('-,-', $answer_options);
 		$i = 1;
 		
 		foreach($answer_options as $option) {

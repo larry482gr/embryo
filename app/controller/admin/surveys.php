@@ -156,7 +156,7 @@ class ControllerAdminSurveys extends Controller {
 	private function getProperAnswerOptions($question) {
 		$answer_options = '';
 		if($question['type'] != 3)
-			$answer_options = str_replace("<br />", ",", nl2br($question['answer_options']));
+			$answer_options = str_replace("<br />", "-,-", nl2br($question['answer_options']));
 		
 		return $answer_options;
 	}

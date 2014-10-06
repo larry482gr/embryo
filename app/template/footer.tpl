@@ -7,6 +7,9 @@
 	    <?php
 	      if($showLogin) {
 	    ?>
+	    	<div class="back-to-top-div">
+		      <span id="back-to-top" class="glyphicon glyphicon-chevron-up"></span>
+		    </div>
 		    <div class="pull-right">
 		      <a class="glow-link" href="<?php echo '/'.$lang.'/user/membersLogin'; ?>">
 		      	<i class="glyphicon glyphicon-user"> </i>

@@ -97,6 +97,7 @@
 	
 	// Opinion
 	$language['opinion']['pageTitle'] = 'Η γνώμη σας';
+	$language['opinion']['surveyLink'] = 'Συμπληρώστε το Ερωτηματολόγιο μας.';
 	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Επικοινωνία';
@@ -147,6 +148,7 @@
 	$language['form']['activationForm'] = 'Φόρμα Ενεργοποίησης';
 	$language['form']['activationPrompt'] = 'Παρακαλώ εισάγετε τον κωδικό πρόσβασης που δηλώσατε για να ενεργοποιήσετε το λογαριασμό σας.';
 	$language['form']['contactForm'] = 'Φόρμα Επικοινωνίας';
+	$language['form']['opinionForm'] = 'Φόρμα αποστολής σκέψης/ζητήματος';
 	$language['form']['createUser'] = 'Φόρμα Δημιουργίας Χρήστη';
 	$language['form']['accessInfo'] = 'Στοιχεία Πρόσβασης';
 	$language['form']['userInfo'] = 'Προσωπικά Στοιχεία';

@@ -52,7 +52,7 @@
 					  AND link.link_label LIKE '%".$search_text."%' 
 					  ORDER BY category.position";
 			$result = $this->db->query($query);
-			return isset($result->rows) ? $result->rows : false ;
+			return isset($result->rows) ? $result->rows : false;
 		}
 	}
 ?>

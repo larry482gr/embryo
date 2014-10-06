@@ -39,6 +39,12 @@ $(document).ready(function(){
 		$('.dropdown-toggle').attr('data-toggle', 'dropdown');
 	}
 	
+	$('.back-to-top-div').on('click', function() {
+		$("html, body").animate({
+			scrollTop: 0
+		}, 300);
+	});
+	
 	$(".social-media").on("mouseover", ".facebook-grey", function () {
         $(".facebook-grey").fadeTo(150,0.1,function(){
         	$(this).removeClass().addClass("facebook").fadeTo(300, 1);

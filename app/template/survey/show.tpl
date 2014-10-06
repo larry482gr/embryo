@@ -1,7 +1,13 @@
-<?php echo $dashboard; ?>
-	  <div class="col-md-10">
+<?php echo $header; ?>
+	  <div class="row">
 	  	<h2 id="survey-title"><?php echo $survey['title']; ?></h2>
-	  	<form id="user-form" class="form-inline" role="form" onsubmit="return false;">
+	    <div class="page-title"><?php echo $showSurveyLang['surveyProgress']; ?></div>
+	    <div class="progress">
+		  <div id="survey-progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+		    <span id="survey-progress-span" class="sr-only"></span>
+		  </div>
+		</div>
+		<form id="user-form" class="form-inline" role="form" onsubmit="return false;">
 	  	  <div class="form-group">
 	  	    <label for="user-fname"><?php echo $userLang['firstName']; ?></label>
 	  	    <input type="text" id="user-fname" class="form-control" value="<?php echo isset($user) ? $user['first_name'] : ''; ?>" />
@@ -15,12 +21,6 @@
 	  	    <input type="text" id="user-email" class="form-control" value="<?php echo isset($user) ? $user['email'] : ''; ?>" />
 	  	  </div>
 	  	</form>
-	    <div class="page-title"><?php echo $showSurveyLang['surveyProgress']; ?></div>
-	    <div class="progress">
-		  <div id="survey-progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-		    <span id="survey-progress-span" class="sr-only"></span>
-		  </div>
-		</div>
 	      <form id="survey-form" role="form" method="post">
 	      	<?php
 	      		foreach($survey_categories as $category) {
@@ -48,9 +48,9 @@
 	      		echo '</ul>';
 	      	?>
 	      	
-	  	    <input type="hidden" id="hidden-user-fname" name="user[fname]" />
-	  	    <input type="hidden" id="hidden-user-lname" name="user[lname]" />
-	  	    <input type="hidden" id="hidden-user-email" name="user[email]" />
+	  	    <input type="hidden" id="hidden-user-fname" name="user[fname]" value="<?php echo isset($user) ? $user['first_name'] : ''; ?>" />
+	  	    <input type="hidden" id="hidden-user-lname" name="user[lname]" value="<?php echo isset($user) ? $user['last_name'] : ''; ?>" />
+	  	    <input type="hidden" id="hidden-user-email" name="user[email]" value="<?php echo isset($user) ? $user['email'] : ''; ?>" />
 		  </form>
 		</div>
 	</div>

@@ -33,6 +33,7 @@ class ControllerAdminSurveys extends Controller {
 		$this->data['lang'] = $lang;
 		$this->data['showSurveyLang'] = $this->language->getLanguage('showSurveyLang');
 		$this->data['pagingLang'] = $this->language->getLanguage('paging');
+		$this->data['userLang'] = $this->language->getLanguage('userLang');
 		
 		$this->load->model('survey');
 		$this->data['survey'] = $this->model_survey->findSurvey($survey_id);
@@ -47,9 +48,18 @@ class ControllerAdminSurveys extends Controller {
 			foreach($subcategories as $subcategory)
 				$this->data['survey_questions'][$subcategory['id']] = $this->model_survey->findSurveyQuestions($subcategory['id']);
 		}
+		
+		// ====================================
+		
+		if(isset($this->session->data['user']['id'])) {
+			$this->load->model('user');
+			$this->data['user'] = $this->model_user->findUser($this->session->data['user']['id']);
+		}
+		
+		// ====================================
 
-		$this->document->addStyle('admin/survey/show');
-		$this->document->addScript('admin/survey/show');
+		$this->document->addStyle('survey/show');
+		$this->document->addScript('survey/show');
 		
 		// Assign header/footer to children object
 		$this->children = array('admin/dashboard', 'admin/footer');

@@ -1,55 +1,26 @@
 <?php
 class ControllerOpinion extends Controller {
-	public function index($args = false) {
-		if($args) {
-			return $this->getEvent($args);
-		}
-		else {
-			$lang_id = $this->language->getCurrentLanguageId();
-			$this->data['lang'] = $this->language->getCurrentLanguage();
-			$this->data['opinion'] = $this->language->getLanguage('opinion');
-			$this->data['underConstruction'] = $this->language->getLanguage('underConstruction');
-			
-			// For use in under construction page.
-			$this->data['pageTitle'] = $this->data['opinion']['pageTitle'];
-	
-			$this->document->addStyle('left_part');
-			$this->document->addStyle('under_construction');
-			$this->document->addScript('under_construction');
-			
-			// Assign header/footer to children object
-			$this->children = array('header', 'footer', 'left_part');
-			
-			// Assign at template object the tpl
-			$this->template = 'under_construction.tpl';
-			$this->response->setOutput($this->render());
-		}
-	}
-	
-	/*
-	public function getLinks($cat_id) {
-		$this->load->model('link');
-		
+	public function index() {
 		$lang_id = $this->language->getCurrentLanguageId();
 		$this->data['lang'] = $this->language->getCurrentLanguage();
-		$this->data['links'] = $this->language->getLanguage('links');
-		$pageSubtitle = $this->model_link->findCategory($cat_id);
-		$this->data['links']['pageSubtitle'] = $pageSubtitle['label'];
-			
-		$this->data['links_array'] = $this->model_link->findLinks($cat_id);
-		$this->data['categories'] = false;
-	
-		$this->document->addStyle('links');
-		$this->document->addScript('links');
-		$this->document->addStyle('left_part');
+		$this->data['opinion'] = $this->language->getLanguage('opinion');
+		$this->data['form'] = $this->language->getLanguage('form');
 		
+		$this->load->model('survey');
+		$this->data['opinionSurvey'] = $this->model_survey->findPageSurvey('opinion');
+	
+		$this->document->addStyle('left_part');
+		$this->document->addStyle('opinion');
+		$this->document->addScript('opinion');
+		$this->document->addStyle('contact_us');
+		$this->document->addScript('contact_us');
+			
 		// Assign header/footer to children object
 		$this->children = array('header', 'footer', 'left_part');
-		
+			
 		// Assign at template object the tpl
-		$this->template = 'links/index.tpl';
+		$this->template = 'opinion/index.tpl';
 		$this->response->setOutput($this->render());
 	}
-	*/
 }
 ?>

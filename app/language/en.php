@@ -97,6 +97,7 @@
 	
 	// Opinion
 	$language['opinion']['pageTitle'] = 'Opinion';
+	$language['opinion']['surveyLink'] = 'Fill in our Questionnaire.';
 	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Contact Us';
@@ -147,6 +148,7 @@
 	$language['form']['activationForm'] = 'Activation Form';
 	$language['form']['activationPrompt'] = 'Please enter your password to activate your account.';
 	$language['form']['contactForm'] = 'Contact Form';
+	$language['form']['opinionForm'] = 'Opinion/Issue Form';
 	$language['form']['createUser'] = 'Create User Form';
 	$language['form']['accessInfo'] = 'Access Info';
 	$language['form']['userInfo'] = 'Personal Info';

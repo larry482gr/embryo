@@ -9,7 +9,21 @@ $(document).ready(function() {
 	$('#survey-progress').css('width', (((active_category)/total_categories)*100)+'%');
 	$('#survey-progress-span').html((((active_category)/total_categories)*100)+'%');
 	
+	$('#user-fname').focus();
+	
+	$('#user-fname, #user-lname, #user-email').on('focus', function() {
+		$(this).css('border-color', '#66afe9');
+	});
+	
+	$('#user-fname, #user-lname, #user-email').on('blur', function() {
+		if($.trim($(this).val().length) == 0)
+			$(this).css('border-color', '#FF0000');
+		
+		$('#hidden-'+$(this).attr('id')).val($(this).val());
+	});
+	
 	$('#submit-button').on('click', function() {
+		// Check for errors and then...
 		$('#survey-form').submit();
 	});
 	
@@ -51,8 +65,10 @@ function previousPage() {
 		$('#category'+active_category).fadeIn('fast', function() {
 			$('.next').removeClass('disabled');
 	
-			if(active_category == 1)
+			if(active_category == 1) {
 				$('.previous').addClass('disabled', true);
+				$('#user-form').show();
+			}
 				
 			$("html, body").animate({
 				scrollTop: 0
@@ -69,6 +85,7 @@ function nextPage() {
 	if(active_category == total_categories)
 		return;
 	
+	$('#user-form').hide();
 	$('#category'+active_category).fadeOut('fast', function() {
 		active_category++;
 		$('#category'+active_category).fadeIn('fast', function() {

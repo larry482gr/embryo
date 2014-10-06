@@ -1,5 +1,4 @@
 body {
-	padding-top: 140px !important;
 	background-image: url('../images/site_background.jpg');
 }
 
@@ -171,6 +170,28 @@ h3.page-title {
 
 .glow-link:hover {
 	color: #FFFFFF !important;
+}
+
+.back-to-top-div {
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+	margin-left: 26px;
+	background-color: #AAAAAA;
+	color: #2A2A37;
+	text-align: center;
+	padding: 8px;
+	width: 36px;
+	height: 36px;
+	float: right;
+	cursor: pointer;
+}
+
+.back-to-top-div > span {
+	margin-right: 0px !important;
+}
+
+.back-to-top-div:hover {
+	opacity: 0.7;
 }
 
 /*** socials ***/

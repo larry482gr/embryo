@@ -13,6 +13,19 @@ body{
 	-o-transition: width 0.6s;
 }
 
+#user-form {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#user-form > div {
+	margin-right: 24px;
+}
+
+#user-form > div > label {
+	margin-right: 4px;
+}
+
 h3, h4 {
 	margin-top: 20px !important;
 	margin-bottom: 20px !important;

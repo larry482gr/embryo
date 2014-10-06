@@ -66,6 +66,10 @@ function validateEmail(email) {
 }
 
 function submitForm() {
+	var opinion_form = 0;
+	if($('#opinion-form').val() == 1)
+		opinion_form = 1;
+		
 	$.ajax({
 			url: "/" + $('#lang').val() + "/contact_us/processContactForm",
 			cache: false,
@@ -75,7 +79,8 @@ function submitForm() {
 				name:	$.trim($('#full_name').val()),
 				email:	$.trim($('#email').val()),
 				subject:$.trim($('#subject').val()),
-				message:$.trim($('#message').val())
+				message:$.trim($('#message').val()),
+				opinion_form: opinion_form
 			},
 			beforeSend : function() {
 				$('#contact-form button').append('...');

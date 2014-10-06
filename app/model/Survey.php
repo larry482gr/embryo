@@ -12,6 +12,18 @@
 			return $result->row;
 		}
 		
+		public function findPageSurvey($alias) {
+			$query = "SELECT id FROM surveys WHERE alias = '".$alias."' AND is_public = 1 AND is_active = 1 AND has_errors = 0";
+			$result = $this->db_survey->query($query);
+			return $result->row;
+		}
+		
+		public function findPublicSurvey($id) {
+			$query = "SELECT id, title FROM surveys WHERE id = ".$id." AND is_public = 1 AND is_active = 1 AND has_errors = 0";
+			$result = $this->db_survey->query($query);
+			return isset($result->row) ? $result->row : false;
+		}
+		
 		public function findSurveyCategories($survey_id) {
 			$query = "SELECT * FROM categories WHERE survey_id = ".$survey_id;
 			$result = $this->db_survey->query($query);

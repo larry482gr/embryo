@@ -140,7 +140,11 @@
 	$language['surveyLang']['hasComment'] = 'Has "comment" text area?';
 	
 	$language['showSurveyLang']['surveyProgress'] = 'Survey Progress';
+	$language['showSurveyLang']['comment'] = 'Comments:';
 	$language['showSurveyLang']['submitSurvey'] = 'Submit Survey';
+	$language['showSurveyLang']['emailError'] = 'You must provide a valid email address.';
+	$language['showSurveyLang']['requiredFields'] = 'You must provide you first and last name along with a valid email address in order to submit your answers.';
+	$language['showSurveyLang']['alreadyCompleted'] = 'You have already completed this survey. Your answers will not be submitted again.';
 	
 	// Forms
 	$language['form']['regForm'] = 'Registration Form';
@@ -224,6 +228,13 @@
 	$language['permission']['oldPassIncorrect'] = 'The "Old password" you entered is incorrect. Please try again.';
 	$language['permission']['noMatchPass'] = 'The "New password" and "Confirm password" fields are not the same. Please try again.';
 	$language['permission']['activationError'] = 'Activation failed to be completed. Please try again and if the error persists contact the website\'s administrator.';
+	
+	// Success
+	$language['success']['surveyCompleted'] = 'Your answers have been submitted. Thank you for your time.';
+	
+	// Failure
+	$language['failure']['surveyAlreadyCompleted'] = 'You have already completed this survey on %timestamp%. Your answers have not been submitted again.';
+	$language['failure']['surveySubmitError'] = 'There has been an error during submitting your answers. Excuse us for the inconvenience. Please try again and if you encounter the same error contact the <a href="mailto:lakazantzis@gmail.com">website\'s administrator</a>';
 	
 	// Dates
 	$monthArray = array(1 => 'January','February','March','April','May','June','July','August','September','October','November','December');

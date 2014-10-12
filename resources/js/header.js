@@ -68,4 +68,10 @@ $(document).ready(function(){
         	$(this).removeClass().addClass("twitter-grey").fadeTo(300, 1);
         });
     });
+    
+    /*
+    $(window).bind('beforeunload', function(){
+		return '>>>>>Before You Go<<<<<<<< \n Your custom message go here';
+	});
+	*/
 });

@@ -28,6 +28,14 @@ class Language {
   	public function getPermissionDeniedMessage($key = false) {
    		return $key ? $this->data['language']['permission'][$key] : $this->data['language'];
   	}
+  	
+  	public function getSuccessMessage($key = false) {
+   		return $key ? $this->data['language']['success'][$key] : $this->data['language'];
+  	}
+  	
+  	public function getFailureMessage($key = false) {
+   		return $key ? $this->data['language']['failure'][$key] : $this->data['language'];
+  	}
 	
 	public function getInformation($key = false) {
    		return $key ? $this->data['information'][$key] : $this->data['information'];

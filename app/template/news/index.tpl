@@ -55,8 +55,7 @@
 			}
 			
 			// Create Panel
-			
-			$picture = !empty($article['picture']) ? '<img src="/resources/images/news/'.$article['picture'].'" class="article-img" />' : "";
+			$picture = (!empty($article['picture']) && file_exists(_DOCUMENT_ROOT_.'/resources/images/news/'.$article['picture'])) ? '<img src="/resources/images/news/'.$article['picture'].'" class="article-img" />' : "";
 	        $panelBody .= '<dl class="article '.$activeNews.' col-md-12 col-sm-12 col-xs-12 month'.$articleYear.$articleMonth.'" rel="'.$months[$articleMonth].' '.$articleYear.'">
 						     <dt class="article-title">'.$article['title'].'</dt>
 						     <dt><small class="published-at">'.$home['publishedOn'].': '.date('d/m/Y', strtotime($article['published_at'])).'</small></dt>

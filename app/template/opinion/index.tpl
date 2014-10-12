@@ -2,6 +2,24 @@
   <div class="row">
     <div class="col-md-8">
       <h3 class="page-title"><?php echo $opinion['pageTitle']; ?></h3>
+      	  <?php
+	        if(!empty($invalidError)) {
+	      ?>
+	      <div class="form-group">
+		    <div class="alert alert-danger col-md-8"><?php echo $invalidError; ?></div>
+		  </div>
+		  <?php
+		    }
+		  ?>
+		  <?php
+	        if(!empty($successMessage)) {
+	      ?>
+	      <div class="form-group">
+		    <div class="alert alert-success col-md-8"><?php echo $successMessage; ?></div>
+		  </div>
+		  <?php
+		    }
+		  ?>
       <div class="row">
       	<div class="col-md-7 col-sm-7">
       	  <ul class="links-ul">

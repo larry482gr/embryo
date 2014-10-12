@@ -1,27 +1,13 @@
 <?php echo $dashboard; ?>
 	  <div class="col-md-10">
 	  	<h2 id="survey-title"><?php echo $survey['title']; ?></h2>
-	  	<form id="user-form" class="form-inline" role="form" onsubmit="return false;">
-	  	  <div class="form-group">
-	  	    <label for="user-fname"><?php echo $userLang['firstName']; ?></label>
-	  	    <input type="text" id="user-fname" class="form-control" value="<?php echo isset($user) ? $user['first_name'] : ''; ?>" />
-	  	  </div>
-	  	  <div class="form-group">
-	  	    <label for="user-lname"><?php echo $userLang['lastName']; ?></label>
-	  	    <input type="text" id="user-lname" class="form-control" value="<?php echo isset($user) ? $user['last_name'] : ''; ?>" />
-	  	  </div>
-	  	  <div class="form-group">
-	  	    <label for="user-email"><?php echo $userLang['email']; ?></label>
-	  	    <input type="text" id="user-email" class="form-control" value="<?php echo isset($user) ? $user['email'] : ''; ?>" />
-	  	  </div>
-	  	</form>
 	    <div class="page-title"><?php echo $showSurveyLang['surveyProgress']; ?></div>
 	    <div class="progress">
 		  <div id="survey-progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
 		    <span id="survey-progress-span" class="sr-only"></span>
 		  </div>
 		</div>
-	      <form id="survey-form" role="form" method="post">
+	      <form id="survey-form" role="form" method="post" onsubmit="return false;">
 	      	<?php
 	      		foreach($survey_categories as $category) {
 	      			echo '<div id="category'.$category['id'].'" class="category-div">';
@@ -41,16 +27,11 @@
 	      			echo '</div>';
 	      		}
 	      		
-	      		echo '<button type"button" id="submit-button" class="btn btn-primary">'.$showSurveyLang['submitSurvey'].'</button>';
 	      		echo '<ul class="pager">';
 	      		echo '<li class="previous disabled"><a href="javascript:previousPage();">&larr; '.$pagingLang['previous'].'</a></li>';
 	      		echo '<li class="next"><a href="javascript:nextPage();">'.$pagingLang['next'].' &rarr;</a></li>';
 	      		echo '</ul>';
 	      	?>
-	      	
-	  	    <input type="hidden" id="hidden-user-fname" name="user[fname]" />
-	  	    <input type="hidden" id="hidden-user-lname" name="user[lname]" />
-	  	    <input type="hidden" id="hidden-user-email" name="user[email]" />
 		  </form>
 		</div>
 	</div>

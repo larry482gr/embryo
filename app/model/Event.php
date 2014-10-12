@@ -1,9 +1,15 @@
 <?php 
 	class ModelEvent extends Model {
 		public function findAllEvents($is_event, $lang_id, $order = '', $limit = '') {
-			$query = "SELECT * FROM events WHERE is_event = ".$is_event." AND lang_id = ".$lang_id." ".$order." ".$limit;
+			$query = "SELECT * FROM events WHERE is_event = ".$is_event." AND lang_id = ".$lang_id." AND is_published = 1 ".$order." ".$limit;
 			$result = $this->db->query($query);
 			return !empty($result->rows) ? $result->rows : false;
+		}
+		
+		public function findEvent($event_id, $lang_id) {
+			$query = "SELECT label, description, picture, published_at FROM events WHERE id = ".$event_id." AND is_event = 1 AND lang_id = ".$lang_id."  AND is_published = 1";
+			$result = $this->db->query($query);
+			return !empty($result->row) ? $result->row : false;
 		}
 		
 		/*

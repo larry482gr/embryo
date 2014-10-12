@@ -1,5 +1,8 @@
 <?php
 class ControllerOpinion extends Controller {
+	private $invalid_error = '';
+	private $successMessage = '';
+	
 	public function index() {
 		$lang_id = $this->language->getCurrentLanguageId();
 		$this->data['lang'] = $this->language->getCurrentLanguage();
@@ -8,6 +11,27 @@ class ControllerOpinion extends Controller {
 		
 		$this->load->model('survey');
 		$this->data['opinionSurvey'] = $this->model_survey->findPageSurvey('opinion');
+		
+		if(isset($this->session->data['permissionDenied'])) {
+			$this->data['invalidError'] = $this->session->data['permissionDenied'];
+			unset($this->session->data['permissionDenied']);
+		}
+		else if(isset($this->session->data['surveyAlreadyCompleted'])) {
+			$this->data['invalidError'] = $this->session->data['surveyAlreadyCompleted'];
+			unset($this->session->data['surveyAlreadyCompleted']);
+		}
+		else if(isset($this->session->data['surveySubmitError'])) {
+			$this->data['invalidError'] = $this->session->data['surveySubmitError'];
+			unset($this->session->data['surveySubmitError']);
+		}
+		else if(isset($this->session->data['surveyCompleted'])) {
+			$this->data['successMessage'] = $this->session->data['surveyCompleted'];
+			unset($this->session->data['surveyCompleted']);
+		}
+		else {
+			$this->data['invalidError'] = $this->invalid_error;
+			$this->data['successMessage'] = $this->successMessage;
+		}
 	
 		$this->document->addStyle('left_part');
 		$this->document->addStyle('opinion');

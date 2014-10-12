@@ -138,9 +138,14 @@
 	$language['surveyLang']['answerOptionsHelp'] = 'Γράψτε κάθε πιθανή απάντηση σε νέα σειρά';
 	$language['surveyLang']['hasOther'] = 'Έχει πεδίο για επιλογή "άλλο";';
 	$language['surveyLang']['hasComment'] = 'Έχει περιοχή για επιλογή "σχολιάστε";';
+	$language['surveyLang']['comment'] = 'Σχολιάστε:';
 	
 	$language['showSurveyLang']['surveyProgress'] = 'Πρόοδος Ερωτηματολογίου';
+	$language['showSurveyLang']['comment'] = 'Σχολιάστε:';
 	$language['showSurveyLang']['submitSurvey'] = 'Υποβολή Ερωτηματολογίου';
+	$language['showSurveyLang']['emailError'] = 'Θα πρέπει να καταχωρήσετε ένα έγγυρο email.';
+	$language['showSurveyLang']['requiredFields'] = 'Θα πρέπει να καταχωρήσετε το Όνομα και το Επώνυμο σας, καθώς και ένα έγγυρο email προκειμένου να υποβάλλετε τις απαντήσεις σας.';
+	$language['showSurveyLang']['alreadyCompleted'] = 'Έχετε ήδη υποβάλλει αυτό το Ερωτηματολόγιο. Οι απαντήσεις σας δε θα υποβληθούν.';
 	
 	// Forms
 	$language['form']['regForm'] = 'Εγγραφή Χρήστη';
@@ -224,6 +229,13 @@
 	$language['permission']['oldPassIncorrect'] = 'Ο "Παλιός κωδικός πρόσβασης" που καταχωρήσατε είναι λανθασμένος. Παρακαλώ δοκιμάστε ξανά.';
 	$language['permission']['noMatchPass'] = 'Η τιμή των πεδίων "Νέος κωδικός πρόσβασης" και "Επαλήθευση κωδικού πρόσβασης" δεν είναι ίδια. Παρακαλώ δοκιμάστε ξανά.';
 	$language['permission']['activationError'] = 'Η ενεργοποίηση του λογαριασμού σας απέτυχε. Παρακαλώ δοκιμάστε ξανά και σε περίπτωση που συνεχίσετε να βλέπετε αυτό το μήνυμα επικοινωνήστε με τον διαχειριστή του ιστοχώρου.';
+	
+	// Success
+	$language['success']['surveyCompleted'] = 'Οι απαντήσεις σας έχουν υποβληθεί. Ευχαριστούμε για το χρόνο σας.';
+	
+	// Failure
+	$language['failure']['surveyAlreadyCompleted'] = 'Έχετε ήδη υποβάλλει αυτό το Ερωτηματολόγιο στις %timestamp%. Οι απαντήσεις σας δεν υποβλήθηκαν εκ νέου.';
+	$language['failure']['surveySubmitError'] = 'Παρουσιάστηκε σφάλμα κατά την υποβολή των απαντήσεων σας. Μας συγχωρείτε για την ταλαιπωρία. Παρακαλώ δοκιμάστε ξανά και αν αντιμετωπίσετε το ίδιο σφάλμα επικοινωνήστε με τον <a href="mailto:lakazantzis@gmail.com">διαχειριστή της ιστοσελίδας</a>';
 	
 	// Dates
 	$monthArray = array(1 => 'Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νόεμβριος','Δεκέμβριος');

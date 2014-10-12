@@ -12,7 +12,8 @@
 		      foreach($events as $event) {
 		        $list_content .= '<li>'.date('d/m/Y', strtotime($event['published_at'])).' - ';
 		        if(empty($event['ext_link'])) {
-		      	  $list_content .= '<a href="/'.$lang.'/publicity/'.$event['id'].'" target="_blank">'.$event['label'].'</a>';
+		          $controller = $event['is_event'] == 1 ? 'events' : 'publicity';
+		      	  $list_content .= '<a href="/'.$lang.'/'.$controller.'/'.$event['id'].'">'.$event['label'].'</a>';
 		        }
 		        else {
 		      	  $list_content .= '<a href="'.$event['ext_link'].'" target="_blank">'.$event['label'].'</a>';

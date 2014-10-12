@@ -5,7 +5,7 @@
         <h4><?php echo $article['title']; ?><br/><small class="published-at"><?php echo $home['publishedOn'].': '.date('d/m/Y', strtotime($article['published_at'])); ?></small></h4>
         <div class="col-md-12 article">
           <?php
-          	$picture = !empty($article['picture']) ? '<img src="/resources/images/news/'.$article['picture'].'" class="article-img" />' : "";
+          	$picture = (!empty($article['picture']) && file_exists(_DOCUMENT_ROOT_.'/resources/images/news/'.$article['picture'])) ? '<img src="/resources/images/news/'.$article['picture'].'" class="article-img" />' : "";
           	$short_desc = !empty($article['short_desc']) ? $article['short_desc'].'<br/><br/>' : "" ;
           	echo $picture.$short_desc.nl2br($article['long_desc']);
           	if(!empty($article['source_label'])) {

@@ -90,6 +90,7 @@ class ControllerAdminArticles extends Controller {
 		
 		$this->load->model('article');
 		$article = $this->model_article->findAny($id);
+		$article['long_desc'] = html_entity_decode(nl2br($article['long_desc']));
 		
 		echo json_encode($article);
 		die();

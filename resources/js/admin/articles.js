@@ -28,6 +28,7 @@ $(document).ready(function(){
 				$('#edit-article-form #article-title').val(article.title);
 				$('#edit-article-form #article-short-desc').val(article.short_desc);
 				$('#edit-article-form #article-long-desc').val(article.long_desc);
+				$('.cke_contents iframe').contents().find("body").html(article.long_desc);
 				$('#edit-article-form #article-source-label').val(article.source_label);
 				$('#edit-article-form #article-source-link').val(article.source_link);
 				$('#edit-article-form #article-carousel-label').val(article.carousel_label);
@@ -185,6 +186,7 @@ $(document).ready(function(){
 	});
 	
 	$('#add-article').on('click', function() {
+		$('#new-article-long-desc').val($('.cke_contents iframe').contents().find("body").html());
 		var lang_id = $('#lang_id').val();
 		var articleTitle = $('#new-article-title').val();
 		var articleShortDesc = $('#new-article-short-desc').val();
@@ -245,10 +247,11 @@ $(document).ready(function(){
 	});
 	
 	$('#update-article').on('click', function(){
+		var articleLongDesc = $('#article-long-desc').next().find('iframe').contents().find("body").html();
 		var articleId = $('.article-id').val();
 		var articleTitle = $('#article-title').val();
 		var articleShortDesc = $('#article-short-desc').val();
-		var articleLongDesc = $('#article-long-desc').val();
+		// var articleLongDesc = $('#article-long-desc').val();
 		var articleSourceLabel = $('#article-source-label').val();
 		var articleSourceLink = $('#article-source-link').val();
 		var articleCarouselLabel = $('#article-carousel-label').val();
@@ -343,4 +346,19 @@ $(document).ready(function(){
 				break;
 		}
 	}
+	
+	CKEDITOR.replace( 'new-article-long-desc' );
+	CKEDITOR.replace( 'article-long-desc' );
+	
+	$.fn.modal.Constructor.prototype.enforceFocus = function () {
+	    modal_this = this
+	    $(document).on('focusin.modal', function (e) {
+	        if (modal_this.$element[0] !== e.target && !modal_this.$element.has(e.target).length
+	        // add whatever conditions you need here:
+	        &&
+	        !$(e.target.parentNode).hasClass('cke_dialog_ui_input_select') && !$(e.target.parentNode).hasClass('cke_dialog_ui_input_text')) {
+	            modal_this.$element.focus()
+	        }
+	    })
+	};
 });

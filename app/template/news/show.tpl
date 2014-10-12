@@ -6,8 +6,8 @@
         <div class="col-md-12 article">
           <?php
           	$picture = (!empty($article['picture']) && file_exists(_DOCUMENT_ROOT_.'/resources/images/news/'.$article['picture'])) ? '<img src="/resources/images/news/'.$article['picture'].'" class="article-img" />' : "";
-          	$short_desc = !empty($article['short_desc']) ? $article['short_desc'].'<br/><br/>' : "" ;
-          	echo $picture.$short_desc.nl2br($article['long_desc']);
+          	$short_desc = !empty($article['short_desc']) ? html_entity_decode(nl2br($article['short_desc'])).'<br/><br/>' : "" ;
+          	echo $picture.$short_desc.html_entity_decode(nl2br($article['long_desc']));
           	if(!empty($article['source_label'])) {
           	  echo '<br/><br/>';
           	  echo $news['source'].'<a href="'.$article['source_link'].'" target="_blank">'.$article['source_label'].'</a>';

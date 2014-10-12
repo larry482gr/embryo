@@ -11,6 +11,7 @@ class ControllerAdminDashboard extends Controller {
 		$this->data['user']['name'] = $this->session->data['user']['name'];
 		
 		$this->document->addStyle("admin/dashboard");
+		$this->document->addScript("libraries/ckeditor/ckeditor");
 		
 		// Assign header/footer to children object
 		$this->children = array('admin/header');

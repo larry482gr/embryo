@@ -66,6 +66,11 @@ h3 {
 	max-width: 260px !important;
 }
 
+#email-error {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
 #submit-button > span {
 	margin-right: 8px;
 }

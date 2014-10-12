@@ -97,7 +97,7 @@
 	
 	// Opinion
 	$language['opinion']['pageTitle'] = 'Η γνώμη σας';
-	$language['opinion']['surveyLink'] = 'Συμπληρώστε το Ερωτηματολόγιο μας.';
+	$language['opinion']['surveyLink'] = 'Συμπληρώστε το Ερωτηματολόγιο μας';
 	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Επικοινωνία';

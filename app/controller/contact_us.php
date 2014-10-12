@@ -19,9 +19,9 @@ class ControllerContactUs extends Controller {
 	}
 	
 	public function processContactForm() {
-		$name = $this->db->escape($this->request->post['name']);
-		$email = $this->db->escape($this->request->post['email']);
-		$subject = $this->db->escape($this->request->post['subject']);
+		$name = $this->request->post['name'];
+		$email = $this->request->post['email'];
+		$subject = 'repro.law.auth.gr - '.$this->request->post['subject'];
 		$message = nl2br($this->request->post['message']);
 		$is_opinion_form = $this->request->post['opinion_form'] == 1 ? true : false;
 		
@@ -30,7 +30,7 @@ class ControllerContactUs extends Controller {
 		else {
 			if(!$is_opinion_form) {
 				$to      = 'bioithiki@gmail.com';
-				$message = '<h3>Message from '.$name.' via Contact Form</h3><div>'.$message.'</div>';
+				$message = '<h3>Μήνυμα από "'.$name.'" μέσω της Φόρμας Επικοινωνίας</h3><div>'.$message.'</div>';
 				// To send HTML mail, the Content-type header must be set
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
 				$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -38,11 +38,10 @@ class ControllerContactUs extends Controller {
 				// Additional headers
 				$headers .= 'From: '.$name.' <'.$email.'>' . "\r\n";
 				$headers .= 'Reply-To: ' . $email . "\r\n";
-				$headers .= 'X-Mailer: PHP/' . phpversion();
+				// $headers .= 'X-Mailer: PHP/' . phpversion();
 			}
 			else {
-				// $to      = 'mimmaki@gmail.com';
-				$to      = 'larry482gr@yahoo.com';
+				$to      = 'mimmaki@gmail.com';
 				$message = '<h3>Μήνυμα από "'.$name.'" μέσω της Φόρμας αποστολής σκέψης/ζητήματος</h3><div>'.$message.'</div>';
 				// To send HTML mail, the Content-type header must be set
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -51,11 +50,8 @@ class ControllerContactUs extends Controller {
 				// Additional headers
 				$headers .= 'From: '.$name.' <'.$email.'>' . "\r\n";
 				$headers .= 'Reply-To: ' . $email . "\r\n";
-				$headers .= 'Cc: lakazantzis@gmail.com' . "\r\n";
-				// $headers .= 'Cc: kastan@law.auth.gr' . "\r\n";
-				$headers .= 'X-Mailer: PHP/' . phpversion();
-				
-				$subject = 'repro.law.auth.gr - ' . $subject;
+				$headers .= 'Cc: kastan@law.auth.gr' . "\r\n";
+				// $headers .= 'X-Mailer: PHP/' . phpversion();
 			}
 			
 			if(mail($to, $subject, $message, $headers))

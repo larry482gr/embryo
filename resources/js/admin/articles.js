@@ -182,6 +182,7 @@ $(document).ready(function(){
 		$('#new-article-source-label').val('');
 		$('#new-article-source-link').val('');
 		$('#new-article-carousel-label').val('');
+		$('#new-article-long-desc').next().find('iframe').contents().find("body").html('');
 		$('#addArticleModal').modal('show');
 	});
 	

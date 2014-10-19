@@ -1,4 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function() {
+	$('#language').val($('#lang_id').val());
+	
+	$('#language').on('change', function() {
+		var lang = $(this).find('option:selected').attr('rel');
+		window.location.href = '/' + lang + '/admin/links';
+	});
+	
 	$('.container').on('click', '#add-new-category', function(){
 		if(!$(this).hasClass('add-form-open')) {
 			$(this).addClass('add-form-open');
@@ -28,10 +35,4 @@ $(document).ready(function(){
 			$('#add-new-category').attr('disabled', false);
 		}
 	});
-	/*
-	$('.container').on('focus', '#link_url', function(){
-		if($(this).val().length == 0)
-			$(this).val('http://');
-	});
-	*/
 });

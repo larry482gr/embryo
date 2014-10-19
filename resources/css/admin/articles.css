@@ -7,7 +7,7 @@ td.article:hover {
 	cursor: pointer;
 }
 
-td.carousel, td.is-published {
+td.carousel, td.carousel_position, td.is-published {
 	text-align: center;
 }
 
@@ -42,4 +42,11 @@ td.carousel, td.is-published {
 
 #small-image-form > .form-group:first-child, #carousel-image-form > .form-group:first-child {
 	margin-bottom: 0px !important;
+}
+
+.submit-position {
+	width: 10px;
+	margin-left: 12px;
+	color: #00FF00;
+	cursor: pointer;
 }

@@ -1,6 +1,11 @@
+h4.static-header {
+	text-align: center;
+}
+
 .research_content {
 	text-align: justify;
 	padding-right: 50px !important;
+	margin-bottom: 20px;
 }
 
 .research_content ol {

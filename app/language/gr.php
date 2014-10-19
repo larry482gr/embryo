@@ -48,6 +48,8 @@
 	$language['news']['carouselImage'] = 'Εικόνα Carousel';
 	$language['news']['isPublished'] = 'Είναι Δημοσιευμένο;';
 	$language['news']['carousel'] = 'Εμφανίζεται στο Carousel;';
+	$language['news']['carouselPosition'] = 'Θέση στο Carousel';
+	$language['news']['notShownOnCarousel'] = 'Δεν εμφανίζεται στο Carousel';
 	$language['news']['carousel_label'] = 'Λεζάντα Carousel';
 	$language['news']['publishedAt'] = 'Ημερομηνία Δημοσιεύσης';
 	$language['news']['never'] = 'Ποτέ';
@@ -101,6 +103,16 @@
 	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Επικοινωνία';
+	/*
+		$language['contact']['telephone'] = 'Τηλ:';
+		$language['contact']['fax'] = 'Φαξ:';
+		$language['contact']['kastanidou'] = 'Ε. Συμεωνίδου – Καστανίδου';
+		$language['contact']['kastOffice'] = 'Νομική Σχολή ΑΠΘ, γρ. 205';
+		$language['contact']['kastEmail'] = 'kastan@law.auth.gr';
+		$language['contact']['tarlatzis'] = 'B. Ταρλατζής';
+		$language['contact']['tarlOffice'] = 'Σχολή Επιστημών Υγείας AΠΘ';
+		$language['contact']['tarlEmail'] = 'tarlatzis@gmail.com';
+	*/
 	
 	// Forum
 	$language['forum']['pageTitle'] = 'Forum';

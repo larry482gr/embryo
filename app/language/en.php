@@ -47,7 +47,9 @@
 	$language['news']['smallImage'] = 'Small Image';
 	$language['news']['carouselImage'] = 'Carousel Image';
 	$language['news']['isPublished'] = 'Is Published?';
-	$language['news']['carousel'] = 'Appears on Carousel?';
+	$language['news']['carousel'] = 'Appears in Carousel?';
+	$language['news']['carouselPosition'] = 'Carousel Position';
+	$language['news']['notShownOnCarousel'] = 'Not shown in Carousel';
 	$language['news']['carousel_label'] = 'Carousel Label';
 	$language['news']['publishedAt'] = 'Publish Date';
 	$language['news']['never'] = 'Never';
@@ -101,6 +103,16 @@
 	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Contact Us';
+	/*
+		$language['contact']['telephone'] = 'Τηλ:';
+		$language['contact']['fax'] = 'Φαξ:';
+		$language['contact']['kastanidou'] = 'Ε. Συμεωνίδου – Καστανίδου';
+		$language['contact']['kastOffice'] = 'Νομική Σχολή ΑΠΘ, γρ. 205';
+		$language['contact']['kastEmail'] = 'kastan@law.auth.gr';
+		$language['contact']['tarlatzis'] = 'B. Ταρλατζής';
+		$language['contact']['tarlOffice'] = 'Σχολή Επιστημών Υγείας AΠΘ';
+		$language['contact']['tarlEmail'] = 'tarlatzis@gmail.com';
+	*/
 	
 	// Forum
 	$language['forum']['pageTitle'] = 'Forum';
@@ -138,6 +150,7 @@
 	$language['surveyLang']['answerOptionsHelp'] = 'Write each possible answer in a new line';
 	$language['surveyLang']['hasOther'] = 'Has "other" input field?';
 	$language['surveyLang']['hasComment'] = 'Has "comment" text area?';
+	$language['surveyLang']['comment'] = 'Comment:';
 	
 	$language['showSurveyLang']['surveyProgress'] = 'Survey Progress';
 	$language['showSurveyLang']['comment'] = 'Comments:';

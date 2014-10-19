@@ -49,7 +49,7 @@ $(document).ready(function(){
 		$('#modal-images').slideToggle();
 	});
 	
-	$('#articles-table').on('change', '.carousel input', function(){
+	$('#articles-table').on('change', '.carousel input', function() {
 		$('.container').find('button').attr('disabled', true);
 		$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', true);
 		var articleId = $(this).attr('rel');
@@ -63,7 +63,8 @@ $(document).ready(function(){
 			dataType: 'text',
 			success: function(result) {
 				if(result == 1)
-					bootbox.alert("Carousel successfully updated.");
+					// bootbox.alert("Carousel successfully updated.");
+					window.location.href = '/'+$('#lang').val()+'/admin/articles';
 				else {
 					if($(this).is(':checked'))
 						$(this).attr('checked', false);
@@ -88,11 +89,23 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#articles-table').on('change', '.is-published input', function(){
+	$('#articles-table').on('change', '.carousel-drop-down', function() {
+		if($(this).val() != $(this).next().val())
+			$(this).parent().next().html('<span class="glyphicon glyphicon-ok-sign"></span>');
+		else
+			$(this).parent().next().html('');
+	});
+	
+	$('#articles-table').on('click', '.submit-position span', function() {
+		$(this).parent().parent().submit();
+	});
+		
+	$('#articles-table').on('change', '.is-published input', function() {
 		$('.container').find('button').attr('disabled', true);
 		$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', true);
 		var articleId = $(this).attr('rel');
 		var isPublished = $(this).is(':checked') ? 1 : 0;
+		var _this = $(this);
 		
 		$.ajax({
 			url: '/admin/articles/updatePublished',
@@ -104,30 +117,30 @@ $(document).ready(function(){
 				if(result != 0) {
 					bootbox.alert("Article successfully updated.");
 					if(result != 1)
-					$('#article-published-'+articleId).html(result);
+						$('#articles-table').find('#article-published-'+articleId).html(result);
 				}
 				else {
-					if($(this).is(':checked'))
-						$(this).attr('checked', false);
+					if(_this.is(':checked'))
+						_this.attr('checked', false);
 					else
-						$(this).attr('checked', true);
+						_this.attr('checked', true);
 						
-					bootbox.alert("An error occured. Please try again!");
+					bootbox.alert("Proceedure finished successfully, but an error occured. Please try again! (Server response: " + result + ")");
 				}
 			},
 			error: function(result) {
-				if($(this).is(':checked'))
-					$(this).attr('checked', false);
+				if(_this.is(':checked'))
+					_this.attr('checked', false);
 				else
-					$(this).attr('checked', true);
+					_this.attr('checked', true);
 					
-				bootbox.alert("An error occured. Please try again!");
+				bootbox.alert("Proceedure finished unexpectidly. Please try again! (Server response: " + result + ")");
 			}
 		})
-		.done(function(){
+		.done(function() {
 			$('.container').find('button').attr('disabled', false);
 			$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', false);
-		});;
+		});
 	});
 	
 	$('#show-unpublished-btn').on('click', function(){
@@ -142,18 +155,16 @@ $(document).ready(function(){
 			cache: false,
 			data: { lang_id: lang_id, showUnpublished: showUnpublished },
 			dataType: 'json',
-			beforeSend: function(){
-				
+			beforeSend: function() {
+				$('#articles-table tbody').animate({opacity: 0.2}, 350);
 			},
 			success: function(result) {
-				var tableRows = '';
-				$('#articles-table tbody').animate({opacity: 0.0}, 250, function(){
-					for(i = 0; i < result.length; i++) {
-						tableRows += getTableRow(i+1, result[i]);
-					}
-					$('#articles-table tbody').html(tableRows);
-					$('#articles-table tbody').animate({opacity: 1}, 350);
-				});
+				$('#articles-table tbody').html('');
+				
+				for(i = 0; i < result.articles.length; i++)
+					$('#articles-table tbody').append(getTableRow(i+1, result.articles[i], result.carousel_max));
+				
+				$('#articles-table tbody').animate({opacity: 1}, 350);
 			},
 			error: function(result) {
 				bootbox.alert("An error occured. Please try again!");
@@ -161,18 +172,40 @@ $(document).ready(function(){
 		});
 	});
 	
-	function getTableRow(i, article) {
+	function getTableRow(i, article, carousel_max) {
 		var carouselChecked = article.carousel == 1 ? 'checked="checked"' : '';
+		var carouselPotition = article.carousel == 1 ? getCarouselDropDown(article.id, article.carousel_position, carousel_max) : $('#not-shown').val();
 		var publishedChecked = article.is_published == 1 ? 'checked="checked"' : '';
 		var publishedAt = (article.published_at == null || article.published_at.length == 0) ? $('#never').val() : article.published_at;
 		var tableRow = '<tr>'+
 						'<td class="article" rel="'+article.id+'">'+i+'</td>'+
 						'<td class="article" id="article-title-'+article.id+'" rel="'+article.id+'">'+article.title+'</td>'+
 						'<td class="carousel"><input type="checkbox" rel="'+article.id+'" '+carouselChecked+' /></td>'+
+						'<td class="carousel_position">'+carouselPotition+'</td>'+
 						'<td class="is-published"><input type="checkbox" rel="'+article.id+'" '+publishedChecked+' /></td>'+
 						'<td id="article-published-'+article.id+'">'+publishedAt+'</td>'+
 						'</tr>';
 		return tableRow;
+	}
+	
+	function getCarouselDropDown(article_id, carousel_position, carousel_max) {
+		var drop_down_options = '';
+		for(j = 1; j <= carousel_max; j++) {
+			var selected = j == carousel_position ? 'selected="selected"' : '';
+			drop_down_options += '<option '+selected+'>'+j+'</option>';
+		}
+		var drop_down = '<form role="form" class="form-inline" method="post" action="/'+$('#lang').val()+'/admin/articles/updatePosition/'+article_id+'">'+
+							'<div class="form-group">'+
+							'<select class="carousel-drop-down" name="new_position">'+
+							drop_down_options+
+							'</select>'+
+							'<input type="hidden" name="old_position" value="'+carousel_position+'" />'+
+							'</div>'+
+							'<div class="form-group submit-position">'+
+							'</div>';
+							'</form>';
+		
+		return drop_down;
 	}
 	
 	$('#add-new-article').on('click', function(){
@@ -230,6 +263,7 @@ $(document).ready(function(){
 										'<td class="article" rel="'+articleId+'">1</td>'+
 										'<td class="article" id="article-title-'+articleId+'" rel="'+articleId+'">'+articleTitle+'</td>'+
 										'<td class="carousel"><input type="checkbox" rel="'+articleId+'" /></td>'+
+										'<td class="carousel_position">'+$('#not-shown').val()+'</td>'+
 										'<td class="is-published"><input type="checkbox" rel="'+articleId+'"  /></td>'+
 										'<td id="article-published-'+articleId+'">'+$('#never').val()+'</td>'+
 									   '</tr>';

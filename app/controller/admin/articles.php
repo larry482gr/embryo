@@ -1,14 +1,18 @@
 <?php
 class ControllerAdminArticles extends Controller {
+	private $carousel_max = 6;
+	
 	public function index() {
 		$this->data['form'] = $this->language->getLanguage('form');
 		$this->data['news'] = $this->language->getLanguage('news');
 		$lang_id = $this->language->getCurrentLanguageId();
 		$this->data['lang_id'] = $lang_id;
+		$this->data['language'] = $this->language->getCurrentLanguage();
 		$this->data['languages'] = $this->language->getAvailableLanguages();
 		
 		$this->load->model('article');
 		$this->data['articles'] = $this->model_article->findAll('ORDER BY published_at DESC', '', 'lang_id = '.$lang_id.' AND is_published = 1');
+		$this->data['carousel_max'] = $this->carousel_max;
 		
 		$this->document->addStyle('admin/articles');
 		$this->document->addScript('admin/articles');
@@ -28,16 +32,47 @@ class ControllerAdminArticles extends Controller {
 			return $this->response->redirect('/admin/dashboard');
 		}
 		
-		$articleId = $this->db->escape($this->request->post['articleId']);
+		$lang_id = $this->language->getCurrentLanguageId();
+		
+		$article_id = $this->db->escape($this->request->post['articleId']);
 		$showOnCarousel = $this->db->escape($this->request->post['showOnCarousel']);
 		
 		$this->load->model('article');
-		$affectedRows = $this->model_article->updateCarousel($articleId, $showOnCarousel);
+		$affectedRows = $this->model_article->updateCarousel($article_id, $showOnCarousel);
+		if($affectedRows > 0 && $showOnCarousel == 1) {
+			$this->model_article->increaseArticlesPositions($article_id, $lang_id, 1, $this->carousel_max+1);
+			$this->model_article->removeLastFromCarousel($lang_id, $this->carousel_max+1);
+		}
 		
 		$result = $affectedRows > 0 ? 1 : 0;
 		
 		echo $result;
 		die();
+	}
+	
+	public function updatePosition($article_id) {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin/dashboard');
+		}
+		
+		$lang_id = $this->language->getCurrentLanguageId();
+		$language = $this->language->getCurrentLanguage();
+		
+		$old_position = $this->db->escape($this->request->post['old_position']);
+		$new_potition = $this->db->escape($this->request->post['new_position']);
+		
+		$this->load->model('article');
+		$affected_rows = $this->model_article->updateCarouselPosition($article_id, $new_potition);
+		// If successfully updated, update all affected articles.
+		if($affected_rows > 0) {
+			if($new_potition < $old_position)
+				$this->model_article->increaseArticlesPositions($article_id, $lang_id, $new_potition, $old_position);
+			else if($new_potition > $old_position)
+				$this->model_article->decreaseArticlesPositions($article_id, $lang_id, $new_potition, $old_position);
+		}
+		
+		$this->response->redirect('/'.$language.'/admin/articles/');
 	}
 	
 	public function updatePublished() {
@@ -78,7 +113,8 @@ class ControllerAdminArticles extends Controller {
 		$this->load->model('article');
 		$articles = $this->model_article->findAll('ORDER BY published_at DESC', '', 'lang_id = '.$lang_id.' AND '.$isPublishedClause);
 		
-		echo json_encode($articles);
+		$output = array('articles' => $articles, 'carousel_max' => $this->carousel_max);
+		echo json_encode($output);
 		die();
 	}
 	

@@ -25,7 +25,7 @@
 		}
 		
 		public function findCarouselArticles($lang_id) {
-			$query = "SELECT id, title, picture, carousel_label FROM articles WHERE lang_id = ".$lang_id." AND is_published = 1 AND carousel = 1 ORDER BY published_at DESC";
+			$query = "SELECT id, title, picture, carousel_label, carousel_position FROM articles WHERE lang_id = ".$lang_id." AND is_published = 1 AND carousel = 1 ORDER BY carousel_position, published_at DESC";
 			$result = $this->db->query($query);
 			return $result->rows;
 		}
@@ -46,7 +46,32 @@
 		}
 		
 		public function updateCarousel($id, $carousel) {
-			$query = "UPDATE articles SET carousel = ".$carousel." WHERE id = ".$id;
+			$carousel_position = $carousel == 1 ? 1 : 'NULL';
+			$query = "UPDATE articles SET carousel = ".$carousel.", carousel_position = ".$carousel_position." WHERE id = ".$id;
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function removeLastFromCarousel($lang_id, $carousel_max) {
+			$query = "UPDATE articles SET carousel = 0, carousel_position = NULL WHERE lang_id = ".$lang_id." AND carousel_position = ".$carousel_max;
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function updateCarouselPosition($id, $new_position) {
+			$query = "UPDATE articles SET carousel_position = ".$new_position." WHERE id = ".$id;
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function increaseArticlesPositions($id, $lang_id, $new_position, $old_potition) {
+			$query = "UPDATE articles SET carousel_position = carousel_position + 1 WHERE id != ".$id." AND lang_id = ".$lang_id." AND carousel_position >= ".$new_position." AND carousel_position < ".$old_potition;
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function decreaseArticlesPositions($id, $lang_id, $new_position, $old_potition) {
+			$query = "UPDATE articles SET carousel_position = carousel_position - 1 WHERE id != ".$id." AND lang_id = ".$lang_id." AND carousel_position > ".$old_potition." AND carousel_position <= ".$new_position;
 			$this->db->query($query);
 			return $this->db->countAffected();
 		}

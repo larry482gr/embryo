@@ -4,6 +4,9 @@ class ControllerAdminMembers extends Controller {
 		$this->data['form'] = $this->language->getLanguage('form');
 		$this->data['membersLinks'] = $this->language->getLanguage('membersLinks');
 		$lang_id = $this->language->getCurrentLanguageId();
+		$this->data['lang_id'] = $lang_id;
+		$this->data['lang'] = $this->language->getCurrentLanguage();
+		$this->data['languages'] = $this->language->getAvailableLanguages();
 		
 		$this->load->model('member');
 		$this->data['member_groups'] = $this->model_member->findAllGroups($lang_id);
@@ -11,7 +14,8 @@ class ControllerAdminMembers extends Controller {
 		foreach($this->data['member_groups'] as $group) {
 			$groups[] = $group['id'];
 		}
-		$this->data['members'] = $this->model_member->findAllMembers($groups);
+		if(!empty($groups))
+			$this->data['members'] = $this->model_member->findAllMembers($groups);
 		
 		$this->document->addStyle('admin/members');
 		$this->document->addScript('admin/members');

@@ -5,10 +5,13 @@
 	      <div class="form-group">
 		    <label for="language-select" class="col-md-2 control-label">Select language</label>
 		    <div class="col-md-3">
-		      <select class="form-control input-sm" name="lang_id">
-				  <option value="1">English</option>
-				  <option value="2" selected="selected">Ελληνικά</option>
-				</select>
+		      <select id="language" class="form-control input-sm" name="lang_id">
+		      	<?php
+		          foreach($languages as $key => $value) {
+		            echo '<option value="'.$value['id'].'" rel="'.$key.'">'.$form[$value['language']].'</option>';
+		          }
+		        ?>
+			  </select>
 		    </div>
 		  </div>
 		  </form>
@@ -50,8 +53,12 @@
 		    <label for="tab_language" class="col-md-offset-2 col-md-2 control-label">Language</label>
 		    <div class="col-md-4">
 		      <select class="form-control input-sm" name="link_cat[lang_id]">
-				<option value="1">English</option>
-				<option value="2" selected="selected">Ελληνικά</option>
+				<?php
+		          foreach($languages as $key => $value) {
+		            $selected = $value['id'] == $lang_id ? 'selected="selected"' : '';
+		            echo '<option value="'.$value['id'].'" rel="'.$key.'" '.$selected.'>'.$form[$value['language']].'</option>';
+		          }
+		        ?>
 			  </select>
 		    </div>
 		  </div>
@@ -164,4 +171,6 @@
 		</form>
 		</div>
 	</div>
+	<input type="hidden" id="lang_id" value="<?php echo $lang_id; ?>" />
+	<input type="hidden" id="lang" value="<?php echo $language; ?>" />
 	<?php echo $footer; ?>

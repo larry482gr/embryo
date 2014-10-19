@@ -1,28 +1,69 @@
 <?php
-class ControllerAdminLinks extends Controller {
+class ControllerAdminInfo extends Controller {
 	public function index($args = false) {
-		$this->data['form'] = $this->language->getLanguage('form');
 		$lang_id = $this->language->getCurrentLanguageId();
 		$this->data['lang_id'] = $lang_id;
 		$this->data['lang'] = $this->language->getCurrentLanguage();
 		$this->data['languages'] = $this->language->getAvailableLanguages();
+		$this->data['form'] = $this->language->getLanguage('form');
+		$this->data['information'] = $this->language->getLanguage('information');
 		
-		$this->load->model('link');
-		$this->data['link_cats'] = $this->model_link->findAllLinkCategories($lang_id, 'ORDER BY is_active DESC, position, id');
-		$max_position = $this->model_link->getMaxTabPosition($lang_id);
-		$this->data['max_position'] = $max_position['max_link_cat'];
+		$this->load->model('info');
+		$this->data['info_subtabs'] = $this->model_info->findAllInfoSubtabs($lang_id);
+		// Get info tab's ids
+		$tab_ids = array();
+		foreach($this->data['info_subtabs'] as $subtab) {
+			$tab_ids[] = $subtab['id'];
+		}
+		$tab_ids = implode(',', $tab_ids);
+		$this->data['info_main'] = $this->model_info->findInfoCats($tab_ids);
+		$this->data['info_sub'] = $this->model_info->findInfoCats($tab_ids, 'NOT NULL');
 
-		$this->document->addStyle('admin/links');
-		$this->document->addScript('admin/links');
+		$this->document->addStyle('admin/info');
+		$this->document->addScript('admin/info');
 		
 		// Assign header/footer to children object
 		$this->children = array('admin/dashboard', 'admin/footer');
 		
 		// Assign at template object the tpl
-		$this->template = 'admin/links.tpl';
+		$this->template = 'admin/info/index.tpl';
 		$this->response->setOutput($this->render());
 	}
 	
+	public function getCategoryFiles($cat_id) {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin');
+		}
+		
+		$cat_id = $this->db->escape($cat_id);
+		$items = array();
+		
+		$this->load->model('info');
+		$files = $this->model_info->findFiles($cat_id);
+		
+		foreach($files as $file) {
+			$file['size'] = $this->getProperFileSize($file['size']);
+			$file['created_at'] = date('d/m/Y', strtotime($file['created_at']));
+			$items[] = $file;
+		}
+		
+		echo json_encode($items);
+		die();
+	}
+	
+	private function getProperFileSize($fileSize) {
+		if(($fileSize/(1024*1024)) > 1)
+			$fileSize = number_format($fileSize/(1024*1024), 2) . " MB";
+		else if(($fileSize/1024) > 1)
+			$fileSize = number_format($fileSize/1024, 2) . " KB";
+		else
+			$fileSize = $fileSize . " bytes";
+			
+		return $fileSize;
+	}
+	
+	/*
 	public function createCategory() {
 		if(!$this->right->canViewAdminPanel()) {
 			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
@@ -63,5 +104,6 @@ class ControllerAdminLinks extends Controller {
 		if(is_numeric($lastId))
 			return $this->response->redirect('/admin/links');
 	}
+	*/
 }
 ?>

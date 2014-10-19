@@ -43,7 +43,7 @@ class ControllerTexts extends Controller {
 	public function getCategory($catId) {
 		if(!isset($this->session->data['user']['id'])) {
 			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('userDenied');
-			return $this->response->redirect('user/login');
+			return $this->response->redirect('/user/login');
 		}
 		
 		$lang_id = $this->language->getCurrentLanguageId();

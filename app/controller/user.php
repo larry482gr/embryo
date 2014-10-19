@@ -94,8 +94,9 @@ class ControllerUser extends Controller {
 		unset($this->session->data['user']['name']);
 		unset($this->session->data['user']['email']);
 		unset($this->session->data['user']['profile']);
-
-		return $this->response->redirect('/');
+		
+		$lang = $this->language->getCurrentLanguage();
+		return $this->response->redirect('/'.$lang);
 	}
 	
 	public function getInfo($id, $edit = false) {

@@ -23,5 +23,25 @@
 			$result = $this->db->query($query);
 			return isset($result->rows) ? $result->rows : false;
 		}
+		
+		// =========================================================================================================================================
+		// Admin Panel
+		
+		public function findAllInfoSubtabs($lang_id) {
+			$query	= "SELECT menu_subtab.id, menu_subtab.label, menu_subtab.is_divided, menu_subtab.subtab_position ";
+			$query .= "FROM menu_subtabs AS menu_subtab, menu_tabs AS menu_tab ";
+			$query .= "WHERE menu_tab.lang_id = ".$lang_id." AND (menu_tab.id = 6 OR menu_tab.id = 15) AND menu_tab.id = menu_subtab.tab_id ";
+			$query .= "ORDER BY menu_subtab.subtab_position, menu_subtab.is_divided DESC";
+			$result = $this->db->query($query);
+			return isset($result->rows) ? $result->rows : false;
+		}
+		
+		public function findInfoCats($tab_ids, $parent_id = 'NULL') {
+			$query = "SELECT * FROM info_cat WHERE tab_id IN (".$tab_ids.") AND parent_id IS ".$parent_id;
+			$result = $this->db->query($query);
+			return isset($result->rows) ? $result->rows : false;
+		}
+		
+		// =========================================================================================================================================
 	}
 ?>

@@ -6,7 +6,7 @@
 	$language['underMaintenance'] = 'This page is currently under maintenance.<br/>Please try again later or contact the websites administrator.';
 
 	// Header
-	$language['header']['siteName'] = 'ΥΠΟΒΟΗΘΟΥΜΕΝΗ ΑΝΑΠΑΡΑΓΩΓΗ: ΤΟ ΕΥΡΩΠΑΪΚΟ ΘΕΣΜΙΚΟ ΠΛΑΙΣΙΟ';
+	$language['header']['siteName'] = 'ASSISTED HUMAN REPRODUCTION: THE EUROPEAN LEGAL FRAMEWORK';
 	$language['header']['search'] = 'Search';
 	$language['header']['membersLogin'] = 'Members Login';
 	$language['header']['membersArea'] = 'MEMBERS AREA';

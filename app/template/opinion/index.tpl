@@ -23,7 +23,13 @@
       <div class="row">
       	<div class="col-md-7 col-sm-7">
       	  <ul class="links-ul">
-      	    <li><a href="<?php echo '/'.$lang.'/survey/'.$opinionSurvey['id']; ?>"><?php echo $opinion['surveyLink']; ?></a></li>
+      	    <?php
+      	      if($opinionSurvey) {
+      	    ?>
+      	      <li><a href="<?php echo '/'.$lang.'/survey/'.$opinionSurvey['id']; ?>"><?php echo $opinion['surveyLink']; ?></a></li>
+      	    <?php
+      	      }
+      	    ?>
       	    <li><a href="javascript:showHideForm()"><?php echo $form['opinionForm']; ?></a></li>
       	  </ul>
       	  <form id="contact-form" class="form-horizontal" role="form" method="post">

@@ -47,7 +47,7 @@
           <div class="navbar-header">
             <div class="navbar-brand">
 	          <img src='/resources/images/auth_logo.png' id="auth-logo" />
-	          <a href="/"><?php echo $header['siteName']; ?></a>
+	          <a href="<?php echo '/'.$lang.'/'; ?>"><?php echo $header['siteName']; ?></a>
             </div>
             <button class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
               <span class="sr-only">Toggle navigation</span>

@@ -3,11 +3,16 @@ class ControllerNationalCourts extends Controller {
 	public function index($args = false) {
 		if(!isset($this->session->data['user']['id'])) {
 			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('userDenied');
-			return $this->response->redirect('user/login');
+			return $this->response->redirect('/user/login');
 		}
 		
+		$lang_id = $this->language->getCurrentLanguageId();
+		
 		// Until they tell me to set some subcategories go get cat_id = 10 files
-		return $this->getCategory(10);
+		if($lang_id == 2)
+			return $this->getCategory(10);
+		else if($lang_id == 1)
+			return $this->getCategory(22);
 		
 		/* Until they tell me to set some subcategories go get cat_id = 10 files
 		//if($args) {

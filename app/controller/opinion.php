@@ -10,7 +10,7 @@ class ControllerOpinion extends Controller {
 		$this->data['form'] = $this->language->getLanguage('form');
 		
 		$this->load->model('survey');
-		$this->data['opinionSurvey'] = $this->model_survey->findPageSurvey('opinion');
+		$this->data['opinionSurvey'] = $this->model_survey->findPageSurvey($lang_id, 'opinion');
 		
 		if(isset($this->session->data['permissionDenied'])) {
 			$this->data['invalidError'] = $this->session->data['permissionDenied'];

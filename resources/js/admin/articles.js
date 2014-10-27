@@ -54,12 +54,13 @@ $(document).ready(function(){
 		$('#articles-table tbody tr td').find('input:checkbox').attr('disabled', true);
 		var articleId = $(this).attr('rel');
 		var showOnCarousel = $(this).is(':checked') ? 1 : 0;
+		var lang_id = $('#lang_id').val();
 		
 		$.ajax({
 			url: '/admin/articles/updateCarousel',
 			type: 'post',
 			cache: false,
-			data: { articleId: articleId, showOnCarousel: showOnCarousel },
+			data: { articleId: articleId, showOnCarousel: showOnCarousel, langId: lang_id },
 			dataType: 'text',
 			success: function(result) {
 				if(result == 1)

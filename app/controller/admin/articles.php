@@ -32,10 +32,9 @@ class ControllerAdminArticles extends Controller {
 			return $this->response->redirect('/admin/dashboard');
 		}
 		
-		$lang_id = $this->language->getCurrentLanguageId();
-		
 		$article_id = $this->db->escape($this->request->post['articleId']);
 		$showOnCarousel = $this->db->escape($this->request->post['showOnCarousel']);
+		$lang_id = $this->db->escape($this->request->post['langId']);
 		
 		$this->load->model('article');
 		$affectedRows = $this->model_article->updateCarousel($article_id, $showOnCarousel);

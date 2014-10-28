@@ -30,6 +30,9 @@ class ControllerHeader extends Controller {
 		$this->data['canViewMembersArea'] = $this->right->canViewMembersArea() ? true : false;
 		// $this->data['canCreateUser'] = $this->right->isAdministrator() ? true : false;
 		
+		$this->data['gr_href'] = '/gr/'.substr($this->request->server['REQUEST_URI'], 4);
+		$this->data['en_href'] = '/en/'.substr($this->request->server['REQUEST_URI'], 4);
+		
 		if(isset($this->session->data['userPermissionDenied'])) {
 			$this->data['invalidError'] = $this->session->data['userPermissionDenied'];
 			unset($this->session->data['userPermissionDenied']);

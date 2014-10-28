@@ -56,6 +56,10 @@
               <span class="icon-bar"></span>
             </button>
             <div class="nav-search-form">
+              <div id="select-lang-div" class="pull-left">
+                <a href="<?php echo $en_href; ?>"><img class="flag-icon" src="/resources/images/countries/uk_circle.png" /></a>
+                <a href="<?php echo $gr_href; ?>"><img class="flag-icon" src="/resources/images/countries/gr_circle.png" /></a>
+              </div>
               <form action="<?php echo '/'.$lang.'/search'; ?>" method="get" role="search">
               	<div class="form-group">
                   <div class="input-group">

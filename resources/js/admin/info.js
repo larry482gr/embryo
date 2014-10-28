@@ -40,6 +40,20 @@ $(document).ready(function() {
 		window.open('/resources/files/information/'+fileLink, '_blank');
 	});
 	
+	$('#add-new-category').on('click', function() {
+		if($('#create-new-cat').is(':visible'))
+			$('#create-new-cat').slideUp();
+		else
+			$('#create-new-cat').slideDown();
+	});
+	
+	$('#add-new-file').on('click', function() {
+		if($('#create-new-file').is(':visible'))
+			$('#create-new-file').slideUp();
+		else
+			$('#create-new-file').slideDown();
+	});
+	
 	function appendFileRow(rowIndex, file) {
 		$('#info-table tbody').append('<tr rel="'+file.name+'"><td class="center v-center">'+rowIndex+'</td><td class="v-center">'+file.label+'</td><td class="center v-center">'+file.size+'</td><td class="center v-center">'+file.created_at+'</td></tr>');
 	}

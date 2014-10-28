@@ -1,5 +1,11 @@
 <?php 
 	class ModelUser extends Model {
+		public function findUsers($whereClause, $order = '', $limit = '') {
+			$query = "SELECT user.*, info.* FROM users AS user, user_infos AS info WHERE ".$whereClause." AND user.id = info.user_id ".$order." ".$limit;
+			$result = $this->db->query($query);
+			return $result->rows;
+		}
+		
 		public function findUser($id) {
 			$query = "SELECT user.*, info.* FROM users AS user, user_infos AS info WHERE user.id = ".$id." AND user.id = info.user_id";
 			$result = $this->db->query($query);

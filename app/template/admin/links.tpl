@@ -16,7 +16,7 @@
 		  </div>
 		  </form>
 		  <table id="links-table" class="table table-hover col-md-9">
-		  	<thead><tr><th>#</th><th>Label</th><th>Active</th><th>Position</th></tr></thead>
+		  	<thead><tr><th></th><th>Label</th><th>Active</th><th>Position</th></tr></thead>
 		  	<tbody>
 		    <?php
 		    	$table_rows = '';

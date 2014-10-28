@@ -12,9 +12,7 @@
 		  <a href="/<?php echo $lang; ?>/admin/links" class="list-group-item">Links</a>
 		  <a href="/<?php echo $lang; ?>/admin/info" class="list-group-item">Information</a>
 		  <a href="/<?php echo $lang; ?>/admin/surveys" class="list-group-item">Surveys</a>
-		  <!--
-		    <a href="/<?php echo $lang; ?>/admin/todo" class="list-group-item">TO DO</a>
-		  -->
+		  <a href="/<?php echo $lang; ?>/admin/todo" class="list-group-item">Issues</a>
 		  <a href="/<?php echo $lang; ?>/admin/logout" class="list-group-item">Logout</a>
 		</div>
 	  </div>

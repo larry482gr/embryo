@@ -1,0 +1,12 @@
+#issues-table {
+	background-color: #FFFFFF;
+	margin-top: 10px;
+}
+
+.priority {
+	width: 10px;
+}
+
+.tab-option {
+	font-weight: bold;
+}

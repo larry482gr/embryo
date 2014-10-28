@@ -103,16 +103,21 @@
 	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Επικοινωνία';
-	/*
-		$language['contact']['telephone'] = 'Τηλ:';
-		$language['contact']['fax'] = 'Φαξ:';
-		$language['contact']['kastanidou'] = 'Ε. Συμεωνίδου – Καστανίδου';
-		$language['contact']['kastOffice'] = 'Νομική Σχολή ΑΠΘ, γρ. 205';
-		$language['contact']['kastEmail'] = 'kastan@law.auth.gr';
-		$language['contact']['tarlatzis'] = 'B. Ταρλατζής';
-		$language['contact']['tarlOffice'] = 'Σχολή Επιστημών Υγείας AΠΘ';
-		$language['contact']['tarlEmail'] = 'tarlatzis@gmail.com';
-	*/
+	$language['contact']['telephone'] = 'Τηλ:';
+	$language['contact']['fax'] = 'Φαξ:';
+	$language['contact']['kastanidou'] = 'Ε. Συμεωνίδου – Καστανίδου';
+	$language['contact']['kastOffice'] = 'Νομική Σχολή ΑΠΘ, γρ. 205';
+	$language['contact']['kastPOBox'] = '54124 Θεσσαλονίκη, Ελλάδα';
+	$language['contact']['kastTel1'] = '2310 996496';
+	$language['contact']['kastTel2'] = '344308';
+	$language['contact']['kastFax'] = '2310 996494';
+	$language['contact']['kastEmail'] = 'kastan@law.auth.gr';
+	$language['contact']['tarlatzis'] = 'B. Ταρλατζής';
+	$language['contact']['tarlOffice'] = 'Σχολή Επιστημών Υγείας AΠΘ';
+	$language['contact']['tarlPOBox'] = '54124 Θεσσαλονίκη, Ελλάδα';
+	$language['contact']['tarlTel1'] = '2310 991182';
+	$language['contact']['tarlTel2'] = '';
+	$language['contact']['tarlEmail'] = 'tarlatzis@gmail.com';
 	
 	// Forum
 	$language['forum']['pageTitle'] = 'Forum';

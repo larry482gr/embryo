@@ -103,16 +103,21 @@
 	
 	// Contact Us
 	$language['contact']['pageTitle'] = 'Contact Us';
-	/*
-		$language['contact']['telephone'] = 'Τηλ:';
-		$language['contact']['fax'] = 'Φαξ:';
-		$language['contact']['kastanidou'] = 'Ε. Συμεωνίδου – Καστανίδου';
-		$language['contact']['kastOffice'] = 'Νομική Σχολή ΑΠΘ, γρ. 205';
-		$language['contact']['kastEmail'] = 'kastan@law.auth.gr';
-		$language['contact']['tarlatzis'] = 'B. Ταρλατζής';
-		$language['contact']['tarlOffice'] = 'Σχολή Επιστημών Υγείας AΠΘ';
-		$language['contact']['tarlEmail'] = 'tarlatzis@gmail.com';
-	*/
+	$language['contact']['telephone'] = 'Tel:';
+	$language['contact']['fax'] = 'Fax:';
+	$language['contact']['kastanidou'] = 'Ε. Symeonidou - Kastanidou';
+	$language['contact']['kastOffice'] = 'Faculty of Law, AUTH University Campus';
+	$language['contact']['kastPOBox'] = '54124 Thessaloniki, Greece';
+	$language['contact']['kastTel1'] = '(0030) 2310 99 6496';
+	$language['contact']['kastTel2'] = '';
+	$language['contact']['kastFax'] = '(0030) 2310 99 6494';
+	$language['contact']['kastEmail'] = 'kastan@law.auth.gr';
+	$language['contact']['tarlatzis'] = 'B. Τarlatzis';
+	$language['contact']['tarlOffice'] = 'Faculty of Health Sciences, School of Medicine, AUTH University Campus';
+	$language['contact']['tarlPOBox'] = '54124 Thessaloniki, Greece';
+	$language['contact']['tarlTel1'] = '(0030) 2310 99 1182';
+	$language['contact']['tarlTel2'] = '';
+	$language['contact']['tarlEmail'] = 'tarlatzis@gmail.com';
 	
 	// Forum
 	$language['forum']['pageTitle'] = 'Forum';

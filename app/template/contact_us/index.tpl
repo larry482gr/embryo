@@ -51,17 +51,27 @@
 	  	</div>
 	  	<div class="col-md-5 col-sm-5">
 	  	  <div class="contact-info">
-	  	    <div><span class="glyphicon glyphicon-user"></span>Ε. Συμεωνίδου – Καστανίδου</div>
-	  	    <div><span class="glyphicon glyphicon-briefcase"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο">Νομική Σχολή ΑΠΘ, γρ. 205</a></div>
-	  	    <div><span class="glyphicon glyphicon-phone-alt"></span>Τηλ: <a href="tel:+302310996496">2310 996496</a> / <a href="tel:+302310344308">344308</a></div>
-	  	    <div><span class="glyphicon glyphicon-print"></span>Φαξ: 2310 996494</div>
-	  	    <div><span class="glyphicon glyphicon-envelope"></span><a href="mailto:kastan@law.auth.gr">kastan@law.auth.gr</a></div>
+	  	    <div><span class="glyphicon glyphicon-user"></span><?php echo $contact['kastanidou']; ?></div>
+	  	    <div><span class="glyphicon glyphicon-briefcase"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο"><?php echo $contact['kastOffice']; ?></a></div>
+	  	    <div><span class="glyphicon glyphicon-map-marker"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο"><?php echo $contact['kastPOBox']; ?></a></div>
+	  	    <div><span class="glyphicon glyphicon-phone-alt"></span><?php echo $contact['telephone']; ?> <a href="tel:+302310996496"><?php echo $contact['kastTel1']; ?></a>
+	  	    <?php
+	  	      if(!empty($contact['kastTel2'])) {
+	  	    ?>
+	  	     / <a href="tel:+302310344308"><?php echo $contact['kastTel2']; ?></a>
+	  	    <?php
+	  	      }
+	  	    ?>
+	  	    </div>
+	  	    <div><span class="glyphicon glyphicon-print"></span><?php echo $contact['fax']; ?> <?php echo $contact['kastFax']; ?></div>
+	  	    <div><span class="glyphicon glyphicon-envelope"></span><a href="mailto:<?php echo $contact['kastEmail']; ?>"><?php echo $contact['kastEmail']; ?></a></div>
 	  	  </div>
 	  	  <div class="contact-info">
-	  	    <div><span class="glyphicon glyphicon-user"></span>B. Ταρλατζής</div>
-	  	    <div><span class="glyphicon glyphicon-briefcase"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο">Σχολή Επιστημών Υγείας AΠΘ</a></div>
-	  	    <div><span class="glyphicon glyphicon-phone-alt"></span>Τηλ: <a href="tel:+302310991182">2310 991182</a></div>
-	  	    <div><span class="glyphicon glyphicon-envelope"></span><a href="mailto:tarlatzis@gmail.com">tarlatzis@gmail.com</a></div>
+	  	    <div><span class="glyphicon glyphicon-user"></span><?php echo $contact['tarlatzis']; ?></div>
+	  	    <div><span class="glyphicon glyphicon-briefcase"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο"><?php echo $contact['tarlOffice']; ?></a></div>
+	  	    <div><span class="glyphicon glyphicon-map-marker"></span><a class="geo-link" href="geo:Αριστοτέλειο Πανεπιστήμιο?q=Αριστοτέλειο Πανεπιστήμιο"><?php echo $contact['tarlPOBox']; ?></a></div>
+	  	    <div><span class="glyphicon glyphicon-phone-alt"></span><?php echo $contact['telephone']; ?> <a href="tel:+302310991182"><?php echo $contact['tarlTel1']; ?></a></div>
+	  	    <div><span class="glyphicon glyphicon-envelope"></span><a href="mailto:<?php echo $contact['tarlEmail']; ?>"><?php echo $contact['tarlEmail']; ?></a></div>
 	  	  </div>
 	  	</div>
       </div>

@@ -11,6 +11,10 @@
 	vertical-align: middle !important;
 }
 
+#edit-btn {
+	display: none;
+}
+
 .submit-div {
 	margin-top: 20px;
 }

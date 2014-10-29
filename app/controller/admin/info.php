@@ -30,6 +30,21 @@ class ControllerAdminInfo extends Controller {
 		$this->response->setOutput($this->render());
 	}
 	
+	public function getCategory() {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin');
+		}
+		
+		$id = $this->db->escape($this->request->post['id']);
+		
+		$this->load->model('info');
+		$info_cat = $this->model_info->findInfoCategory($id);
+		
+		echo json_encode($info_cat);
+		die();
+	}
+	
 	public function getCategoryFiles($cat_id) {
 		if(!$this->right->canViewAdminPanel()) {
 			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
@@ -52,6 +67,33 @@ class ControllerAdminInfo extends Controller {
 		die();
 	}
 	
+	public function createCategory() {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin');
+		}
+		
+		$lang = $this->language->getCurrentLanguage();
+		
+		$info = array();
+		foreach($this->request->post['info'] as $key => $value) {
+			$info[$key] = $this->db->escape($value);
+		}
+		
+		$info['label'] = !empty($info['label']) ? "'".$info['label']."'" : "NULL";
+		$info['parent_id'] = ($info['parent_id'] != -1) ? $info['parent_id'] : "NULL";
+		$info['is_active'] = isset($info['is_active']) ? 1 : 0;
+		
+		$this->load->model('info');
+		
+		if($info['edit'] == -1)
+			$affectedRows = $this->model_info->createInfoCategory($info);
+		else
+			$affectedRows = $this->model_info->updateInfoCategory($info);
+		
+		$this->response->redirect('/'.$lang.'/admin/info');
+	}
+	
 	private function getProperFileSize($fileSize) {
 		if(($fileSize/(1024*1024)) > 1)
 			$fileSize = number_format($fileSize/(1024*1024), 2) . " MB";
@@ -64,25 +106,6 @@ class ControllerAdminInfo extends Controller {
 	}
 	
 	/*
-	public function createCategory() {
-		if(!$this->right->canViewAdminPanel()) {
-			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
-			return $this->response->redirect('/admin');
-		}
-		
-		$link_cat = array('label' => '', 'lang_id' => 2, 'position' => null, 'is_active' => 1);
-		$link_cat['label'] = $this->db->escape($this->request->post['link_cat']['label']);
-		$link_cat['lang_id'] = $this->db->escape($this->request->post['link_cat']['lang_id']);
-		$link_cat['position'] = empty($this->request->post['link_cat']['position']) ? null : $this->db->escape($this->request->post['link_cat']['position']);
-		$link_cat['is_active'] = $this->db->escape($this->request->post['link_cat']['is_active']) == 'on' ? 1 : 0;
-		
-		$this->load->model('link');
-		$lastId = $this->model_link->createLinkCategory($link_cat);
-		
-		if(is_numeric($lastId))
-			return $this->response->redirect('/admin/links');
-	}
-	
 	public function createLink() {
 		if(!$this->right->canViewAdminPanel()) {
 			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');

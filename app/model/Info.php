@@ -1,7 +1,7 @@
 <?php 
 	class ModelInfo extends Model {
 		public function findCategory($id) {
-			$query = "SELECT id, label, parent_id FROM info_cat WHERE id = ".$id." AND is_active = 1";
+			$query = "SELECT * FROM info_cat WHERE id = ".$id." AND is_active = 1";
 			$result = $this->db->query($query);
 			return $result->row;
 		}
@@ -42,6 +42,30 @@
 			return isset($result->rows) ? $result->rows : false;
 		}
 		
+		public function findInfoCategory($id) {
+			$query = "SELECT * FROM info_cat WHERE id = ".$id;
+			$result = $this->db->query($query);
+			return $result->row;
+		}
+		
+		public function createInfoCategory($info) {
+			$query	= "INSERT INTO info_cat (tab_id, lang_id, label, parent_id, is_active) ";
+			$query .= "VALUES (".$info['tab_id'].", ".$info['lang_id'].", ".$info['label'].", ".$info['parent_id'].", ".$info['is_active'].")";
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function updateInfoCategory($info) {
+			$query	= "UPDATE info_cat SET ";
+			$query .= "tab_id = ".$info['tab_id'].", ";
+			$query .= "lang_id = ".$info['lang_id'].", ";
+			$query .= "label = ".$info['label'].", ";
+			$query .= "parent_id = ".$info['parent_id'].", ";
+			$query .= "is_active = ".$info['is_active']." ";
+			$query .= "WHERE id = ".$info['edit'];
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
 		// =========================================================================================================================================
 	}
 ?>

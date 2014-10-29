@@ -65,6 +65,9 @@
 			        ?>
 				  </select>
 			    </div>
+			    <div>
+			      <button id="edit-btn" class="btn btn-primary">Edit</button>
+			    </div>
 			  </div>
 		  </form>
 		  
@@ -103,7 +106,7 @@
 		  <div class="form-group">
 		    <label for="info-cat" class="col-md-offset-1 col-md-3 control-label">Reference category</label>
 		    <div class="col-md-4">
-		      <select id="info-cat" class="form-control" name="info[parent_id]">
+		      <select id="info-parent" class="form-control" name="info[parent_id]">
 		        <option value="-1" selected="selected">Select a category...</option>
 			      	<?php
 			          foreach($info_main as $main) {
@@ -134,12 +137,13 @@
 		  </div>
 		  <div class="col-md-offset-4 checkbox">
 		    <label>
-		      <input type="checkbox" name="info[is_active]"> Is active?
+		      <input type="checkbox" id="info-active" name="info[is_active]"> Is active?
 		    </label>
 		  </div>
 		  <div class="form-group submit-div">
 		    <div class="col-md-offset-4 col-md-4">
-		      <button type="button" class="btn btn-primary"><?php echo $form['submit']; ?></button>
+		      <button type="button" id="submit-cat-btn" class="btn btn-primary"><?php echo $form['submit']; ?></button>
+		      <input type="hidden" id="edit-cat" name="info[edit]" value="-1" />
 		    </div>
 		  </div>
 		</form>

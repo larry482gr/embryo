@@ -72,7 +72,7 @@
 		  </form>
 		  
 		  <table id="info-table" class="table table-condensed table-bordered table-hover col-md-9">
-		  	<thead><tr><th></th><th><?php echo $information['fileName']; ?></th><th><?php echo $information['fileSize']; ?></th><th><?php echo $information['fileDate']; ?></th></tr></thead>
+		  	<thead><tr><th></th><th><?php echo $information['fileName']; ?></th><th><?php echo $information['fileSize']; ?></th><th><?php echo $information['fileDate']; ?></th><th><?php echo $information['editFileName']; ?></th></tr></thead>
 		  	<tbody>
 		    </tbody>
 		  </table>
@@ -149,7 +149,7 @@
 		</form>
 		
 		<!-- Add New Link Form -->
-		<form id="create-new-file" class="form-horizontal col-md-12" role="form" action="members/createMember" method="post" enctype="multipart/form-data">
+		<form id="create-new-file" class="form-horizontal col-md-12" role="form" action="/admin/info/createFile" method="post" enctype="multipart/form-data">
 	      <?php
 	        if(false) {
 	      ?>
@@ -160,49 +160,25 @@
 		    }
 		  ?>
 		  <div class="form-group">
-		    <label for="member_group" class="col-md-offset-1 col-md-3 control-label">Pick a Group</label>
-		    <div class="col-md-4">
-		      <select class="form-control input-sm" id="member_group" name="member[group_id]">
-		        <?php
-		          $groupOptions = '';
-		          foreach($member_groups as $group) {
-		    		$groupOptions .= '<option value="'.$group['id'].'">'.$group['label'].'</option>';
-		    	}
-				echo $groupOptions;
-		        ?>
-			  </select>
+		    <label for="info-label" class="col-md-offset-1 col-md-3 control-label">File Name</label>
+		    <div class="col-md-6">
+		      <input type="text" class="form-control" id="info-label" name="info[label]">
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="member_name" class="col-md-offset-1 col-md-3 control-label">Name</label>
+		    <label for="info-file" class="col-md-offset-1 col-md-3 control-label">File</label>
 		    <div class="col-md-6">
-		      <input type="text" class="form-control" id="member_name" name="member[name]" placeholder="Research Member's Full Name">
+		      <input type="file" id="info-file" name="info_file">
+		      <p class="help-block">File types allowed: .doc, .docx, .pdf</p>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="member_email" class="col-md-offset-1 col-md-3 control-label">Email</label>
-		    <div class="col-md-6">
-		      <input type="text" class="form-control" id="member_email" name="member[email]" placeholder="Research Member's Email">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="member_picture" class="col-md-offset-1 col-md-3 control-label">Picture</label>
-		    <div class="col-md-6">
-			  <img class="thumbnail" id="form-thumbnail" src="">
-		      <input type="file" id="member_picture" name="member_picture">
-		      <p class="help-block">File types allowed: .jpeg, .jpg, .png</p>
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="member_cv" class="col-md-offset-1 col-md-3 control-label">Bio (CV)</label>
-		    <div class="col-md-6">
-		      <textarea class="form-control" id="member_cv" name="member[cv]"></textarea>
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="member_pubs" class="col-md-offset-1 col-md-3 control-label">Publications</label>
-		    <div class="col-md-6">
-		      <textarea class="form-control" id="member_pubs" name="member[pubs]"></textarea>
+		    <label for="info-weight" class="col-md-offset-1 col-md-3 control-label">Order weight</label>
+		    <div class="col-md-2">
+		      <select id="info-weight" class="form-control" name="info[weight]">
+		        <option value="1" selected="selected">1</option>
+		        <option value="2">2</option>
+		      </select>
 		    </div>
 		  </div>
 		  <div class="form-group">
@@ -210,12 +186,12 @@
 		      <button type="submit" class="btn btn-primary"><?php echo $form['submit']; ?></button>
 		    </div>
 		  </div>
-		  <input type="hidden" id="member_id" name="member_id" value="-1" />
-		  <input type="hidden" id="edit" name="edit" value="0" />
+		  <input type="hidden" id="info-cat-id" name="info[cat_id]" value="-1" />
 		</form>
 		</div>
 	</div>
 	<input type="hidden" id="lang_id" value="<?php echo $lang_id; ?>" />
 	<input type="hidden" id="lang" value="<?php echo $lang; ?>" />
+	<input type="hidden" id="edit-file-name" value="<?php echo $information['editFileName']; ?>" />
 	<input type="hidden" id="no-results" value="<?php echo $information['noResults']; ?>" />
 	<?php echo $footer; ?>

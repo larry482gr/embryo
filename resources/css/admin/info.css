@@ -3,6 +3,10 @@
 	margin-top: 10px;
 }
 
+#info-table td.file-label {
+	cursor: pointer;
+}
+
 .center {
 	text-align: center;
 }

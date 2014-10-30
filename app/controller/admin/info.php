@@ -94,8 +94,88 @@ class ControllerAdminInfo extends Controller {
 		$this->response->redirect('/'.$lang.'/admin/info');
 	}
 	
+	public function createFile() {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin');
+		}
+		
+		$lang = $this->language->getCurrentLanguage();
+		
+		$info['cat_id'] = $this->db->escape($this->request->post['info']['cat_id']);
+		$info['label'] = $this->db->escape($this->request->post['info']['label']);
+		$info['weight'] = $this->db->escape($this->request->post['info']['weight']);
+		
+		if(empty($this->request->files['info_file']['name']) && empty($this->request->files['info_file']['type'])) {
+			// ==========================
+			// error no file!!!
+			// ==========================
+			
+			// $member['picture'] = null;
+		}
+		else {
+			$allowedExts = array("doc", "docx", "png");
+			$extension = end(explode(".", $this->request->files['info_file']['name']));
+			
+			$path = _DOCUMENT_ROOT_."/resources/files/information";
+			$filepath = $path."/".$this->request->files['info_file']['name'];
+			
+			if ((($this->request->files['info_file']['type'] == 'application/msword')
+				|| ($this->request->files['info_file']['type'] == 'application/pdf')
+				|| ($this->request->files['info_file']['type'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'))
+				&& in_array($extension, $allowedExts)) {
+				   
+				if ($this->request->files['info_file']['error'] > 0) {
+					var_dump($this->request->files['info_file']['error']);
+					exit();
+				}
+				else {
+					if (!file_exists($path."/")) {
+				        mkdir($path);
+				        chmod($path, 0757);  // octal; correct value of mode
+				    }
+				    else {
+				    	@move_uploaded_file($this->request->files['info_file']['tmp_name'], $filepath);
+				    	$info['name'] = $this->request->files['info_file']['name'];
+				    }
+				}
+			}
+			else {
+				// Refactor it to send a message to the user.
+				var_dump("Wrong file type");
+				exit();
+			}
+		}
+		
+		$info['size'] = $this->request->files['info_file']['size'];
+		
+		$this->load->model('info');
+		$affectedRows = $this->model_info->createInfoFile($info);
+		
+		if($affectedRows > 0)
+			return $this->response->redirect('/'.$lang.'/admin/info');
+	}
+	
+	public function updateFileName() {
+		if(!$this->right->canViewAdminPanel()) {
+			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
+			return $this->response->redirect('/admin');
+		}
+		
+		$id = $this->db->escape($this->request->post['id']);
+		$label = $this->db->escape($this->request->post['label']);
+		
+		$this->load->model('info');
+		$affectedRows = $this->model_info->updateInfoFileName($id, $label);
+		
+		echo $affectedRows;
+		die();
+	}
+	
 	private function getProperFileSize($fileSize) {
-		if(($fileSize/(1024*1024)) > 1)
+		if(($fileSize/(1024*1024*1024)) > 1)
+			$fileSize = number_format($fileSize/(1024*1024*1024), 2) . " GB";
+		else if(($fileSize/(1024*1024)) > 1)
 			$fileSize = number_format($fileSize/(1024*1024), 2) . " MB";
 		else if(($fileSize/1024) > 1)
 			$fileSize = number_format($fileSize/1024, 2) . " KB";
@@ -104,29 +184,5 @@ class ControllerAdminInfo extends Controller {
 			
 		return $fileSize;
 	}
-	
-	/*
-	public function createLink() {
-		if(!$this->right->canViewAdminPanel()) {
-			$this->session->data['permissionDenied'] = $this->language->getPermissionDeniedMessage('adminPanelDenied');
-			return $this->response->redirect('/admin');
-		}
-		
-		$link = array('cat_id' => '', 'header' => '', 'prepend_text' => '', 'link_url' => '', 'link_label' => '', 'append_text' => '', 'is_group' => '');
-		$link['cat_id'] = $this->db->escape($this->request->post['link']['cat_id']);
-		$link['header'] = $this->db->escape($this->request->post['link']['header']);
-		$link['prepend_text'] = $this->db->escape($this->request->post['link']['prepend_text']);
-		$link['link_url'] = $this->db->escape($this->request->post['link']['link_url']);
-		$link['link_label'] = $this->db->escape($this->request->post['link']['link_label']);
-		$link['append_text'] = $this->db->escape($this->request->post['link']['append_text']);
-		$link['is_group'] = isset($this->request->post['link']['is_group']) && $this->db->escape($this->request->post['link']['is_group']) == 'on' ? 1 : 0;
-		
-		$this->load->model('link');
-		$lastId = $this->model_link->createLink($link);
-		
-		if(is_numeric($lastId))
-			return $this->response->redirect('/admin/links');
-	}
-	*/
 }
 ?>

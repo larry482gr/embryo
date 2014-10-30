@@ -19,7 +19,7 @@
 		}
 		
 		public function findFiles($catId) {
-			$query = "SELECT label, name, size, created_at FROM info_files WHERE cat_id = ".$catId." ORDER BY weight, label";
+			$query = "SELECT id, label, name, size, created_at FROM info_files WHERE cat_id = ".$catId." ORDER BY weight, label";
 			$result = $this->db->query($query);
 			return isset($result->rows) ? $result->rows : false;
 		}
@@ -63,6 +63,19 @@
 			$query .= "parent_id = ".$info['parent_id'].", ";
 			$query .= "is_active = ".$info['is_active']." ";
 			$query .= "WHERE id = ".$info['edit'];
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function createInfoFile($info) {
+			$query	= "INSERT INTO info_files (cat_id, label, name, size, weight) ";
+			$query .= "VALUES (".$info['cat_id'].", '".$info['label']."', '".$info['name']."', ".$info['size'].", ".$info['weight'].")";
+			$this->db->query($query);
+			return $this->db->countAffected();
+		}
+		
+		public function updateInfoFileName($id, $label) {
+			$query = "UPDATE info_files SET label = '".$label."' WHERE id = ".$id;
 			$this->db->query($query);
 			return $this->db->countAffected();
 		}

@@ -75,6 +75,7 @@
 	
 	// Information
 	$language['information']['fileName'] = 'Όνομα Αρχείου';
+	$language['information']['editFileName'] = 'Τροποποίηση Ονόματος Αρχείου';
 	$language['information']['fileSize'] = 'Μέγεθος Αρχείου';
 	$language['information']['fileDate'] = 'Ημερομηνία Δημοσιεύσης';
 	$language['information']['noResults'] = 'Δεν υπάρχουν καταχωρήσεις';

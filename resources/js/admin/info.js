@@ -10,6 +10,7 @@ $(document).ready(function() {
 	$('#info-cat').on('change', function() {
 		$('#edit-btn').show();
 		var cat_id = $(this).val();
+		$('#info-cat-id').val(cat_id);
 		$.ajax({
 			url: '/admin/info/getCategoryFiles/'+cat_id,
 			type: 'get',
@@ -21,7 +22,7 @@ $(document).ready(function() {
 			},
 			success: function(items) {
 				if(items.length == 0) {
-					$('#info-table tbody').append('<tr><td class="center v-center" colspan="4">'+$('#no-results').val()+'</td></tr>');
+					$('#info-table tbody').append('<tr><td class="center v-center" colspan="5">'+$('#no-results').val()+'</td></tr>');
 				}
 				else {
 					for(i = 0; i < items.length; i++) {
@@ -68,12 +69,25 @@ $(document).ready(function() {
 		});
 	});
 	
-	/*
-	$('.container').on('click', '#info-table tr', function(){
-		fileLink = $(this).attr('rel');
+	$('.container').on('click', '#info-table td.file-label', function() {
+		fileLink = $(this).parent().attr('rel');
 		window.open('/resources/files/information/'+fileLink, '_blank');
 	});
-	*/
+	
+	$('.container').on('click', '.edit-filename', function() {
+		var edit_id = $(this).attr('rel');
+		bootbox.prompt($('#edit-file-name').val(), function(result) {
+			if (result !== null) {
+				if(result.length > 0)
+					updateFileName(edit_id, result);
+				else
+					bootbox.alert('Cannot update to an empty file name.');
+			}
+		});
+		$('.bootbox-input').val($(this).parent().parent().find('.file-label').html());
+	});
+	
+	//Μηλαπιδου Μαρία, ΔρΝ, Δικηγορος, "Ο ν. 4272/2014 και οι τροποποιήσεις που επιφέρει στο ν. 3305/2005 για την Ιατρικως Υποβοηθούμενη Αναπαραγωγή", 2014
 	
 	$('#add-new-category').on('click', function() {
 		if($('#create-new-cat').is(':visible')) {
@@ -95,11 +109,13 @@ $(document).ready(function() {
 			$(this).text('Add New File');
 			$('#create-new-file').slideUp();
 			$('#add-new-category').removeAttr('disabled');
+			$('#info-cat-id').val(-1);
 		}
 		else {
 			$('#create-new-file').slideDown();
 			$(this).text('Close Form');
 			$('#add-new-category').attr('disabled', true);
+			$('#info-cat-id').val($('#info-cat').val());
 		}
 	});
 	
@@ -109,7 +125,32 @@ $(document).ready(function() {
 	});
 	
 	function appendFileRow(rowIndex, file) {
-		$('#info-table tbody').append('<tr rel="'+file.name+'"><td class="center v-center">'+rowIndex+'</td><td class="v-center">'+file.label+'</td><td class="center v-center">'+file.size+'</td><td class="center v-center">'+file.created_at+'</td></tr>');
+		var edit_button = '<button id="edit'+file.id+'" class="edit-filename btn btn-warning" rel="'+file.id+'">Edit</button>';
+		$('#info-table tbody').append('<tr rel="'+file.name+'"><td class="center v-center">'+rowIndex+'</td><td class="v-center file-label">'+file.label+'</td><td class="center v-center">'+file.size+'</td><td class="center v-center">'+file.created_at+'</td><td class="center v-center">'+edit_button+'</td></tr>');
+	}
+	
+	function updateFileName(id, label) {
+		var file_id = id;
+		var file_label = label;
+		$.ajax({
+			url: '/admin/info/updateFileName',
+			type: 'post',
+			cache: false,
+			dataType: 'text',
+			data: { id: file_id, label: file_label },
+			success: function(result) {
+				if(result > 0) {
+					var table_row = $('#info-table tbody').find('#edit'+file_id).parent().parent();
+					table_row.find('.file-label').html(file_label);
+				}
+				else {
+					bootbox.alert("An error occured. Please try again!");
+				}
+			},
+			error: function(result) {
+				bootbox.alert("An error occured. Please try again!");
+			}
+		});
 	}
 	
 	function resetCategoryForm() {

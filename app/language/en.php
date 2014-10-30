@@ -75,6 +75,7 @@
 	
 	// Information
 	$language['information']['fileName'] = 'File Name';
+	$language['information']['editFileName'] = 'Edit File Name';
 	$language['information']['fileSize'] = 'File Size';
 	$language['information']['fileDate'] = 'Published At';
 	$language['information']['noResults'] = 'No Results';

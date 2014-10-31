@@ -1,0 +1,25 @@
+dt > h5 {
+	padding: 10px 8px;
+	background-color: #428bca;
+	border-top: 1px solid #285e8e;
+	border-bottom: 1px solid #285e8e;
+	color: #FFFFFF;
+	margin-bottom: 20px;
+}
+
+dd > h4 {
+	text-align: center;
+}
+.control-label {
+	text-align: left !important;
+	padding-right: 0px !important;
+}
+
+#contact-tel > span {
+	font-weight: normal !important;
+}
+
+#conf-submit {
+	margin-top: 40px;
+	text-align: center;
+}

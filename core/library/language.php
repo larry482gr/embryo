@@ -48,6 +48,10 @@ class Language {
 	public function getMonthArray($key = false) {
    		return $key ? $this->data['monthArray'][$key] : $this->data['monthArray'];
   	}
+  	
+  	public function getCountryList($key = false) {
+   		return $key ? $this->data['countryList'][$key] : $this->data['countryList'];
+  	}
 	
 	public function load($filename) {
 		$file = LANGUAGE_D . '/' . $filename . '.php';
@@ -56,7 +60,8 @@ class Language {
 			$language = array();
 			$information = array();
 			$dayArray = array();
-			$monthArry = array();
+			$monthArray = array();
+			$countryList = array();
 	  		
 			require($file);
 		
@@ -64,6 +69,7 @@ class Language {
 			$this->data['information'] = ($information);
 			$this->data['dayArray'] = ($dayArray);
 			$this->data['monthArray'] = ($monthArray);
+			$this->data['countryList'] = ($countryList);
 			
 			return $this->data;
 		}

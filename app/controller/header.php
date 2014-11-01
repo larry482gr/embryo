@@ -25,13 +25,34 @@ class ControllerHeader extends Controller {
 			$this->data['activated_tab'] = $tab[0];
 		}
 		
+		$page_title = $this->data['header']['siteName'];
+		foreach($this->data['tabs'] as $current_tab) {
+			if($current_tab['link'] == $this->data['activated_tab']) {
+				$page_title .= ' - '.$current_tab['label'];
+				break;
+			}	
+		}
+		foreach($this->data['subtabs'] as $current_subtab) {
+			if($current_subtab['link'] == $this->data['activated_tab']) {
+				$page_title .= ' - '.$current_subtab['label'];
+				break;
+			}
+		}
+		
+		$this->document->setTitle($page_title);
+		
 		$this->data['userid'] = isset($this->session->data['user']['id']) ? $this->session->data['user']['id'] : '';
 		$this->data['username'] = isset($this->session->data['user']['name']) ? $this->session->data['user']['name'] : '';
 		$this->data['canViewMembersArea'] = $this->right->canViewMembersArea() ? true : false;
 		// $this->data['canCreateUser'] = $this->right->isAdministrator() ? true : false;
 		
-		$this->data['gr_href'] = '/gr'; // /'.substr($this->request->server['REQUEST_URI'], 4);
-		$this->data['en_href'] = '/en'; // /'.substr($this->request->server['REQUEST_URI'], 4);
+		$last_uri_element = end(explode('/', $this->request->server['REQUEST_URI']));
+		$end = '';
+		if(ctype_digit($last_uri_element)) {
+			$end = sizeof($last_uri_element)+1;
+		}
+		$this->data['gr_href'] = empty($end) ? '/gr/'.substr($this->request->server['REQUEST_URI'], 4) : '/gr/'.substr($this->request->server['REQUEST_URI'], 4, -$end);
+		$this->data['en_href'] = empty($end) ? '/en/'.substr($this->request->server['REQUEST_URI'], 4) : '/en/'.substr($this->request->server['REQUEST_URI'], 4, -$end);
 		
 		if(isset($this->session->data['userPermissionDenied'])) {
 			$this->data['invalidError'] = $this->session->data['userPermissionDenied'];
@@ -58,6 +79,7 @@ class ControllerHeader extends Controller {
 		$this->document->addStyle("header");
 		$this->document->addScript("header");
 		
+		// Set Description, Keywords, Site title, and main stylesheets.
 		$this->data['keywords'] = $this->document->getKeywords();
 		$this->data['description'] = $this->document->getDescription();
 		$this->data['title'] = $this->document->getTitle();

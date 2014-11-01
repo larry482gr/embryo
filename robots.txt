@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /core/
+Disallow: /app/
+Disallow: allConfig.php
+Disallow: /pool/
+Disallow: /cgi-bin/
+Disallow: /files/
+Disallow: /picture_library/
+Disallow: /plesk_backup.zip
+Disallow: /plesk-stat/
+Disallow: /test/
+
+Sitemap: http//repro.law.auth.gr/sitemap.xml

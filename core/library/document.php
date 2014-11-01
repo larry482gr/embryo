@@ -1,8 +1,8 @@
 <?php
 class Document {
 	private $title;
-	private $description;
-	private $keywords;	
+	private $description = 'Υποβοηθούμενη Αναπαραγωγή';
+	private $keywords = 'Υποβοηθούμενη Αναπαραγωγή, Assisted Reproduction, Αναπαραγωγή, Reproduction';
 	private $links = array();		
 	private $styles = array();
 	private $scripts = array();

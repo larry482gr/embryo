@@ -60,7 +60,7 @@
 						     <dt class="article-title">'.$article['title'].'</dt>
 						     <dt><small class="published-at">'.$home['publishedOn'].': '.date('d/m/Y', strtotime($article['published_at'])).'</small></dt>
 							 <dd>'.$picture.html_entity_decode(nl2br($article['short_desc'])).'</dd>
-							 <small class="pull-right"><a href="news/'.$article['id'].'" target="blank" class="read-more">'.$home['readMore'].'</a></small>
+							 <small class="pull-right"><a href="/'.$lang.'/news/'.$article['id'].'" target="blank" class="read-more">'.$home['readMore'].'</a></small>
 						   </dl>';
           }
           if(isset($monthArray) && !empty($monthArray)) {

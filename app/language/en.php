@@ -61,32 +61,32 @@
 	$language['news']['carouselInfo'] = 'Carousel image width/height ratio should be 3/2 with a minimum width of 800 pixels. For example: 800x532, 900x600, 1200x800 etc.';
 	
 	// Conference Application
-	$language['confAppl']['onlineAppl'] = 'ONLINE APPLICATION FORM';
-	$language['confAppl']['personalInfo'] = 'Personal Information';
+	$language['confAppl']['onlineAppl'] = 'ONLINE REGISTRATION';
+	$language['confAppl']['personalInfo'] = 'PERSONAL DATA';
 	$language['confAppl']['title'] = 'Title';
 	$language['confAppl']['titleOptions'] = array('Μέλος ΔΕΠ - Ιατρική Σχολή', 'Μέλος ΔΕΠ - Νομική Σχολή', 'Ιατρός', 'Δικηγόρος', 
 												  'Φοιτητής Ιατρικής Σχολής', 'Φοιτητής Νομικής Σχολής', 'Κος', 'Κα');
-	$language['confAppl']['fname'] = 'First Name';
-	$language['confAppl']['lname'] = 'Last Name';
-	$language['confAppl']['faculty'] = 'Faculty';
+	$language['confAppl']['fname'] = 'Name';
+	$language['confAppl']['lname'] = 'Family Name';
+	$language['confAppl']['faculty'] = 'Company/University';
 	$language['confAppl']['country'] = 'Country';
 	$language['confAppl']['city'] = 'City';
-	$language['confAppl']['pocode'] = 'PO Code';
+	$language['confAppl']['pocode'] = 'Postal Code';
 	$language['confAppl']['address'] = 'Address';
-	$language['confAppl']['phoneCountryCode'] = 'Phone Country Code';
-	$language['confAppl']['phoneCityCode'] = 'Phone City Code';
-	$language['confAppl']['phoneNumber'] = 'Phone Number';
+	$language['confAppl']['phoneCountryCode'] = 'Tel. Country Code';
+	$language['confAppl']['phoneCityCode'] = 'Tel. City Code';
+	$language['confAppl']['phoneNumber'] = 'Telephone';
 	$language['confAppl']['fax'] = 'Fax';
 	$language['confAppl']['email'] = 'Email';
-	$language['confAppl']['interest'] = 'I \'m intrested in';
-	$language['confAppl']['watch'] = 'Watch conference presentations';
-	$language['confAppl']['watchAndGet'] = 'Watch conference presentations and get confirmation';
+	$language['confAppl']['interest'] = 'I hereby declare that I am interested in';
+	$language['confAppl']['watch'] = 'attending the Conference';
+	$language['confAppl']['watchAndGet'] = 'attending the Conference and receiving a certificate of attendance';
 	$language['confAppl']['selectOption'] = 'Select at least one or both choices above';
-	$language['confAppl']['finance'] = 'No money required :P';
-	$language['confAppl']['contactPhones'] = 'Contact Phone Numbers';
+	$language['confAppl']['finance'] = 'PARTICIPATION ΙΝ THE CONFERENCE DOES NOT IMPLY ANY CHARGE';
+	$language['confAppl']['contactPhones'] = 'COMMUNICATION TEL';
 	$language['confAppl']['contactPhoneNumbers'] = '(0030) 694 68 90 803 // 694 77 55 999';
 	$language['confAppl']['submit'] = 'Submit Application';
-	$language['confAppl']['success'] = 'Your Application has been submitted successfully.';
+	$language['confAppl']['success'] = 'Your Application has been successfully submitted.';
 	$language['confAppl']['required'] = 'All fields with * are required.';
 	$language['confAppl']['invalidEmail'] = 'The email address you provided is not valid.';
 	$language['confAppl']['atLeastOne'] = 'You must select at least one of the two options/checkboxes.';

@@ -109,6 +109,8 @@ class ControllerNews extends Controller {
 		
 		if($output == 0) {
 			$this->load->model('application');
+			$appl['fax'] = empty($appl['fax']) ? "NULL" : "'".$appl['fax']."'";
+			$appl['email'] = empty($appl['email']) ? "NULL" : "'".$appl['email']."'";
 			$lastId = $this->model_application->createApplication($appl);
 			
 			if(is_numeric($lastId)) {
@@ -149,6 +151,8 @@ class ControllerNews extends Controller {
 	
 	private function buildConferenceApplication($appl) {
 		$confAppl = $this->language->getLanguage('confAppl');
+		$appl['fax'] = $appl['fax'] == "NULL" ? '' : $appl['fax'];
+		$appl['email'] = $appl['email'] == "NULL" ? '' : $appl['email'];
 		$watch = '';
 		if($appl['material'] == 1) {
 			$watch = $confAppl['watch'];

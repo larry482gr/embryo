@@ -114,7 +114,7 @@ class ControllerAdminInfo extends Controller {
 			// $member['picture'] = null;
 		}
 		else {
-			$allowedExts = array("doc", "docx", "png");
+			$allowedExts = array("doc", "docx", "pdf");
 			$extension = end(explode(".", $this->request->files['info_file']['name']));
 			
 			$path = _DOCUMENT_ROOT_."/resources/files/information";

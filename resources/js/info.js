@@ -55,7 +55,7 @@ $(document).ready(function(){
 	
 	function appendTableHeaders() {
 		$('#info-div').append('<div id="files-div" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">'+
-							  '<table class="table table-condensed">'+
+							  '<table class="table">'+
 							  '<thead><tr><th class="center v-center"></th><th class="v-center">'+$('#fileName').val()+'</th>'+
 							  '<th class="center v-center">'+$('#fileSize').val()+'</th><th class="center v-center">'+$('#fileDate').val()+'</th></tr></thead>'+
 							  '<tbody></tbody></table></div>');

@@ -23,7 +23,7 @@
             }
             else if(!empty($files)) {
               echo '<div id="files-div" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-              echo '<table class="table table-condensed">';
+              echo '<table class="table">';
               echo '<thead><tr><th class="center v-center"></th><th class="v-center">'.$information['fileName'].'</th><th class="center v-center">'.$information['fileSize'].'</th><th class="center v-center">'.$information['fileDate'].'</th></tr></thead>';
               echo '<tbody>';
               $i = 1;

@@ -44,3 +44,12 @@ table > tbody > tr:hover {
 .v-center {
 	vertical-align: middle !important;
 }
+
+#files-div {
+	background-color: #FFFFFF;
+	border-color: #e5e5e5 #eee #eee;
+	border-style: solid;
+	border-width: 1px 0;
+	border-radius: 4px 4px 0 0;
+	padding: 15px 15px;
+}

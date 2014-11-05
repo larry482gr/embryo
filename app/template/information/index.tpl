@@ -22,8 +22,9 @@
               echo '</div>';
             }
             else if(!empty($files)) {
-              echo '<table class="table table-condensed table-bordered">';
-              echo '<thead><tr><td class="center v-center"></td><td class="v-center">'.$information['fileName'].'</td><td class="center v-center">'.$information['fileSize'].'</td><td class="center v-center">'.$information['fileDate'].'</td></tr></thead>';
+              echo '<div id="files-div" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+              echo '<table class="table table-condensed">';
+              echo '<thead><tr><th class="center v-center"></th><th class="v-center">'.$information['fileName'].'</th><th class="center v-center">'.$information['fileSize'].'</th><th class="center v-center">'.$information['fileDate'].'</th></tr></thead>';
               echo '<tbody>';
               $i = 1;
               foreach($files as $file) {
@@ -31,6 +32,7 @@
               }
               echo '</tbody>';
               echo '</table>';
+              echo '</div>';
             }
             else
               echo '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">'.$information['noResults'].'</div>';

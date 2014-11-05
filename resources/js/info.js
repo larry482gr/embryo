@@ -9,10 +9,7 @@ $(document).ready(function(){
 				catId: $('#subcategories').find('option:first-child').val()
 			},
 			success: function(items) {
-				$('#info-div').append('<table class="table table-condensed table-bordered">'+
-									  '<thead><tr><td class="center v-center"></td><td class="v-center">'+$('#fileName').val()+'</td><td class="center v-center">'+$('#fileSize').val()+'</td><td class="center v-center">'+$('#fileDate').val()+'</td></tr></thead>'+
-									  '<tbody></tbody></table>');
-									  
+				appendTableHeaders();
 				for(i = 0; i < items.length; i++) {
 					appendFileRow(i+1, items[i]);
 				}
@@ -40,10 +37,8 @@ $(document).ready(function(){
 			},
 			success: function(items) {
 				$('#info-div table').animate({opacity: 0}, 200, function() {
-					$('#info-div table').remove();
-					$('#info-div').append('<table class="table table-condensed table-bordered" style="opacity: 0">'+
-										  '<thead><tr><td class="center v-center"></td><td class="v-center">'+$('#fileName').val()+'</td><td class="center v-center">'+$('#fileSize').val()+'</td><td class="center v-center">'+$('#fileDate').val()+'</td></tr></thead>'+
-										  '<tbody></tbody></table>');
+					$('#info-div').find('#files-div').remove();
+					appendTableHeaders();
 									  
 					for(i = 0; i < items.length; i++) {
 						appendFileRow(i+1, items[i]);
@@ -57,6 +52,14 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	function appendTableHeaders() {
+		$('#info-div').append('<div id="files-div" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">'+
+							  '<table class="table table-condensed">'+
+							  '<thead><tr><th class="center v-center"></th><th class="v-center">'+$('#fileName').val()+'</th>'+
+							  '<th class="center v-center">'+$('#fileSize').val()+'</th><th class="center v-center">'+$('#fileDate').val()+'</th></tr></thead>'+
+							  '<tbody></tbody></table></div>');
+	}
 	
 	function appendFileRow(rowIndex, file) {
 		$('#info-div').find('table tbody').append('<tr rel="'+file.name+'"><td class="center v-center">'+rowIndex+'</td><td class="v-center">'+file.label+'</td><td class="center v-center">'+file.size+'</td><td class="center v-center">'+file.created_at+'</td></tr>');

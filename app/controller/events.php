@@ -13,7 +13,7 @@ class ControllerEvents extends Controller {
 			$this->data['events'] = $this->model_event->findAllEvents(1, $lang_id);
 			
 			$this->document->addStyle('events');
-			// $this->document->addScript('events');
+			$this->document->addScript('events');
 			$this->document->addStyle('left_part');
 			
 			// Assign header/footer to children object
@@ -38,7 +38,7 @@ class ControllerEvents extends Controller {
 			return $this->response->redirect('/'.$this->data['lang'].'/events');
 	
 		$this->document->addStyle('events');
-		// $this->document->addScript('events');
+		$this->document->addScript('events');
 		$this->document->addStyle('left_part');
 		
 		// Assign header/footer to children object

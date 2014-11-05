@@ -126,6 +126,7 @@ class ControllerNews extends Controller {
 				// Additional headers
 				$headers .= 'From: '.$full_name.' <'.$email.'>' . "\r\n";
 				$headers .= 'Reply-To: ' . $email . "\r\n";
+				$headers .= 'Cc: mimmaki@gmail.com, roxannefragou@hotmail.com' . "\r\n";
 				// $headers .= 'X-Mailer: PHP/' . phpversion();
 				
 				if(!mail($to, $subject, $message, $headers)) {

@@ -275,7 +275,7 @@
 	// Permissions
 	$language['permission']['adminPanelDenied'] = 'You don\'t have access on the page you requested. Please login to the Administration Panel first.';
 	$language['permission']['userRightsDenied'] = 'You don\'t have access on the page you requested.';
-	$language['permission']['userDenied'] = 'You don\'t have access on the page you requested. Please login first.';
+	$language['permission']['userDenied'] = 'To access this page, you need to register.';
 	$language['permission']['oldPassIncorrect'] = 'The "Old password" you entered is incorrect. Please try again.';
 	$language['permission']['noMatchPass'] = 'The "New password" and "Confirm password" fields are not the same. Please try again.';
 	$language['permission']['activationError'] = 'Activation failed to be completed. Please try again and if the error persists contact the website\'s administrator.';

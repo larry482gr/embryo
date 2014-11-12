@@ -4,6 +4,7 @@
 		
 		public function __construct($db) {
 			$this->db = $db;
+			$this->db->query("SET NAMES utf8");
 		}
 		
 		public function findAll($order = '', $limit = '', $additionalQuery = 1) {

@@ -1,4 +1,6 @@
 <?php
+	header("Content-type: application/json; charset=UTF-8");
+	
 	require_once('../allConfig.php');
 	
 	require_once(_DOCUMENT_ROOT_ . CORE_D . 'library/db.php');
@@ -9,9 +11,10 @@
 	$news = new Article($db);
 	
 	$action = $_POST['action'];
+	$action = urldecode($action);
 	
 	if($action == 'all') {
-		$all_news = $news->findAll();
+		$all_news = $news->findAll('ORDER BY published_at DESC');
 		echo json_encode($all_news);
 	}
 ?>

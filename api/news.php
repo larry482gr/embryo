@@ -14,7 +14,8 @@
 	$action = urldecode($action);
 	
 	if($action == 'all') {
-		$all_news = $news->findAll('ORDER BY published_at DESC');
+		$langId = $_POST['langId'];
+		$all_news = $news->findPublished($langId, 'ORDER BY published_at DESC');
 		echo json_encode($all_news);
 	}
 ?>

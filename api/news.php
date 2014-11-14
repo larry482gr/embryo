@@ -15,7 +15,12 @@
 	
 	if($action == 'all') {
 		$langId = $_POST['langId'];
-		$all_news = $news->findPublished($langId, 'ORDER BY published_at DESC');
-		echo json_encode($all_news);
+		$all_news = $news->findAll('ORDER BY published_at DESC', '', 'lang_id = '.$langId.' AND is_published = 1');
+		$proper_news = array();
+		foreach($all_news as $new) {
+			$new['long_desc'] = html_entity_decode($new['long_desc']);
+			$proper_news[] = $new;
+		}
+		echo json_encode($proper_news);
 	}
 ?>

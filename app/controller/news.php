@@ -86,7 +86,7 @@ class ControllerNews extends Controller {
 		$appl['tel'] = $this->db->escape($this->request->post['tel']);
 		$appl['fax'] = $this->db->escape($this->request->post['fax']);
 		$appl['email'] = $this->db->escape($this->request->post['email']);
-		$appl['material'] = $this->db->escape($this->request->post['material1']) + $this->db->escape($this->request->post['material2']);
+		$appl['material'] = $this->db->escape($this->request->post['material']);
 		
 		if(empty($appl['fname']) || empty($appl['lname']) || empty($appl['faculty']) || empty($appl['country']) || 
 		   empty($appl['city']) || empty($appl['pocode']) || empty($appl['address']) || empty($appl['mcc']) || 

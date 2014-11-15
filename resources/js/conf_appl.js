@@ -12,8 +12,7 @@ $(document).ready(function() {
 	var appl_tel;
 	var appl_fax;
 	var appl_email;
-	var appl_material1;
-	var appl_material2;
+	var appl_material;
 		
 	$('#appl-submit').on('click', function() {
 		var error = 0;
@@ -31,8 +30,7 @@ $(document).ready(function() {
 		appl_tel		= $.trim($('#appl-tel').val());
 		appl_fax		= $.trim($('#appl-fax').val());
 		appl_email		= $.trim($('#appl-email').val());
-		appl_material1	= $('#appl-material1').is(':checked') ? 1 : 0;
-		appl_material2	= $('#appl-material2').is(':checked') ? 2 : 0;
+		appl_material	= $.trim($('input[name=material]:checked').val());
 		
 		if(appl_fname.length == 0 || appl_lname.length == 0 || appl_faculty.length == 0 || appl_country.length == 0 || 
 		   appl_city.length == 0 || appl_pocode.length == 0 || appl_address.length == 0 || appl_mcc.length == 0 || 
@@ -45,7 +43,7 @@ $(document).ready(function() {
 			error += 2;
 		}
 		
-		if((appl_material1 + appl_material2) == 0) {
+		if(appl_material == 0) {
 			error += 4;
 		}
 		
@@ -111,8 +109,7 @@ $(document).ready(function() {
 				tel:		appl_tel,
 				fax:		appl_fax,
 				email:		appl_email,
-				material1:	appl_material1,
-				material2:	appl_material2
+				material:	appl_material,
 			},
 			beforeSend : function() {
 				$('#appl-submit').append('...');

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: hosted4db.ccf.auth.gr:3306
--- Generation Time: Oct 18, 2014 at 02:16 PM
+-- Generation Time: Nov 15, 2014 at 07:34 PM
 -- Server version: 5.5.40-0ubuntu0.12.04.1
--- PHP Version: 5.4.16
+-- PHP Version: 5.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";

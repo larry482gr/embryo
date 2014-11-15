@@ -3,7 +3,7 @@ class DB {
 	private $driver;
 
 	public function __construct($driver, $hostname, $username, $password, $database) {
-		$file = DATABASE_D . $driver . '.php';
+		$file = _DOCUMENT_ROOT_ . '/' . DATABASE_D . $driver . '.php';
 
 		if (file_exists($file)) {
 			require_once($file);

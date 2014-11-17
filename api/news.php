@@ -15,7 +15,7 @@
 	
 	if($action == 'all') {
 		$last_id = $_POST['last_id'];
-		$all_news = $news->findAll('ORDER BY published_at DESC', '', 'is_published = 1 AND id > '.last_id);
+		$all_news = $news->findAll('ORDER BY published_at DESC', '', 'is_published = 1 AND id > '.$last_id);
 		$proper_news = array();
 		foreach($all_news as $new) {
 			$new['long_desc'] = html_entity_decode($new['long_desc']);

@@ -70,6 +70,7 @@ class ControllerAdminMembers extends Controller {
 			$filepath = $path."/".$this->request->files["member_picture"]["name"];
 			
 			if ((($this->request->files["member_picture"]["type"] == "image/jpeg")
+				|| ($this->request->files["member_picture"]["type"] == "image/jpg")
 				|| ($this->request->files["member_picture"]["type"] == "image/png"))
 				&& ($this->request->files["member_picture"]["size"] < 2000000)
 				&& in_array($extension, $allowedExts)) {

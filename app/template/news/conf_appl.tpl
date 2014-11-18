@@ -103,21 +103,18 @@
 					  </div>
 					  <div class="form-group">
 					    <label class="col-sm-12 control-label"><?php echo $confAppl['interest']; ?>:</label>
-					    <div class="col-sm-12">
-					      <div class="checkbox">
-					        <label>
-					          <input type="checkbox" id="appl-material1" name="appl[material][1]"> <?php echo $confAppl['watch']; ?>
-					        </label>
-					      </div>
-					    </div>
-					    <div class="col-sm-12">
-					      <div class="checkbox">
-					        <label>
-					          <input type="checkbox" id="appl-material2" name="appl[material][2]"> <?php echo $confAppl['watchAndGet']; ?>
-					        </label>
-					      </div>
-					      <p class="help-block"><?php echo $confAppl['selectOption']; ?></p>
-					    </div>
+					    <div class="radio col-md-12">
+						  <label>
+						    <input type="radio" name="material" id="appl-material1" value="1" checked="checked">
+						    <?php echo $confAppl['watch']; ?>
+						  </label>
+						</div>
+						<div class="radio col-md-12">
+						  <label>
+						    <input type="radio" name="material" id="appl-material2" value="2">
+						    <?php echo $confAppl['watchAndGet']; ?>
+						  </label>
+						</div>
 					  </div>
 	            </dd>
 	            <dt><h5><?php echo $confAppl['finance']; ?></h5></dt>

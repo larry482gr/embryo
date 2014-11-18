@@ -64,8 +64,9 @@
 	$language['confAppl']['onlineAppl'] = 'ONLINE REGISTRATION';
 	$language['confAppl']['personalInfo'] = 'PERSONAL DATA';
 	$language['confAppl']['title'] = 'Title';
-	$language['confAppl']['titleOptions'] = array('Μέλος ΔΕΠ - Ιατρική Σχολή', 'Μέλος ΔΕΠ - Νομική Σχολή', 'Ιατρός', 'Δικηγόρος', 
-												  'Φοιτητής Ιατρικής Σχολής', 'Φοιτητής Νομικής Σχολής', 'Κος', 'Κα');
+	$language['confAppl']['titleOptions'] = array('Prof. - Med.', 'Prof. - Law', 'Dr.', 'Lawyer', 
+												  'Student - Law', 'Student - Med.', 'Mr', 'Mrs');
+												  
 	$language['confAppl']['fname'] = 'Name';
 	$language['confAppl']['lname'] = 'Family Name';
 	$language['confAppl']['faculty'] = 'Company/University';

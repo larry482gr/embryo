@@ -1,5 +1,8 @@
-var active_category = 1;
+var active_category = $('#active-category').val();
 var total_categories = $('#total-categories').val();
+var first_category = active_category;
+var last_category = parseInt(active_category) + parseInt(total_categories) - 1;
+var n_category = 1;
 
 $('.category-div').hide();
 $('.category-div:first-child').show();
@@ -8,8 +11,8 @@ $('#required-fields').hide();
 $('#already-completed').hide();
 
 $(document).ready(function() {
-	$('#survey-progress').css('width', (((active_category)/total_categories)*100)+'%');
-	$('#survey-progress').html((((active_category)/total_categories)*100)+'%');
+	$('#survey-progress').css('width', (((n_category)/total_categories)*100)+'%');
+	$('#survey-progress').html((((n_category)/total_categories)*100)+'%');
 	
 	$('#user-fname').focus();
 	
@@ -68,8 +71,10 @@ $(document).ready(function() {
 			active_category = 2;
 			previousPage();
 		}
-		else
+		else {
+			$('#survey-form').removeAttr('onsubmit');
 			$('#survey-form').submit();
+		}
 	});
 	
 	$('.radio label').on('click', function() {
@@ -135,15 +140,16 @@ function alreadyCompleted(title, email) {
 }
 
 function previousPage() {
-	if(active_category == 1)
+	if(active_category == first_category)
 		return;
 	
 	$('#category'+active_category).fadeOut('fast', function() {
 		active_category--;
+		n_category--;
 		$('#category'+active_category).fadeIn('fast', function() {
 			$('.next').removeClass('disabled');
 	
-			if(active_category == 1) {
+			if(active_category == first_category) {
 				$('.previous').addClass('disabled', true);
 				$('#user-form').show();
 			}
@@ -152,24 +158,25 @@ function previousPage() {
 				scrollTop: 0
 			}, 300);
 			
-			$('#survey-progress').css('width', (((active_category)/total_categories)*100)+'%');
-			$('#survey-progress').html((((active_category)/total_categories)*100)+'%');
+			$('#survey-progress').css('width', (((n_category)/total_categories)*100)+'%');
+			$('#survey-progress').html((((n_category)/total_categories)*100)+'%');
 			$('#submit-button').hide();
 		});
 	});
 }
 
 function nextPage() {
-	if(active_category == total_categories)
+	if(active_category == last_category)
 		return;
 	
 	$('#user-form').hide();
 	$('#category'+active_category).fadeOut('fast', function() {
 		active_category++;
+		n_category++;
 		$('#category'+active_category).fadeIn('fast', function() {
 			$('.previous').removeClass('disabled');
 		
-			if(active_category == total_categories) {
+			if(active_category == last_category) {
 				$('.next').addClass('disabled', true);
 				$('#submit-button').show();
 			}
@@ -179,8 +186,8 @@ function nextPage() {
 				scrollTop: 0
 			}, 300);
 			
-			$('#survey-progress').css('width', (((active_category)/total_categories)*100)+'%');
-			$('#survey-progress').html((((active_category)/total_categories)*100)+'%');
+			$('#survey-progress').css('width', (((n_category)/total_categories)*100)+'%');
+			$('#survey-progress').html((((n_category)/total_categories)*100)+'%');
 		});
 	});
 }

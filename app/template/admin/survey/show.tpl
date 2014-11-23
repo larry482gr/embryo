@@ -38,6 +38,7 @@
 	<input type="hidden" id="lang_id" value="<?php echo $lang_id; ?>" />
 	<input type="hidden" id="lang" value="<?php echo $lang; ?>" />
 	<input type="hidden" id="total-categories" value="<?php echo $total_categories; ?>" />
+	<input type="hidden" id="active-category" value="<?php echo $active_category; ?>" />
 <?php echo $footer; ?>
 
 <?php

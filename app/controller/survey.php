@@ -31,6 +31,7 @@ class ControllerSurvey extends Controller {
 		
 		$this->data['survey_categories'] = $this->model_survey->findSurveyCategories($survey_id);
 		$this->data['total_categories'] = count($this->data['survey_categories']);
+		$this->data['active_category'] = $this->data['survey_categories'][0]['id'];
 		$this->data['survey_subcategories'] = array();
 		foreach($this->data['survey_categories'] as $category) {
 			$this->data['survey_subcategories'][$category['id']] = $this->model_survey->findSurveySubcategories($category['id']);

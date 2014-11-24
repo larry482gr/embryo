@@ -1,9 +1,9 @@
 <?php
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$subject = 'repro.law.auth.gr - '.$_POST['subject'];
-	$message = nl2br($_POST['message']);
-	$is_opinion_form = $_POST['opinion_form'] == 1 ? true : false;
+	$name = urldecode($_POST['name']);
+	$email = urldecode($_POST['email']);
+	$subject = 'repro.law.auth.gr - '.urldecode($_POST['subject']);
+	$message = nl2br(urldecode($_POST['message']));
+	$is_opinion_form = urldecode($_POST['opinion_form']) == 1 ? true : false;
 	
 	if(empty($name) || empty($email) || empty($subject) || empty($message))
 		die('fill_all');

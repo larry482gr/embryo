@@ -1,5 +1,12 @@
 <?php 
-	class ModelMember extends Model {
+	class ModelMember {
+		private $db;
+		
+		public function __construct($db) {
+			$this->db = $db;
+			$this->db->query("SET NAMES utf8");
+		}
+		
 		public function findAllGroups($lang_id, $order = '', $limit = '') {
 			$query = "SELECT * FROM research_groups WHERE lang_id = ".$lang_id." ".$order." ".$limit;
 			$result = $this->db->query($query);

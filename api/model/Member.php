@@ -1,5 +1,5 @@
 <?php 
-	class ModelMember {
+	class Member {
 		private $db;
 		
 		public function __construct($db) {
@@ -7,8 +7,8 @@
 			$this->db->query("SET NAMES utf8");
 		}
 		
-		public function findAllGroups($lang_id, $order = '', $limit = '') {
-			$query = "SELECT * FROM research_groups WHERE lang_id = ".$lang_id." ".$order." ".$limit;
+		public function findAllGroups() {
+			$query = "SELECT * FROM research_groups ORDER BY id ASC";
 			$result = $this->db->query($query);
 			return $result->rows;
 		}

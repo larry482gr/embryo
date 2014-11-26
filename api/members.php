@@ -1,23 +1,36 @@
 <?php
-	header("Content-type: application/json; charset=UTF-8");
+	header("Content-type: application/json; charset=utf-8");
 
 	require_once('../allConfig.php');
 	require_once(_DOCUMENT_ROOT_ . CORE_D . 'library/db.php');
+	$db = new DB(DB_DRIVER, DB_SERVER, DB_USER, DB_PASS, DB_EMBRYO);
 	require_once(_DOCUMENT_ROOT_ . '/api/model/Member.php');
 	
-	$db = new DB(DB_DRIVER, DB_SERVER, DB_USER, DB_PASS, DB_EMBRYO);
 	$member = new Member($db);
+	$action = $_POST['action'];
+	$action = $action;
 	
-	$members = array('groups' => array(), 'members' => array());
-	$groups = array();
-	
-	$members['groups'] = $member->findAllGroups();
-	
-	foreach($members['groups'] as $group) {
-		$groups[] = $group['id'];
-	}
-	
-	$members['members'] = $member->findAllMembers($groups);
-	
-	echo json_encode($members);
+	// if($action == 'all') {
+		$output = array('groups' => array(), 'members' => array());
+		$groups = array();
+		$groupIds = array();
+		$members = array();
+		
+		$groups = $member->findAllGroups();
+		
+		foreach($groups as $group) {
+			$groupIds[] = $group['id'];
+			$group['label'] = html_entity_decode($group['label']);
+			$output['groups'][] = $group;
+		}
+		
+		$members = $member->findAllMembers($groupIds);
+		
+		foreach($members as $memb) {
+			$memb['cv'] = html_entity_decode($memb['cv']);
+			$output['members'][] = $memb;
+		}
+		
+		echo json_encode($output);
+	// }
 ?>

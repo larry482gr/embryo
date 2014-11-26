@@ -1,5 +1,5 @@
 <?php
-	header("Content-type: application/json; charset=UTF-8");
+	header("Content-type: application/json; charset=utf-8");
 	
 	require_once('../allConfig.php');
 	require_once(_DOCUMENT_ROOT_ . CORE_D . 'library/db.php');
@@ -21,6 +21,7 @@
 			$new['long_desc'] = html_entity_decode($new['long_desc']);
 			$proper_news[] = $new;
 		}
+		
 		echo json_encode($proper_news);
 	}
 ?>

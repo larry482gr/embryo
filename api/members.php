@@ -10,27 +10,32 @@
 	$action = $_POST['action'];
 	$action = $action;
 	
-	// if($action == 'all') {
+	if($action == 'all') {
+		$groupsLastId = $_POST['groups_last_id'];
+		$membersLastId = $_POST['members_last_id'];
+		
 		$output = array('groups' => array(), 'members' => array());
 		$groups = array();
 		$groupIds = array();
 		$members = array();
 		
-		$groups = $member->findAllGroups();
+		$groups = $member->findAllGroups($groupsLastId);
 		
-		foreach($groups as $group) {
-			$groupIds[] = $group['id'];
-			$group['label'] = html_entity_decode($group['label']);
-			$output['groups'][] = $group;
-		}
-		
-		$members = $member->findAllMembers($groupIds);
-		
-		foreach($members as $memb) {
-			$memb['cv'] = html_entity_decode($memb['cv']);
-			$output['members'][] = $memb;
+		if($groups) {
+			foreach($groups as $group) {
+				$groupIds[] = $group['id'];
+				$group['label'] = html_entity_decode($group['label']);
+				$output['groups'][] = $group;
+			}
+			
+			$members = $member->findAllMembers($groupIds, $membersLastId);
+			
+			foreach($members as $memb) {
+				$memb['cv'] = html_entity_decode($memb['cv']);
+				$output['members'][] = $memb;
+			}
 		}
 		
 		echo json_encode($output);
-	// }
+	}
 ?>

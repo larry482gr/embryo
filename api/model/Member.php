@@ -7,15 +7,16 @@
 			$this->db->query("SET NAMES utf8");
 		}
 		
-		public function findAllGroups() {
-			$query = "SELECT * FROM research_groups ORDER BY id ASC";
+		public function findAllGroups($lastId) {
+			$query = "SELECT * FROM research_groups WHERE id > ".$lastId." ORDER BY id ASC";
 			$result = $this->db->query($query);
-			return $result->rows;
+			return !empty($result->rows) ? $result->rows : false;
 		}
 		
-		public function findAllMembers($groups, $order = '', $limit = '') {
+		public function findAllMembers($groups, $lastId, $order = '', $limit = '') {
 			$groups_clause = "(".implode(',', $groups).")";
 			$where_clause  = "rm.group_id IN ".$groups_clause;
+			$where_clause .= " AND rm.id > ".$lastId;
 			$where_clause .= " AND rmi.member_id = rm.id";
 			$query = "SELECT rm.*, rmi.* FROM research_members as rm, research_member_info as rmi WHERE ".$where_clause." ".$order." ".$limit;
 			$result = $this->db->query($query);

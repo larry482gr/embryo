@@ -1,7 +1,23 @@
 <?php 
-	class ModelLink extends Model {
-		public function findAllLinkCategories($lang_id, $order = '', $limit = '') {
-			$query = "SELECT * FROM link_categories WHERE lang_id = ".$lang_id." ".$order." ".$limit;
+	class Link {
+		private $db;
+		
+		public function __construct($db) {
+			$this->db = $db;
+			$this->db->query("SET NAMES utf8");
+		}
+		
+		public function findAllLinkCategories($last_id) {
+			$query = "SELECT * FROM link_categories WHERE id > ".$last_id;
+			$result = $this->db->query($query);
+			return $result->rows;
+		}
+		
+		public function findAllLinks($categories, $lastId, $order = '', $limit = '') {
+			$categoriesClause = "(".implode(',', $categories).")";
+			$whereClause  = "cat_id IN ".$categoriesClause;
+			$whereClause .= " AND id > ".$lastId;
+			$query = "SELECT * FROM links WHERE ".$whereClause." ".$order." ".$limit;
 			$result = $this->db->query($query);
 			return $result->rows;
 		}

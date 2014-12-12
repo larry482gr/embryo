@@ -8,7 +8,6 @@
 	
 	$member = new Member($db);
 	$action = $_POST['action'];
-	$action = $action;
 	
 	if($action == 'all') {
 		$groupsLastId = $_POST['groups_last_id'];

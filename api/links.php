@@ -8,7 +8,6 @@
 	
 	$link = new Link($db);
 	$action = $_POST['action'];
-	$action = $action;
 	
 	if($action == 'all') {
 		$categoriesLastId = $_POST['categories_last_id'];
@@ -16,23 +15,25 @@
 		
 		$output = array('categories' => array(), 'links' => array());
 		$categories = array();
-		$groupIds = array();
-		$members = array();
+		$categoryIds = array();
+		$links = array();
 		
-		$groups = $member->findAllGroups($groupsLastId);
+		$categories = $link->findAllLinkCategories($categoriesLastId);
 		
-		if($groups) {
-			foreach($groups as $group) {
-				$groupIds[] = $group['id'];
-				$group['label'] = html_entity_decode($group['label']);
-				$output['groups'][] = $group;
+		if($categories) {
+			foreach($categories as $category) {
+				$categoryIds[] = $category['id'];
+				$output['categories'][] = $category;
 			}
 			
-			$members = $member->findAllMembers($groupIds, $membersLastId);
+			$links = $link->findAllLinks($categoryIds, $linksLastId);
 			
-			foreach($members as $memb) {
-				$memb['cv'] = html_entity_decode($memb['cv']);
-				$output['members'][] = $memb;
+			foreach($links as $li) {
+				$li['header'] = !empty($li['header']) ? html_entity_decode($li['header']) : '';
+				$li['label'] = !empty($li['label']) ? html_entity_decode($li['label']) : '';
+				$li['prepend_text'] = !empty($li['prepend_text']) ? html_entity_decode($li['prepend_text']) : '';
+				$li['append_text'] = !empty($li['append_text']) ? html_entity_decode($li['append_text']) : '';
+				$output['links'][] = $li;
 			}
 		}
 		

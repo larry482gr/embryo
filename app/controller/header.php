@@ -46,7 +46,8 @@ class ControllerHeader extends Controller {
 		$this->data['canViewMembersArea'] = $this->right->canViewMembersArea() ? true : false;
 		// $this->data['canCreateUser'] = $this->right->isAdministrator() ? true : false;
 		
-		$last_uri_element = end(explode('/', $this->request->server['REQUEST_URI']));
+		$request_uri_array = explode('/', $this->request->server['REQUEST_URI']);
+		$last_uri_element = end($request_uri_array);
 		$end = '';
 		if(ctype_digit($last_uri_element)) {
 			$end = sizeof($last_uri_element)+1;

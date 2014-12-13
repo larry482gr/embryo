@@ -3,10 +3,29 @@
 	  	<h2 id="survey-title"><?php echo $survey['title']; ?></h2>
 	    <div class="page-title"><?php echo $showSurveyLang['surveyProgress']; ?></div>
 	    <div class="progress">
-		  <div id="survey-progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+		  <div id="survey-progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
 		    <span id="survey-progress-span" class="sr-only"></span>
 		  </div>
 		</div>
+		<form id="user-form" class="form-inline" role="form" onsubmit="return false;">
+	  	  <div class="form-group">
+	  	    <label for="user-fname"><?php echo $userLang['firstName']; ?></label>
+	  	    <input type="text" id="user-fname" class="form-control" value="<?php echo isset($user) ? $user['first_name'] : ''; ?>" />
+	  	  </div>
+	  	  <div class="form-group">
+	  	    <label for="user-lname"><?php echo $userLang['lastName']; ?></label>
+	  	    <input type="text" id="user-lname" class="form-control" value="<?php echo isset($user) ? $user['last_name'] : ''; ?>" />
+	  	  </div>
+	  	  <div class="form-group">
+	  	    <label for="user-email"><?php echo $userLang['email']; ?></label>
+	  	    <input type="email" id="user-email" class="form-control" value="<?php echo isset($user) ? $user['email'] : ''; ?>" />
+	  	  </div>
+	  	  <div id="email-error-div" class="form-group">
+	  	    <p id="email-error" class="help-block"><?php echo $showSurveyLang['emailError']; ?></p>
+	  	  </div>
+	  	</form>
+	  	<div id="required-fields" class="alert alert-danger col-md-12"><?php echo $showSurveyLang['requiredFields']; ?></div>
+		<div id="already-completed" class="alert alert-danger col-md-12"><?php echo $showSurveyLang['alreadyCompleted']; ?></div>
 	      <form id="survey-form" role="form" method="post" onsubmit="return false;">
 	      	<?php
 	      		foreach($survey_categories as $category) {
@@ -19,7 +38,7 @@
 	      					$question_help = !empty($question['help']) ? '<p class="help-block">'.$question['help'].'</p>' : '';
 	      					echo '<div class="form-group">';
 	      					echo '<h5 id="question-label-'.$question['id'].'" for="question-id-'.$question['id'].'">'.$question['text'].'</h5>';
-	      					echo getQuestionAnswers($question['id'], $question['type'], $question['answer_options'], $question['has_other'], $question['has_comment']);
+	      					echo getQuestionAnswers($question['id'], $question['type'], $question['answer_options'], $question['has_other'], $question['has_comment'], $showSurveyLang);
 	      					echo $question_help;
 	      					echo '</div>';
 	      				}
@@ -27,11 +46,16 @@
 	      			echo '</div>';
 	      		}
 	      		
+	      		echo '<button type"button" id="submit-button" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span>'.$showSurveyLang['submitSurvey'].'</button>';
 	      		echo '<ul class="pager">';
 	      		echo '<li class="previous disabled"><a href="javascript:previousPage();">&larr; '.$pagingLang['previous'].'</a></li>';
 	      		echo '<li class="next"><a href="javascript:nextPage();">'.$pagingLang['next'].' &rarr;</a></li>';
 	      		echo '</ul>';
 	      	?>
+	      	
+	  	    <input type="hidden" id="hidden-user-fname" name="user[fname]" value="<?php echo isset($user) ? $user['first_name'] : ''; ?>" />
+	  	    <input type="hidden" id="hidden-user-lname" name="user[lname]" value="<?php echo isset($user) ? $user['last_name'] : ''; ?>" />
+	  	    <input type="hidden" id="hidden-user-email" name="user[email]" value="<?php echo isset($user) ? $user['email'] : ''; ?>" />
 		  </form>
 		</div>
 	</div>
@@ -42,13 +66,13 @@
 <?php echo $footer; ?>
 
 <?php
-	function getQuestionAnswers($id, $type, $answer_options, $has_other, $has_comment) {
+	function getQuestionAnswers($id, $type, $answer_options, $has_other, $has_comment, $showSurveyLang) {
 		switch($type) {
 			case (1):
-				return getRadio($id, $answer_options, $has_other, $has_comment);
+				return getRadio($id, $answer_options, $has_other, $has_comment, $showSurveyLang);
 				break;
 			case (2):
-				return getCheckbox($id, $answer_options, $has_other, $has_comment);
+				return getCheckbox($id, $answer_options, $has_other, $has_comment, $showSurveyLang);
 				break;
 			case (3):
 				return getTextarea($id);
@@ -59,7 +83,7 @@
 		}
 	}
 	
-	function getRadio($id, $answer_options, $has_other, $has_comment) {
+	function getRadio($id, $answer_options, $has_other, $has_comment, $showSurveyLang) {
 		$output = '';
 		$answer_options = explode('-,-', $answer_options);
 		$i = 1;
@@ -78,12 +102,12 @@
 		if($has_other == 1)
 			$output .= '<input type="text" class="form-control" id="other-'.$id.'" name="question['.$id.'][other]" disabled />';
 		else if($has_comment == 1)
-			$output .= '<textarea id="comment-'.$id.'" class="form-control comment-area" rows="2" name="question['.$id.'][comment]" disabled></textarea>';
+			$output .= '<p>'.$showSurveyLang['comment'].'</p><textarea id="comment-'.$id.'" class="form-control comment-area" rows="2" name="question['.$id.'][comment]"></textarea>';
 			
 		return $output;
 	}
 	
-	function getCheckbox($id, $answer_options, $has_other, $has_comment) {
+	function getCheckbox($id, $answer_options, $has_other, $has_comment, $showSurveyLang) {
 		$output = '';
 		$answer_options = explode('-,-', $answer_options);
 		$i = 1;
@@ -102,7 +126,7 @@
 		if($has_other == 1)
 			$output .= '<input type="text" class="form-control" id="other-'.$id.'-'.($i-1).'" name="question['.$id.'][other]" disabled />';
 		else if($has_comment == 1)
-			$output .= '<textarea id="comment-'.$id.'-'.($i-1).'" class="form-control comment-area" rows="2" name="question['.$id.'][comment]" disabled></textarea>';
+			$output .= '<p>'.$showSurveyLang['comment'].'</p><textarea id="comment-'.$id.'-'.($i-1).'" class="form-control comment-area" rows="2" name="question['.$id.'][comment]"></textarea>';
 			
 		return $output;
 	}

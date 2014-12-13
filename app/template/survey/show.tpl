@@ -4,6 +4,7 @@
 	    <div class="page-title"><?php echo $showSurveyLang['surveyProgress']; ?></div>
 	    <div class="progress">
 		  <div id="survey-progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+		    <span id="survey-progress-span" class="sr-only"></span>
 		  </div>
 		</div>
 		<form id="user-form" class="form-inline" role="form" onsubmit="return false;">

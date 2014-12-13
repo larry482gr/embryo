@@ -17,6 +17,9 @@ class ControllerMembersArea extends Controller {
 		$this->load->model('file');
 		$this->data['categories'] = $this->model_file->findAllActiveFileCategories($lang_id, 'ORDER BY label');
 		
+		$this->load->model('survey');
+		$this->data['researchSurvey'] = $this->model_survey->findPageSurvey($lang_id, 'members_area');
+		
 		$this->session->data['loadMembersArea'] = true;
 
 		$this->document->addStyle('left_part');

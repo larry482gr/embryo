@@ -2,7 +2,7 @@ var active_category = $('#active-category').val();
 var total_categories = $('#total-categories').val();
 var first_category = active_category;
 var last_category = parseInt(active_category) + parseInt(total_categories) - 1;
-var n_category = 1;
+var n_category = 0;
 
 $('.category-div').hide();
 $('.category-div:first-child').show();
@@ -11,8 +11,8 @@ $('#required-fields').hide();
 $('#already-completed').hide();
 
 $(document).ready(function() {
-	$('#survey-progress').css('width', (((n_category)/total_categories)*100)+'%');
-	$('#survey-progress').html((((n_category)/total_categories)*100)+'%');
+	$('#survey-progress').css('width', ((n_category/total_categories)*100)+'%');
+	$('#survey-progress').html(parseInt(((n_category/total_categories)*100))+'%');
 	
 	$('#user-fname').focus();
 	
@@ -159,7 +159,7 @@ function previousPage() {
 			}, 300);
 			
 			$('#survey-progress').css('width', (((n_category)/total_categories)*100)+'%');
-			$('#survey-progress').html((((n_category)/total_categories)*100)+'%');
+			$('#survey-progress').html(parseInt(((n_category/total_categories)*100))+'%');
 			$('#submit-button').hide();
 		});
 	});
@@ -187,7 +187,7 @@ function nextPage() {
 			}, 300);
 			
 			$('#survey-progress').css('width', (((n_category)/total_categories)*100)+'%');
-			$('#survey-progress').html((((n_category)/total_categories)*100)+'%');
+			$('#survey-progress').html(parseInt(((n_category/total_categories)*100))+'%');
 		});
 	});
 }

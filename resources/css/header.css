@@ -17,6 +17,7 @@ h3.page-title {
 	-o-border-radius: 0px !important;
 	background-color: #2A2A37 !important;
 	border: none !important;
+	background-image: url("/resources/images/snow_transparent.gif");
 }
 
 .navbar-header {

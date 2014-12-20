@@ -74,3 +74,26 @@ h3 {
 #submit-button > span {
 	margin-right: 8px;
 }
+
+.show-all-answers-label, .hide-all-answers-label {
+	text-decoration: none !important;
+}
+
+.show-answers-label, .hide-answers-label, .show-all-answers-label, .hide-all-answers-label {
+	cursor: pointer;
+}
+
+.answers-row {
+	display: none;
+	background-color: #FFFFFF;
+	padding-bottom: 15px;
+	margin-bottom: 25px !important;
+}
+
+table {
+	margin-bottom: 0px !important;
+}
+
+.input-div {
+	margin-bottom: 10px;
+}

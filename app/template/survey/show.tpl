@@ -32,7 +32,7 @@
 	      			echo '<div id="category'.$category['id'].'" class="category-div">';
 	      			echo '<h3 id="category-label-'.$category['id'].'">'.$category['label'].'</h3>';
 	      			foreach($survey_subcategories[$category['id']] as $subcategory) {
-	      				$subcat_header = !empty($subcategory['header']) ? $subcat_header.'<br />' : '';
+	      				$subcat_header = !empty($subcategory['header']) ? $subcategory['header'].'<br /><br />' : '';
 	      				echo '<h4 id="subcategory-label-'.$subcategory['id'].'">'.$subcat_header.$subcategory['label'].'</h4>';
 	      				foreach($survey_questions[$subcategory['id']] as $question) {
 	      					$question_help = !empty($question['help']) ? '<p class="help-block">'.$question['help'].'</p>' : '';

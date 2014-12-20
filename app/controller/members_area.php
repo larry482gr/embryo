@@ -20,6 +20,7 @@ class ControllerMembersArea extends Controller {
 		$this->load->model('survey');
 		$this->data['researchSurvey'] = $this->model_survey->findPageSurvey($lang_id, 'members_area');
 		
+		$this->data['profile_id'] = $this->session->data['user']['profile'];
 		$this->session->data['loadMembersArea'] = true;
 
 		$this->document->addStyle('left_part');

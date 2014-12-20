@@ -12,6 +12,12 @@
 			return $result->row;
 		}
 		
+		public function findSurveyUsers($survey_id) {
+			$query = "SELECT users.* FROM users, survey_user_map WHERE survey_user_map.survey_id = ".$survey_id." AND survey_user_map.user_id = users.id ORDER BY users.id ASC";
+			$result = $this->db_survey->query($query);
+			return $result->rows;
+		}
+		
 		public function findPageSurvey($lang_id, $alias) {
 			$query = "SELECT id FROM surveys WHERE lang_id = ".$lang_id." AND alias = '".$alias."' AND is_public = 1 AND is_active = 1 AND has_errors = 0";
 			$result = $this->db_survey->query($query);
@@ -130,6 +136,18 @@
 					  VALUES (".$user_id.", ".$question_id.", ".$answer.", ".$other.", ".$comment.")";
 			$this->db_survey->query($query);
 			return $this->db_survey->countAffected();
+		}
+		
+		public function findSurveyAnswers($question_id) {
+			$query	= "SELECT * FROM survey_answers WHERE question_id = ".$question_id;
+			$result = $this->db_survey->query($query);
+			return empty($result->rows) ? false : $result->rows;
+		}
+		
+		public function findSurveyAnswersOptions($question_id) {
+			$query	= "SELECT answer_options FROM questions WHERE id = ".$question_id;
+			$result = $this->db_survey->query($query);
+			return empty($result->row) ? false : $result->row;
 		}
 	}
 ?>

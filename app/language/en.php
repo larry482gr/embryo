@@ -197,6 +197,7 @@
 	$language['showSurveyLang']['emailError'] = 'You must provide a valid email address.';
 	$language['showSurveyLang']['requiredFields'] = 'You must provide you first and last name along with a valid email address in order to submit your answers.';
 	$language['showSurveyLang']['alreadyCompleted'] = 'You have already completed this survey. Your answers will not be submitted again.';
+	$language['showSurveyLang']['possibleAnswers'] = 'Possible Answers: ';
 	$language['showSurveyLang']['showAnswers'] = 'Show Answers';
 	$language['showSurveyLang']['hideAnswers'] = 'Hide Answers';
 	$language['showSurveyLang']['showAllAnswers'] = 'Show All';

@@ -196,6 +196,7 @@
 	$language['showSurveyLang']['emailError'] = 'Θα πρέπει να καταχωρήσετε ένα έγγυρο email.';
 	$language['showSurveyLang']['requiredFields'] = 'Θα πρέπει να καταχωρήσετε το Όνομα και το Επώνυμο σας, καθώς και ένα έγγυρο email προκειμένου να υποβάλλετε τις απαντήσεις σας.';
 	$language['showSurveyLang']['alreadyCompleted'] = 'Έχετε ήδη υποβάλλει αυτό το Ερωτηματολόγιο. Οι απαντήσεις σας δε θα υποβληθούν.';
+	$language['showSurveyLang']['possibleAnswers'] = 'Πιθανές Απαντήσεις: ';
 	$language['showSurveyLang']['showAnswers'] = 'Εμφάνιση Απαντήσεων';
 	$language['showSurveyLang']['hideAnswers'] = 'Απόκρυψη Απαντήσεων';
 	$language['showSurveyLang']['showAllAnswers'] = 'Εμφάνιση Όλων';

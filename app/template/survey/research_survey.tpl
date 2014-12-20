@@ -18,7 +18,7 @@
 	      				foreach($survey_questions[$subcategory['id']] as $question) {
 	      					$question_help = !empty($question['help']) ? '<p class="help-block">'.$question['help'].'</p>' : '';
 	      					echo '<div class="form-group">';
-	      					echo '<h5 id="question-label-'.$question['id'].'" for="question-id-'.$question['id'].'">'.$question['text'].'&nbsp;<span id="show-'.$question['id'].'" class="show-answers-label label label-primary sub-label-'.$subcategory['id'].'" rel="'.$question['id'].':'.$question['type'].'">'.$showSurveyLang['showAnswers'].'</span></h5>';
+	      					echo '<h5 id="question-label-'.$question['id'].'" for="question-id-'.$question['id'].'"><span id="show-'.$question['id'].'" class="show-answers-label label label-primary sub-label-'.$subcategory['id'].'" rel="'.$question['id'].':'.$question['type'].'">'.$showSurveyLang['showAnswers'].'</span>&nbsp;&nbsp;'.$question['text'].'</h5>';
 	      					echo getQuestionAnswers($question['id'], $question['type'], $question['answer_options'], $question['has_other'], $question['has_comment'], $showSurveyLang);
 	      					echo $question_help;
 	      					echo '</div>';
@@ -69,9 +69,11 @@
 		$answer_options = explode('-,-', $answer_options);
 		
 		$output = '<div class="row"><div class="col-md-12">';
+		$output .= $showSurveyLang['possibleAnswers'];
 		foreach($answer_options as $option) {
-			$output .= $option.'&nbsp;&nbsp;&nbsp;';
+			$output .= $option.', ';
 		}
+		$output = substr($output, 0, -2);
 		$output .= '</div></div>';
 			
 		return $output;
@@ -82,9 +84,11 @@
 		$answer_options = explode('-,-', $answer_options);
 		
 		$output = '<div class="row"><div class="col-md-12">';
+		$output .= $showSurveyLang['possibleAnswers'];
 		foreach($answer_options as $option) {
-			$output .= $option.'&nbsp;&nbsp;&nbsp;';
+			$output .= $option.', ';
 		}
+		$output = substr($output, 0, -2);
 		$output .= '</div></div>';
 			
 		return $output;
@@ -95,9 +99,11 @@
 		$answer_options = explode('-,-', $answer_options);
 		
 		$output = '<div class="row"><div class="col-md-12">';
+		$output .= $showSurveyLang['possibleAnswers'];
 		foreach($answer_options as $option) {
-			$output .= $option.'&nbsp;&nbsp;&nbsp;';
+			$output .= $option.', ';
 		}
+		$output = substr($output, 0, -2);
 		$output .= '</div></div>';
 			
 		return $output;

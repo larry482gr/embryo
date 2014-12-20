@@ -80,6 +80,7 @@ h3 {
 }
 
 .show-answers-label, .hide-answers-label, .show-all-answers-label, .hide-all-answers-label {
+	margin-right: 10px;
 	cursor: pointer;
 }
 
@@ -87,6 +88,7 @@ h3 {
 	display: none;
 	background-color: #FFFFFF;
 	padding-bottom: 15px;
+	margin-top: 10px !important;
 	margin-bottom: 25px !important;
 }
 

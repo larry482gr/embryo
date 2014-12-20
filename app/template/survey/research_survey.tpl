@@ -18,8 +18,8 @@
 	      				foreach($survey_questions[$subcategory['id']] as $question) {
 	      					$question_help = !empty($question['help']) ? '<p class="help-block">'.$question['help'].'</p>' : '';
 	      					echo '<div class="form-group">';
-	      					echo '<h5 id="question-label-'.$question['id'].'" for="question-id-'.$question['id'].'"><span id="show-'.$question['id'].'" class="show-answers-label label label-primary sub-label-'.$subcategory['id'].'" rel="'.$question['id'].':'.$question['type'].'">'.$showSurveyLang['showAnswers'].'</span>&nbsp;&nbsp;'.$question['text'].'</h5>';
-	      					echo getQuestionAnswers($question['id'], $question['type'], $question['answer_options'], $question['has_other'], $question['has_comment'], $showSurveyLang);
+	      					echo '<h5 id="question-label-'.$question['id'].'" for="question-id-'.$question['id'].'">'.$question['text'].'</h5>';
+	      					echo getQuestionAnswers($question['id'], $question['type'], $question['answer_options'], $question['has_other'], $question['has_comment'], $showSurveyLang, $subcategory['id']);
 	      					echo $question_help;
 	      					echo '</div>';
 	      				}
@@ -50,25 +50,29 @@
 </script>
 
 <?php
-	function getQuestionAnswers($id, $type, $answer_options, $has_other, $has_comment, $showSurveyLang) {
+	function getQuestionAnswers($id, $type, $answer_options, $has_other, $has_comment, $showSurveyLang, $subcatId) {
 		switch($type) {
 			case (1):
-				return getRadio($id, $answer_options, $has_other, $has_comment, $showSurveyLang);
+				return getRadio($id, $type, $answer_options, $has_other, $has_comment, $showSurveyLang, $subcatId);
 				break;
 			case (2):
-				return getCheckbox($id, $answer_options, $has_other, $has_comment, $showSurveyLang);
+				return getCheckbox($id, $type, $answer_options, $has_other, $has_comment, $showSurveyLang, $subcatId);
+				break;
+			case (3):
+				return '<div class="row"><div class="col-md-12"><span id="show-'.$id.'" class="show-answers-label label label-primary sub-label-'.$subcatId.'" rel="'.$id.':'.$type.'">'.$showSurveyLang['showAnswers'].'</span></div></div>';
 				break;
 			case (4):
-				return getInputs($id, $answer_options);
+				return getInputs($id, $type, $answer_options, $subcatId);
 				break;
 		}
 	}
 	
-	function getRadio($id, $answer_options, $has_other, $has_comment, $showSurveyLang) {
+	function getRadio($id, $type, $answer_options, $has_other, $has_comment, $showSurveyLang, $subcatId) {
 		$output = '';
 		$answer_options = explode('-,-', $answer_options);
 		
 		$output = '<div class="row"><div class="col-md-12">';
+		$output .= '<span id="show-'.$id.'" class="show-answers-label label label-primary sub-label-'.$subcatId.'" rel="'.$id.':'.$type.'">'.$showSurveyLang['showAnswers'].'</span>';
 		$output .= $showSurveyLang['possibleAnswers'];
 		foreach($answer_options as $option) {
 			$output .= $option.', ';
@@ -79,11 +83,12 @@
 		return $output;
 	}
 	
-	function getCheckbox($id, $answer_options, $has_other, $has_comment, $showSurveyLang) {
+	function getCheckbox($id, $type, $answer_options, $has_other, $has_comment, $showSurveyLang, $subcatId) {
 		$output = '';
 		$answer_options = explode('-,-', $answer_options);
 		
 		$output = '<div class="row"><div class="col-md-12">';
+		$output .= '<span id="show-'.$id.'" class="show-answers-label label label-primary sub-label-'.$subcatId.'" rel="'.$id.':'.$type.'">'.$showSurveyLang['showAnswers'].'</span>';
 		$output .= $showSurveyLang['possibleAnswers'];
 		foreach($answer_options as $option) {
 			$output .= $option.', ';
@@ -94,11 +99,12 @@
 		return $output;
 	}
 	
-	function getInputs($id, $answer_options) {
+	function getInputs($id, $type, $answer_options, $subcatId) {
 		$output = '';
-		$answer_options = explode('-,-', $answer_options);
+		$answer_options = explode('-,-', $answer_options, $subcatId);
 		
 		$output = '<div class="row"><div class="col-md-12">';
+		$output .= '<span id="show-'.$id.'" class="show-answers-label label label-primary sub-label-'.$subcatId.'" rel="'.$id.':'.$type.'">'.$showSurveyLang['showAnswers'].'</span>';
 		$output .= $showSurveyLang['possibleAnswers'];
 		foreach($answer_options as $option) {
 			$output .= $option.', ';

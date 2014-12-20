@@ -17,11 +17,8 @@ $(document).ready(function() {
 				if(questionType < 3) {
 					questionDiv.after(showAnswersTable(result));
 				}
-				else if(questionType == 3) {
+				else if(questionType >= 3) {
 					questionDiv.after(showPlainAnswers(result));
-				}
-				else {
-					questionDiv.after('<div class="row answers-row"><div class="col-md-12">To be implemented question type!</div></div>');
 				}
 				questionDiv.next().slideDown('fast', function() {
 					toggleShowHideLabel(thisLabel);

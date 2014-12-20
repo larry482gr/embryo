@@ -93,15 +93,12 @@
 	function getInputs($id, $answer_options) {
 		$output = '';
 		$answer_options = explode('-,-', $answer_options);
-		$i = 1;
 		
+		$output = '<div class="row"><div class="col-md-12">';
 		foreach($answer_options as $option) {
-			$output .= '<div class="mult-input-div">';
-			$output .= '<label class="mult-input-label pull-left">'.$option.'</label>';
-			$output .= '<input type="text" class="form-control input-sm mult-input-text" name="question['.$id.'][answer]['.$i.']" />';
-			$output .= '</div>';
-			$i++;
+			$output .= $option.'&nbsp;&nbsp;&nbsp;';
 		}
+		$output .= '</div></div>';
 			
 		return $output;
 	}

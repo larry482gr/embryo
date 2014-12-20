@@ -95,6 +95,7 @@ class ControllerResearchSurvey extends Controller {
 				$surveyAnswers['answer'] = !empty($surveyAnswers['answer']) ? $surveyAnswers['answer'] : " - ";
 				break;
 			case 4:
+				$surveyAnswers['answer'] = $this->getProperMultipleAnswer($surveyAnswers);
 				break;
 		}
 		
@@ -105,7 +106,18 @@ class ControllerResearchSurvey extends Controller {
 		$questionOptions = $this->model_survey->findSurveyAnswersOptions($surveyAnswers['question_id']);
 		$optionsArray = explode("-,-", $questionOptions['answer_options']);
 		
-		return !empty($surveyAnswers['answer']) ? $optionsArray[$surveyAnswers['answer']-1] : " - ";
+		$properAnswer = !empty($surveyAnswers['answer']) ? $optionsArray[$surveyAnswers['answer']-1] : " - ";
+		
+		if(!empty($surveyAnswers['other'])) {
+			$properAnswer .= "<br/><br/>".$surveyAnswers['other'];
+		}
+		
+		if(!empty($surveyAnswers['comment'])) {
+			$showSurveyLang = $this->language->getLanguage('showSurveyLang');
+			$properAnswer .= "<br/><br/>".$showSurveyLang['comment']."<br/>".$surveyAnswers['comment'];
+		}
+		
+		return $properAnswer;
 		
 	}
 	
@@ -121,7 +133,54 @@ class ControllerResearchSurvey extends Controller {
 			}
 		}
 		
-		return !empty($properAnswer) ? substr($properAnswer, 0, -5) : " - ";
+		if(!empty($properAnswer)) {
+			$properAnswer = substr($properAnswer, 0, -5);
+			
+			if(!empty($surveyAnswers['other'])) {
+				$properAnswer .= "<br/><br/>".$surveyAnswers['other'];
+			}
+			
+			if(!empty($surveyAnswers['comment'])) {
+				$showSurveyLang = $this->language->getLanguage('showSurveyLang');
+				$properAnswer .= "<br/><br/>".$showSurveyLang['comment']."<br/>".$surveyAnswers['comment'];
+			}
+		}
+		else {
+			$properAnswer = " - ";
+		}
+		
+		return $properAnswer;
+	}
+	
+	private function getProperMultipleAnswer($surveyAnswers) {
+		$questionOptions = $this->model_survey->findSurveyAnswersOptions($surveyAnswers['question_id']);
+		$optionsArray = explode("-,-", $questionOptions['answer_options']);
+		$answersArray = explode("-,-", $surveyAnswers['answer']);
+		
+		$properAnswer = "";
+		for($i = 0; $i < sizeof($answersArray); $i++) {
+			$properAnswer .= substr($optionsArray[$i], -1) == ":" ? $optionsArray[$i]." " : $optionsArray[$i].": ";
+			$properAnswer .= $answersArray[$i] != "::empty::" ? $answersArray[$i] : " - ";
+			$properAnswer .= "<br/>";
+		}
+		
+		if(!empty($properAnswer)) {
+			$properAnswer = substr($properAnswer, 0, -5);
+			
+			if(!empty($surveyAnswers['other'])) {
+				$properAnswer .= "<br/><br/>".$surveyAnswers['other'];
+			}
+			
+			if(!empty($surveyAnswers['comment'])) {
+				$showSurveyLang = $this->language->getLanguage('showSurveyLang');
+				$properAnswer .= "<br/><br/>".$showSurveyLang['comment']."<br/>".$surveyAnswers['comment'];
+			}
+		}
+		else {
+			$properAnswer = " - ";
+		}
+		
+		return $properAnswer;
 	}
 }
 ?>

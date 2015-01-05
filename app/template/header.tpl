@@ -182,12 +182,10 @@
           		<div class="col-md-6 <?php echo $offset; ?>">
           		  <div class="sm-links">
 			        <a href="https://www.facebook.com/pages/%CE%A5%CF%80%CE%BF%CE%B2%CE%BF%CE%B7%CE%B8%CE%BF%CF%8D%CE%BC%CE%B5%CE%BD%CE%B7-%CE%91%CE%BD%CE%B1%CF%80%CE%B1%CF%81%CE%B1%CE%B3%CF%89%CE%B3%CE%AE-%CE%BA%CE%B1%CE%B9-%CF%80%CF%81%CE%BF%CF%83%CF%84%CE%B1%CF%83%CE%AF%CE%B1-%CF%84%CE%BF%CF%85-%CE%B5%CE%BC%CE%B2%CF%81%CF%8D%CE%BF%CF%85-in-vitro/260007444185660?ref=hl">
-			          <!-- <img class="facebook-grey" src="/resources/images/icons/facebook-icon.png"/> -->
-			          <img class="facebook-grey" src="/resources/images/icons/facebook_xmas.png"/>
+			          <img class="facebook-grey" src="/resources/images/icons/facebook-icon.png"/>
 			        </a>
 			        <a href="https://twitter.com/Bioithiki">
-			          <!-- <img class="twitter-grey" src="/resources/images/icons/twitter-icon.png"/> -->
-			          <img class="twitter-grey" src="/resources/images/icons/twitter_xmas.png"/>
+			          <img class="twitter-grey" src="/resources/images/icons/twitter-icon.png"/>
 			        </a>
           		  </div>
           		</div>

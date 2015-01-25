@@ -62,7 +62,7 @@
 				return '<div class="row"><div class="col-md-12"><span id="show-'.$id.'" class="show-answers-label label label-primary sub-label-'.$subcatId.'" rel="'.$id.':'.$type.'">'.$showSurveyLang['showAnswers'].'</span></div></div>';
 				break;
 			case (4):
-				return getInputs($id, $type, $answer_options, $subcatId);
+				return getInputs($id, $type, $answer_options, $showSurveyLang, $subcatId);
 				break;
 		}
 	}
@@ -99,7 +99,7 @@
 		return $output;
 	}
 	
-	function getInputs($id, $type, $answer_options, $subcatId) {
+	function getInputs($id, $type, $answer_options, $showSurveyLang, $subcatId) {
 		$output = '';
 		$answer_options = explode('-,-', $answer_options, $subcatId);
 		

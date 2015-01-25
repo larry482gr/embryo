@@ -25,7 +25,7 @@ class ControllerResearchSurvey extends Controller {
 		$this->data['countries'] = array();
 		foreach($survey_users as $survey_user) {
 			$this->data['user_ids'][] = $survey_user['id'];
-			$this->data['countries'][] = ucfirst($survey_user['last_name']);
+			$this->data['countries'][] = ucwords($survey_user['last_name']);
 		}
 		
 		if(!$this->data['survey']) {

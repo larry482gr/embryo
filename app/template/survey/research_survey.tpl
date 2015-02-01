@@ -43,6 +43,7 @@
 	<input type="hidden" id="hide-answers" value="<?php echo $showSurveyLang['hideAnswers']; ?>" />
 	<input type="hidden" id="show-all-answers" value="<?php echo $showSurveyLang['showAllAnswers']; ?>" />
 	<input type="hidden" id="hide-all-answers" value="<?php echo $showSurveyLang['hideAllAnswers']; ?>" />
+	<div id="chart_div"></div>
 <?php echo $footer; ?>
 
 <script type="text/javascript">
@@ -74,10 +75,13 @@
 		$output = '<div class="row"><div class="col-md-12">';
 		$output .= '<span id="show-'.$id.'" class="show-answers-label label label-primary sub-label-'.$subcatId.'" rel="'.$id.':'.$type.'">'.$showSurveyLang['showAnswers'].'</span>';
 		$output .= $showSurveyLang['possibleAnswers'];
+		$possibleAnswers = '';
 		foreach($answer_options as $option) {
-			$output .= $option.', ';
+			$possibleAnswers .= $option.'-,-';
 		}
-		$output = substr($output, 0, -2);
+		$possibleAnswers = substr($possibleAnswers, 0, -3);
+		$possibleAnswersText = str_replace('-,-', ', ', $possibleAnswers);
+		$output .= '<span class="possible-answers" rel="'.$possibleAnswers.'">'.$possibleAnswersText.'</span>';
 		$output .= '</div></div>';
 			
 		return $output;
@@ -90,10 +94,13 @@
 		$output = '<div class="row"><div class="col-md-12">';
 		$output .= '<span id="show-'.$id.'" class="show-answers-label label label-primary sub-label-'.$subcatId.'" rel="'.$id.':'.$type.'">'.$showSurveyLang['showAnswers'].'</span>';
 		$output .= $showSurveyLang['possibleAnswers'];
+		$possibleAnswers = '';
 		foreach($answer_options as $option) {
-			$output .= $option.', ';
+			$possibleAnswers .= $option.'-,-';
 		}
-		$output = substr($output, 0, -2);
+		$possibleAnswers = substr($possibleAnswers, 0, -3);
+		$possibleAnswersText = str_replace('-,-', ', ', $possibleAnswers);
+		$output .= '<span class="possible-answers" rel="'.$possibleAnswers.'">'.$possibleAnswersText.'</span>';
 		$output .= '</div></div>';
 			
 		return $output;

@@ -24,6 +24,7 @@
 	<script src="/resources/js/libraries/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 	<script src="/resources/js/libraries/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/resources/js/libraries/bootbox.min.js" type="text/javascript"></script>
+	<script src="/resources/js/libraries/highcharts.js" type="text/javascript"></script>
 	
 	<?php
 	  if(isset($loadMembersArea)) {

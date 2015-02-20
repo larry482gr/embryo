@@ -23,9 +23,11 @@ class ControllerLegislation extends Controller {
 			$this->load->model('tab');
 			$this->load->model('info');
 			
+			$this->data['categories'] = array();
 			$tabRow = $this->model_tab->findSubTabIdByLink('legislation');
-			$tabId = $tabRow['id'];
-			$this->data['categories'] = $this->model_info->findCategories($tabId, $lang_id);
+			foreach($tabRow as $row) {
+				$this->data['categories'] = array_merge($this->data['categories'], $this->model_info->findCategories($row['id'], $lang_id));
+			}
 		
 			$this->document->addStyle('left_part');
 			$this->document->addStyle('info');
@@ -92,7 +94,9 @@ class ControllerLegislation extends Controller {
 	}
 	
 	private function getProperFileSize($fileSize) {
-		if(($fileSize/(1024*1024)) > 1)
+		if($fileSize == 0)
+			$fileSize = "-";
+		else if(($fileSize/(1024*1024)) > 1)
 			$fileSize = number_format($fileSize/(1024*1024), 2) . " MB";
 		else if(($fileSize/1024) > 1)
 			$fileSize = number_format($fileSize/1024, 2) . " KB";

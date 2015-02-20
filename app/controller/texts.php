@@ -23,9 +23,11 @@ class ControllerTexts extends Controller {
 			$this->load->model('tab');
 			$this->load->model('info');
 			
+			$this->data['categories'] = array();
 			$tabRow = $this->model_tab->findSubTabIdByLink('texts');
-			$tabId = $tabRow['id'];
-			$this->data['categories'] = $this->model_info->findCategories($tabId, $lang_id);
+			foreach($tabRow as $row) {
+				$this->data['categories'] = array_merge($this->data['categories'], $this->model_info->findCategories($row['id'], $lang_id));
+			}
 		
 			$this->document->addStyle('left_part');
 			$this->document->addStyle('info');

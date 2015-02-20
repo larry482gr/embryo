@@ -22,7 +22,12 @@ $(document).ready(function(){
 
 	$('.container').on('click', 'table tr', function(){
 		fileLink = $(this).attr('rel');
-		window.open('/resources/files/information/'+fileLink, '_blank');
+		if(fileLink.substring(0, 7) == "http://") {
+			window.open(fileLink, '_blank');	
+		}
+		else {
+			window.open('/resources/files/information/'+fileLink, '_blank');
+		}
 	});
 	
 	$('.container').on('change', '#subcategories', function() {

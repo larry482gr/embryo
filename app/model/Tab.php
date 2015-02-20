@@ -15,7 +15,7 @@
 		public function findSubTabIdByLink($link) {
 			$query = "SELECT id FROM menu_subtabs WHERE link = '".$link."'";
 			$result = $this->db->query($query);
-			return $result->row;
+			return $result->rows;
 		}
 		
 		public function findActiveTabs($lang_id) {

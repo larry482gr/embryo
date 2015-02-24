@@ -94,7 +94,9 @@ class ControllerTexts extends Controller {
 	}
 	
 	private function getProperFileSize($fileSize) {
-		if(($fileSize/(1024*1024)) > 1)
+		if($fileSize == 0)
+			$fileSize = "-";
+		else if(($fileSize/(1024*1024)) > 1)
 			$fileSize = number_format($fileSize/(1024*1024), 2) . " MB";
 		else if(($fileSize/1024) > 1)
 			$fileSize = number_format($fileSize/1024, 2) . " KB";

@@ -13,6 +13,20 @@ $(document).ready(function() {
 	var appl_fax;
 	var appl_email;
 	var appl_material;
+	
+	$('#appl-mcc, #appl-mnc, #appl-tel, #appl-fax').keyup(function() {
+		if($(this).val().length > 0 && !onlyDigits($(this).val())) {
+			$(this).tooltip({
+								title: only_digits,
+								placement: 'right',
+								trigger: 'focused'
+							});
+			$(this).focus();
+		}
+		else {
+			$(this).tooltip('destroy');
+		}
+	});
 		
 	$('#appl-submit').on('click', function() {
 		var error = 0;
@@ -34,7 +48,7 @@ $(document).ready(function() {
 		
 		if(appl_fname.length == 0 || appl_lname.length == 0 || appl_faculty.length == 0 || appl_country.length == 0 || 
 		   appl_city.length == 0 || appl_pocode.length == 0 || appl_address.length == 0 || appl_mcc.length == 0 || 
-		   appl_mnc.length == 0 || appl_tel.length == 0) {
+		   appl_mnc.length == 0 || appl_tel.length == 0 || appl_email.length == 0) {
 			
 			error += 1;
 		}
@@ -54,6 +68,11 @@ $(document).ready(function() {
 			showErrorMessage(error);
 		}
 	});
+	
+	function onlyDigits(number) {
+		var isnum = /^\d+$/;
+		return isnum.test(number);
+	}
 
 	function validateEmail(email) {
 		var emailPattern = /^[a-zA-Z0-9\._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -118,6 +137,7 @@ $(document).ready(function() {
 			success: function(result) {
 				if(result.substring(0, 3) == 'id:') {
 					updateEmailFail(result.substring(3));
+					bootbox.alert(success);
 				}
 				else if(result == '0') {
 					bootbox.alert(success);

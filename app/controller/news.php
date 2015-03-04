@@ -90,7 +90,7 @@ class ControllerNews extends Controller {
 		
 		if(empty($appl['fname']) || empty($appl['lname']) || empty($appl['faculty']) || empty($appl['country']) || 
 		   empty($appl['city']) || empty($appl['pocode']) || empty($appl['address']) || empty($appl['mcc']) || 
-		   empty($appl['mnc']) || empty($appl['tel'])) {
+		   empty($appl['mnc']) || empty($appl['tel']) || empty($appl['email'])) {
 			
 			$output += 1;
 		}
@@ -147,7 +147,6 @@ class ControllerNews extends Controller {
 		
 		echo $affectedRows;
 		die();
-		
 	}
 	
 	private function buildConferenceApplication($appl) {

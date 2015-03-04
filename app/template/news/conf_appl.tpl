@@ -74,29 +74,29 @@
 					  <div class="form-group">
 					    <label for="appl-mcc" class="col-sm-3 control-label"><?php echo $confAppl['phoneCountryCode']; ?>: *</label>
 					    <div class="col-sm-9 col-md-4">
-					      <input type="tel" class="form-control" id="appl-mcc" name="appl[mcc]" />
+					      <input type="tel" class="form-control" id="appl-mcc" name="appl[mcc]" placeholder="30" />
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="appl-mnc" class="col-sm-3 control-label"><?php echo $confAppl['phoneCityCode']; ?>: *</label>
 					    <div class="col-sm-9 col-md-4">
-					      <input type="tel" class="form-control" id="appl-mnc" name="appl[mnc]" />
+					      <input type="tel" class="form-control" id="appl-mnc" name="appl[mnc]" placeholder="2310" />
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="appl-tel" class="col-sm-3 control-label"><?php echo $confAppl['phoneNumber']; ?>: *</label>
 					    <div class="col-sm-9 col-md-4">
-					      <input type="tel" class="form-control" id="appl-tel" name="appl[tel]" />
+					      <input type="tel" class="form-control" id="appl-tel" name="appl[tel]" placeholder="123456" />
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="appl-fax" class="col-sm-3 control-label"><?php echo $confAppl['fax']; ?>:</label>
 					    <div class="col-sm-9 col-md-4">
-					      <input type="tel" class="form-control" id="appl-fax" name="appl[fax]" />
+					      <input type="tel" class="form-control" id="appl-fax" name="appl[fax]" placeholder="123456" />
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label for="appl-email" class="col-sm-3 control-label"><?php echo $confAppl['email']; ?>:</label>
+					    <label for="appl-email" class="col-sm-3 control-label"><?php echo $confAppl['email']; ?>: *</label>
 					    <div class="col-sm-9 col-md-4">
 					      <input type="email" class="form-control" id="appl-email" name="appl[email]" />
 					    </div>

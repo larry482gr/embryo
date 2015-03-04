@@ -27,3 +27,8 @@ dd > h4 {
 .radio {
 	margin-left: 15px;
 }
+
+.tooltip-inner {
+	width: 340px !important;
+	max-width: 340px !important;
+}

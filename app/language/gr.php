@@ -88,7 +88,7 @@
 	$language['confAppl']['submit'] = 'Υποβολή Εγγραφής';
 	$language['confAppl']['success'] = 'Η Αίτηση σας υποβλήθηκε επιτυχώς.';
 	$language['confAppl']['required'] = 'Όλα τα πεδία με * είναι υποχρεωτικά.';
-	$language['confAppl']['invalidEmail'] = 'Η διεύθυνση email που εισάγατε δεν είναι έγγυρη.';
+	$language['confAppl']['invalidEmail'] = 'Η διεύθυνση email που εισάγατε δεν είναι έγκυρη.';
 	$language['confAppl']['atLeastOne'] = 'Πρέπει να επιλέξετε τουλάχιστον μία από τις δύο επιλογές/checkboxes.';
 	$language['confAppl']['onlyNumeric'] = 'Τα πεδία "'.$language['confAppl']['phoneCountryCode'].'", "'.$language['confAppl']['phoneCityCode'].'", "'.$language['confAppl']['phoneNumber'].'", "'.$language['confAppl']['fax'].'" πρέπει να περιλαμβάνουν μόνο αριθμητικά ψηφία.';
 	

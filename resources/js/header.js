@@ -69,6 +69,30 @@ $(document).ready(function(){
         });
     });
     
+    $(".social-media").on("mouseover", ".youtube-grey", function () {
+    	$(".youtube-grey").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("youtube").fadeTo(300, 1);
+        });
+    });
+	
+    $(".social-media").on("mouseout", ".youtube", function () {
+        $(".youtube").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("youtube-grey").fadeTo(300, 1);
+        });
+    });
+    
+    $(".social-media").on("mouseover", ".gplus-grey", function () {
+    	$(".gplus-grey").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("gplus").fadeTo(300, 1);
+        });
+    });
+	
+    $(".social-media").on("mouseout", ".gplus", function () {
+        $(".gplus").fadeTo(150,0.1,function(){
+        	$(this).removeClass().addClass("gplus-grey").fadeTo(300, 1);
+        });
+    });
+    
     /*
     $(window).bind('beforeunload', function(){
 		return '>>>>>Before You Go<<<<<<<< \n Your custom message go here';

@@ -87,7 +87,7 @@
             </div>
           </div>
           <div class="collapse navbar-collapse" id="main-navbar">
-          	<ul class="nav navbar-nav">
+          	<ul class="nav navbar-nav col-md-9 pull-left">
           	<?php
           		$navigation_menu = '';
           		foreach($tabs as $tab) {
@@ -146,7 +146,7 @@
 				echo $navigation_menu;
           	?>
           	</ul>
-          	<div class="social-media pull-right">
+          	<div class="social-media col-md-3 pull-right">
           		<?php
           		  if(!empty($username)) {
           		?>
@@ -187,6 +187,12 @@
 			        </a>
 			        <a href="https://twitter.com/Bioithiki">
 			          <img class="twitter-grey" src="/resources/images/icons/twitter-icon.png"/>
+			        </a>
+			        <a href="https://plus.google.com/115816208774857648351">
+			          <img class="gplus-grey" src="/resources/images/icons/googleplus-icon.png"/>
+			        </a>
+			        <a href="https://www.youtube.com/channel/UC89f6dO5J-0bAOxwoXxBtkA">
+			          <img class="youtube-grey" src="/resources/images/icons/youtube-icon.png"/>
 			        </a>
           		  </div>
           		</div>

@@ -151,8 +151,8 @@ class ControllerNews extends Controller {
 	
 	private function buildConferenceApplication($appl) {
 		$confAppl = $this->language->getLanguage('confAppl');
-		$appl['fax'] = $appl['fax'] == "NULL" ? '' : $appl['fax'];
-		$appl['email'] = $appl['email'] == "NULL" ? '' : $appl['email'];
+		$appl['fax'] = $appl['fax'] == "NULL" ? '' : str_replace("'", "", $appl['fax']);
+		$appl['email'] = $appl['email'] == "NULL" ? '' : str_replace("'", "", $appl['fax']);
 		$watch = '';
 		if($appl['material'] == 1) {
 			$watch = $confAppl['watch'];

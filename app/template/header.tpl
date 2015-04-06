@@ -146,7 +146,7 @@
 				echo $navigation_menu;
           	?>
           	</ul>
-          	<div class="social-media col-md-3 pull-right">
+          	<div class="social-media col-md-3">
           		<?php
           		  if(!empty($username)) {
           		?>

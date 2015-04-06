@@ -211,13 +211,22 @@ h3.page-title {
 	margin-right: 8px;
 	width: 320px;
 	padding-bottom: 4px;
+	padding-right: 0px;
+	padding-left: 0px;
 }
 
 @media (max-width: 820px) {
 	.social-media {
-		float: left !important;
+		float: left;
+		clear: both;
 		margin-bottom: 10px;
 		margin-left: -8px;
+	}
+}
+
+@media (min-width: 821px) {
+	.social-media {
+		float: right;
 	}
 }
 

@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: hosted4db.ccf.auth.gr:3306
--- Generation Time: Apr 06, 2015 at 08:11 PM
--- Server version: 5.5.41-0ubuntu0.12.04.1
+-- Generation Time: Aug 17, 2015 at 12:52 PM
+-- Server version: 5.5.44-0ubuntu0.12.04.1
 -- PHP Version: 5.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -964,7 +964,7 @@ CREATE TABLE IF NOT EXISTS `survey_answers` (
   `comment` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`question_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6516 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6613 ;
 
 --
 -- Dumping data for table `survey_answers`
@@ -7510,7 +7510,104 @@ INSERT INTO `survey_answers` (`id`, `user_id`, `question_id`, `answer`, `other`,
 (6512, 30, 94, '::empty::-,-::empty::', NULL, NULL),
 (6513, 30, 95, NULL, NULL, NULL),
 (6514, 30, 96, NULL, NULL, NULL),
-(6515, 30, 97, NULL, NULL, NULL);
+(6515, 30, 97, NULL, NULL, NULL),
+(6516, 31, 1, '3', NULL, NULL),
+(6517, 31, 2, NULL, NULL, NULL),
+(6518, 31, 3, '::empty::-,-::empty::-,-::empty::-,-on-,-::empty::', NULL, NULL),
+(6519, 31, 4, '1', NULL, NULL),
+(6520, 31, 5, NULL, NULL, NULL),
+(6521, 31, 6, '::empty::-,-on-,-::empty::-,-::empty::', NULL, NULL),
+(6522, 31, 7, '::empty::-,-25-,-::empty::-,-::empty::', NULL, NULL),
+(6523, 31, 8, '1', NULL, NULL),
+(6524, 31, 9, '2', NULL, NULL),
+(6525, 31, 10, '2', NULL, NULL),
+(6526, 31, 11, NULL, NULL, NULL),
+(6527, 31, 12, '1', NULL, NULL),
+(6528, 31, 13, '1', NULL, NULL),
+(6529, 31, 14, '2', NULL, NULL),
+(6530, 31, 15, '1', NULL, NULL),
+(6531, 31, 16, '1', NULL, NULL),
+(6532, 31, 17, '1', NULL, NULL),
+(6533, 31, 18, '1', NULL, NULL),
+(6534, 31, 19, '1', NULL, NULL),
+(6535, 31, 20, '2', NULL, NULL),
+(6536, 31, 21, NULL, NULL, NULL),
+(6537, 31, 22, '2', NULL, NULL),
+(6538, 31, 23, NULL, NULL, NULL),
+(6539, 31, 24, '1', NULL, NULL),
+(6540, 31, 25, '2', NULL, NULL),
+(6541, 31, 26, '2', NULL, NULL),
+(6542, 31, 27, NULL, NULL, NULL),
+(6543, 31, 28, '2', NULL, NULL),
+(6544, 31, 29, '2', NULL, NULL),
+(6545, 31, 30, '1', NULL, NULL),
+(6546, 31, 31, 'on-,-on-,-::empty::-,-on-,-on-,-::empty::', NULL, NULL),
+(6547, 31, 32, '1', NULL, NULL),
+(6548, 31, 33, '1', NULL, NULL),
+(6549, 31, 34, '1', NULL, NULL),
+(6550, 31, 35, '1', NULL, NULL),
+(6551, 31, 36, '2', NULL, NULL),
+(6552, 31, 37, '1', NULL, NULL),
+(6553, 31, 38, '3', NULL, NULL),
+(6554, 31, 39, '2', NULL, NULL),
+(6555, 31, 40, '1', NULL, NULL),
+(6556, 31, 41, '3', NULL, NULL),
+(6557, 31, 42, '1', NULL, NULL),
+(6558, 31, 43, '1', NULL, NULL),
+(6559, 31, 44, '3', NULL, NULL),
+(6560, 31, 45, '1', NULL, NULL),
+(6561, 31, 46, '1', NULL, NULL),
+(6562, 31, 47, '3', NULL, NULL),
+(6563, 31, 48, '3', NULL, NULL),
+(6564, 31, 49, NULL, NULL, NULL),
+(6565, 31, 50, '1', NULL, NULL),
+(6566, 31, 51, '3', NULL, NULL),
+(6567, 31, 52, NULL, NULL, NULL),
+(6568, 31, 53, '4', NULL, NULL),
+(6569, 31, 54, '2', NULL, NULL),
+(6570, 31, 55, '2', NULL, NULL),
+(6571, 31, 56, '1', NULL, NULL),
+(6572, 31, 57, '1', NULL, NULL),
+(6573, 31, 58, '2', NULL, NULL),
+(6574, 31, 59, '1', NULL, NULL),
+(6575, 31, 60, '1', NULL, NULL),
+(6576, 31, 61, 'on-,-on-,-::empty::', NULL, NULL),
+(6577, 31, 62, '2', NULL, NULL),
+(6578, 31, 63, '1', NULL, NULL),
+(6579, 31, 64, '1', NULL, NULL),
+(6580, 31, 65, '1', NULL, NULL),
+(6581, 31, 66, '1', NULL, NULL),
+(6582, 31, 67, '1', NULL, NULL),
+(6583, 31, 68, '1', NULL, NULL),
+(6584, 31, 69, 'περίπου 5.000 δραχμές. Στο ποσό αυτό συμπεριλαμβάνεται και το ποσό που δίνεται για τα φάρμακα, ενέσεις κτλ το οποίο σε πολλές περιπτώσεις μπορεί να φτάνει τις 2.500 ευρώ.', NULL, NULL),
+(6585, 31, 70, '1', NULL, NULL),
+(6586, 31, 71, '1', NULL, NULL),
+(6587, 31, 72, '1', NULL, NULL),
+(6588, 31, 73, '1', NULL, NULL),
+(6589, 31, 74, '1', NULL, NULL),
+(6590, 31, 75, '1', NULL, NULL),
+(6591, 31, 76, 'on-,-::empty::-,-on-,-::empty::', NULL, NULL),
+(6592, 31, 77, '::empty::-,-::empty::-,-::empty::', NULL, NULL),
+(6593, 31, 78, '::empty::-,-::empty::-,-::empty::', NULL, NULL),
+(6594, 31, 79, '1', NULL, NULL),
+(6595, 31, 80, '2', NULL, NULL),
+(6596, 31, 81, '2', NULL, NULL),
+(6597, 31, 82, '2', NULL, NULL),
+(6598, 31, 83, NULL, NULL, NULL),
+(6599, 31, 84, '::empty::-,-::empty::-,-::empty::', NULL, NULL),
+(6600, 31, 85, '::empty::-,-::empty::-,-::empty::', NULL, NULL),
+(6601, 31, 86, '2', NULL, NULL),
+(6602, 31, 87, NULL, NULL, NULL),
+(6603, 31, 88, '1', NULL, NULL),
+(6604, 31, 89, NULL, NULL, NULL),
+(6605, 31, 90, NULL, NULL, NULL),
+(6606, 31, 91, 'δυστυχώς δε γνωρίζω', NULL, NULL),
+(6607, 31, 92, '3', NULL, NULL),
+(6608, 31, 93, '2', NULL, NULL),
+(6609, 31, 94, '::empty::-,-::empty::', NULL, NULL),
+(6610, 31, 95, NULL, NULL, NULL),
+(6611, 31, 96, NULL, NULL, NULL),
+(6612, 31, 97, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -7555,6 +7652,7 @@ INSERT INTO `survey_user_map` (`survey_id`, `user_id`, `date_time`) VALUES
 (1, 21, '2014-12-14 03:39:07'),
 (1, 22, '2014-12-14 17:12:29'),
 (1, 30, '2015-02-22 10:55:20'),
+(1, 31, '2015-04-29 11:09:57'),
 (2, 23, '2014-12-14 19:56:15'),
 (2, 24, '2014-12-15 16:08:25'),
 (2, 25, '2015-01-02 18:23:08'),
@@ -7576,7 +7674,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(127) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `users`
@@ -7612,7 +7710,8 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`) VALUES
 (27, 'admin', 'Italy', 'italy@survey.repro.law.auth.gr'),
 (28, 'admin', 'Germany', 'germany@survey.repro.law.auth.gr'),
 (29, 'admin', 'Sweden', 'sweden@survey.repro.law.auth.gr'),
-(30, 'Ηλέκτρα', 'Καλοδημίδου', 'electrakalo@gmail.com');
+(30, 'Ηλέκτρα', 'Καλοδημίδου', 'electrakalo@gmail.com'),
+(31, 'Ευανθία', 'Κουσιοπούλου', 'evakousiopoulou@hotmail.com');
 
 --
 -- Constraints for dumped tables

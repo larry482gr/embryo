@@ -1,5 +1,6 @@
 h4.static-header {
 	text-align: center;
+	margin: 25px 0px;
 }
 
 .research_content {
@@ -8,6 +9,18 @@ h4.static-header {
 	margin-bottom: 20px;
 }
 
-.research_content ol {
+.research_content ol, .research_content ul {
 	padding-left: 15px !important;
+}
+
+.research_content ol.loose-ol > li {
+	margin-bottom: 18px;
+}
+
+.research_content ol.loose-ol > li > h5 {
+	margin-bottom: 6px !important;
+}
+
+.research_content ol.loose-ol > li > ul > li > a {
+	text-decoration: none;
 }

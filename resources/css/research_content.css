@@ -21,6 +21,19 @@ h4.static-header {
 	margin-bottom: 6px !important;
 }
 
-.research_content ol.loose-ol > li > ul > li > a {
+.research_content ol.loose-ol a {
 	text-decoration: none;
+}
+
+.research_content ol.loose-ol button.btn-link {
+	padding: 0px;
+	text-decoration: none;
+}
+
+.research_content ol.loose-ol button.btn-link span.caret {
+	margin-left: 4px;
+}
+
+.research_content ol.loose-ol ul.dropdown-menu {
+	padding-left: 0px !important;
 }

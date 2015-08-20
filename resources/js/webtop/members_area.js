@@ -470,7 +470,7 @@ $(document).ready(function() {
 	});
 	
 	$('#upload-file').on('click', function() {
-		if(newFileType == 'application/pdf' || newFileType == 'application/msword' || newFileType == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+		if(newFileType == 'application/pdf' || newFileType == 'application/vnd.ms-word' || newFileType == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
 			$('#new-file-form').submit();
 		}
 		else {

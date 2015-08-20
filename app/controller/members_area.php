@@ -136,7 +136,7 @@ class ControllerMembersArea extends Controller {
 		$filepath = $path."/".$fileLabel.".".$extension;
 
 		if ((($this->request->files["new_file"]["type"] == "application/pdf")
-			|| ($this->request->files["new_file"]["type"] == "application/msword")
+			|| ($this->request->files["new_file"]["type"] == "application/vnd.ms-word")
 			|| ($this->request->files["new_file"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
 			&& ($this->request->files["new_file"]["size"] < (20*1024*1024))
 			&& in_array($extension, $allowedExts)) {

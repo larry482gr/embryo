@@ -446,9 +446,13 @@ $(document).ready(function() {
 	});
 	
 	var options = {
+		beforeSend: function() {
+			$("#upload-file").text("Uploading...").attr('disabled', true).after('<img src="/resources/images/icons/loader3.gif"/>');
+		},
 		success: function(result) {
 			file = JSON.parse(result);
 			$(".folder-content #cat"+file.category_id+"-div .window-content").append(getFileDiv(file));
+			$("#upload-file").text("Upload").attr('disabled', false).next().remove();
 			$('#newFileModal').modal('hide');
 		},
 		error: function() {

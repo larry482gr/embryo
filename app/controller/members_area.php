@@ -27,7 +27,7 @@ class ControllerMembersArea extends Controller {
 		$this->document->addStyle('members_area');
 		$this->document->addScript('webtop/functions');
 		$this->document->addScript('webtop/context_menus');
-		$this->document->addScript('webtop/members_area');
+		$this->document->addScript('webtop/members_area_new');
 
 		// Assign header/footer to children object
 		$this->children = array('header', 'footer', 'left_part');

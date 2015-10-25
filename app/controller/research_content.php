@@ -8,7 +8,7 @@ class ControllerResearchContent extends Controller {
 		$this->data['content'] = $this->model_content->findContent($this->request->request['route'], $lang_id);
 		
 		$this->document->addStyle('research_content');
-		// $this->document->addScript('research_content');
+		$this->document->addScript('research_content');
 		$this->document->addStyle('left_part');
 		
 		// Assign header/footer to children object

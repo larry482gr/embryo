@@ -49,7 +49,7 @@ class ControllerHeader extends Controller {
 		$request_uri_array = explode('/', $this->request->server['REQUEST_URI']);
 		$last_uri_element = end($request_uri_array);
 		$end = '';
-		if(ctype_digit($last_uri_element)) {
+		if(ctype_digit($last_uri_element) && strpos($this->request->server['REQUEST_URI'], 'showResearchSurvey') === false) {
 			$end = sizeof($last_uri_element)+1;
 		}
 		$this->data['gr_href'] = empty($end) ? '/gr/'.substr($this->request->server['REQUEST_URI'], 4) : '/gr/'.substr($this->request->server['REQUEST_URI'], 4, -$end);

@@ -54,7 +54,7 @@
 	  </div>
 	  <?php
 	  	if($profile_id < 3) {
-	  		echo '<a href="/research_survey/showResearchSurvey/2" target="_blank">Research Survey Results</a>';
+	  		echo '<a href="/'.$lang.'/research_survey/showResearchSurvey/2" target="_blank">Research Survey Results</a>';
 	  	}
 	  ?>
 	</div>

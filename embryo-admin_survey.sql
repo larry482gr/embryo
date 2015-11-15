@@ -2,9 +2,8 @@
 -- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: hosted4db.ccf.auth.gr:3306
--- Generation Time: Aug 17, 2015 at 12:52 PM
--- Server version: 5.5.44-0ubuntu0.12.04.1
+-- Generation Time: Nov 15, 2015 at 01:16 PM
+-- Server version: 5.5.46-0ubuntu0.12.04.2
 -- PHP Version: 5.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
